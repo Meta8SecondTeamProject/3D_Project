@@ -18,6 +18,7 @@ public class Gizmo : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube(walls.transform.position, walls.transform.localScale);
+
 	}
 }
 
