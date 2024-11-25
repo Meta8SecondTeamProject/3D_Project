@@ -81,6 +81,10 @@ public class Frog_Move : MonoBehaviour
     {
         //입력받은 키 WASD를 바탕으로 벡터 초기화
         inputValue = context.ReadValue<Vector2>();
+
+        //TODO : AddForce로 이동을 처리하다보니 벽 방향으로 계속 이동하면 내려오지 않는 문제가 있음
+        //TODO : 추후 CheckSpherer또는 Raycast를 활용하여 벽을 감지하면 그 방향으로 못 움직이도록 해야함
+        //TODO : Velocity가 최대 속도를 넘지 않도록 고정해주는 로직 필요함, 주석 처리한 TMP부분 해제하고 테스트
     }
 
     private void Jump()
