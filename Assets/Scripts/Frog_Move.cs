@@ -18,11 +18,12 @@ public class Frog_Move : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundMask;
     private bool grounded;
-    public bool readyToJump;
+    [HideInInspector] public bool readyToJump;
 
-    [Header("이동 및 점프 관련(3, 0.8)")]
-    public float moveSpeed;
+    [Header("이동 및 점프 관련(3, 3)")]
+    public float moveSpeed; 
     public float jumpForce;
+    private float jumpCharge;
 
     //[Header("디버그용 속도 표시계")]
     //public TextMeshProUGUI text;
@@ -63,15 +64,17 @@ public class Frog_Move : MonoBehaviour
         }
         if (grounded && inputValue.magnitude > 0)
         {
-            //TODO : Invoke로 하면 의도한거랑 다른 움직임이 발생함, 추후 dletaTime을 누적시켜서 0.5초를 구현하던, InputSystem을 건드리던 로직 바꾸기
-            Invoke("Jump", 0.5f);
+            //TODO : (완료됨)Invoke로 하면 의도한거랑 다른 움직임이 발생함, 추후 dletaTime을 누적시켜서 0.5초를 구현하던, InputSystem을 건드리던 로직 바꾸기
+            //Invoke("Jump", 0.5f);
+            Jump();
         }
 
         //Debug.Log(grounded);
         //Debug.Log(inputValue.x); //A : -1 / D : 1
         //Debug.Log(inputValue.y); //W : 1 / S : 1 
         //Debug.Log(inputValue);
-        ///text.text = $"current Speed : {(rb.velocity.magnitude * 2.23694f).ToString("F2")}";
+        //Debug.Log(jumpCharge);
+        //text.text = $"current Speed : {(rb.velocity.magnitude * 2.23694f).ToString("F2")}";
     }
 
     private void OnMoveEvent(InputAction.CallbackContext context)
@@ -82,12 +85,21 @@ public class Frog_Move : MonoBehaviour
 
     private void Jump()
     {
-        if (readyToJump==false)
-            return;
+        if (readyToJump == false)
+        {
+            jumpCharge = 0;
+            return; 
+        }
 
-        //현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        jumpCharge += Time.deltaTime;
+
+        if (jumpCharge > 0.4f)
+        {
+            //현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            jumpCharge = 0;
+        }
     }
 
     private void Move()
@@ -98,11 +110,11 @@ public class Frog_Move : MonoBehaviour
     private void StateHandler()
     {
         //점프와 그라운드의 기준을 다르게함
-        //0.4f짜리 점프 그대로 쓰자니 바닥이랑 가까이 있을때 움직이지 못하는 현상 방지용
+        //0.4f짜리 readyToJump 그대로 쓰자니 바닥이랑 가까이 있을때 움직이지 못하는 현상 방지용
         //grounded를 0.05로 하면 안됐나요?
         //그럼 원본게임이랑 조금 다르게 움직임
         grounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
-        readyToJump = Physics.CheckSphere(groundCheck.position, 0.05f, groundMask);
+        readyToJump = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
     }
 
     private void OnDrawGizmos()
@@ -110,6 +122,6 @@ public class Frog_Move : MonoBehaviour
         //Gizmos.color = Color.green;
         //Gizmos.DrawWireSphere(groundCheck.position, 0.4f);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, 0.05f);
+        Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
     }
 }
