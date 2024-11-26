@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
-	public Enemy[] enemise;
-	public Dictionary<string, Enemy> originalPool = new();
-	public Dictionary<string, List<Enemy>> poolDic = new();
+	public GameObject[] enemise;
+	public Dictionary<string, GameObject> originalPool = new();
+	public Dictionary<string, List<GameObject>> poolDic = new();
 
 
 	public void Awake()
@@ -18,22 +18,22 @@ public class EnemyPool : MonoBehaviour
 		}
 	}
 
-	public Enemy Pop(string key)
+	public GameObject Pop(string key)
 	{
-		List<Enemy> targetPool = poolDic[key];
+		List<GameObject> targetPool = poolDic[key];
 		if (targetPool.Count <= 0)
 		{
-			Enemy newEnemy = Instantiate(originalPool[key]);
+			GameObject newEnemy = Instantiate(originalPool[key]);
 			newEnemy.name = key;
 			targetPool.Add(newEnemy);
 		}
-		Enemy returnEnemy = targetPool[0];
+		GameObject returnEnemy = targetPool[0];
 		targetPool.RemoveAt(0);
 		returnEnemy.gameObject.SetActive(true);
 		returnEnemy.transform.SetParent(null);
 		return returnEnemy;
 	}
-	public void Push(Enemy enemy)
+	public void Push(GameObject enemy)
 	{
 		enemy.gameObject.SetActive(false);
 		enemy.transform.SetParent(transform);
