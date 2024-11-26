@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Frog_Look : MonoBehaviour
 {
     public Transform cameraPos;
+
     [Range(5f,30f)] public float mouseSensivity;
     private float rigAngle = 0f;
 
