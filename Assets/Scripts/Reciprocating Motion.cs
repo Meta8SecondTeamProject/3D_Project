@@ -15,7 +15,7 @@ public class ReciprocatingMotion : MonoBehaviour
 
     private void Update()
     {
-        float dir = Mathf.Sin(Time.time * mooveSpeed) * moveAmplitude;
+        float dir = Mathf.Sin(Time.time * mooveSpeed) * moveAmplitude * 0.01f;
 
         if(dirX)
             transform.position = new Vector3(transform.position.x + dir, transform.position.y, transform.position.z);

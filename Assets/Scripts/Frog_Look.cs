@@ -47,7 +47,7 @@ public class Frog_Look : MonoBehaviour
 
         //캐릭터를 보는 카메라의 상하 회전, 
         rigAngle = rigAngle - mouseDelta.y * mouseSensivity * Time.deltaTime;
-        rigAngle = Mathf.Clamp(rigAngle, -70f, 90f);
+        rigAngle = Mathf.Clamp(rigAngle, -70f, 100f);
         cameraPos.localEulerAngles = new Vector3(rigAngle, 0, 0);
     }
 }

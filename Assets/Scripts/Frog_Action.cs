@@ -8,6 +8,7 @@ public class Frog_Action : MonoBehaviour
 {
     public Transform muzzle;
     public Camera shotPoint;
+    public Transform knockbackPos;
 
     private Rigidbody rb;
     private InputActionAsset controlDefine;
@@ -17,6 +18,7 @@ public class Frog_Action : MonoBehaviour
     [Header("7, 5")]
     public float knockbackForce;
     public float jumpForce;
+    [HideInInspector] public bool isJumping;
 
     private Vector3 moveDir;
     private float fireInterval;
@@ -36,6 +38,8 @@ public class Frog_Action : MonoBehaviour
     {
         fireAction.performed += OnFireEvent;
         jumpAction.performed += OnJumpEvent;
+
+        isJumping = true;
     }
 
     private void OnDisable()
@@ -45,7 +49,7 @@ public class Frog_Action : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log($"isJumping : {isJumping}");
     }
 
     private void OnFireEvent(InputAction.CallbackContext context)
@@ -64,9 +68,10 @@ public class Frog_Action : MonoBehaviour
                 //if (hitTarget.gameObject.CompareTag("Enemy")) 
                 //{
                     Vector3 hitPos = hit.point;
-                    Vector3 knockbackdir = transform.position - hitPos;
+                    Vector3 knockbackdir = knockbackPos.position - hitPos;
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z); 
                     rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
+                    isJumping = true;
                 //}
             }
         }
@@ -99,6 +104,19 @@ public class Frog_Action : MonoBehaviour
             Vector3 normalizedDir = jumpDir.normalized;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(normalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
+            isJumping = true;
         }
     }
 }
+//1. 개구리의 후진은 WASD와 관계없음
+//2. 개구리가 점프대나 반동으로 인해 점프할 때 S를 누르면 감속은 되나, 
+//   Velocity가 0 미만이 되면 더이상 후진이 되지 않음
+//3. Frog_Move와 별개로 bool변수 선언해서 Actcion으로 인한 점프인지 
+//   판단 후 이동속도 적용해야됨
+
+//4. 개구리가 스페이스바를 누를 때, 반동으로 점프할 때, 점프대를 탔을 때
+//   isJumping을 true로 바꾸고, true인동안 Frog_Move에서 감속은 되나 후진은 안되도록
+//5. 다시 false로 돌아오는건 CheckSphere 활용
+
+//5-1. CheckSphere의 문제점 : Update에서 돌아가다보니 bool값이 계속 변함
+//     한번만 false로 바꾸고, 그 이후에는 상술한 조건을 제외하면 계속 false를 유지하는 로직이 필요함

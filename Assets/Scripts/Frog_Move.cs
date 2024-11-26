@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
+using System.Runtime.CompilerServices;
 
 
 public class Frog_Move : MonoBehaviour
@@ -21,14 +23,17 @@ public class Frog_Move : MonoBehaviour
     [HideInInspector] public bool readyToJump;
 
     [Header("이동 및 점프 관련(3, 3)")]
-    public float moveSpeed; 
+    public float moveSpeed;
     public float jumpForce;
     public float maxVelocity;
     private float jumpCharge;
+    private float jumpSpeed;
+
 
     [Header("디버그용 속도 표시계")]
     public Text text;
 
+    private Frog_Action frogAction;
     private void Awake()
     {
         //프레임 너무 올라가니까 노트북 발열이 개쩔어서 임시로 60으로 제한
@@ -37,6 +42,7 @@ public class Frog_Move : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controlDefine = GetComponent<PlayerInput>().actions;
         moveAction = controlDefine.FindAction("Move");
+        frogAction = GetComponent<Frog_Action>();
     }
 
     private void OnEnable()
@@ -53,18 +59,25 @@ public class Frog_Move : MonoBehaviour
 
     private void Start()
     {
-       
+        jumpSpeed = moveSpeed * 2f;
     }
 
     private void Update()
     {
         StateHandler();
+        maxVelocity = frogAction.isJumping ? 50 : 20;
+        moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
+
+        if (rb.velocity.magnitude > maxVelocity)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        }
 
         //Event에서 호출하니 WASD누를때만 마우스 방향에 맞게 바뀌는 문제가 있어서 Update로 이동
         inputDir = new Vector3(inputValue.x, 0, inputValue.y).normalized;
         moveDir = transform.TransformDirection(inputDir) * moveSpeed;
 
-        if (readyToJump==false && inputValue.magnitude > 0)
+        if (readyToJump == false && inputValue.magnitude > 0)
         {
             Move();
         }
@@ -78,10 +91,14 @@ public class Frog_Move : MonoBehaviour
 
         //Debug.Log(grounded);
         //Debug.Log(inputValue.x); //A : -1 / D : 1
-        //Debug.Log(inputValue.y); //W : 1 / S : 1 
+        //Debug.Log(inputValue.y); //W : 1 / S : -1 
         //Debug.Log(inputValue);
         //Debug.Log(jumpCharge);
-        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}km/h";
+        //Debug.Log(rb.velocity.z);
+        Debug.Log($"moveDir.y : {moveDir.y}");
+        //Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
+
+        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
     }
 
     private void OnMoveEvent(InputAction.CallbackContext context)
@@ -95,7 +112,7 @@ public class Frog_Move : MonoBehaviour
         if (readyToJump == false)
         {
             jumpCharge = 0;
-            return; 
+            return;
         }
 
         jumpCharge += Time.deltaTime;
@@ -104,6 +121,7 @@ public class Frog_Move : MonoBehaviour
         {
             //현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            //rb.AddForce(moveDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             jumpCharge = 0;
         }
@@ -111,7 +129,10 @@ public class Frog_Move : MonoBehaviour
 
     private void Move()
     {
-        rb.velocity += new Vector3(moveDir.x, 0, moveDir.z) * Time.deltaTime * moveSpeed;
+        //if(inputValue.y>0)
+        //    rb.velocity += new Vector3(0, 0, 0) * Time.deltaTime * moveSpeed;
+        //else
+            rb.velocity += new Vector3(moveDir.x, 0, moveDir.z) * Time.deltaTime * moveSpeed;
     }
 
     private void StateHandler()
@@ -122,6 +143,10 @@ public class Frog_Move : MonoBehaviour
         //그럼 원본게임이랑 조금 다르게 움직임
         grounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
         readyToJump = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
+
+        if (!frogAction.isJumping)
+            return;
+        frogAction.isJumping = !Physics.CheckSphere(groundCheck.position, 0.05f, groundMask);
     }
 
     private void OnDrawGizmos()
@@ -132,3 +157,6 @@ public class Frog_Move : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
     }
 }
+
+
+
