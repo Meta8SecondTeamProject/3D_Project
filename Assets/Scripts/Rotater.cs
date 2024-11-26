@@ -18,7 +18,8 @@ public class Rotater : MonoBehaviour
         //Y축을 기준으로 회전
         if(rotateY)
             transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
-
+        
+        //Z축을 기준으로 회전
         if(rotateZ)
             transform.Rotate(Vector3.forward, rotateSpeed * Time.deltaTime);
     }
