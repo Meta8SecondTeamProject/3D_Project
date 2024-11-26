@@ -406,7 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d37835550cf3124391e97c3cfe44ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 822556089}
 --- !u!135 &147333201
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8408,9 +8407,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   readyToJump: 0
-  moveSpeed: 2
+  moveSpeed: 3
   jumpForce: 5
-  maxVelocity: 50
+  maxVelocity: 40
   text: {fileID: 501893714}
 --- !u!4 &2119054647731540930
 Transform:
@@ -16264,7 +16263,7 @@ MonoBehaviour:
   muzzle: {fileID: 7645227563493808725}
   shotPoint: {fileID: 978897087741503735}
   knockbackPos: {fileID: 1863521021}
-  knockbackForce: 8
+  knockbackForce: 18
   jumpForce: 8
   isJumping: 0
 --- !u!23 &4971401585478269788
