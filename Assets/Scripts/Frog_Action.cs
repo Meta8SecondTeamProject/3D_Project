@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Frog_Action : MonoBehaviour
 {
+    [Header("머즐(총구)에 임시로 개구리 포지션 넣어주세요")]
     public Transform muzzle;
     public Camera shotPoint;
     public Transform knockbackPos;
@@ -15,15 +18,22 @@ public class Frog_Action : MonoBehaviour
     private InputAction jumpAction;
     private InputAction fireAction;
     private InputAction interaction;
-    [Header("7, 5")]
+
+    [Header("반동으로 밀려나는 힘, 점프 힘")]
     public float knockbackForce;
     public float jumpForce;
     [HideInInspector] public bool isJumping;
+
+    [Header("우클릭 시간 배율"), Range(0f, 1f)]
+    public float timeScale;
+    public float fieldOfView = 60f;
 
     private Vector3 moveDir;
     private float fireInterval;
 
     private Frog_Move frogMove;
+
+    private bool zoom;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,7 +46,8 @@ public class Frog_Action : MonoBehaviour
 
     private void OnEnable()
     {
-        fireAction.performed += OnFireEvent;
+        fireAction.performed += OnClickEvent;
+        fireAction.canceled += OnClickUpEvent;
         jumpAction.performed += OnJumpEvent;
 
         isJumping = true;
@@ -44,18 +55,40 @@ public class Frog_Action : MonoBehaviour
 
     private void OnDisable()
     {
+        fireAction.performed -= OnClickEvent;
+        fireAction.canceled -= OnClickUpEvent;
+        jumpAction.performed -= OnJumpEvent;
+    }
+
+    private void Start()
+    {
 
     }
 
     private void Update()
     {
-        Debug.Log($"isJumping : {isJumping}");
+        if (zoom)
+        {
+            shotPoint.fieldOfView = Mathf.Lerp(shotPoint.fieldOfView, 40f, 0.1f);
+        }
+        else
+        {
+            shotPoint.fieldOfView = Mathf.Lerp(shotPoint.fieldOfView, 60f, 0.1f);
+        }
+        Debug.Log(zoom);
     }
 
-    private void OnFireEvent(InputAction.CallbackContext context)
+    private void OnClickEvent(InputAction.CallbackContext context)
     {
         InputControl control = context.control;
 
+        //마우스 우클릭 입력이 감지되면
+        if (control.name == "rightButton" && context.ReadValue<float>() > 0)
+        {
+            Time.timeScale = timeScale;
+            zoom = true;
+        }
+        
         //마우스 좌클릭 입력이 감지되면
         if (control.name == "leftButton" && context.ReadValue<float>() > 0)
         {
@@ -65,19 +98,25 @@ public class Frog_Action : MonoBehaviour
             {
                 Transform hitTarget = hit.transform;
 
-                //if (hitTarget.gameObject.CompareTag("Enemy")) 
-                //{
-                    Vector3 hitPos = hit.point;
-                    Vector3 knockbackdir = knockbackPos.position - hitPos;
-                    rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z); 
-                    rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
-                    isJumping = true;
-                //}
+                Vector3 hitPos = hit.point;
+                Vector3 knockbackdir = knockbackPos.position - hitPos;
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
+                rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
+                isJumping = true;
             }
         }
+    }
 
-        //Debug.Log(context.ReadValue<float>());
-        //Debug.Log(control.name); //leftButton, rightButton 출력 확인됨
+
+    private void OnClickUpEvent(InputAction.CallbackContext context)
+    {
+        InputControl control = context.control;
+
+        if (control.name == "rightButton")
+        {
+            Time.timeScale = 1f;
+            zoom = false;
+        }
     }
 
     private void OnJumpEvent(InputAction.CallbackContext context)
@@ -107,6 +146,7 @@ public class Frog_Action : MonoBehaviour
             isJumping = true;
         }
     }
+
 }
 //1. 개구리의 후진은 WASD와 관계없음
 //2. 개구리가 점프대나 반동으로 인해 점프할 때 S를 누르면 감속은 되나, 
@@ -120,3 +160,9 @@ public class Frog_Action : MonoBehaviour
 
 //5-1. CheckSphere의 문제점 : Update에서 돌아가다보니 bool값이 계속 변함
 //     한번만 false로 바꾸고, 그 이후에는 상술한 조건을 제외하면 계속 false를 유지하는 로직이 필요함
+//     return으로 해결함
+
+//우클릭 했을 때 줌인 및 TimeScale 수정 로직 작성하기, SmoothDamp를 활용하여 부드럽게 줌인되도록 구현
+//zoomAction.canceled도 활용하면 bool변수 없이 줌인, 줌아웃 구현 될거같음
+
+//

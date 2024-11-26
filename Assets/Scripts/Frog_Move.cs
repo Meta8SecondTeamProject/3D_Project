@@ -95,7 +95,7 @@ public class Frog_Move : MonoBehaviour
 		//Debug.Log(inputValue);
 		//Debug.Log(jumpCharge);
 		//Debug.Log(rb.velocity.z);
-		Debug.Log($"moveDir.y : {moveDir.y}");
+		//Debug.Log($"moveDir.y : {moveDir.y}");
 		//Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
 
 		text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
@@ -151,12 +151,13 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		//Gizmos.color = Color.green;
-		//Gizmos.DrawWireSphere(groundCheck.position, 0.4f);
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
 	}
 }
 
+//1. WASD를 눌렀을 때 점프만 하지 않고 누른 방향으로 스페이스바를 눌렀을 때 처럼 AddFroce메서드가 실행되도록 수정
+//2. velocity가 최대 velocity까지 도달하기까지의 시간 수정하기, 지금 너무 빠르니 Lerf 메서드 활용
+ 
 
 
