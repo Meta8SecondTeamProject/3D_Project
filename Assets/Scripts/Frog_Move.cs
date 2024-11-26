@@ -23,10 +23,11 @@ public class Frog_Move : MonoBehaviour
     [Header("이동 및 점프 관련(3, 3)")]
     public float moveSpeed; 
     public float jumpForce;
+    public float maxVelocity;
     private float jumpCharge;
 
-    //[Header("디버그용 속도 표시계")]
-    //public TextMeshProUGUI text;
+    [Header("디버그용 속도 표시계")]
+    public Text text;
 
     private void Awake()
     {
@@ -50,6 +51,11 @@ public class Frog_Move : MonoBehaviour
         moveAction.canceled -= OnMoveEvent;
     }
 
+    private void Start()
+    {
+       
+    }
+
     private void Update()
     {
         StateHandler();
@@ -69,12 +75,13 @@ public class Frog_Move : MonoBehaviour
             Jump();
         }
 
+
         //Debug.Log(grounded);
         //Debug.Log(inputValue.x); //A : -1 / D : 1
         //Debug.Log(inputValue.y); //W : 1 / S : 1 
         //Debug.Log(inputValue);
         //Debug.Log(jumpCharge);
-        //text.text = $"current Speed : {(rb.velocity.magnitude * 2.23694f).ToString("F2")}";
+        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}km/h";
     }
 
     private void OnMoveEvent(InputAction.CallbackContext context)
