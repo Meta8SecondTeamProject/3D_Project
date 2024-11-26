@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class ReciprocatingMotion : MonoBehaviour
 {
-    [Header("이동 속도, 최대 운동량")]
-    public float mooveSpeed;
-    public float moveAmplitude;
+	[Header("이동 속도, 최대 운동량")]
+	public float mooveSpeed;
+	public float moveAmplitude;
 
-    [Header("이동할 축")]
-    public bool dirX;
-    public bool dirY;
-    public bool dirZ;
+	[Header("이동할 축")]
+	public bool dirX;
+	public bool dirY;
+	public bool dirZ;
 
-    private void Update()
-    {
-        float dir = Mathf.Sin(Time.time * mooveSpeed) * moveAmplitude;
+	private void Update()
+	{
+		float dir = Mathf.Sin(Time.time * mooveSpeed) * moveAmplitude * 0.01f;
 
-        if(dirX)
-            transform.position = new Vector3(transform.position.x + dir, transform.position.y, transform.position.z);
+		if (dirX)
+			transform.position = new Vector3(transform.position.x + dir, transform.position.y, transform.position.z);
 
-        if (dirY)
-            transform.position = new Vector3(transform.position.x, transform.position.y + dir, transform.position.z);
+		if (dirY)
+			transform.position = new Vector3(transform.position.x, transform.position.y + dir, transform.position.z);
 
-        if (dirZ)
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + dir);
-    }
+		if (dirZ)
+			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + dir);
+	}
 }
