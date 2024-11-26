@@ -38,6 +38,9 @@
         },
         {
             "m_Id": "810f76ec89d447dca4bd7100dc695e9c"
+        },
+        {
+            "m_Id": "1240820fbb884a04bc7a5d88765455ff"
         }
     ],
     "m_Keywords": [],
@@ -203,6 +206,9 @@
         },
         {
             "m_Id": "532a6161f79f41a0b7b2899a57d9b457"
+        },
+        {
+            "m_Id": "c00169116d154673bd534697434c8b32"
         }
     ],
     "m_GroupDatas": [
@@ -619,6 +625,20 @@
                     "m_Id": "c42a80f312fa48009be99cc21b917374"
                 },
                 "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "c00169116d154673bd534697434c8b32"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "e7d44fe7e505450a8a07ee2a79aeb489"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -1236,7 +1256,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Scale",
     "m_StageCapability": 3,
-    "m_Value": 100.0,
+    "m_Value": 50.0,
     "m_DefaultValue": 10.0,
     "m_Labels": []
 }
@@ -1305,6 +1325,34 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "1240820fbb884a04bc7a5d88765455ff",
+    "m_Guid": {
+        "m_GuidSerialized": "8d1d5599-c27a-4018-b624-197dc1fb18a3"
+    },
+    "m_Name": "WaveNoise",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "WaveNoise",
+    "m_DefaultReferenceName": "_WaveNoise",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
     }
 }
 
@@ -1485,6 +1533,21 @@
         "z": 0.0,
         "w": 0.0
     },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "1f9178424b754529909bb733c20fbbcc",
+    "m_Id": 0,
+    "m_DisplayName": "Float",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
     "m_Labels": []
 }
 
@@ -3433,6 +3496,9 @@
         },
         {
             "m_Id": "6a3b37173cd8492c849533879043572b"
+        },
+        {
+            "m_Id": "1240820fbb884a04bc7a5d88765455ff"
         }
     ]
 }
@@ -4666,6 +4732,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "c00169116d154673bd534697434c8b32",
+    "m_Group": {
+        "m_Id": "ae78ce6868354a338b8b684e7eaafb77"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1673.0,
+            "y": 987.0000610351563,
+            "width": 101.0,
+            "height": 33.99993896484375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "1f9178424b754529909bb733c20fbbcc"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "1240820fbb884a04bc7a5d88765455ff"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "c1bffddf76664f1fb501c6eafa187180",
     "m_Id": 1,
@@ -5384,7 +5486,7 @@
         "perlin noise"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {

@@ -4808,7 +4808,7 @@ Transform:
   m_GameObject: {fileID: 544749028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.630005, y: 21.09, z: 47.69998}
+  m_LocalPosition: {x: 11.630005, y: 20.1, z: 47.69998}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8176,7 +8176,7 @@ Transform:
   m_GameObject: {fileID: 891054234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9999762, z: -0, w: 0.006900377}
-  m_LocalPosition: {x: -155.05719, y: 21.09, z: 55.16504}
+  m_LocalPosition: {x: -155.05719, y: 19.9, z: 55.16504}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13698,7 +13698,7 @@ Transform:
   m_GameObject: {fileID: 1512432145}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.82, y: 13.82, z: -6.2}
+  m_LocalPosition: {x: -6.82, y: 13.82, z: 39.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15568,7 +15568,7 @@ Transform:
   m_GameObject: {fileID: 1764914902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9999762, z: -0, w: 0.006900377}
-  m_LocalPosition: {x: -87.020874, y: 21.09, z: -60.784973}
+  m_LocalPosition: {x: -87.020874, y: 20.47, z: -60.784973}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -16126,7 +16126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1817726400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24019,8 +24019,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzle: {fileID: 1223138706910645859}
   shotPoint: {fileID: 0}
+  knockbackPos: {fileID: 0}
   knockbackForce: 7
   jumpForce: 5
+  isJumping: 0
 --- !u!114 &1223138706910645869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25428,7 +25430,7 @@ Transform:
   m_GameObject: {fileID: 1743318901417701037}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000076592386, y: -0.34050956, z: 0.000000027738025, w: 0.94024116}
-  m_LocalPosition: {x: -235.77655, y: -7, z: -235.71017}
+  m_LocalPosition: {x: -235.77655, y: -4.8, z: -235.71017}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -36011,7 +36013,7 @@ Transform:
   m_GameObject: {fileID: 5559707652602920432}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -235.4, y: -7, z: 151.3}
+  m_LocalPosition: {x: -235.4, y: -9.8, z: 151.3}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -38254,7 +38256,7 @@ Transform:
   m_GameObject: {fileID: 6289147720455579153}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000081278934, y: 0.06671396, z: -0.0000000054345612, w: 0.99777216}
-  m_LocalPosition: {x: 110.21586, y: -7, z: 35.90642}
+  m_LocalPosition: {x: 110.21586, y: -5.6, z: 35.90642}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -39273,8 +39275,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzle: {fileID: 0}
   shotPoint: {fileID: 488277999}
+  knockbackPos: {fileID: 0}
   knockbackForce: 7
   jumpForce: 5
+  isJumping: 0
 --- !u!114 &6668875872247619626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40489,7 +40493,7 @@ Transform:
   m_GameObject: {fileID: 7438224564426753045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.630005, y: 21.09, z: 47.69998}
+  m_LocalPosition: {x: 11.630005, y: 19.89, z: 47.69998}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -44729,7 +44733,7 @@ Transform:
   m_GameObject: {fileID: 9011490594300556682}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000069890184, y: 0.5137073, z: -0.0000000418468, w: 0.8579656}
-  m_LocalPosition: {x: 111.49987, y: -7, z: -234.37286}
+  m_LocalPosition: {x: 111.49987, y: -5, z: -234.37286}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
