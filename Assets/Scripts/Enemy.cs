@@ -2,62 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
 
-	private Rigidbody rb;
+	protected Rigidbody rb;
+	protected bool isFly;
+	protected float moveSpeed;
+	protected Transform target;
 
-
-	public bool isFlies = false;
-	public float moveSpeed;
-	public Transform target;
-
-
+	Vector3 velocity = new Vector3(1, 1, 1);
 
 
 
-	private void Awake()
+	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
 
-	private void Start()
+	protected virtual void Start()
 	{
 		target = GameManager.Instance.player.transform;
-
+		if (isFly == false) { rb.useGravity = true; }
+		else { rb.useGravity = false; }
 	}
 
 
-	private void Update()
+	protected virtual void Update()
 	{
-		if (!isFlies)
-		{
-			Vector3 moveDir = target.position - transform.position;
-			Move(moveDir.normalized);
-			transform.LookAt(target);
-		}
+		Vector3 moveDir = target.position - transform.position;
+		Move(moveDir.normalized);
 	}
 
-	private void Move(Vector3 dir)
+	protected virtual void Move(Vector3 dir)
 	{
-		Vector3 movePos = rb.position + (dir * moveSpeed * Time.fixedDeltaTime);
-		rb.MovePosition(movePos);
-	}
-
-	private void OnCollisionStay(Collision collision)
-	{
-		if (collision.collider.CompareTag("Water"))
-		{
-			rb.useGravity = false;
-		}
-		if (collision.collider.CompareTag("Ground"))
-		{
-			rb.useGravity = true;
-		}
+		rb.AddForce(dir * moveSpeed);
 	}
 
 
-	private void OnCollisionEnter(Collision collision)
+
+
+
+	protected virtual void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.CompareTag("Projectile"))
 		{
