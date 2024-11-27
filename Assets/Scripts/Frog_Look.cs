@@ -41,7 +41,7 @@ public class Frog_Look : MonoBehaviour
 
     private void Start()
     {
-        Camera.main.transform.position = cameraPos.position;
+        //Camera.main.transform.position = cameraPos.position;
     }
 
     private void Update()
