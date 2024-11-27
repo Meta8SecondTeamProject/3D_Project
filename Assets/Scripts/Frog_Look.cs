@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,14 @@ using UnityEngine.InputSystem;
 public class Frog_Look : MonoBehaviour
 {
     public Transform cameraPos;
-
+    
     [Range(5f,30f)] public float mouseSensivity;
     private float rigAngle = 0f;
 
     private InputActionAsset controlDefine;
     private InputAction lookAction;
+
+    public LayerMask wallMask;
 
     private void Awake()
     {
@@ -36,6 +39,16 @@ public class Frog_Look : MonoBehaviour
         Cursor.visible = true;
     }
 
+    private void Start()
+    {
+        Camera.main.transform.position = cameraPos.position;
+    }
+
+    private void Update()
+    {
+        //Wall();
+    }
+
     public void OnLookEvent(InputAction.CallbackContext context)
     {
         Look(context.ReadValue<Vector2>()); 
@@ -46,9 +59,22 @@ public class Frog_Look : MonoBehaviour
         //캐릭터의 좌우 회전
         transform.Rotate(0, mouseDelta.x * mouseSensivity * Time.deltaTime, 0);
 
-        //캐릭터를 보는 카메라의 상하 회전, 
+        //캐릭터를 보는 카메라Position의 상하 회전, 
         rigAngle = rigAngle - mouseDelta.y * mouseSensivity * Time.deltaTime;
         rigAngle = Mathf.Clamp(rigAngle, -70f, 100f);
         cameraPos.localEulerAngles = new Vector3(rigAngle, 0, 0);
+    }
+
+    private void Wall()
+    {
+        Debug.Log("Wall 호출");
+        Vector3 rayDir = cameraPos.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, rayDir, out RaycastHit hit, float.MaxValue, wallMask))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            cameraPos.position = hit.point - rayDir.normalized;
+        }
+
     }
 }
