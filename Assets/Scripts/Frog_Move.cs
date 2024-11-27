@@ -144,7 +144,7 @@ public class Frog_Move : MonoBehaviour
 
 		if (inputValue.y < 0)
 		{
-			inputValue.y = Mathf.Clamp(inputValue.y, -0.00001f, 1);
+			inputValue.y = Mathf.Clamp(inputValue.y, -0.001f, 1);
 		}
 
 
@@ -162,7 +162,7 @@ public class Frog_Move : MonoBehaviour
 	{
 		//점프와 그라운드의 기준을 다르게함
 		//0.4f짜리 readyToJump 그대로 쓰자니 바닥이랑 가까이 있을때 움직이지 못하는 현상 방지용
-		//grounded를 0.05로 하면 안됐나요?
+		//grounded를 0.05로 하면 안됐 나요?
 		//그럼 원본게임이랑 조금 다르게 움직임
 		grounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
 		readyToJump = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);

@@ -16,7 +16,7 @@ public class GameManager : SingletonManager<GameManager>
 
 	private void Start()
 	{
-
+		
 	}
 
 
