@@ -10,6 +10,9 @@ public class GameManager : SingletonManager<GameManager>
 
 	//TODO : 적 리스트 추가 예정
 
+	public int money;
+	public int maxAmmon;
+	public int ammo;
 
 	protected override void Awake()
 	{
