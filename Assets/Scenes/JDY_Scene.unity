@@ -4553,37 +4553,6 @@ Material:
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!1 &638828253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 638828254}
-  m_Layer: 0
-  m_Name: StartUITest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &638828254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638828253}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &646135405
 GameObject:
   m_ObjectHideFlags: 0
@@ -14368,7 +14337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e4fcd9b25637a44b5d6ea0094eb3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1556815452}
+  continueButton: {fileID: 0}
+  newGameButton: {fileID: 0}
+  settingsButton: {fileID: 0}
+  quitButton: {fileID: 0}
 --- !u!21 &2147200547
 Material:
   serializedVersion: 8
@@ -41116,7 +41088,6 @@ SceneRoots:
   - {fileID: 1111675273}
   - {fileID: 331369808}
   - {fileID: 1307543617}
-  - {fileID: 638828254}
   - {fileID: 8742857100207277440}
   - {fileID: 657315411}
   - {fileID: 1199498276}
