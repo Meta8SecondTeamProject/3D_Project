@@ -229,6 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8917700859390240202}
+  - component: {fileID: 6721541741889032267}
   m_Layer: 0
   m_Name: Flies
   m_TagString: Untagged
@@ -245,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 2607444751291226603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.84703, y: 26.136581, z: 109.326614}
+  m_LocalPosition: {x: 116.40094, y: 44.56303, z: 91.91376}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -253,6 +254,20 @@ Transform:
   - {fileID: 2900114138095972505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6721541741889032267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2607444751291226603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc23df755d8d90741b1c8970a7e4cdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateTarget: {fileID: 4595106411134942736}
+  mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3111836635230442410
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +469,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2900114138095972505}
   - component: {fileID: 3801500341991750511}
-  - component: {fileID: 176031683335353840}
   - component: {fileID: 62888027664470386}
+  - component: {fileID: 632077455798155978}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -514,25 +529,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &176031683335353840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3971711743278359800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa81fdaef9842dc47992cdb67ac55331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upSpeed: 1
-  YAmplitude: 0.3
-  rotateSpeed: 0.2
-  rotateTarget: {fileID: 3490312416362080758}
-  rand: 0
-  mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  gizmoPoint: {x: 0, y: -12.663418, z: 0}
 --- !u!136 &62888027664470386
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -556,6 +552,24 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 0
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &632077455798155978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971711743278359800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa81fdaef9842dc47992cdb67ac55331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upSpeed: 1
+  YAmplitude: 0.3
+  rotateSpeed: 0.2
+  rotateTarget: {fileID: 3490312416362080758}
+  rand: 0
+  dir: 0
 --- !u!1 &4065352894279607000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3490312416362080758}
+  - component: {fileID: 4595106411134942736}
   m_Layer: 0
   m_Name: RotateTarget
   m_TagString: Untagged
@@ -1059,3 +1074,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8917700859390240202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4595106411134942736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941886024883178321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4594598e0ffc79f4a8406fad5c879bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

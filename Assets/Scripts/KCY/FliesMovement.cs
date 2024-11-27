@@ -17,14 +17,9 @@ public class FliesMovement : MonoBehaviour
 	public Transform rotateTarget;
 
 	public int rand;
-	private float dir;
-
-	public Mesh mesh;
-	public Vector3 gizmoPoint;
-
+	public float dir;
 	private void Start()
 	{
-		gizmoPoint = rotateTarget.position;
 		rand = UniRan.Range(0, 2);
 	}
 	private void Update()
@@ -36,9 +31,8 @@ public class FliesMovement : MonoBehaviour
 		if (rand == 0)
 		{
 			dir = Mathf.Sin(Time.time * upSpeed) * YAmplitude * 0.1f;
-
 		}
-		else
+		if (rand == 1)
 		{
 			dir = Mathf.Cos(Time.time * upSpeed) * YAmplitude * 0.1f;
 		}
@@ -46,10 +40,6 @@ public class FliesMovement : MonoBehaviour
 		transform.RotateAround(rotateTarget.position, Vector3.down, rotateSpeed);
 	}
 
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireMesh(mesh, gizmoPoint, Quaternion.identity, new Vector3(35, 10, 35));
-	}
+
 
 }

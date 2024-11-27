@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UniRan = UnityEngine.Random;
 
@@ -40,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
 			enemyPool.Pop(enemyPool.enemise[0].name);
 			enemyPool.enemise[0].transform.position = GetSpawnPos();
 			GameManager.Instance.flies.Add(enemyPool.enemise[0]);
+			EditorApplication.isPaused = true;
 			yield return new WaitUntil(() => GameManager.Instance.flies.Count < 16);
 		}
 	}
@@ -64,7 +66,6 @@ public class EnemySpawner : MonoBehaviour
 		range_Y = UniRan.Range((range_Y / 2) * -1, range_Y / 2);
 		range_Z = UniRan.Range((range_Z / 2) * -1, range_Z / 2);
 		Vector3 randPos = new Vector3(range_X, range_Y, range_Z);
-		fliesMovement.gizmoPoint.y = range_Y;
 		Vector3 spawnPos = originPos + randPos;
 		return spawnPos;
 	}
