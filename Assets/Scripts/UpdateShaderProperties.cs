@@ -16,9 +16,9 @@ namespace ShaderGraphTest
                 {
                     Material m;
 #if UNITY_EDITOR
-                    m = r.sharedMaterial;
-#else
                     m = r.material;
+#else
+                    m = r.sharedMaterial;
 #endif
                     if (string.Compare(m.shader.name, "Shader Graphs/ToonRamp") == 0)
                     {
