@@ -5,22 +5,22 @@ using UnityEngine;
 public class GameManager : SingletonManager<GameManager>
 {
 
-    internal Player player;
-    internal List<Enemy> flies = new List<Enemy>();
-    public int money = 0;
-    public int ammo = 4;
-    public int maxAmmon = 16;
+	internal Player player;
+	internal List<GameObject> flies = new List<GameObject>();
 
-    protected override void Awake()
-    {
-        base.Awake();
-        player = FindAnyObjectByType<Player>();
-    }
+	//TODO : 적 리스트 추가 예정
 
-    private void Start()
-    {
 
-    }
+	protected override void Awake()
+	{
+		base.Awake();
+		player = FindAnyObjectByType<Player>();
+	}
+
+	private void Start()
+	{
+
+	}
 
 
 }
