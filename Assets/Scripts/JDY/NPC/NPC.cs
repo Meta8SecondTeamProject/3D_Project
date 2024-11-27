@@ -16,7 +16,11 @@ public class NPC : MonoBehaviour
     private string asdf;
 
     //UI에 띄울 메세지
-    //
+    //돈이 부족할떄
+    //money<price
+    //체력이나 불릿이 꽉차 있을 떄
+
+
 
 
     //주위에 플레이어가 있을 떄 상호작용되게

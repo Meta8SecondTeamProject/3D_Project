@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Cursor_Test : SingletonManager<Cursor_Test>
+public class CursorManager : SingletonManager<CursorManager>
 {
     public Texture2D customCursor;
     private Vector2 cursorPos = Vector2.zero;
