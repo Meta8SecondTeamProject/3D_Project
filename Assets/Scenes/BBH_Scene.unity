@@ -8407,8 +8407,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   readyToJump: 0
-  moveSpeed: 3
-  jumpForce: 5
+  moveSpeed: 4
+  jumpForce: 20
   maxVelocity: 40
   text: {fileID: 501893714}
 --- !u!4 &2119054647731540930
@@ -15530,7 +15530,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6470932858762483190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
   m_Controller: {fileID: 9100000, guid: e22cb6f7ab789b249816ca000ea22993, type: 2}
   m_CullingMode: 1
@@ -16264,7 +16264,7 @@ MonoBehaviour:
   shotPoint: {fileID: 978897087741503735}
   knockbackPos: {fileID: 1863521021}
   knockbackForce: 18
-  jumpForce: 8
+  jumpForce: 10
   isJumping: 0
   timeScale: 0.66
   fieldOfView: 60

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
+using UnityEngine.EventSystems;
 
 
 public class Frog_Move : MonoBehaviour
@@ -36,7 +37,7 @@ public class Frog_Move : MonoBehaviour
 	private Frog_Action frogAction;
 	private void Awake()
 	{
-		//프레임 너무 올라가니까 노트북 발열이 개쩔어서 임시로 60으로 제한
+		//프레임 너무 올라가니까 노트북 발열이 쩔어서 임시로 60으로 제한
 		Application.targetFrameRate = 60;
 
 		rb = GetComponent<Rigidbody>();
@@ -59,14 +60,14 @@ public class Frog_Move : MonoBehaviour
 
 	private void Start()
 	{
-		jumpSpeed = moveSpeed * 2f;
+		//jumpSpeed = moveSpeed;// * 2f;
 	}
 
 	private void Update()
 	{
 		StateHandler();
-		maxVelocity = frogAction.isJumping ? 50 : 20;
-		moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
+		maxVelocity = frogAction.isJumping ? 30 : 15;
+		//moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
 		if (rb.velocity.magnitude > maxVelocity)
 		{
@@ -95,10 +96,18 @@ public class Frog_Move : MonoBehaviour
 		//Debug.Log(inputValue);
 		//Debug.Log(jumpCharge);
 		//Debug.Log(rb.velocity.z);
-		//Debug.Log($"moveDir.y : {moveDir.y}");
-		//Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
 
-		text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+		//Debug.Log($"moveDir.x : {moveDir.x}");
+		//Debug.Log($"moveDir.y : {moveDir.y}");
+		//Debug.Log($"moveDir.z : {moveDir.z}");
+
+		//.Log($"velocity.x : {rb.velocity.x}");
+		//Debug.Log($"velocity.y : {rb.velocity.y}");
+		//Debug.Log($"velocity.z : {rb.velocity.z}");
+
+        //Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
+
+        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
 	}
 
 	private void OnMoveEvent(InputAction.CallbackContext context)
@@ -117,23 +126,37 @@ public class Frog_Move : MonoBehaviour
 
 		jumpCharge += Time.deltaTime;
 
-		if (jumpCharge > 0.4f)
+		if (jumpCharge > 0.6f)
 		{
 			//현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
 			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			//rb.AddForce(moveDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
-			rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-			jumpCharge = 0;
-		}
-	}
+			//rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
 
-	private void Move()
+            Vector3 jumpDir = (moveDir * moveSpeed) + (Vector3.up * jumpForce);
+            rb.AddForce(jumpDir.normalized * jumpForce, ForceMode.Impulse);
+
+            jumpCharge = 0;
+		}
+    }
+    private void Move()
 	{
-		//if(inputValue.y>0)
-		//    rb.velocity += new Vector3(0, 0, 0) * Time.deltaTime * moveSpeed;
-		//else
-		rb.velocity += new Vector3(moveDir.x, 0, moveDir.z) * Time.deltaTime * moveSpeed;
-	}
+        //moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+		if (inputValue.y < 0)
+		{
+			inputValue.y = Mathf.Clamp(inputValue.y, -0.00001f, 1);
+		}
+
+
+
+		Vector3 moveDirInMove = (transform.forward * inputValue.y) + (transform.right * inputValue.x);
+		//Debug.Log($"moveDirInMove.x : {moveDirInMove.x}");
+		//Debug.Log($"moveDirInMove.y : {moveDirInMove.y}");
+        // Debug.Log($"moveDirInMove.z : {moveDirInMove.z}");
+
+        rb.velocity += moveDirInMove.normalized * moveSpeed * 0.1f;
+
+    }
 
 	private void StateHandler()
 	{
@@ -146,7 +169,7 @@ public class Frog_Move : MonoBehaviour
 
 		if (!frogAction.isJumping)
 			return;
-		frogAction.isJumping = !Physics.CheckSphere(groundCheck.position, 0.05f, groundMask);
+		frogAction.isJumping = !Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 	}
 
 	private void OnDrawGizmos()
