@@ -7,14 +7,17 @@ using UnityEngine.InputSystem;
 public class Frog_Look : MonoBehaviour
 {
     public Transform cameraPos;
-    
-    [Range(5f,30f)] public float mouseSensivity;
+    public Camera mainCamera;
+
+    [Range(5f, 30f)] public float mouseSensivity;
     private float rigAngle = 0f;
 
     private InputActionAsset controlDefine;
     private InputAction lookAction;
 
     public LayerMask wallMask;
+
+    private Vector3 defaultCameraOffset = new Vector3(0.5f, 1f, -2f); // 기본 카메라 위치 (플레이어 기준)
 
     private void Awake()
     {
@@ -44,14 +47,14 @@ public class Frog_Look : MonoBehaviour
         //Camera.main.transform.position = cameraPos.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //Wall();
+        //HandleCameraCollision();
     }
 
     public void OnLookEvent(InputAction.CallbackContext context)
     {
-        Look(context.ReadValue<Vector2>()); 
+        Look(context.ReadValue<Vector2>());
     }
 
     private void Look(Vector2 mouseDelta)
@@ -65,16 +68,28 @@ public class Frog_Look : MonoBehaviour
         cameraPos.localEulerAngles = new Vector3(rigAngle, 0, 0);
     }
 
-    private void Wall()
+
+    private void HandleCameraCollision()
     {
-        Debug.Log("Wall 호출");
-        Vector3 rayDir = cameraPos.transform.position - transform.position;
+        Vector3 targetCameraPosition = transform.TransformPoint(defaultCameraOffset); // 기본 위치 계산
+        Vector3 directionToCamera = targetCameraPosition - transform.position; // 플레이어 → 카메라 방향
+        float distanceToCamera = directionToCamera.magnitude;
 
-        if (Physics.Raycast(transform.position, rayDir, out RaycastHit hit, float.MaxValue, wallMask))
+        // 디버그용 선 그리기
+        Debug.DrawLine(transform.position, targetCameraPosition, Color.red, 0.1f);
+
+        if (Physics.Raycast(transform.position, directionToCamera.normalized, out RaycastHit hit, distanceToCamera, wallMask))
         {
-            Debug.Log(hit.collider.gameObject.name);
-            cameraPos.position = hit.point - rayDir.normalized;
+            // 충돌 발생: 카메라를 충돌 지점으로 이동
+            Vector3 collisionPosition = hit.point - directionToCamera.normalized * 0.1f; // 벽에서 약간 띄움
+            mainCamera.transform.position = collisionPosition;
         }
-
+        else
+        {
+            // 충돌 없음: 기본 위치로 이동
+            mainCamera.transform.position = targetCameraPosition;
+        }
     }
 }
+
+

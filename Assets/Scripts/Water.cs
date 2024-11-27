@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    public float power;
+    [Header("부력, 저항")]
+    public float buoyancyForce = 30f;
+    public float waterDrag = 5f;    
 
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("트리거 호출됨");
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("외부 if문 진입");
-
             if (other.TryGetComponent(out Rigidbody rb))
             {
-                //Debug.Log("내부 if문 진입");
+                Vector3 force = Vector3.up * buoyancyForce;
+                rb.AddForce(force, ForceMode.Acceleration);
 
-                rb.velocity += Vector3.up * power;
-                
+                //물의 저항 효과
+                rb.velocity *= 1f - (waterDrag * Time.deltaTime);
             }
-            
         }
     }
 }

@@ -25,8 +25,8 @@ public class Frog_Action : MonoBehaviour
     public float shakeAmount;
 
     private float shakeTime;
-    private Vector3 cameraShakePos;
     [HideInInspector] public bool isJumping;
+    private Vector3 originalCameraPos;
 
     [Header("우클릭 시간 배율"), Range(0f, 1f)]
     public float timeScale;
@@ -83,7 +83,8 @@ public class Frog_Action : MonoBehaviour
         maxAmmo = 16; //초기 탄약 맥스값 설정
         maxHealth = 2; //초기 최대 체력 설정
 
-        cameraShakePos = shotPoint.transform.position;
+        //초기 카메라 위치 저장
+        originalCameraPos = shotPoint.transform.localPosition;
     }
 
     private void Update()
@@ -117,7 +118,7 @@ public class Frog_Action : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
                 rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
                 isJumping = true;
-                shakeTime = 0.5f;
+                shakeTime = 0.3f;
             }
         }
     }
@@ -139,14 +140,6 @@ public class Frog_Action : MonoBehaviour
 
         if (context.ReadValue<float>() > 0 && frogMove.readyToJump == true)
         {
-            ////방향 초기화
-            //Vector3 jumpDir = transform.TransformDirection(moveDir);
-            //Vector3 nomalizedDir = jumpDir.normalized;
-            ////Move와 마찬가지로 y축 velocity초기화 후 점프
-            //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            ////rb.AddForce(nomalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
-            //rb.AddForce(nomalizedDir.x * jumpForce, nomalizedDir.y * jumpForce, nomalizedDir.z*jumpForce, ForceMode.Impulse);
-
             //플레이어가 보는 전방 방향 계산
             Vector3 forwardDir = transform.forward;
 
@@ -203,15 +196,18 @@ public class Frog_Action : MonoBehaviour
     {
         if (shakeTime > 0)
         {
-            transform.position = Random.insideUnitSphere * shakeAmount + cameraShakePos;
+            Vector3 shakeOffset = Random.insideUnitSphere * shakeAmount;
+            shotPoint.transform.localPosition = originalCameraPos + shakeOffset;
+
             shakeTime -= Time.deltaTime;
         }
         else
         {
             shakeTime = 0;
-            transform.position = cameraShakePos;
+            shotPoint.transform.localPosition = originalCameraPos;
         }
     }
+
     //private void OnTriggerStay(Collider other)
     //{
     //    if (other.CompareTag("AmmoDealer") || (other.CompareTag("Doctor")))
