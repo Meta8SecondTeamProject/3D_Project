@@ -7,6 +7,8 @@ using UniRan = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
 	public bool fliseSpawner;
+	public bool birdSpawner;
+	public bool fishSpawner;
 	private BoxCollider rangeColl;
 	private EnemyPool enemyPool;
 
@@ -28,7 +30,12 @@ public class EnemySpawner : MonoBehaviour
 
 	private void Start()
 	{
-		StartCoroutine(RandPosSpawn_Coroutine());
+		if (fliseSpawner)
+			StartCoroutine(RandPosSpawn_Coroutine());
+		if (birdSpawner)
+		{ }
+		if (fishSpawner)
+		{ }
 
 
 	}

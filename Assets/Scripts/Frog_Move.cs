@@ -144,7 +144,7 @@ public class Frog_Move : MonoBehaviour
 
 		if (inputValue.y < 0)
 		{
-			inputValue.y = Mathf.Clamp(inputValue.y, -0.001f, 1);
+			inputValue.y = Mathf.Clamp(inputValue.y, -0.00001f, 0.1f);
 		}
 
 
