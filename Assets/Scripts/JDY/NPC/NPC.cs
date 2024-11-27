@@ -13,24 +13,11 @@ public class NPC : MonoBehaviour
     protected int interactionValue;
 
     public string text;
+    private string asdf;
 
+    //UI에 띄울 메세지
     //
-    public string ChangeText()
-    {
 
-        if (isInteraction)
-        {
-            return text;
-        }
-        else if (isMessage)
-        {
-            return text;
-        }
-        else
-        {
-            return text;
-        }
-    }
 
     //주위에 플레이어가 있을 떄 상호작용되게
     //오버랩 서클을 큐브로
