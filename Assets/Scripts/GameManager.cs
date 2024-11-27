@@ -6,7 +6,10 @@ public class GameManager : SingletonManager<GameManager>
 {
 
 	internal Player player;
-	internal List<Enemy> flies = new List<Enemy>();
+	internal List<GameObject> flies = new List<GameObject>();
+
+	//TODO : 적 리스트 추가 예정
+
 
 	protected override void Awake()
 	{

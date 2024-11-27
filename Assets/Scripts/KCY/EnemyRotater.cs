@@ -6,23 +6,20 @@ using UnityEngine.UIElements;
 public class EnemyRotater : MonoBehaviour
 {
 
-	private void Awake()
+	private void Update()
 	{
+
+		Rotate();
+
 	}
 
-	private void Update()
+	private void Rotate()
 	{
 		Vector3 headDir = Vector3.zero;
 
-		headDir = GameManager.Instance.transform.position - transform.position;
+		headDir = GameManager.Instance.player.transform.position - transform.position;
 
-		Rotate(transform, headDir);
-
-	}
-
-	private void Rotate(Transform t, Vector3 dir)
-	{
-		t.Rotate(dir);
+		transform.Rotate(headDir);
 	}
 }
 

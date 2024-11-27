@@ -23,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
+
+
 	private void Start()
 	{
 		StartCoroutine(RandPosSpawn_Coroutine());
@@ -34,12 +36,16 @@ public class EnemySpawner : MonoBehaviour
 	{
 		while (true)
 		{
-			yield return new WaitForSeconds(1f);
-
+			yield return new WaitForSeconds(2.2f);
 			enemyPool.Pop(enemyPool.enemise[0].name);
 			enemyPool.enemise[0].transform.position = GetSpawnPos();
+			GameManager.Instance.flies.Add(enemyPool.enemise[0]);
+			yield return new WaitUntil(() => GameManager.Instance.flies.Count < 16);
 		}
 	}
+
+
+
 
 	private void FliesSpawn()
 	{
@@ -53,12 +59,12 @@ public class EnemySpawner : MonoBehaviour
 		float range_X = rangeColl.bounds.size.x;
 		float range_Y = rangeColl.bounds.size.y;
 		float range_Z = rangeColl.bounds.size.y;
-
+		FliesMovement fliesMovement = enemyPool.enemise[0].GetComponentInChildren<FliesMovement>(); ;
 		range_X = UniRan.Range((range_X / 2) * -1, range_X / 2);
 		range_Y = UniRan.Range((range_Y / 2) * -1, range_Y / 2);
 		range_Z = UniRan.Range((range_Z / 2) * -1, range_Z / 2);
 		Vector3 randPos = new Vector3(range_X, range_Y, range_Z);
-
+		fliesMovement.gizmoPoint.y = range_Y;
 		Vector3 spawnPos = originPos + randPos;
 		return spawnPos;
 	}
