@@ -10,10 +10,16 @@ public class Water : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("OnTriggerStay진입");
         if (other.CompareTag("Player"))
         {
-            if (other.TryGetComponent(out Rigidbody rb))
+            Debug.Log("OnTriggerStay 외부 if문 진입");
+
+            if (other.TryGetComponent(out Rigidbody rb) && other.TryGetComponent(out Frog_Move move))
             {
+                Debug.Log("OnTriggerStay 내부 if문 진입");
+
+                move.isWater = true;
                 Vector3 force = Vector3.up * buoyancyForce;
                 rb.AddForce(force, ForceMode.Acceleration);
 
