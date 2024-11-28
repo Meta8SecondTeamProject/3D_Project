@@ -14,9 +14,11 @@ public class Frog_Look : MonoBehaviour
 
     private InputActionAsset controlDefine;
     private InputAction lookAction;
+    private Rigidbody rb;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         controlDefine = GetComponent<PlayerInput>().actions;
         lookAction = controlDefine.FindAction("Look");
     }
@@ -40,19 +42,28 @@ public class Frog_Look : MonoBehaviour
 
     public void OnLookEvent(InputAction.CallbackContext context)
     {
-        Look(context.ReadValue<Vector2>());
+        //Look(context.ReadValue<Vector2>());
+    }
+
+    private void Update()
+    {
+        Vector2 lookInput = lookAction.ReadValue<Vector2>();
+        Look(lookInput);
     }
 
     private void Look(Vector2 mouseDelta)
     {
-        //캐릭터의 좌우 회전
-        transform.Rotate(0, mouseDelta.x * mouseSensivity * Time.deltaTime, 0);
+        // 캐릭터 좌우 회전 (y축 회전)
+        float yRotation = mouseDelta.x * mouseSensivity * Time.deltaTime;
+        Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
+        rb.MoveRotation(rb.rotation * playerRotation);
 
-        //캐릭터를 보는 카메라Position의 상하 회전, 
-        rigAngle = rigAngle - mouseDelta.y * mouseSensivity * Time.deltaTime;
+        // 카메라 상하 회전 (x축 회전)
+        rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
         rigAngle = Mathf.Clamp(rigAngle, -70f, 90f);
-        cameraPos.localEulerAngles = new Vector3(rigAngle, 0, 0);
+        cameraPos.localRotation = Quaternion.Euler(rigAngle, 0, 0);
     }
+
 }
 
 

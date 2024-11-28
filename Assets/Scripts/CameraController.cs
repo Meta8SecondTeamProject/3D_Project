@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
-    public Rigidbody rb;
     public float moveSpeed = 5f;
 
     public float rotationSpeed;
@@ -36,6 +35,6 @@ public class CameraController : MonoBehaviour
 
         playerObj.forward = dirToCombatLookAt.normalized;
         Quaternion targetRotation = Quaternion.LookRotation(viewDir);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+
     }
 }
