@@ -29,6 +29,4 @@ public class UIManager : SingletonManager<UIManager>
         flyText.text = DataManager.Instance.money.ToString();
         ammoText.text = DataManager.Instance.ammo.ToString();
     }
-
-
 }

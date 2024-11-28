@@ -10,7 +10,7 @@ public class MenuRotate : MonoBehaviour
 
     private void Update()
     {
-        float angle = Mathf.Sin((set + 1) * speed * Time.time) * maxAngle;
+        float angle = Mathf.Sin((set + 1) * speed * Time.unscaledTime) * maxAngle;
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }
