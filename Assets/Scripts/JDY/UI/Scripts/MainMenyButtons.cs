@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //StartScene의 버튼들 관리
-public class StartSceneButtons : MonoBehaviour
+public class MainMenyButtons : MonoBehaviour
 {
-    public Button continueButton;
-    public Button newGameButton;
-    public Button settingsButton;
-    public Button quitButton;
+    public UnityEngine.UI.Button continueButton;
+    public UnityEngine.UI.Button newGameButton;
+    public UnityEngine.UI.Button settingsButton;
+    public UnityEngine.UI.Button quitButton;
 
     private void Start()
     {
