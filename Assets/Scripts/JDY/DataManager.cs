@@ -16,6 +16,8 @@ public class DataManager : SingletonManager<DataManager>
 	public bool isHat;
 	public bool isAmmoBelt;
 	public bool isDoubleJump;
+	public int triggerOn;
+
 
 	public float bombFliesSpeed;
 	public float fishSpeed;
