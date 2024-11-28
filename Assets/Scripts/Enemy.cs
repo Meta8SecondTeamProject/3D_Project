@@ -9,9 +9,7 @@ public abstract class Enemy : MonoBehaviour
 	protected bool isFly;
 	protected float moveSpeed;
 	protected Transform target;
-
-	Vector3 velocity = new Vector3(1, 1, 1);
-
+	protected Vector3 moveDir;
 
 
 	protected virtual void Awake()
@@ -29,8 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		Vector3 moveDir = target.position - transform.position;
-		Move(moveDir.normalized);
+		moveDir = target.position - transform.position;
 	}
 
 	protected virtual void Move(Vector3 dir)
@@ -38,7 +35,11 @@ public abstract class Enemy : MonoBehaviour
 		rb.AddForce(dir * moveSpeed);
 	}
 
-
+	protected virtual void Look(Vector3 dir, float rotVal)
+	{
+		Quaternion dirRot = Quaternion.LookRotation(dir);
+		rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);
+	}
 
 
 

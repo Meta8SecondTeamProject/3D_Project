@@ -14,8 +14,10 @@ public class Fly_Enemy : Enemy
 	{
 		isFly = true;
 		base.Start();
-
-		moveSpeed = DataManager.Instance.fishSpeed;
+		if (isBomb)
+			moveSpeed = DataManager.Instance.bombFliesSpeed;
+		else
+			moveSpeed = DataManager.Instance.birdSpeed;
 	}
 
 	protected override void Update()
@@ -23,13 +25,13 @@ public class Fly_Enemy : Enemy
 		base.Update();
 		if (isBomb)
 		{
-			Vector3 moveDir = target.position - transform.position;
-			Quaternion dirRot = Quaternion.LookRotation(moveDir.normalized);
-			rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, 1.5f * Time.deltaTime);
+			Look(moveDir, 1.5f);
+			Move(moveDir.normalized);
 		}
 		else
 		{
-			transform.LookAt(target);
+			Look(moveDir, 5f);
+			Move(moveDir.normalized);
 		}
 	}
 

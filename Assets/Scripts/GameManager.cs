@@ -5,14 +5,18 @@ using UnityEngine;
 public class GameManager : SingletonManager<GameManager>
 {
 
-    internal Player player;
-    internal List<GameObject> flies = new List<GameObject>();
+	internal Player player;
+	public List<GameObject>[] enemy = new List<GameObject>[4];
 
-    //TODO : 적 리스트 추가 예정
-    protected override void Awake()
-    {
-        base.Awake();
-        player = FindAnyObjectByType<Player>();
-    }
+	//TODO : 적 리스트 추가 예정
+	protected override void Awake()
+	{
+		base.Awake();
+		player = FindAnyObjectByType<Player>();
+		for (int i = 0; i < enemy.Length; i++)
+		{
+			enemy[i] = new List<GameObject>();
+		}
+	}
 
 }

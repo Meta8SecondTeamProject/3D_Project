@@ -18,7 +18,7 @@ public class FliesMovement : MonoBehaviour
 
 	public int rand;
 	public float dir;
-	private void Start()
+	private void Awake()
 	{
 		rand = UniRan.Range(0, 2);
 	}
