@@ -1,41 +1,41 @@
 using UnityEngine;
-using Cinemachine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
-    public CinemachineVirtualCamera virtualCamera;
+    [Header("References")]
+    public Transform orientation;
     public Transform player;
+    public Transform playerObj;
+    public Rigidbody rb;
+    public float moveSpeed = 5f;
 
-    [Range(50f, 500f)]
-    public float sensitivity = 200f;
+    public float rotationSpeed;
 
-    private CinemachineComposer composer;
+    public Transform combatLookAt;
 
-    void Start()
+    private void Start()
     {
-        composer = virtualCamera.GetCinemachineComponent<CinemachineComposer>();
-
-        if (composer == null)
-        {
-            Debug.LogError("CinemachineComposer not found on Virtual Camera.");
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        Debug.Log($"Main Camera Position: {Camera.main.transform.position}");
-        if (composer == null) return;
+        Debug.Log("호출됨");
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        orientation.forward = viewDir.normalized;
 
-        // 마우스 입력
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-        // 플레이어 좌우 회전
-        player.Rotate(Vector3.up * mouseX);
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // 카메라 상하 회전
-        composer.m_TrackedObjectOffset.y += mouseY;
-        composer.m_TrackedObjectOffset.y = Mathf.Clamp(composer.m_TrackedObjectOffset.y, -2f, 2f); // 각도 제한
+        Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+        orientation.forward = dirToCombatLookAt.normalized;
+
+        playerObj.forward = dirToCombatLookAt.normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(viewDir);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
     }
 }
-

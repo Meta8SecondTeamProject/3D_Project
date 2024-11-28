@@ -63,9 +63,15 @@ public class Frog_Move : MonoBehaviour
 		//jumpSpeed = moveSpeed;// * 2f;
 	}
 
-	private void Update()
+    private void Update()
+    {
+        StateHandler();
+        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+    }
+
+    private void FixedUpdate()
 	{
-		StateHandler();
+		
 		maxVelocity = frogAction.isJumping ? 30 : 15;
 		//moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -107,7 +113,7 @@ public class Frog_Move : MonoBehaviour
 
         //Debug.Log($"moveDir.z ÀÇ 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
 
-        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+        
 	}
 
 	private void OnMoveEvent(InputAction.CallbackContext context)
