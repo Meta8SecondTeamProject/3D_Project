@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
 	protected float moveSpeed;
 	protected Transform target;
 	protected Vector3 moveDir;
-
+	public Transform attackSpot;
 
 	protected virtual void Awake()
 	{
@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		moveDir = target.position - transform.position;
+		moveDir = target.position - attackSpot.transform.position;
 	}
 
 	protected virtual void Move(Vector3 dir)
