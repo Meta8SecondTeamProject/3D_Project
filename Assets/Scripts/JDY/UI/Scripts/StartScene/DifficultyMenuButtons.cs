@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //난이도 관련 버튼들 관리
+[DisallowMultipleComponent]
 public class DifficultyMenuButtons : MonoBehaviour
 {
     #region 난이도 관련(추후 삭제 가능성 있음)

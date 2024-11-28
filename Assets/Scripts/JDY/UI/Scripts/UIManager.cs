@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class UIManager : SingletonManager<UIManager>
 {
     public GameObject gameSceneUI;
     public GameObject startSceneUI;
 
-    private TextMeshProUGUI flyText;
-    private TextMeshProUGUI ammoText;
+    public TextMeshProUGUI flyText;
+    public TextMeshProUGUI ammoText;
 
 
     private void Start()
