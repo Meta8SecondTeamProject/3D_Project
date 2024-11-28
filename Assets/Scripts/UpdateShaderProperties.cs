@@ -16,11 +16,11 @@ namespace ShaderGraphTest
                 {
                     Material m;
 #if UNITY_EDITOR
-                    m = r.material;
-#else
                     m = r.sharedMaterial;
+#else
+                    m = r.material;
 #endif
-                    if (string.Compare(m.shader.name, "Shader Graphs/ToonRamp") == 0)
+                    if (string.Compare(m.shader.name, "Shader Graphs/ToonRamp_Texture") == 0 || string.Compare(m.shader.name, "Shader Graphs/ToonRamp_Color") == 0)
                     {
                         m.SetVector("_LightDir", transform.forward);
                     }
