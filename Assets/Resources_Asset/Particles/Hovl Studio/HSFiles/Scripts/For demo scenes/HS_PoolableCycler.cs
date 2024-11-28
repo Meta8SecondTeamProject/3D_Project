@@ -13,8 +13,8 @@ namespace CGT.Pooling
         [SerializeField] protected float axisInputDelay = 0.5f;
 
         [Header("For Responding to UI")]
-        [SerializeField] protected Button toPrevious;
-        [SerializeField] protected Button toNext;
+        [SerializeField] protected UnityEngine.UI.Button toPrevious;
+        [SerializeField] protected UnityEngine.UI.Button toNext;
 
 
         [Header("Visible for debug purposes")]

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//StartScene의 버튼들 관리
-public class StartSceneButtons : MonoBehaviour
+//MainMenu의 버튼들 관리
+public class MainMenuButtons : MonoBehaviour
 {
+    public StartMenuController menuController;
+    public MenuMoveControll moveController;
+
     public Button continueButton;
     public Button newGameButton;
     public Button settingsButton;
@@ -13,12 +16,12 @@ public class StartSceneButtons : MonoBehaviour
 
     private void Start()
     {
-        continueButton.gameObject.SetActive(false);
         ButtonInitialization();
     }
 
     private void ButtonInitialization()
     {
+        continueButton.gameObject.SetActive(false);
         //저장된 데이터가 있을 떄 활성화
         //if (Data != null)
         //{
@@ -47,16 +50,18 @@ public class StartSceneButtons : MonoBehaviour
 
     private void NewGameButtonOnClick()
     {
-
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.difficulty);
     }
 
     private void SettingsButtonOnClick()
     {
-
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.setting);
     }
 
     private void QuitButtonOnClick()
     {
-
+        Application.Quit();
     }
 }
