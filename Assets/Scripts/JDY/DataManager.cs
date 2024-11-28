@@ -19,4 +19,8 @@ public class DataManager : SingletonManager<DataManager>
 	public float bombFliesSpeed;
 	public float fishSpeed;
 	public float birdSpeed;
+
+	public int fliesMaxCount;
+	public int fishMaxCount;
+	public int birdMaxCount;
 }
