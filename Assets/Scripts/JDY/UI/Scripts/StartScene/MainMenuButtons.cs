@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //MainMenu의 버튼들 관리
+[DisallowMultipleComponent]
 public class MainMenuButtons : MonoBehaviour
 {
     public StartMenuController menuController;

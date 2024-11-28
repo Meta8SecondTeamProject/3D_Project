@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class MenuMoveControll : MonoBehaviour
 {
     public RectTransform backGround;
@@ -15,8 +16,8 @@ public class MenuMoveControll : MonoBehaviour
 
     private const float moveValue = 150f;
     private const float moveTime = 0.5f;
-    private float durationTime;
-    private float moveSpeed;
+    private float durationTime = 0f;
+    private float moveSpeed = 0f;
 
     private void Start()
     {
