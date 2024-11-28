@@ -50,7 +50,6 @@ public class Frog_Action : MonoBehaviour
     private void OnEnable()
     {
         fireAction.performed += OnClickEvent;
-        fireAction.canceled += OnClickUpEvent;
         jumpAction.performed += OnJumpEvent;
         //interaction.started += OnInteractionEvent;
 
@@ -61,7 +60,6 @@ public class Frog_Action : MonoBehaviour
     private void OnDisable()
     {
         fireAction.performed -= OnClickEvent;
-        fireAction.canceled -= OnClickUpEvent;
         jumpAction.performed -= OnJumpEvent;
         //interaction.canceled -= OnInteractionEvent;
     }
@@ -75,8 +73,10 @@ public class Frog_Action : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
+            //흔들림 지속지간 매 프레임 감소
             shakeDuration -= Time.deltaTime;
 
+            //지속시간이 끝나면 흔들림 강도를 0으로 초기화
             if (shakeDuration <= 0f && noise != null)
             {
                 noise.m_AmplitudeGain = 0f;
@@ -97,24 +97,24 @@ public class Frog_Action : MonoBehaviour
             {
                 Transform hitTarget = hit.transform;
 
+                //레이가 명중한곳의 좌표와
                 Vector3 hitPos = hit.point;
+
+                //개구리 뒤통수에 붙은 반동용 포지션과 계산하여 방향을 구함
                 Vector3 knockbackdir = knockbackPos.position - hitPos;
+
+                //반동으로 튀어오를때 떨어지는 속도가 너무 빠르면 제대로 튀어오르지 못하므로 Y축 속도만 제어
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
+
+                //방향대로 AddForce메서드 실행
                 rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
-                isJumping = true;
-                this.shakeDuration = shakeTimer;
+
+                //카메라 흔들림 변수 초기화
+                shakeDuration = shakeTimer;
+
+                //카메라 흔들림 메서드 실행
                 ShakeCamera(shakePower, shakeDuration);
             }
-        }
-    }
-
-    private void OnClickUpEvent(InputAction.CallbackContext context)
-    {
-        InputControl control = context.control;
-
-        if (control.name == "rightButton")
-        {
-            Time.timeScale = 1f;
         }
     }
 
@@ -134,7 +134,6 @@ public class Frog_Action : MonoBehaviour
             Vector3 normalizedDir = jumpDir.normalized;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(normalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumping = true;
         }
     }
 
