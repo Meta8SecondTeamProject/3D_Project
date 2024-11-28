@@ -5,7 +5,8 @@ using UnityEngine;
 public class DataManager : SingletonManager<DataManager>
 {
 
-	public int health { get { return health; } set { health = Mathf.Clamp(value, 0, 2); } }
+	public int HP { get { return currentHP; } set { currentHP = Mathf.Clamp(value, 0, 2); } }
+	public int currentHP;
 	public int ammo { get { return currentAmmo; } set { currentAmmo = Mathf.Clamp(value, 0, maxAmmo); } }
 
 	private int currentAmmo;
@@ -23,4 +24,5 @@ public class DataManager : SingletonManager<DataManager>
 	public int fliesMaxCount;
 	public int fishMaxCount;
 	public int birdMaxCount;
+	public int birdBlackMaxCount;
 }

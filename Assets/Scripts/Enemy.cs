@@ -49,6 +49,13 @@ public abstract class Enemy : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+
+		//if (collision.collider.CompareTag("Player"))
+		//{
+		//	rb.AddForce(Vector3.back * 20f, ForceMode.VelocityChange);
+		//	print("¹Ð·Á³²");
+		//}
+
 	}
 
 

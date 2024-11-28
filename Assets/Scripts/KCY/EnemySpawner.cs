@@ -6,7 +6,7 @@ using UniRan = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®")]
+	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í")]
 	public int numberOfEnemy;
 	private BoxCollider rangeColl;
 	private EnemyPool enemyPool;
@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
 		{
 			case 0:
 				gameObject.SetActive(true);
-				Debug.Log($"{gameObject.name} ¹ßµ¿!");
 				break;
 			default:
 				gameObject.SetActive(true);
@@ -72,10 +71,6 @@ public class EnemySpawner : MonoBehaviour
 	}
 
 
-	private void FliesSpawn()
-	{
-
-	}
 
 	private Vector3 GetSpawnPos()
 	{
@@ -92,6 +87,20 @@ public class EnemySpawner : MonoBehaviour
 		return spawnPos;
 	}
 
+	private void OnTriggerEnter(Collider other)
+	{
+		if (numberOfEnemy == 4 && other.CompareTag("Player"))
+		{
+			StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
+		}
+	}
+	private void OnTriggerExit(Collider other)
+	{
+		if (numberOfEnemy == 4 && other.CompareTag("Player"))
+		{
+			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
+		}
+	}
 
 	//private void FindColls()
 	//{

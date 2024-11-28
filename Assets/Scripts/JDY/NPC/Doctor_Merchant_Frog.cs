@@ -14,10 +14,10 @@ public class Doctor_Merchant_Frog : NPC
 	{
 		base.Interaction();
 		print("Doctor_Merchant_Frog / Interaction / Start");
-		if (DataManager.Instance.money >= price && DataManager.Instance.health < 2)
+		if (DataManager.Instance.money >= price && DataManager.Instance.HP < 2)
 		{
 			DataManager.Instance.money -= price;
-			DataManager.Instance.health += interactionValue;
+			DataManager.Instance.HP += interactionValue;
 		}
 	}
 }
