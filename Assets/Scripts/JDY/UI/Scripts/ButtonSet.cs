@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 //버튼위에 마우스가 올라갔을 떄 나갔을 떄 호출되는 이벤트들
 [RequireComponent(typeof(UnityEngine.UI.Button), typeof(Image))]
-public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonSet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private Color baseColor;
     private Image image;
@@ -28,6 +28,8 @@ public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         image.color *= 0;
     }
 
-
-
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        image.color *= 0;
+    }
 }
