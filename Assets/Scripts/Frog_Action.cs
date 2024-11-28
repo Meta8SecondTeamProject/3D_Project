@@ -1,11 +1,5 @@
-using Boxophobic.StyledGUI;
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Frog_Action : MonoBehaviour
@@ -21,7 +15,6 @@ public class Frog_Action : MonoBehaviour
     private InputActionAsset controlDefine;
     private InputAction jumpAction;
     private InputAction fireAction;
-    private InputAction interaction;
 
     [Header("반동으로 인한 넉백, 점프, 흔들림")]
     public float knockbackForce;
@@ -43,7 +36,6 @@ public class Frog_Action : MonoBehaviour
         controlDefine = GetComponent<PlayerInput>().actions;
         jumpAction = controlDefine.FindAction("Jump");
         fireAction = controlDefine.FindAction("Fire");
-        interaction = controlDefine.FindAction("Interaction");
         frogMove = GetComponent<Frog_Move>();
     }
 
@@ -51,7 +43,6 @@ public class Frog_Action : MonoBehaviour
     {
         fireAction.performed += OnClickEvent;
         jumpAction.performed += OnJumpEvent;
-        //interaction.started += OnInteractionEvent;
 
         isJumping = true;
     }
@@ -61,7 +52,6 @@ public class Frog_Action : MonoBehaviour
     {
         fireAction.performed -= OnClickEvent;
         jumpAction.performed -= OnJumpEvent;
-        //interaction.canceled -= OnInteractionEvent;
     }
 
     private void Start()
@@ -137,7 +127,7 @@ public class Frog_Action : MonoBehaviour
         }
     }
 
-    public void ShakeCamera(float shakePower, float shakeDuration)
+    private void ShakeCamera(float shakePower, float shakeDuration)
     {
         noise.m_PivotOffset = Vector3.one;// * shakeOffset;
         noise.m_AmplitudeGain = shakePower;

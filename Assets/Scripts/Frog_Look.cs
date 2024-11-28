@@ -79,7 +79,7 @@ public class Frog_Look : MonoBehaviour
         isZoom = zoomAction.IsPressed();
         Zoom(isZoom);
 
-        Debug.Log(zoomMag);
+        //Debug.Log(zoomMag);
     }
 
     private void Look(Vector2 mouseDelta)
@@ -99,13 +99,13 @@ public class Frog_Look : MonoBehaviour
     {
         if (isZoom)
         {
-            Debug.Log("Zoom 활성화");
+            //Debug.Log("Zoom 활성화");
             Time.timeScale = bulletTimeMag;
             virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.05f);
         }
         else
         {
-            Debug.Log("Zoom 비활성화");
+            //Debug.Log("Zoom 비활성화");
             Time.timeScale = 1f;
             virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.05f);
         }

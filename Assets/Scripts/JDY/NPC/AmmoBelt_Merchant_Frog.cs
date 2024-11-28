@@ -13,7 +13,7 @@ public class AmmoBelt_Merchant_Frog : NPC
     {
         base.Interaction();
 
-        print("Ammo_Merchant_Frog / Interaction / Start");
+        print("AmmoBelt_Merchant_Frog / Interaction / Start");
 
         if (DataManager.Instance.money >= price && DataManager.Instance.isAmmoBelt == false)
         {
