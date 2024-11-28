@@ -1823,7 +1823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c948f3619c15a8e4c8146122ff15d966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2069500625346957509}
+  menuController: {fileID: 2069500625346957509}
+  moveController: {fileID: 6740673530622944784}
   continueButton: {fileID: 1687923025978459589}
   newGameButton: {fileID: 84155622537225303}
   settingsButton: {fileID: 189666888077295608}
@@ -1861,10 +1862,10 @@ RectTransform:
   - {fileID: 1394140004238114084}
   m_Father: {fileID: 7603905452316119010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -400, y: 0}
-  m_SizeDelta: {x: 800, y: 0}
+  m_SizeDelta: {x: 1660, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3242965850210060614
 CanvasRenderer:
@@ -2062,8 +2063,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7603905452316119010}
+  - component: {fileID: 6740673530622944784}
   m_Layer: 5
-  m_Name: BackGround
+  m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,6 +2092,20 @@ RectTransform:
   m_AnchoredPosition: {x: 430, y: 0}
   m_SizeDelta: {x: 860, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6740673530622944784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224753679522566846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804474f5fc38d8d4babe1e99051e0df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backGround: {fileID: 227670079507770248}
+  menus: {fileID: 5840955683236364599}
 --- !u!1 &4414496299767006317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,10 +2328,10 @@ RectTransform:
   - {fileID: 8855717718625847706}
   m_Father: {fileID: 3263639982351363984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 350, y: 80}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 421, y: -210}
+  m_SizeDelta: {x: 350, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8783102096524863488
 CanvasRenderer:
@@ -3469,7 +3485,8 @@ MonoBehaviour:
   normalButton: {fileID: 6734955173123924940}
   hardButton: {fileID: 8401522620079036596}
   extaemeButton: {fileID: 1122259753956762212}
-  controller: {fileID: 2069500625346957509}
+  menuController: {fileID: 2069500625346957509}
+  moveController: {fileID: 6740673530622944784}
   backButton: {fileID: 8988025903749421681}
 --- !u!114 &5674690551468296928
 MonoBehaviour:
@@ -3520,9 +3537,9 @@ RectTransform:
   - {fileID: 7529972775071111349}
   m_Father: {fileID: 7603905452316119010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 840, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7685083468264996125

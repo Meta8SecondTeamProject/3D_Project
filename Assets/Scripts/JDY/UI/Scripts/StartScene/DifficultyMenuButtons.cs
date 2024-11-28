@@ -30,7 +30,8 @@ public class DifficultyMenuButtons : MonoBehaviour
     }
     #endregion
 
-    public StartMenuController controller;
+    public StartMenuController menuController;
+    public MenuMoveControll moveController;
 
     public Button backButton;
 
@@ -69,6 +70,7 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void BackButtonOnClick()
     {
-        controller.MenuChange(StartMenuController.StartMenus.main);
+        moveController.MenuResetPosition();
+        menuController.MenuChange(StartMenuController.StartMenus.main);
     }
 }

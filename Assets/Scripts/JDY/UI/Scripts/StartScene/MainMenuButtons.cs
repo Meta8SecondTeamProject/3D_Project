@@ -6,7 +6,8 @@ using UnityEngine.UI;
 //MainMenu의 버튼들 관리
 public class MainMenuButtons : MonoBehaviour
 {
-    public StartMenuController controller;
+    public StartMenuController menuController;
+    public MenuMoveControll moveController;
 
     public Button continueButton;
     public Button newGameButton;
@@ -49,12 +50,14 @@ public class MainMenuButtons : MonoBehaviour
 
     private void NewGameButtonOnClick()
     {
-        controller.MenuChange(StartMenuController.StartMenus.difficulty);
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.difficulty);
     }
 
     private void SettingsButtonOnClick()
     {
-        controller.MenuChange(StartMenuController.StartMenus.setting);
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.setting);
     }
 
     private void QuitButtonOnClick()

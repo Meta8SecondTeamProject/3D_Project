@@ -8,52 +8,61 @@ public class MenuMoveControll : MonoBehaviour
     public RectTransform backGround;
     public RectTransform menus;
 
-    public float moveValue;
+    private Vector2 backGroundMovePosition;
+    private Vector2 menusMovePosition;
+    private Vector2 backGroundBasePosition;
+    private Vector2 menusBasePosition;
 
-    private Vector2 movePosition;
-    private Vector2 basePosition;
-    public float speed;
+    private const float moveValue = 150f;
+    private const float moveTime = 0.5f;
+    private float durationTime;
+    private float moveSpeed;
 
     private void Start()
     {
-        basePosition = backGround.anchoredPosition;
-        movePosition = new Vector2(moveValue, backGround.anchoredPosition.y);
+        backGroundBasePosition = backGround.anchoredPosition;
+        backGroundMovePosition = new Vector2(moveValue + backGround.anchoredPosition.x, backGround.anchoredPosition.y);
+        menusBasePosition = menus.anchoredPosition;
+        menusMovePosition = new Vector2((moveValue / 2f) + menus.anchoredPosition.x, menus.anchoredPosition.y);
     }
 
-    [ContextMenu("Test/MenuMove")]
-    public void MenuMove()
+    public void MenuMovePosition()
     {
-        //backGround.anchoredPosition = movePosition;
-        //while (true)
-        //{
-        //    backGround.anchoredPosition = Vector2.Lerp(backGround.anchoredPosition, movePosition, speed * Time.deltaTime);
-        //    if ((backGround.anchoredPosition - movePosition).magnitude <= 0.5f)
-        //    {
-        //        backGround.anchoredPosition = movePosition;
-        //        break;
-        //    }
-        //}
-
-        StartCoroutine(MenuMoveCoroutine());
+        StartCoroutine(MenuMovePositionCoroutine());
     }
 
-    private IEnumerator MenuMoveCoroutine()
+    private IEnumerator MenuMovePositionCoroutine()
     {
-        while (true)
+        durationTime = 0f;
+        while ((backGround.anchoredPosition - backGroundMovePosition).magnitude >= 0.1f)
         {
-            backGround.anchoredPosition = Vector2.Lerp(backGround.anchoredPosition, movePosition, speed * Time.deltaTime);
-            if ((backGround.anchoredPosition - movePosition).magnitude <= 0.5f)
-            {
-                backGround.anchoredPosition = movePosition;
-                break;
-            }
+            durationTime += Time.deltaTime;
+            moveSpeed = durationTime / moveTime;
+            backGround.anchoredPosition = Vector2.Lerp(backGroundBasePosition, backGroundMovePosition, moveSpeed);
+            menus.anchoredPosition = Vector2.Lerp(menusBasePosition, menusMovePosition, moveSpeed);
             yield return null;
         }
+        backGround.anchoredPosition = backGroundMovePosition;
+        menus.anchoredPosition = menusMovePosition;
     }
 
-    [ContextMenu("Test/MenuReset")]
-    public void MenuReset()
+    public void MenuResetPosition()
     {
+        StartCoroutine(MenuResetPositionCoroutine());
+    }
 
+    private IEnumerator MenuResetPositionCoroutine()
+    {
+        durationTime = 0f;
+        while ((backGround.anchoredPosition - backGroundBasePosition).magnitude >= 0.1f)
+        {
+            durationTime += Time.deltaTime;
+            moveSpeed = durationTime / moveTime;
+            backGround.anchoredPosition = Vector2.Lerp(backGroundMovePosition, backGroundBasePosition, moveSpeed);
+            menus.anchoredPosition = Vector2.Lerp(menusMovePosition, menusBasePosition, moveSpeed);
+            yield return null;
+        }
+        menus.anchoredPosition = menusBasePosition;
+        backGround.anchoredPosition = backGroundBasePosition;
     }
 }
