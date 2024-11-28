@@ -63,9 +63,15 @@ public class Frog_Move : MonoBehaviour
 		//jumpSpeed = moveSpeed;// * 2f;
 	}
 
-	private void Update()
+    private void Update()
+    {
+        StateHandler();
+        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+    }
+
+    private void FixedUpdate()
 	{
-		StateHandler();
+		
 		maxVelocity = frogAction.isJumping ? 30 : 15;
 		//moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -107,7 +113,7 @@ public class Frog_Move : MonoBehaviour
 
         //Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
 
-        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+        
 	}
 
 	private void OnMoveEvent(InputAction.CallbackContext context)
@@ -138,27 +144,40 @@ public class Frog_Move : MonoBehaviour
             jumpCharge = 0;
 		}
     }
+
     private void Move()
-	{
-        //moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+    {
+        // 로컬 좌표 기준으로 이동 방향 벡터 계산
+        Vector3 moveDirInMove = (transform.forward * inputValue.y) + (transform.right * inputValue.x);
 
-		if (inputValue.y < 0)
-		{
-			inputValue.y = Mathf.Clamp(inputValue.y, -0.00001f, 0.1f);
-		}
+        // 현재 이동 방향이 전진 방향인지 체크 (로컬 축 기준)
+        float dotProduct = Vector3.Dot(transform.forward, moveDirInMove.normalized);
 
+        if (dotProduct < 0) // 전진 방향이 아니라면 (후진 방향)
+        {
+            // 후진 방향 입력을 무효화
+            moveDirInMove = Vector3.zero;
+        }
 
+        // 목표 속도 계산 (x, z축만)
+        Vector3 targetVelocity = moveDirInMove.normalized * maxVelocity;
 
-		Vector3 moveDirInMove = (transform.forward * inputValue.y) + (transform.right * inputValue.x);
-		//Debug.Log($"moveDirInMove.x : {moveDirInMove.x}");
-		//Debug.Log($"moveDirInMove.y : {moveDirInMove.y}");
-        // Debug.Log($"moveDirInMove.z : {moveDirInMove.z}");
+        // 기존 y축 속도 유지
+        float currentYVelocity = rb.velocity.y;
 
-        rb.velocity += moveDirInMove.normalized * moveSpeed * 0.1f;
+        // x, z축 속도를 Lerp로 부드럽게 보간
+        Vector3 smoothedVelocity = Vector3.Lerp(new Vector3(rb.velocity.x, 0, rb.velocity.z), targetVelocity, Time.deltaTime * 2f);
 
+        // 최종 속도 설정 (y축 속도는 중력에 의한 계산 유지)
+        rb.velocity = new Vector3(smoothedVelocity.x, currentYVelocity, smoothedVelocity.z);
+
+        // 디버그용 로그 (필요시)
+        // Debug.Log($"MoveDirInMove: {moveDirInMove}");
+        // Debug.Log($"DotProduct: {dotProduct}");
+        // Debug.Log($"Velocity: {rb.velocity}");
     }
 
-	private void StateHandler()
+    private void StateHandler()
 	{
 		//점프와 그라운드의 기준을 다르게함
 		//0.4f짜리 readyToJump 그대로 쓰자니 바닥이랑 가까이 있을때 움직이지 못하는 현상 방지용
@@ -179,7 +198,7 @@ public class Frog_Move : MonoBehaviour
 	}
 }
 
-//1. WASD를 눌렀을 때 점프만 하지 않고 누른 방향으로 스페이스바를 눌렀을 때 처럼 AddFroce메서드가 실행되도록 수정
+//1. (완료됨) WASD를 눌렀을 때 점프만 하지 않고 누른 방향으로 스페이스바를 눌렀을 때 처럼 AddFroce메서드가 실행되도록 수정 
 //2. velocity가 최대 velocity까지 도달하기까지의 시간 수정하기, 지금 너무 빠르니 Lerf 메서드 활용
  
 

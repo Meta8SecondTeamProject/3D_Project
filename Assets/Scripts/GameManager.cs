@@ -15,10 +15,4 @@ public class GameManager : SingletonManager<GameManager>
         player = FindAnyObjectByType<Player>();
     }
 
-    private void Start()
-    {
-
-    }
-
-
 }
