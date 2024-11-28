@@ -6,6 +6,9 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class GameMenuController : MonoBehaviour
 {
+    private Image background;
+    private Color baseColor;
+
     public GameObject pausedMenu;
 
     public Button resumeButton;
@@ -16,17 +19,21 @@ public class GameMenuController : MonoBehaviour
 
     private void Start()
     {
+        background = GetComponent<Image>();
+        baseColor = background.color;
         pausedMenu.SetActive(false);
         ButtonInitialization();
+        background.color *= 0;
+        baseTimeScale = Time.timeScale;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            baseTimeScale = Time.timeScale;
-            Time.timeScale = 0f;
-            pausedMenu.SetActive(true);
+            Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
+            pausedMenu.SetActive(!pausedMenu.activeSelf);
+            background.color = background.color == baseColor ? background.color * 0f : baseColor;
         }
     }
 
@@ -43,6 +50,7 @@ public class GameMenuController : MonoBehaviour
 
     private void ResumeButtonOnClick()
     {
+        background.color *= 0;
         pausedMenu.SetActive(false);
         Time.timeScale = baseTimeScale;
     }
@@ -60,6 +68,8 @@ public class GameMenuController : MonoBehaviour
         //    //저장...
         //    //파일이 없으면 생성해서 저장...
         //}
+
+        background.color *= 0;
 
         //씬 전환하고...
 
