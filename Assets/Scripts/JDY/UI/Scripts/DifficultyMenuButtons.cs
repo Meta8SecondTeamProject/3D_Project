@@ -14,15 +14,19 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void EasyButtonOnClick()
     {
+        UIManager.Instance.ChangeScene();
     }
     private void NormalButtonOnClick()
     {
+        UIManager.Instance.ChangeScene();
     }
     private void HardButtonOnClick()
     {
+        UIManager.Instance.ChangeScene();
     }
     private void ExtaemeButtonOnClick()
     {
+        UIManager.Instance.ChangeScene();
     }
     #endregion
 
