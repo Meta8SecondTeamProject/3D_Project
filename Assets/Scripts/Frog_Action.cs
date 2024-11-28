@@ -1,3 +1,5 @@
+using Boxophobic.StyledGUI;
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -14,6 +16,8 @@ public class Frog_Action : MonoBehaviour
     public Transform knockbackPos;
 
     private Rigidbody rb;
+    private CinemachineVirtualCamera virtualCamera;
+    private CinemachineBasicMultiChannelPerlin noise;
     private InputActionAsset controlDefine;
     private InputAction jumpAction;
     private InputAction fireAction;
@@ -23,18 +27,19 @@ public class Frog_Action : MonoBehaviour
     public float knockbackForce;
     public float jumpForce;
     [HideInInspector] public bool isJumping;
-
-    [Header("우클릭 시간 배율"), Range(0f, 1f)]
-    public float timeScale;
-    public float fieldOfView = 60f;
+    public float shakeDuration;
+    public float shakePower;
+    //public float shakeOffset;
+    private float shakeTimer = 0.5f;
 
     private Vector3 moveDir;
-
     private Frog_Move frogMove;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         controlDefine = GetComponent<PlayerInput>().actions;
         jumpAction = controlDefine.FindAction("Jump");
         fireAction = controlDefine.FindAction("Fire");
@@ -63,12 +68,21 @@ public class Frog_Action : MonoBehaviour
 
     private void Start()
     {
+        shakeTimer = shakeDuration;
     }
 
     private void Update()
     {
-        Zoom();
-        CameraShake();
+        if (shakeDuration > 0)
+        {
+            shakeDuration -= Time.deltaTime;
+
+            if (shakeDuration <= 0f && noise != null)
+            {
+                noise.m_AmplitudeGain = 0f;
+                noise.m_FrequencyGain = 0f;
+            }
+        }
     }
 
     private void OnClickEvent(InputAction.CallbackContext context)
@@ -88,6 +102,8 @@ public class Frog_Action : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
                 rb.AddForce(knockbackdir.normalized * knockbackForce, ForceMode.Impulse);
                 isJumping = true;
+                this.shakeDuration = shakeTimer;
+                ShakeCamera(shakePower, shakeDuration);
             }
         }
     }
@@ -122,13 +138,10 @@ public class Frog_Action : MonoBehaviour
         }
     }
 
-    private void Zoom()
+    public void ShakeCamera(float shakePower, float shakeDuration)
     {
-
-    }
-
-    private void CameraShake()
-    {
-
+        noise.m_PivotOffset = Vector3.one;// * shakeOffset;
+        noise.m_AmplitudeGain = shakePower;
+        noise.m_FrequencyGain = shakeDuration;
     }
 }
