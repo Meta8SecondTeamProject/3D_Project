@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5297305027997678714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90, y: 38.8, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a2c87e3d144f24f9319481d1101a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fliseSpawner: 1
-  birdSpawner: 0
-  fishSpawner: 0
+  numberOfEnemy: 0
 --- !u!65 &4615933067405495958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67,5 +65,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 140, y: 30, z: 140}
+  m_Size: {x: 90, y: 20, z: 90}
   m_Center: {x: 0, y: 0, z: 0}

@@ -38,7 +38,7 @@ public class Frog_Move : MonoBehaviour
 	private void Awake()
 	{
 		//프레임 너무 올라가니까 노트북 발열이 쩔어서 임시로 60으로 제한
-		Application.targetFrameRate = 60;
+		//Application.targetFrameRate = 60;
 
 		rb = GetComponent<Rigidbody>();
 		controlDefine = GetComponent<PlayerInput>().actions;
