@@ -15,9 +15,8 @@ public class Frog_Look : MonoBehaviour
     [Header("마우스 감도")][Range(5f, 30f)] public float mouseSensivity;
     [Header("줌 배율 및 불릿타임 비율")]
     [Range(0.1f, 1f)] public float bulletTimeMag;
-    [Range(1f, 2.5f)] public float zoomMag;
+    [Range(25f, 50f)] public float zoomMag;
     private float originalZoomMag;
-    public float lenght;
 
     private float rigAngle = 0f;
 
@@ -37,7 +36,6 @@ public class Frog_Look : MonoBehaviour
         //cameraDis = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         lookAction = controlDefine.FindAction("Look");
         zoomAction = controlDefine.FindAction("Zoom");
-        lenght = virtualCamera.m_Lens.FieldOfView;
     }
 
     private void OnEnable()
@@ -68,9 +66,9 @@ public class Frog_Look : MonoBehaviour
         //else
         //    Debug.Log("이게 Null이면 난 이제 어떻게 하나");
 
-        //originalZoomMag = cameraDis.CameraDistance;
+        originalZoomMag = virtualCamera.m_Lens.FieldOfView;
 
-        Debug.Log(lenght);
+        //Debug.Log(lenght);
     }
 
     private void Update()
@@ -103,17 +101,15 @@ public class Frog_Look : MonoBehaviour
         {
             Debug.Log("Zoom 활성화");
             Time.timeScale = bulletTimeMag;
-            virtualCamera.m_Lens.FieldOfView = 40f;
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.05f);
         }
         else
         {
             Debug.Log("Zoom 비활성화");
             Time.timeScale = 1f;
-            virtualCamera.m_Lens.FieldOfView = 60f;
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.05f);
         }
-        
     }
-
 }
 
 
