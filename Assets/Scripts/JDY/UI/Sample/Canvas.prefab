@@ -2903,7 +2903,6 @@ GameObject:
   - component: {fileID: 8401522620079036596}
   - component: {fileID: 9061335138818258785}
   - component: {fileID: 5640680981645645034}
-  - component: {fileID: 7467094669462979485}
   m_Layer: 5
   m_Name: Hard Button
   m_TagString: Untagged
@@ -2926,10 +2925,10 @@ RectTransform:
   - {fileID: 8855717718625847706}
   m_Father: {fileID: 3263639982351363984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 421, y: -210}
-  m_SizeDelta: {x: 350, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 350, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8783102096524863488
 CanvasRenderer:
@@ -3039,20 +3038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   set: 0.3
   speed: 2
---- !u!114 &7467094669462979485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4534382099928372984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 4.375
 --- !u!1 &4593169551320996583
 GameObject:
   m_ObjectHideFlags: 0
