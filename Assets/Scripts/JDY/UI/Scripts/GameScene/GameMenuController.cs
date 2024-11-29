@@ -32,6 +32,7 @@ public class GameMenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
+            print(Time.timeScale);
             pausedMenu.SetActive(!pausedMenu.activeSelf);
             background.color = background.color == baseColor ? background.color * 0f : baseColor;
         }
