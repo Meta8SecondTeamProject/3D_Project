@@ -27,4 +27,8 @@ public class DataManager : SingletonManager<DataManager>
 	public int fishMaxCount;
 	public int birdMaxCount;
 	public int birdBlackMaxCount;
+
+	public int fliesKillCount;
+	public int fishKillCount;
+	public int birdKillCount;
 }
