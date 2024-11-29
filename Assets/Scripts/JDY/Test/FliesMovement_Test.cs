@@ -5,7 +5,7 @@ using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UniRan = UnityEngine.Random;
 
-public class FliesMovement : MonoBehaviour
+public class FliesMovement_Test : MonoBehaviour
 {
     [Range(0, 1)]
     public float upSpeed;
@@ -24,7 +24,8 @@ public class FliesMovement : MonoBehaviour
     }
     private void Update()
     {
-        Movement();
+        if (Time.timeScale != 0f)
+            Movement();
     }
     private void Movement()
     {
