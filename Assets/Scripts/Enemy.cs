@@ -12,8 +12,11 @@ public abstract class Enemy : MonoBehaviour
 	protected Vector3 moveDir;
 	public Transform attackSpot;
 
+	protected EnemyPool pool;
+
 	protected virtual void Awake()
 	{
+		pool = FindAnyObjectByType<EnemyPool>();
 		rb = GetComponent<Rigidbody>();
 	}
 
@@ -32,11 +35,16 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Move(Vector3 dir)
 	{
+		Debug.Log($"Move TimeScale : {Time.timeScale}");
+
+		if (Time.timeScale == 0) return;
 		rb.AddForce(dir * moveSpeed);
 	}
 
 	protected virtual void Look(Vector3 dir, float rotVal)
 	{
+		Debug.Log($"Look TimeScale : {Time.timeScale}");
+		if (Time.timeScale == 0) return;
 		Quaternion dirRot = Quaternion.LookRotation(dir);
 		rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);
 	}
@@ -47,7 +55,7 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (collision.collider.CompareTag("Projectile"))
 		{
-			Destroy(gameObject);
+			pool.Push(gameObject);
 		}
 
 		//if (collision.collider.CompareTag("Player"))

@@ -18,8 +18,12 @@ public class FliesMovement : MonoBehaviour
 
 	public int rand;
 	public float dir;
+
+	private EnemyPool pool;
+
 	private void Awake()
 	{
+		pool = FindAnyObjectByType<EnemyPool>();
 		rand = UniRan.Range(0, 2);
 	}
 	private void Update()
@@ -28,6 +32,7 @@ public class FliesMovement : MonoBehaviour
 	}
 	private void Movement()
 	{
+		if (Time.timeScale == 0) return;
 		if (rand == 0)
 		{
 			dir = Mathf.Sin(Time.time * upSpeed) * YAmplitude * 0.1f;
@@ -40,6 +45,12 @@ public class FliesMovement : MonoBehaviour
 		transform.RotateAround(rotateTarget.position, Vector3.down, rotateSpeed);
 	}
 
-
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.CompareTag("Projectile"))
+		{
+			pool.Push(gameObject);
+		}
+	}
 
 }
