@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pond_HundredBong
-  m_Shader: {fileID: -6465566751694194690, guid: 9c96e0acb8e5b204382e54e66fdc1fd2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7bf8f35006f66d1409d4898dac495fe5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -59,6 +59,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PondTexture:
+        m_Texture: {fileID: 2800000, guid: 3a8594fb02822ec4c932774e134c2d33, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Amount: 1.75
@@ -76,17 +80,24 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Scale: 180
+    - _PondTextureAlbedo: 5.62
+    - _Scale: 100
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.01
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WaveNoise: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.8666667}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PondBaseColor: {r: 0.31764695, g: 0.572549, b: 0.44705886, a: 0.43137255}
+    - _PondTexture1Scale: {r: 40, g: 40, b: 0, a: 0}
+    - _PondTexture1Speed: {r: 0.04, g: 0.01, b: 0, a: 0}
+    - _PondTexture2Scale: {r: 15, g: 15, b: 0, a: 0}
+    - _PondTexture2Speed: {r: -0.01, g: 0, b: 0, a: 0}
+    - _PondTextureColor: {r: 0.48829442, g: 0.57254905, b: 0.31764707, a: 1}
     - _PondWaveColor: {r: 0, g: 0, b: 0, a: 0.19607843}
   m_BuildTextureStacks: []
 --- !u!114 &1670384130109749880
