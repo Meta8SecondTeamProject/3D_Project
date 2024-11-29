@@ -196,7 +196,7 @@ public class Frog_Move : MonoBehaviour
 		}
 		else
 		{
-			maxVelocity = 30f;
+			maxVelocity = 50f;
 		}
 	}
 	
