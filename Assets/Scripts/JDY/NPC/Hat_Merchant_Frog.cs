@@ -19,7 +19,16 @@ public class Hat_Merchant_Frog : NPC
         {
             DataManager.Instance.money -= price;
             DataManager.Instance.isHat = true;
+            UIManager.Instance.GameSceneTextUpdate();
+            UIManager.Instance.ChangeInteractionText(str = null);
+            return;
+        }
+
+        NotEnoughMoney();
+
+        if (DataManager.Instance.isHat)
+        {
+            UIManager.Instance.ChangeInteractionText(str = "You already have a hat!");
         }
     }
-
 }

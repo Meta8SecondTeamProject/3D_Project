@@ -52,6 +52,7 @@ public class Frog_Interaction : MonoBehaviour
             }
             else
             {
+                UIManager.Instance.OnOffInteractionText();
                 npc.isMessage = true;
             }
         }
@@ -68,6 +69,7 @@ public class Frog_Interaction : MonoBehaviour
             }
             else
             {
+                UIManager.Instance.OnOffInteractionText();
                 npc.isMessage = false;
             }
         }
