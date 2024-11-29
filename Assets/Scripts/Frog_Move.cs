@@ -9,27 +9,27 @@ using UnityEngine.EventSystems;
 
 public class Frog_Move : MonoBehaviour
 {
-	private Rigidbody rb;
-	private InputActionAsset controlDefine;
-	private InputAction moveAction;
+    private Rigidbody rb;
+    private InputActionAsset controlDefine;
+    private InputAction moveAction;
 
-	[HideInInspector] public Vector2 inputValue; // 입력 값
-	private Vector3 moveDir;
-	private Vector3 inputDir;
+    [HideInInspector] public Vector2 inputValue; // 입력 값
+    private Vector3 moveDir;
+    private Vector3 inputDir;
 
-	[Header("지면 체크용")]
-	public Transform groundCheck;
-	public LayerMask groundMask;
-	public LayerMask waterMask;
+    [Header("지면 체크용")]
+    public Transform groundCheck;
+    public LayerMask groundMask;
+    public LayerMask waterMask;
 
-	[Header("이동 및 점프 관련(3, 3)")]
-	public float moveSpeed;
-	public float jumpForce;
-	public float maxVelocity;
-	private float jumpCharge;
+    [Header("이동 및 점프 관련(3, 3)")]
+    public float moveSpeed;
+    public float jumpForce;
+    public float maxVelocity;
+    private float jumpCharge;
 
-	[Header("디버그용 속도 표시계")]
-	public Text text;
+    [Header("디버그용 속도 표시계")]
+    public Text text;
 
     //MaxVelocity 제한용 bool 변수
     private bool grounded;
@@ -37,109 +37,109 @@ public class Frog_Move : MonoBehaviour
     [HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
 
     private void Awake()
-	{
-		//프레임 너무 올라가니까 노트북 발열이 쩔어서 임시로 60으로 제한
-		//Application.targetFrameRate = 60;
-		rb = GetComponent<Rigidbody>();
-		controlDefine = GetComponent<PlayerInput>().actions;
-		moveAction = controlDefine.FindAction("Move");
-		//frogAction = GetComponent<Frog_Action>();
-	}
+    {
+        //프레임 너무 올라가니까 노트북 발열이 쩔어서 임시로 60으로 제한
+        //Application.targetFrameRate = 60;
+        rb = GetComponent<Rigidbody>();
+        controlDefine = GetComponent<PlayerInput>().actions;
+        moveAction = controlDefine.FindAction("Move");
+        //frogAction = GetComponent<Frog_Action>();
+    }
 
-	private void OnEnable()
-	{
-		moveAction.performed += OnMoveEvent;
-		moveAction.canceled += OnMoveEvent;
-	}
+    private void OnEnable()
+    {
+        moveAction.performed += OnMoveEvent;
+        moveAction.canceled += OnMoveEvent;
+    }
 
-	private void OnDisable()
-	{
-		moveAction.performed -= OnMoveEvent;
-		moveAction.canceled -= OnMoveEvent;
-	}
+    private void OnDisable()
+    {
+        moveAction.performed -= OnMoveEvent;
+        moveAction.canceled -= OnMoveEvent;
+    }
 
-	private void Start()
-	{
-	}
+    private void Start()
+    {
+    }
 
     private void Update()
     {
         FrogState();
-		SpeedLimiter();
+        SpeedLimiter();
         //text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
 
-		//Debug.Log(grounded);
-		//Debug.Log(inputValue.x); //A : -1 / D : 1
-		//Debug.Log(inputValue.y); //W : 1 / S : -1 
-		//Debug.Log(inputValue);
-		//Debug.Log(jumpCharge);
-		//Debug.Log(rb.velocity.z);
+        //Debug.Log(grounded);
+        //Debug.Log(inputValue.x); //A : -1 / D : 1
+        //Debug.Log(inputValue.y); //W : 1 / S : -1 
+        //Debug.Log(inputValue);
+        //Debug.Log(jumpCharge);
+        //Debug.Log(rb.velocity.z);
 
-		//Debug.Log($"moveDir.x : {moveDir.x}");
-		//Debug.Log($"moveDir.y : {moveDir.y}");
-		//Debug.Log($"moveDir.z : {moveDir.z}");
+        //Debug.Log($"moveDir.x : {moveDir.x}");
+        //Debug.Log($"moveDir.y : {moveDir.y}");
+        //Debug.Log($"moveDir.z : {moveDir.z}");
 
-		//.Log($"velocity.x : {rb.velocity.x}");
-		//Debug.Log($"velocity.y : {rb.velocity.y}");
-		//Debug.Log($"velocity.z : {rb.velocity.z}");
+        //.Log($"velocity.x : {rb.velocity.x}");
+        //Debug.Log($"velocity.y : {rb.velocity.y}");
+        //Debug.Log($"velocity.z : {rb.velocity.z}");
 
-		//Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
+        //Debug.Log($"moveDir.z 의 10% : {Mathf.Abs(moveDir.z * 0.9f)}");
     }
 
     private void FixedUpdate()
-	{
-		
-		//maxVelocity = isJumpByShot ? 30 : 15;
-		//moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
+    {
 
-		if (rb.velocity.magnitude > maxVelocity)
-		{
-			rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
-		}
+        //maxVelocity = isJumpByShot ? 30 : 15;
+        //moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
-		//Event에서 호출하니 WASD누를때만 마우스 방향에 맞게 바뀌는 문제가 있어서 Update로 이동
-		inputDir = new Vector3(inputValue.x, 0, inputValue.y).normalized;
-		moveDir = transform.TransformDirection(inputDir) * moveSpeed;
+        if (rb.velocity.magnitude > maxVelocity)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        }
 
-		if (readyToJump == false && inputValue.magnitude > 0)
-		{
-			Move();
-		}
-		if (grounded && inputValue.magnitude > 0)
-		{
-			//TODO : (완료됨)Invoke로 하면 의도한거랑 다른 움직임이 발생함, 추후 dletaTime을 누적시켜서 0.5초를 구현하던, InputSystem을 건드리던 로직 바꾸기
-			//Invoke("Jump", 0.5f);
-			Jump();
-		}
-	}
+        //Event에서 호출하니 WASD누를때만 마우스 방향에 맞게 바뀌는 문제가 있어서 Update로 이동
+        inputDir = new Vector3(inputValue.x, 0, inputValue.y).normalized;
+        moveDir = transform.TransformDirection(inputDir) * moveSpeed;
 
-	private void OnMoveEvent(InputAction.CallbackContext context)
-	{
-		//입력받은 키 WASD를 바탕으로 벡터 초기화
-		inputValue = context.ReadValue<Vector2>();
-	}
+        if (readyToJump == false && inputValue.magnitude > 0)
+        {
+            Move();
+        }
+        if (grounded && inputValue.magnitude > 0)
+        {
+            //TODO : (완료됨)Invoke로 하면 의도한거랑 다른 움직임이 발생함, 추후 dletaTime을 누적시켜서 0.5초를 구현하던, InputSystem을 건드리던 로직 바꾸기
+            //Invoke("Jump", 0.5f);
+            Jump();
+        }
+    }
 
-	private void Jump()
-	{
-		if (readyToJump == false)
-		{
-			jumpCharge = 0;
-			return;
-		}
+    private void OnMoveEvent(InputAction.CallbackContext context)
+    {
+        //입력받은 키 WASD를 바탕으로 벡터 초기화
+        inputValue = context.ReadValue<Vector2>();
+    }
 
-		jumpCharge += Time.deltaTime;
+    private void Jump()
+    {
+        if (readyToJump == false)
+        {
+            jumpCharge = 0;
+            return;
+        }
 
-		if (jumpCharge > 0.6f)
-		{
-			//현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
-			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			//rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        jumpCharge += Time.deltaTime;
+
+        if (jumpCharge > 0.6f)
+        {
+            //현재 Rigidbody의 y축 속도를 0으로 초기화해서 점프 높이가 이상해지는 문제 방지
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
 
             Vector3 jumpDir = (moveDir * moveSpeed) + (Vector3.up * jumpForce);
             rb.AddForce(jumpDir.normalized * jumpForce, ForceMode.Impulse);
 
             jumpCharge = 0;
-		}
+        }
     }
 
     private void Move()
@@ -172,43 +172,43 @@ public class Frog_Move : MonoBehaviour
         //Debug.Log($"Velocity: {rb.velocity}");
     }
 
-	private void FrogState()
-	{
-		grounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
+    private void FrogState()
+    {
+        grounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
 
-		readyToJump = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
+        readyToJump = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
 
-		if (grounded == false)
-		{
-			isWater = Physics.CheckSphere(groundCheck.position, 0.2f, waterMask);
-		}
-	}
+        if (grounded == false)
+        {
+            isWater = Physics.CheckSphere(groundCheck.position, 0.2f, waterMask);
+        }
+    }
 
-	private void SpeedLimiter()
-	{
-		if (grounded)
-		{
-			maxVelocity = 15f;
-		}
-		else if (isWater)
-		{
-			maxVelocity = 10f;
-		}
-		else
-		{
-			maxVelocity = 30f;
-		}
-	}
-	1
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
-	}
+    private void SpeedLimiter()
+    {
+        if (grounded)
+        {
+            maxVelocity = 15f;
+        }
+        else if (isWater)
+        {
+            maxVelocity = 10f;
+        }
+        else
+        {
+            maxVelocity = 30f;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+    }
 }
 
 //1. (완료됨) WASD를 눌렀을 때 점프만 하지 않고 누른 방향으로 스페이스바를 눌렀을 때 처럼 AddFroce메서드가 실행되도록 수정 
 //2. (완료됨) velocity가 최대 velocity까지 도달하기까지의 시간 수정하기, 지금 너무 빠르니 Lerf 메서드 활용
- 
+
 
 
