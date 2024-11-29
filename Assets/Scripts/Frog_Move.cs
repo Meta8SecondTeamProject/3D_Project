@@ -199,7 +199,7 @@ public class Frog_Move : MonoBehaviour
 			maxVelocity = 30f;
 		}
 	}
-	1
+	
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
