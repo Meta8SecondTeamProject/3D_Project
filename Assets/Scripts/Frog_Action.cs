@@ -27,6 +27,7 @@ public class Frog_Action : MonoBehaviour
 
     private Vector3 moveDir;
     private Frog_Move frogMove;
+    public LayerMask groundMask;
 
     private void Awake()
     {
@@ -87,6 +88,8 @@ public class Frog_Action : MonoBehaviour
             {
                 Transform hitTarget = hit.transform;
 
+                Debug.Log(hitTarget.transform.position);
+
                 //레이가 명중한곳의 좌표와
                 Vector3 hitPos = hit.point;
 
@@ -134,3 +137,7 @@ public class Frog_Action : MonoBehaviour
         noise.m_FrequencyGain = shakeDuration;
     }
 }
+
+//1. Frog_Move 에서 Grounded가 true일때 앞쪽으로 AddForce하도록 하고, 뒤 제한값 수정하기
+//2. 반동 로직 수정하기, 왜 고장났는지 파악하기
+//3. 마우스 눌렀을 때 투사체 발사 기능 추가

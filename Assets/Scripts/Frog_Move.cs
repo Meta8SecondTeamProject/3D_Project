@@ -66,7 +66,7 @@ public class Frog_Move : MonoBehaviour
     {
         FrogState();
 		SpeedLimiter();
-        text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
+        //text.text = $"current Speed : {(rb.velocity.magnitude).ToString("F2")}";
 
 		//Debug.Log(grounded);
 		//Debug.Log(inputValue.x); //A : -1 / D : 1
@@ -199,7 +199,7 @@ public class Frog_Move : MonoBehaviour
 			maxVelocity = 30f;
 		}
 	}
-
+	1
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
