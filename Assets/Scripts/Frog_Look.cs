@@ -30,12 +30,12 @@ public class Frog_Look : MonoBehaviour
 
 	private void Awake()
 	{
-		rb = GetComponent<Rigidbody>();
-		controlDefine = GetComponent<PlayerInput>().actions;
+		rb = GetComponentInParent<Rigidbody>();
+		//controlDefine = GetComponent<PlayerInput>().actions;
 		camera = GetComponentInChildren<CinemachineVirtualCamera>();
 		//cameraDis = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-		lookAction = controlDefine.FindAction("Look");
-		zoomAction = controlDefine.FindAction("Zoom");
+		//lookAction = controlDefine.FindAction("Look");
+		//zoomAction = controlDefine.FindAction("Zoom");
 	}
 
 	private void OnEnable()
@@ -62,11 +62,11 @@ public class Frog_Look : MonoBehaviour
 
 	private void Update()
 	{
-		lookInput = lookAction.ReadValue<Vector2>();
-		Look(lookInput);
+		//lookInput = lookAction.ReadValue<Vector2>();
+		//Look(lookInput);
 
-		isZoom = zoomAction.IsPressed();
-		Zoom(isZoom);
+		//isZoom = zoomAction.IsPressed();
+		//Zoom(isZoom);
 	}
 
 	private void Look(Vector2 mouseDelta)

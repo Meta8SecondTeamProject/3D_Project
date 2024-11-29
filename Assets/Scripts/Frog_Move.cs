@@ -6,32 +6,37 @@ using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
 using UnityEngine.EventSystems;
 
-
+[RequireComponent(typeof(PlayerInput))]
 public class Frog_Move : MonoBehaviour
 {
 	private Rigidbody rb;
 	private InputActionAsset controlDefine;
 	private InputAction moveAction;
 
-	[HideInInspector] public Vector2 inputValue; // 입력 값
-	private Vector3 moveDir;
-	private Vector3 inputDir;
+	//[HideInInspector] public Vector2 inputValue; // 입력 값
+	//private Vector3 moveDir;
+	//private Vector3 inputDir;
 
-	[Header("지면 체크용")]
-	public Transform groundCheck;
-	public LayerMask groundMask;
-	public LayerMask waterMask;
+	//[Header("지면 체크용")]
+	//public Transform groundCheck;
+	//public LayerMask groundMask;
+	//public LayerMask waterMask;
 
-	[Header("이동 및 점프 관련(3, 3)")]
-	public float moveSpeed;
-	public float jumpForce;
-	public float maxVelocity;
-	private float jumpCharge;
+	//[Header("이동 및 점프 관련(3, 3)")]
+	//public float moveSpeed;
+	//public float jumpForce;
+	//public float maxVelocity;
+	//private float jumpCharge;
 
-	[Header("디버그용 속도 표시계")]
-	public Text text;
+	//[Header("디버그용 속도 표시계")]
+	//public Text text;
 
 	//MaxVelocity 제한용 bool 변수
+
+	private Vector2 input;
+	private float tempTime;
+	public float force;
+
 	private bool isGround;
 	[HideInInspector] public bool isWater; //Water에서 사용하기 위해 public
 	[HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
@@ -53,7 +58,7 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnEnable()
 	{
-		moveAction.performed += OnMoveEvent;
+		moveAction.started += OnMoveEvent;
 		moveAction.canceled += OnMoveEvent;
 
 	}
@@ -61,8 +66,7 @@ public class Frog_Move : MonoBehaviour
 	private void OnDisable()
 	{
 		moveAction.performed -= OnMoveEvent;
-
-		moveAction.canceled -= OnMoveEvent;
+		//moveAction.canceled -= OnMoveEvent;
 	}
 
 	private void Start()
@@ -77,8 +81,28 @@ public class Frog_Move : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-
-
+		#region 김찬영작업
+		if (isGround && isPressed && tempTime >= 0.5f)
+		{
+			if (isWater != true)
+			{
+				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
+			}
+			rb.AddForce(Vector3.left * 20);
+		}
+		if (isPressed != true)
+		{
+			tempTime = 0;
+		}
+		else if (isPressed)
+		{
+			tempTime += Time.deltaTime;
+		}
+		if (isWater && isPressed)
+		{
+			rb.AddForce(Vector3.left * 10);
+		}
+		#endregion
 		////maxVelocity = isJumpByShot ? 30 : 15;
 		////moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -102,17 +126,18 @@ public class Frog_Move : MonoBehaviour
 		//	Jump();
 		//}
 	}
-	//public bool pressed = false;
-	private void OnMoveEvent(InputAction.CallbackContext context)
+
+
+
+	#region 김찬영작업
+	private void OnMoveEvent(InputAction.CallbackContext value)
 	{
 		//입력받은 키 WASD를 바탕으로 벡터 초기화
-		inputValue = context.ReadValue<Vector2>();
-		print(context);
-		isPressed = inputValue != Vector2.zero;
-		if (isGround)
-			rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+		Vector2 input = value.ReadValue<Vector2>();
+		Debug.Log($"SEND_MESSAGE : {input}");
+		isPressed = input != Vector2.zero;
 	}
-
+	#endregion
 	private void Jump()
 	{
 		//if (readyToJump == false)
@@ -140,9 +165,9 @@ public class Frog_Move : MonoBehaviour
 	}
 	private void Move()
 	{
-		rb.AddForce(inputValue * 30);
+		rb.AddForce(input * 30);
 		////로컬 좌표 기준으로 이동 방향 벡터 계산
-		Vector3 moveDirInMove = (transform.forward * inputValue.y) + (transform.right * inputValue.x);
+		Vector3 moveDirInMove = (transform.forward * input.y) + (transform.right * input.x);
 
 		////현재 이동 방향이 전진 방향인지 체크
 		//float dotProduct = Vector3.Dot(transform.forward, moveDirInMove.normalized);
@@ -213,8 +238,10 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
+		
 		if (collision.collider.CompareTag("Ground"))
 		{
+			Debug.Log("hi");
 			isGround = true;
 		}
 	}
@@ -230,6 +257,5 @@ public class Frog_Move : MonoBehaviour
 
 //1. (완료됨) WASD를 눌렀을 때 점프만 하지 않고 누른 방향으로 스페이스바를 눌렀을 때 처럼 AddFroce메서드가 실행되도록 수정 
 //2. (완료됨) velocity가 최대 velocity까지 도달하기까지의 시간 수정하기, 지금 너무 빠르니 Lerf 메서드 활용
-
 
 
