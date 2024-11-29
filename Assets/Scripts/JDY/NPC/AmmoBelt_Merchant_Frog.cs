@@ -19,6 +19,16 @@ public class AmmoBelt_Merchant_Frog : NPC
         {
             DataManager.Instance.money -= price;
             DataManager.Instance.isAmmoBelt = true;
+            UIManager.Instance.GameSceneTextUpdate();
+            UIManager.Instance.ChangeInteractionText(str = null);
+            return;
+        }
+
+        NotEnoughMoney();
+
+        if (DataManager.Instance.isAmmoBelt)
+        {
+            UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt, so Get The Fuck Out!!!");
         }
     }
 }
