@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
 using UnityEngine.EventSystems;
+using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
+using System.Collections;
+
 
 [RequireComponent(typeof(PlayerInput))]
 public class Frog_Move : MonoBehaviour
@@ -23,7 +26,7 @@ public class Frog_Move : MonoBehaviour
 	//public LayerMask waterMask;
 
 	//[Header("이동 및 점프 관련(3, 3)")]
-	//public float moveSpeed;
+	public float moveSpeed;
 	//public float jumpForce;
 	//public float maxVelocity;
 	//private float jumpCharge;
@@ -45,6 +48,7 @@ public class Frog_Move : MonoBehaviour
 	public bool isPressed;
 
 	private KeyCode key;
+	private Vector3 idleDir;
 
 	private void Awake()
 	{
@@ -58,7 +62,7 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnEnable()
 	{
-		moveAction.started += OnMoveEvent;
+		moveAction.performed += OnMoveEvent;
 		moveAction.canceled += OnMoveEvent;
 
 	}
@@ -66,7 +70,7 @@ public class Frog_Move : MonoBehaviour
 	private void OnDisable()
 	{
 		moveAction.performed -= OnMoveEvent;
-		//moveAction.canceled -= OnMoveEvent;
+		moveAction.canceled -= OnMoveEvent;
 	}
 
 	private void Start()
@@ -81,28 +85,8 @@ public class Frog_Move : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		#region 김찬영작업
-		if (isGround && isPressed && tempTime >= 0.5f)
-		{
-			if (isWater != true)
-			{
-				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-			}
-			rb.AddForce(Vector3.left * 20);
-		}
-		if (isPressed != true)
-		{
-			tempTime = 0;
-		}
-		else if (isPressed)
-		{
-			tempTime += Time.deltaTime;
-		}
-		if (isWater && isPressed)
-		{
-			rb.AddForce(Vector3.left * 10);
-		}
-		#endregion
+		Move();
+
 		////maxVelocity = isJumpByShot ? 30 : 15;
 		////moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -130,13 +114,16 @@ public class Frog_Move : MonoBehaviour
 
 
 	#region 김찬영작업
-	private void OnMoveEvent(InputAction.CallbackContext value)
+	private void OnMoveEvent(Context value)
 	{
 		//입력받은 키 WASD를 바탕으로 벡터 초기화
-		Vector2 input = value.ReadValue<Vector2>();
+		input = value.ReadValue<Vector2>();
 		Debug.Log($"SEND_MESSAGE : {input}");
 		isPressed = input != Vector2.zero;
+
 	}
+
+
 	#endregion
 	private void Jump()
 	{
@@ -157,7 +144,7 @@ public class Frog_Move : MonoBehaviour
 		//	Vector3 jumpDir = (moveDir * moveSpeed) + (Vector3.up * jumpForce);
 		//	rb.AddForce(jumpDir.normalized * jumpForce, ForceMode.Impulse);
 
-		//	jumpCharge = 0;
+		//	jumpCharge = 0;	
 		//}
 
 
@@ -165,9 +152,34 @@ public class Frog_Move : MonoBehaviour
 	}
 	private void Move()
 	{
-		rb.AddForce(input * 30);
+
+		#region 김찬영작업
+		if (isPressed)
+		{
+			if (isWater == false && isGround && tempTime >= 0.5f)
+			{
+				Debug.Log("이동 시 점프");
+				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
+			}
+			Debug.Log("그냥 앞으로");
+			Vector3 inputMoveDir = new Vector3(input.y, 0, input.x) * moveSpeed;
+			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+			//rb.MovePosition(rb.position + (new Vector3(input.y, 0, input.x)) * Time.deltaTime * moveSpeed);
+			rb.AddForce(actualMoveDir);
+			//rb.AddForce(rb.velocity)
+		}
+		if (isPressed != true)
+		{
+			tempTime = 0;
+		}
+		else if (isPressed)
+		{
+			tempTime += Time.deltaTime;
+		}
+
+		#endregion
 		////로컬 좌표 기준으로 이동 방향 벡터 계산
-		Vector3 moveDirInMove = (transform.forward * input.y) + (transform.right * input.x);
+		//Vector3 moveDirInMove = (transform.forward * input.y) + (transform.right * input.x);
 
 		////현재 이동 방향이 전진 방향인지 체크
 		//float dotProduct = Vector3.Dot(transform.forward, moveDirInMove.normalized);
@@ -238,7 +250,7 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
-		
+
 		if (collision.collider.CompareTag("Ground"))
 		{
 			Debug.Log("hi");
