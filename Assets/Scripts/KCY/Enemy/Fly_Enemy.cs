@@ -44,6 +44,7 @@ public class Fly_Enemy : Enemy
 		{
 			if (collision.collider.CompareTag("Player"))
 			{
+				Debug.Log("ÆøÅº");
 				Destroy(gameObject);
 			}
 		}

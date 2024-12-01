@@ -35,8 +35,6 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Move(Vector3 dir)
 	{
-		Debug.Log($"Move TimeScale : {Time.timeScale}");
-
 		if (Time.timeScale == 0) return;
 		rb.AddForce(dir * moveSpeed);
 	}

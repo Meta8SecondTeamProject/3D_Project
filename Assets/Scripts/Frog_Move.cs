@@ -118,7 +118,6 @@ public class Frog_Move : MonoBehaviour
 	{
 		//입력받은 키 WASD를 바탕으로 벡터 초기화
 		input = value.ReadValue<Vector2>();
-		Debug.Log($"SEND_MESSAGE : {input}");
 		isPressed = input != Vector2.zero;
 
 	}
@@ -156,19 +155,19 @@ public class Frog_Move : MonoBehaviour
 		#region 김찬영작업
 		if (isPressed)
 		{
-			if (isWater == false && isGround && tempTime >= 0.5f)
-			{
-				Debug.Log("이동 시 점프");
-				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-			}
-			Debug.Log("그냥 앞으로");
 			Vector3 inputMoveDir = new Vector3(input.y, 0, input.x) * moveSpeed;
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
-			//rb.MovePosition(rb.position + (new Vector3(input.y, 0, input.x)) * Time.deltaTime * moveSpeed);
-			rb.AddForce(actualMoveDir);
-			//rb.AddForce(rb.velocity)
+			if (isWater == false && isGround && tempTime >= 0.5f)
+			{
+				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
+				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
+			}
+			else if(isWater)
+			{
+				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
+			}
 		}
-		if (isPressed != true)
+		if (isPressed == false)
 		{
 			tempTime = 0;
 		}
@@ -176,7 +175,6 @@ public class Frog_Move : MonoBehaviour
 		{
 			tempTime += Time.deltaTime;
 		}
-
 		#endregion
 		////로컬 좌표 기준으로 이동 방향 벡터 계산
 		//Vector3 moveDirInMove = (transform.forward * input.y) + (transform.right * input.x);
@@ -253,7 +251,6 @@ public class Frog_Move : MonoBehaviour
 
 		if (collision.collider.CompareTag("Ground"))
 		{
-			Debug.Log("hi");
 			isGround = true;
 		}
 	}

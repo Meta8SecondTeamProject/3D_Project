@@ -8,6 +8,7 @@ public class Water : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
         Debug.Log("OnTriggerStayÁøÀÔ");
         if (other.CompareTag("Player"))
         {
