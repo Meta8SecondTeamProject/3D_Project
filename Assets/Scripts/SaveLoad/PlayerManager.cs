@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+//뭐하는 친구?
+//위치에 따라 생성해주는 친구
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
@@ -28,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void CreatePlayer(Vector3 pos)
-    { 
+    {
         #region 플레이어 생성 방지 로직
         string currentScene = SceneManager.GetActiveScene().name;
 
@@ -98,7 +100,7 @@ public class PlayerManager : MonoBehaviour
             };
             //데이터 저장
             SaveManager.SaveGame(saveData);
-        }     
+        }
     }
 
     public void LoadPlayerState(GameSaveData loadedData)
@@ -106,7 +108,7 @@ public class PlayerManager : MonoBehaviour
         //저장된 데이터를 사용해 플레이어의 체력과 탄약 등을 복원함
         if (loadedData != null)
         {
-            health = loadedData.health; 
+            health = loadedData.health;
             ammo = loadedData.ammo;
 
             //CreatePlayer(loadedData.playerPos); StageManager에서 호출됨

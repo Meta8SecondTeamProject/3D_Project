@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//보류
 public class LoadingSceneController : MonoBehaviour
 {
     [SerializeField] private Image progressBar;
@@ -24,7 +25,7 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
-        
+
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         //씬을 비동기로 불러올 때 로딩이 끝나면 자동으로 불러온 씬으로 이동할것인지 설정하는 옵션
         op.allowSceneActivation = false; //false로 설정하면 90%까지만 로딩하고, true가 됐을때 남은 10%를 로딩함

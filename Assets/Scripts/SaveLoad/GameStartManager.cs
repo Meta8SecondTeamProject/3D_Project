@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//StartScene에서 new게임을 했을시
+//불러올 값들을 지정.
+//데이터 매니저가 가지고 있고
 public class GameStartManager : MonoBehaviour
 {
     public void NewGame()

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//매 씬마다 시작 위치를 지정해주는 친구
+//데이터매니저가 게임매니저한테 현재씬을 같이 보내고
+//시작위치를 게임매니저가 생성하게끔.
 public class StageManager : MonoBehaviour
 {
     public Vector3 spawnPos; //플레이어 초기 위치 설정

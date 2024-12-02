@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO; //파일 입출력에 사용
 
 
+//Json을 통해 데이터들을 세이브/로드하는 친구
+//데이터매니저가 가지고 있지 않고 따로 돌게...
 public class SaveManager : MonoBehaviour
 {
     //저장 경로
