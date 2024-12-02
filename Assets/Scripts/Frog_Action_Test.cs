@@ -147,6 +147,7 @@ namespace test
         {
             if (other.gameObject.CompareTag("LilyPad"))
             {
+                Debug.Log(rb.velocity.y);
                 rb.AddForce((transform.forward * 10f) + (transform.up * (padCount * 40)), ForceMode.Impulse);
 
                 padCount++;
