@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class NPC_AmbassadorWindow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //임시
+    //플레이어의 위치를 받을수 있는 싱글톤이 있을 시 해당 객체를 참조
+    public GameObject player;
+    private void Update()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LookAtAmbassadorWindow()
     {
-        
+        //LookAt(transform.rotation)
     }
 }
