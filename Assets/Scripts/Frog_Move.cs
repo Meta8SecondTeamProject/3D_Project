@@ -160,9 +160,9 @@ public class Frog_Move : MonoBehaviour
 			if (isWater == false && isGround && tempTime >= 0.5f)
 			{
 				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
+				rb.AddForce(actualMoveDir * 100, ForceMode.Force);
 			}
-			else if(isWater)
+			else if (isWater)
 			{
 				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
 			}
