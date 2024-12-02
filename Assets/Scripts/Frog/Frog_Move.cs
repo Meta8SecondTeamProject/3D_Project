@@ -27,6 +27,7 @@ public class Frog_Move : MonoBehaviour
 
 	//[Header("이동 및 점프 관련(3, 3)")]
 	public float moveSpeed;
+	public float onAirSpeed;
 	//public float jumpForce;
 	//public float maxVelocity;
 	//private float jumpCharge;
@@ -41,12 +42,13 @@ public class Frog_Move : MonoBehaviour
 	public float force;
 
 	public bool isGround;
-	[HideInInspector] public bool isWater; //Water에서 사용하기 위해 public
+	public bool isWater; //Water에서 사용하기 위해 public
 	[HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
 
 
 	public bool isPressed;
 
+	public LayerMask groundLayer;
 
 	private void Awake()
 	{
@@ -152,13 +154,16 @@ public class Frog_Move : MonoBehaviour
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 			if (isWater == false && isGround && tempTime >= 0.5f)
 			{
+				Debug.Log("나 앞으로감");
 				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-				rb.AddForce(actualMoveDir * 150, ForceMode.Force);
+				rb.AddForce(actualMoveDir * 100, ForceMode.Force);
 			}
 			else if (isWater)
 			{
 				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
 			}
+				rb.AddForce(actualMoveDir * onAirSpeed);
+
 		}
 		if (isPressed == false)
 		{
@@ -241,8 +246,10 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
-		if (collision.collider.CompareTag("Ground"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
+			Debug.Log("hi");
+
 			isGround = true;
 
 		}
@@ -250,8 +257,9 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionExit(Collision collision)
 	{
-		if (collision.collider.CompareTag("Ground"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
+			Debug.Log("hi");
 			isGround = false;
 		}
 	}
