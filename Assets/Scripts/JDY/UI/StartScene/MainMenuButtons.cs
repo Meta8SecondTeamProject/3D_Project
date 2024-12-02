@@ -20,16 +20,16 @@ public class MainMenuButtons : MonoBehaviour
         ButtonInitialization();
     }
 
-    private void ButtonInitialization()
+    public void ButtonInitialization()
     {
         continueButton.gameObject.SetActive(false);
         //저장된 데이터가 있을 떄 활성화
-        //if (Data != null)
-        //{
-        //    continueButton.gameObject.SetActive(true);
-        //    continueButton.onClick.RemoveAllListeners();
-        //    continueButton.onClick.AddListener(ContinueButtonOnClick);
-        //}
+        if (DataManager.Instance.data.isClear == true)
+        {
+            continueButton.gameObject.SetActive(true);
+            continueButton.onClick.RemoveAllListeners();
+            continueButton.onClick.AddListener(ContinueButtonOnClick);
+        }
 
         newGameButton.gameObject.SetActive(true);
         settingsButton.gameObject.SetActive(true);
@@ -45,9 +45,11 @@ public class MainMenuButtons : MonoBehaviour
     }
 
     private void ContinueButtonOnClick()
-    {
-
+    { 
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading(DataManager.Instance.data.currentSceneName));
+        UIManager.Instance.TransitionToLoadScene(DataManager.Instance.data.currentSceneName);
     }
+    
 
     private void NewGameButtonOnClick()
     {

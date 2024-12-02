@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 4967879643103514089}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -966,20 +966,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputValue: {x: 0, y: 0}
-  groundCheck: {fileID: 6594366286633125675}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  waterMask:
-    serializedVersion: 2
-    m_Bits: 32
   moveSpeed: 4
-  jumpForce: 20
-  maxVelocity: 30
-  text: {fileID: 0}
+  force: 0
   isWater: 0
   readyToJump: 0
+  isPressed: 0
 --- !u!114 &8724096283879680197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,13 +978,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944691162318759527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8aede0021ec9f4438b22389ea313782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 4096384254859908124}
   mainCamera: {fileID: 4601293231386451623}
+  cameraDis: {fileID: 0}
   mouseSensivity: 15
   bulletTimeMag: 0.66
   zoomMag: 25
