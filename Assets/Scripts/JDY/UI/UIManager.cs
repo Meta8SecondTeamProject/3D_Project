@@ -13,6 +13,7 @@ public class UIManager : SingletonManager<UIManager>
     [SerializeField] private GameObject loadingSceneUI;
     [SerializeField] private LoadingController loadingController;
     [SerializeField] private GameObject gameBaseText;
+    [SerializeField] private MainMenuButtons mainButtons;
 
     [SerializeField] private TextMeshProUGUI flyText;
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -58,9 +59,11 @@ public class UIManager : SingletonManager<UIManager>
         {
             case CurrentScene.Start:
                 startSceneUI.SetActive(true);
+                mainButtons.ButtonInitialization();
                 break;
             case CurrentScene.Game:
                 gameSceneUI.SetActive(true);
+                GameManager.Instance.PlayerInstantiate();
                 break;
             case CurrentScene.End:
                 //아직 없음.
@@ -94,7 +97,12 @@ public class UIManager : SingletonManager<UIManager>
         }
     }
 
-    public IEnumerator Loading(string nextSceneName)
+    public void TransitionToLoadScene(string nextSceneName)
+    {
+        StartCoroutine(Loading(nextSceneName));
+    }
+
+    private IEnumerator Loading(string nextSceneName)
     {
         SceneManager.LoadScene("LoadingScene");
         yield return null;

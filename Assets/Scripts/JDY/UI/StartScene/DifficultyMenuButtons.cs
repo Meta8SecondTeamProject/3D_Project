@@ -15,19 +15,26 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void EasyButtonOnClick()
     {
-        UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     private void NormalButtonOnClick()
     {
-        UIManager.Instance.Loading("BBH_Scene");
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        UIManager.Instance.TransitionToLoadScene("BBH_Scene");
+
     }
     private void HardButtonOnClick()
     {
-        UIManager.Instance.Loading("BBH_Scene");
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        UIManager.Instance.TransitionToLoadScene("BBH_Scene");
+
     }
     private void ExtaemeButtonOnClick()
     {
-        UIManager.Instance.Loading("BBH_Scene");
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        UIManager.Instance.TransitionToLoadScene("BBH_Scene");
+
     }
     #endregion
 

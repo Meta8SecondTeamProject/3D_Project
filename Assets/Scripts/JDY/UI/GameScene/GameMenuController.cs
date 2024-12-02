@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
@@ -10,6 +11,7 @@ public class GameMenuController : MonoBehaviour
     private Color baseColor;
 
     public GameObject pausedMenu;
+    public GameObject interactionText;
 
     public Button resumeButton;
     public Button settingsButton;
@@ -25,11 +27,18 @@ public class GameMenuController : MonoBehaviour
         ButtonInitialization();
         background.color *= 0;
         baseTimeScale = Time.timeScale;
+        interactionText.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        //pausedMenu.SetActive(false);
+        ResumeButtonOnClick();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || (Application.isFocused == false && pausedMenu.activeSelf==false))
         {
             Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
             print(Time.timeScale);
@@ -64,17 +73,18 @@ public class GameMenuController : MonoBehaviour
     private void SaveQuitButtonOnClick()
     {
         //데이터를 저장할 기능을 추가할 시
-        //if (Data != null)
-        //{
-        //    //저장...
-        //    //파일이 없으면 생성해서 저장...
-        //}
+        if (DataManager.Instance.data != null)
+        {
+            //저장
+            //파일이 없으면 생성해서 저장
+            DataManager.Instance.Save();
+        }
 
         background.color *= 0;
 
         //씬 전환하고...
-
-        UIManager.Instance.ChangeScene();
+        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("GameStartScene"));
+        UIManager.Instance.TransitionToLoadScene("GameStartScene");
     }
 
 }
