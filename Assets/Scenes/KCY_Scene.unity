@@ -6431,8 +6431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615347731}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -5.715002, y: 12.634999, z: -3.7389987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.615002, y: 12.634999, z: -16.779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10211,7 +10211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buoyancyForce: 30
-  waterDrag: 5
+  waterDrag: 2
 --- !u!1 &951035874
 GameObject:
   m_ObjectHideFlags: 0
@@ -13635,13 +13635,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286542215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.02175, y: 0.00275, z: 0.00158}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1866045453527737662}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1290350759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19175,7 +19175,7 @@ Transform:
   m_GameObject: {fileID: 1870590448}
   serializedVersion: 2
   m_LocalRotation: {x: -0.09677069, y: 0.69745934, z: -0.09610346, w: -0.7035269}
-  m_LocalPosition: {x: 0.13645, y: 0.009849996, z: 0.017280012}
+  m_LocalPosition: {x: 0.03744999, y: 0.009849996, z: -0.11311999}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44480,7 +44480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 15
   force: 5
   isWater: 0
   readyToJump: 0
@@ -44551,7 +44551,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -44654,10 +44654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8aede0021ec9f4438b22389ea313782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraRig: {fileID: 0}
+  cameraRig: {fileID: 1286542216}
   mouseSensivity: 10
   controlDefine: {fileID: -944628639613478452, guid: 31ce193379eafe542bdd24d39d69efa3, type: 3}
-  cam: {fileID: 0}
 --- !u!135 &7419527451315384119
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44671,7 +44670,7 @@ SphereCollider:
     m_Bits: 16
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 111
+    m_Bits: 103
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

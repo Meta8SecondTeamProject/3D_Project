@@ -40,18 +40,20 @@ public class Frog_Look : MonoBehaviour
 	//	//zoomAction = controlDefine.FindAction("Zoom");
 	//}
 
-	//private void OnEnable()
-	//{
-	//	//마우스 커서 중앙으로 고정 및 숨기기 활성화
-	//	Cursor.lockState = CursorLockMode.Locked;
-	//	Cursor.visible = false;
-	//}
+	private void OnEnable()
+	{
+		//마우스 커서 중앙으로 고정 및 숨기기 활성화
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		lookAction.performed += OnLookEvent;
+		lookAction.canceled += OnLookEvent;
+	}
 
-	//private void OnDisable()
-	//{
-	//	Cursor.lockState = CursorLockMode.None;
-	//	Cursor.visible = true;
-	//}
+	private void OnDisable()
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+	}
 
 	//private void Start()
 	//{
@@ -109,37 +111,28 @@ public class Frog_Look : MonoBehaviour
 	public InputActionAsset controlDefine;
 	private InputAction lookAction;
 
-	public CinemachineFreeLook cam;
-
-	//private void Awake()
-	//{
-	//	controlDefine = GetComponent<PlayerInput>().actions;
-	//	lookAction = controlDefine.FindAction("Look");
-	//}
-
-	//private void OnEnable()
-	//{
-	//	lookAction.performed += OnLookEvent;
-	//	lookAction.canceled += OnLookEvent;
-	//}
+	private void Awake()
+	{
+		controlDefine = GetComponent<PlayerInput>().actions;
+		lookAction = controlDefine.FindAction("Look");
+	}
 
 
-	//private void OnLookEvent(Context context)
-	//{
-	//	if (false == SimpleMouseControl.isFocusing) return;
-	//	Look(context.ReadValue<Vector2>());
-	//}
+
+	private void OnLookEvent(Context context)
+	{
+		if (false == SimpleMouseControl.isFocusing) return;
+		Look(context.ReadValue<Vector2>());
+	}
 
 	private void Look(Vector2 mouseDelta)
 	{
 
-		transform.rotation = cam.LookAt.rotation;
+		transform.Rotate(0f, mouseDelta.x * mouseSensivity * Time.deltaTime, 0f);
+		rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
 
-		//transform.Rotate(0f, mouseDelta.x * mouseSensivity * Time.deltaTime, 0f);
-		//rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
-
-		//rigAngle = Mathf.Clamp(rigAngle, -40f, 20f);
-		//cameraRig.localEulerAngles = new Vector3(0, 0, rigAngle);
+		rigAngle = Mathf.Clamp(rigAngle, -40f, 20f);
+		cameraRig.localEulerAngles = new Vector3(rigAngle, 0, 0);
 		//Rotate(transform, 0, mouseDelta.x * mouseSensivity * Time.deltaTime, 0);
 		//rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
 		//rigAngle = Mathf.Clamp(rigAngle, -95f, 60f);
