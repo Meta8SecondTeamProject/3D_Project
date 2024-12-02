@@ -15,10 +15,10 @@ public class AmmoBelt_Merchant_Frog : NPC
 
         print("AmmoBelt_Merchant_Frog / Interaction / Start");
 
-        if (DataManager.Instance.money >= price && DataManager.Instance.isAmmoBelt == false)
+        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.isAmmoBelt == false)
         {
-            DataManager.Instance.money -= price;
-            DataManager.Instance.isAmmoBelt = true;
+            DataManager.Instance.data.money -= price;
+            DataManager.Instance.data.isAmmoBelt = true;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
             return;
@@ -26,7 +26,7 @@ public class AmmoBelt_Merchant_Frog : NPC
 
         NotEnoughMoney();
 
-        if (DataManager.Instance.isAmmoBelt)
+        if (DataManager.Instance.data.isAmmoBelt)
         {
             UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt, so Get The Fuck Out!!!");
         }

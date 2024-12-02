@@ -14,17 +14,17 @@ public class Doctor_Merchant_Frog : NPC
     {
         base.Interaction();
         print("Doctor_Merchant_Frog / Interaction / Start");
-        if (DataManager.Instance.money >= price && DataManager.Instance.HP < 2)
+        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.HP < 2)
         {
-            DataManager.Instance.money -= price;
-            DataManager.Instance.HP += interactionValue;
+            DataManager.Instance.data.money -= price;
+            DataManager.Instance.data.HP += interactionValue;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
         }
 
         NotEnoughMoney();
 
-        if (DataManager.Instance.HP >= 2)
+        if (DataManager.Instance.data.HP >= 2)
         {
             UIManager.Instance.ChangeInteractionText(str = "Your health is full!");
         }

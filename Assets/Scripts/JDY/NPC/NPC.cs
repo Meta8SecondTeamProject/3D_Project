@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    //탄띠, 모자, 체력, 탄약
+    //플레이의 액션에서 같이 온오프 되게
+    public GameObject ambassadorWindow;
 
     public bool isMessage = false;
     public bool isInteraction = false;
@@ -13,12 +14,10 @@ public class NPC : MonoBehaviour
     protected int interactionValue;
 
     protected string str;
-    //money<price
-    //체력이나 불릿이 꽉차 있을 떄
 
     protected void NotEnoughMoney()
     {
-        if (DataManager.Instance.money < price)
+        if (DataManager.Instance.data.money < price)
         {
             UIManager.Instance.ChangeInteractionText(str = "Not Enough Money");
             return;
