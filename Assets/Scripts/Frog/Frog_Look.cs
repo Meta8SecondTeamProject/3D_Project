@@ -58,20 +58,17 @@ public class Frog_Look : MonoBehaviour
 
 	private void Start()
 	{
-
-
 		originalZoomMag = virtualCamera.m_Lens.FieldOfView;
-
-
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
-		//lookInput = lookAction.ReadValue<Vector2>();
-		//Look(lookInput);
+		lookInput = lookAction.ReadValue<Vector2>();
+		Look(lookInput);
 
-		//isZoom = zoomAction.IsPressed();
-		//Zoom(isZoom);
+		isZoom = zoomAction.IsPressed();
+		Zoom(isZoom);
+
 	}
 
 	private void OnLookEvent(Context context)
@@ -82,13 +79,13 @@ public class Frog_Look : MonoBehaviour
 	private void Look(Vector2 mouseDelta)
 	{
 		//캐릭터 좌우 회전 (y축 회전)
-		float yRotation = mouseDelta.x * mouseSensivity * Time.deltaTime;
+		float yRotation = mouseDelta.x * mouseSensivity * Time.fixedDeltaTime;
 		Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
 		rb.MoveRotation(rb.rotation * playerRotation);
 
 		//카메라 상하 회전(x축 회전)
-		rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
-		rigAngle = Mathf.Clamp(rigAngle, -50f, 80f);
+		rigAngle -= mouseDelta.y * mouseSensivity * Time.fixedDeltaTime;
+		rigAngle = Mathf.Clamp(rigAngle, -35f, 89f);
 		cameraPos.localRotation = Quaternion.Euler(rigAngle, -90, 0);
 	}
 
@@ -98,56 +95,18 @@ public class Frog_Look : MonoBehaviour
 		{
 			//Debug.Log("Zoom 활성화");
 			Time.timeScale = bulletTimeMag;
-			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.05f);
+			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.1f);
 		}
 		else
 		{
 			//Debug.Log("Zoom 비활성화");
 			Time.timeScale = 1f;
-			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.05f);
+			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.1f);
 		}
 	}
 
 
-	//public Transform cameraRig;
 
-	//public float mouseSensivity;
-	//private float rigAngle = 0f;
-
-	//public InputActionAsset controlDefine;
-	//private InputAction lookAction;
-
-	//private void Awake()
-	//{
-	//	controlDefine = GetComponent<PlayerInput>().actions;
-	//	lookAction = controlDefine.FindAction("Look");
-	//}
-
-
-
-
-	//private void Look(Vector2 mouseDelta)
-	//{
-
-	//	transform.Rotate(0f, mouseDelta.x * mouseSensivity * Time.deltaTime, 0f);
-
-	//	rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
-
-	//	rigAngle = Mathf.Clamp(rigAngle, -90f, 90f);
-	//	cameraRig.eulerAngles = new Vector3(rigAngle, -90, 0);
-	//	rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
-	//	rigAngle = Mathf.Clamp(rigAngle, -70f, 90f);
-	//	cameraRig.localRotation = Quaternion.Euler(rigAngle, -90, 0);
-
-	//	//Rotate(transform, 0, mouseDelta.x * mouseSensivity * Time.deltaTime, 0);
-	//	//rigAngle -= mouseDelta.y * mouseSensivity * Time.deltaTime;
-	//	//rigAngle = Mathf.Clamp(rigAngle, -95f, 60f);
-	//	//cameraRig.localEulerAngles = new Vector3(0, 0, rigAngle);
-	//}
-	//private void Rotate(Transform t, float x, float y, float z)
-	//{
-	//	t.Rotate(x, y, z);
-	//}
 
 }
 

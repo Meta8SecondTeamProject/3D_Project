@@ -41,7 +41,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Look(Vector3 dir, float rotVal)
 	{
-		Debug.Log($"Look TimeScale : {Time.timeScale}");
+		//Debug.Log($"Look TimeScale : {Time.timeScale}");
 		if (Time.timeScale == 0) return;
 		Quaternion dirRot = Quaternion.LookRotation(dir);
 		rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);

@@ -36,17 +36,17 @@ public class EnemySpawner : MonoBehaviour
 		{
 			case 0:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxCount));
-				Debug.Log(DataManager.Instance.fishMaxCount);
+				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 1:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fishMaxCount));
-				Debug.Log(DataManager.Instance.fishMaxCount);
+				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 2:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxCount));
 				break;
 			default:
-				Debug.LogWarning("±×·± ³ð ¾ø´Ù.");
+				//Debug.LogWarning("±×·± ³ð ¾ø´Ù.");
 				break;
 		}
 	}

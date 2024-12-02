@@ -40,15 +40,13 @@ public class Frog_Move : MonoBehaviour
 	private float tempTime;
 	public float force;
 
-	private bool isGround;
+	public bool isGround;
 	[HideInInspector] public bool isWater; //Water에서 사용하기 위해 public
 	[HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
 
 
 	public bool isPressed;
 
-	private KeyCode key;
-	private Vector3 idleDir;
 
 	private void Awake()
 	{
@@ -73,10 +71,6 @@ public class Frog_Move : MonoBehaviour
 		moveAction.canceled -= OnMoveEvent;
 	}
 
-	private void Start()
-	{
-	}
-
 	private void Update()
 	{
 		//FrogState();
@@ -86,7 +80,6 @@ public class Frog_Move : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Move();
-
 		////maxVelocity = isJumpByShot ? 30 : 15;
 		////moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -160,7 +153,7 @@ public class Frog_Move : MonoBehaviour
 			if (isWater == false && isGround && tempTime >= 0.5f)
 			{
 				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-				rb.AddForce(actualMoveDir * 100, ForceMode.Force);
+				rb.AddForce(actualMoveDir * 150, ForceMode.Force);
 			}
 			else if (isWater)
 			{
@@ -248,10 +241,10 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionStay(Collision collision)
 	{
-
 		if (collision.collider.CompareTag("Ground"))
 		{
 			isGround = true;
+
 		}
 	}
 
