@@ -8,12 +8,10 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public class UIManager : SingletonManager<UIManager>
 {
-
-    //start¾ÀÀ» »©°Ô µÉ°æ¿ì
-    //
     [SerializeField] private GameObject gameSceneUI;
     [SerializeField] private GameObject startSceneUI;
     [SerializeField] private GameObject loadingSceneUI;
+    [SerializeField] private LoadingController loadingController;
     [SerializeField] private GameObject gameBaseText;
 
     [SerializeField] private TextMeshProUGUI flyText;
@@ -46,16 +44,15 @@ public class UIManager : SingletonManager<UIManager>
                 currentScene = CurrentScene.Game;
                 break;
         }
-
     }
 
     public void ChangeScene()
     {
-        CurrentSceneUI();
-
         gameSceneUI.SetActive(false);
         startSceneUI.SetActive(false);
         loadingSceneUI.SetActive(false);
+
+        CurrentSceneUI();
 
         switch (currentScene)
         {
@@ -79,8 +76,8 @@ public class UIManager : SingletonManager<UIManager>
 
     public void GameSceneTextUpdate()
     {
-        flyText.text = DataManager.Instance.money.ToString();
-        ammoText.text = DataManager.Instance.ammo.ToString();
+        flyText.text = DataManager.Instance.data.money.ToString();
+        ammoText.text = DataManager.Instance.data.ammo.ToString();
     }
 
     public void ChangeInteractionText(string str)
@@ -96,7 +93,17 @@ public class UIManager : SingletonManager<UIManager>
             interactionText = null;
         }
     }
+
+    public IEnumerator Loading(string nextSceneName)
+    {
+        SceneManager.LoadScene("LoadingScene");
+        yield return null;
+        ChangeScene();
+        yield return null;
+        loadingController.StartLoadingScene(nextSceneName);
+    }
 }
+
 [Serializable]
 public enum CurrentScene
 {

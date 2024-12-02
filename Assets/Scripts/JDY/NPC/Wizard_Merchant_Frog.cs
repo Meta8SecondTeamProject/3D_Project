@@ -16,17 +16,17 @@ public class Wizard_Merchant_Frog : NPC
 
         print("Wizard_Merchant_Frog / Interaction / Start");
 
-        if (DataManager.Instance.money >= price && DataManager.Instance.isDoubleJump == false)
+        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.isDoubleJump == false)
         {
-            DataManager.Instance.money -= price;
-            DataManager.Instance.isDoubleJump = true;
+            DataManager.Instance.data.money -= price;
+            DataManager.Instance.data.isDoubleJump = true;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
         }
 
         NotEnoughMoney();
 
-        if (DataManager.Instance.isDoubleJump)
+        if (DataManager.Instance.data.isDoubleJump)
         {
             UIManager.Instance.ChangeInteractionText(str = "You are already enchanted!");
         }

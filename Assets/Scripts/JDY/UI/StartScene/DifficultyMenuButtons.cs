@@ -15,19 +15,19 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void EasyButtonOnClick()
     {
-        UIManager.Instance.ChangeScene();
+        UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
     }
     private void NormalButtonOnClick()
     {
-        UIManager.Instance.ChangeScene();
+        UIManager.Instance.Loading("BBH_Scene");
     }
     private void HardButtonOnClick()
     {
-        UIManager.Instance.ChangeScene();
+        UIManager.Instance.Loading("BBH_Scene");
     }
     private void ExtaemeButtonOnClick()
     {
-        UIManager.Instance.ChangeScene();
+        UIManager.Instance.Loading("BBH_Scene");
     }
     #endregion
 
@@ -50,7 +50,7 @@ public class DifficultyMenuButtons : MonoBehaviour
         backButton.gameObject.SetActive(true);
 
         //Hard 난이도를 클리어 했을 시 활성화
-        //if (Data != null)
+        //if (DataManager.Instance.data.isHardClear)
         //{
         //    extaemeButton.gameObject.SetActive(true);
         //    extaemeButton.onClick.RemoveAllListeners();

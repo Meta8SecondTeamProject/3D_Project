@@ -13,15 +13,15 @@ public class Ammo_Merchant_Frog : NPC
     {
         base.Interaction();
         print("Ammo_Merchant_Frog / Interaction / Start");
-        if (DataManager.Instance.money >= price && DataManager.Instance.ammo < DataManager.Instance.maxAmmo)
+        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.ammo < DataManager.Instance.data.maxAmmo)
         {
-            DataManager.Instance.money -= price;
-            DataManager.Instance.ammo += interactionValue;
+            DataManager.Instance.data.money -= price;
+            DataManager.Instance.data.ammo += interactionValue;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
             return;
         }
-        if (DataManager.Instance.ammo >= DataManager.Instance.maxAmmo)
+        if (DataManager.Instance.data.ammo >= DataManager.Instance.data.maxAmmo)
         {
             UIManager.Instance.ChangeInteractionText(str = "Already full ammo!");
         }

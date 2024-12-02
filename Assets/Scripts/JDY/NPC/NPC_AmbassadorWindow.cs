@@ -9,11 +9,11 @@ public class NPC_AmbassadorWindow : MonoBehaviour
     public GameObject player;
     private void Update()
     {
-
+        LookAtAmbassadorWindow();
     }
 
     private void LookAtAmbassadorWindow()
     {
-        //LookAt(transform.rotation)
+        gameObject.transform.LookAt(player.transform.position);
     }
 }
