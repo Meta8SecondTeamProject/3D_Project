@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//º¸·ù
 public class LoadingSceneController : MonoBehaviour
 {
     [SerializeField] private Image progressBar;
