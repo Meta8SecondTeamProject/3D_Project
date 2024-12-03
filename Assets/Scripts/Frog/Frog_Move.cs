@@ -21,7 +21,7 @@ public class Frog_Move : MonoBehaviour
 	public float moveSpeed;
 	public float onAirSpeed;
 
-	private Vector2 input;
+	public Vector2 input;
 	private float tempTime;
 	public float force;
 
@@ -85,6 +85,8 @@ public class Frog_Move : MonoBehaviour
 	{
 		input = value.ReadValue<Vector2>();
 		isPressed = input != Vector2.zero;
+		Debug.Log($"IN MOVE : {input}");
+
 	}
 	private void Move()
 	{
@@ -95,7 +97,7 @@ public class Frog_Move : MonoBehaviour
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 
-			if (isWater == false && isGround && tempTime >= 0.5f && isMove && frogAction.isJumping != true)
+			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
 				Debug.Log("나 앞으로감");
 				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
@@ -126,9 +128,9 @@ public class Frog_Move : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
+			isGround = true;
 			Physics.gravity = new Vector3(0, -20, 0);
 			Debug.Log("hi");
-			isGround = true;
 		}
 	}
 

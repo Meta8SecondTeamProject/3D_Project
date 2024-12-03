@@ -19,6 +19,7 @@ public class Frog_Action : MonoBehaviour
 	private InputActionAsset controlDefine;
 	private InputAction jumpAction;
 	private InputAction fireAction;
+	private InputAction moveAction;
 
 	[Header("반동으로 인한 넉백, 점프, 흔들림")]
 	[Range(0, 100)]
@@ -30,10 +31,11 @@ public class Frog_Action : MonoBehaviour
 	private float shakeTimer = 0.5f;
 
 	private float jumpInput;
+	public int jumpCount;
 	public bool isJumping;
 	private bool fireCooldown;
+	private Vector2 input;
 
-	private Vector3 moveDir;
 	private Frog_Move frogMove;
 	public LayerMask groundMask;
 
@@ -48,6 +50,7 @@ public class Frog_Action : MonoBehaviour
 		controlDefine = GetComponent<PlayerInput>().actions;
 		jumpAction = controlDefine.FindAction("Jump");
 		fireAction = controlDefine.FindAction("Fire");
+		moveAction = controlDefine.FindAction("Move");
 		frogMove = GetComponent<Frog_Move>();
 	}
 
@@ -57,7 +60,6 @@ public class Frog_Action : MonoBehaviour
 		fireAction.canceled += OnClickEvent;
 		jumpAction.performed += OnJumpEvent;
 		jumpAction.canceled += OnJumpEvent;
-
 	}
 	private void OnDisable()
 	{
@@ -100,6 +102,17 @@ public class Frog_Action : MonoBehaviour
 				noise.m_FrequencyGain = 0f;
 			}
 		}
+
+	}
+
+	private bool canJump = true;
+	private void FixedUpdate()
+	{
+		if (frogMove.isGround)
+		{
+			jumpCount = DataManager.Instance.jumpCount;
+			Debug.Log("점프카운트 2");
+		}
 	}
 
 	private void OnClickEvent(Context context)
@@ -113,7 +126,6 @@ public class Frog_Action : MonoBehaviour
 			particle.Play(true);
 			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
 
-
 			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
 
 			//카메라 흔들림 변수 초기화
@@ -123,29 +135,44 @@ public class Frog_Action : MonoBehaviour
 			ShakeCamera(shakePower, shakeDuration);
 			fireCooldown = false;
 		}
-
 	}
-
 
 	private void OnJumpEvent(Context context)
 	{
-
+		//아 이런 ㅈ같은 점프로직~~~
+		//2단 점프 안되는거 수정해야함
+		//WASD눌렀을 때 해당하는 방향으로 점프하는데,
+		//점프력이 너무 강하니까 적당한 force를 찾아야함.
 		jumpInput = context.ReadValue<float>();
-		Debug.Log(jumpInput);
+		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
-		frogMove.isMove = false;
-		if (isJumping && frogMove.isGround == true)
+		if (isJumping && jumpCount >= 1)
 		{
-			Debug.Log("점프진입");
-			Vector3 forwardDir = jumpDir.position - transform.position;
-			rb.AddForce(forwardDir.normalized * jumpForce, ForceMode.Impulse);
+			Vector3 inputMoveDir = new Vector3(-frogMove.input.y, 0, frogMove.input.x);
+			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+			if (!frogMove.isGround)
+			{
+
+				Debug.Log("점프카운트 1");
+				jumpCount = 1;
+				rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
+				jumpCount--;
+			}
+			else
+			{
+				Debug.Log("점프진입");
+				Vector3 forwardDir = jumpDir.position - transform.position;
+				rb.AddForce((actualMoveDir + Vector3.up) * jumpForce, ForceMode.Impulse);
+				jumpCount--;
+				frogMove.isGround = false;
+			}
 		}
 	}
-
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{
 		noise.m_PivotOffset = Vector3.one;// * shakeOffset;
 		noise.m_AmplitudeGain = shakePower;
 		noise.m_FrequencyGain = shakeDuration;
 	}
+
 }

@@ -27960,9 +27960,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1852714127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd9b95db5a201945b330d96fedfd88b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f6202fc9e536c242af8bdf24806765c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    currentSceneName: 
+    currentHP: 0
+    currentAmmo: 0
+    maxAmmo: 0
+    money: 0
+    isHat: 0
+    isAmmoBelt: 0
+    isDoubleJump: 0
+    isClear: 0
+    isHardClear: 0
+  playerStartPos: []
+  currentStartPos: {x: 0, y: 0, z: 0}
+  jumpCount: 2
+  triggerOn: 0
+  bombFliesSpeed: 0
+  fishSpeed: 0
+  birdSpeed: 0
+  fliesMaxCount: 0
+  fishMaxCount: 0
+  birdMaxCount: 0
+  birdBlackMaxCount: 0
+  fliesKillCount: 0
+  fishKillCount: 0
+  birdKillCount: 0
 --- !u!4 &1852714129
 Transform:
   m_ObjectHideFlags: 0
@@ -39239,6 +39264,7 @@ MonoBehaviour:
   jumpForce: 350
   shakeDuration: 1
   shakePower: 1
+  jumpCount: 0
   isJumping: 0
   groundMask:
     serializedVersion: 2
@@ -56680,6 +56706,7 @@ MonoBehaviour:
   childPos: {fileID: 7590937926812479617}
   moveSpeed: 25
   onAirSpeed: 20
+  input: {x: 0, y: 0}
   force: 8
   isMove: 0
   isGround: 0
