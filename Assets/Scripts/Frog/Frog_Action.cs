@@ -12,7 +12,7 @@ public class Frog_Action : MonoBehaviour
 	public Camera shotPoint;
 	public Transform knockbackPos;
 	public Transform jumpDir;
-
+	public ParticleSystem particle;
 	private Rigidbody rb;
 	private CinemachineVirtualCamera virtualCamera;
 	private CinemachineBasicMultiChannelPerlin noise;
@@ -38,6 +38,7 @@ public class Frog_Action : MonoBehaviour
 	public LayerMask groundMask;
 
 	public RawImage crossHair;
+	public GameObject projectile;
 
 	private void Awake()
 	{
@@ -80,8 +81,8 @@ public class Frog_Action : MonoBehaviour
 		while (true)
 		{
 			Debug.Log($"coroutine : {fireCooldown}");
-			Ray ray = new Ray(crossHair.transform.position, crossHair.transform.forward);
-			Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 0.2f);
+			//Ray ray = new Ray(crossHair.transform.position, crossHair.transform.forward);
+			//Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 0.2f);
 			yield return new WaitWhile(() => fireCooldown);
 			yield return new WaitForSeconds(0.5f);
 			fireCooldown = true;
@@ -109,9 +110,10 @@ public class Frog_Action : MonoBehaviour
 	{
 		Debug.Log("클릭 감지");
 		//마우스 좌클릭 입력이 감지되면
-		Debug.Log($"input : {fireCooldown}");
+		Debug.Log($"Fireinput : {fireCooldown}");
 		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
+			particle.Play(true);
 			//Ray ray = shotPoint.ScreenPointToRay(Input.mousePosition);
 			//RaycastHit hit;
 			//if (Physics.Raycast(ray, out hit, 1000f))
@@ -157,16 +159,8 @@ public class Frog_Action : MonoBehaviour
 		if (isJumping && frogMove.isGround == true)
 		{
 			Debug.Log("점프진입");
-			//플레이어가 보는 전방 방향 계산
 			Vector3 forwardDir = jumpDir.position - transform.position;
-			rb.AddForce(forwardDir * jumpForce, ForceMode.Impulse);
-			//전방 방향과 점프 방향을 더하고
-			//Vector3 jumpDir = forwardDir + new Vector3(moveDir.x, 0, moveDir.z);
-
-			////정규화 및 Y축 속도 초기화후 점프
-			//Vector3 normalizedDir = jumpDir.normalized;
-			//rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			//rb.AddForce(normalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
+			rb.AddForce(forwardDir.normalized * jumpForce, ForceMode.Impulse);
 		}
 	}
 
