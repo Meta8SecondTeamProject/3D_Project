@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
@@ -9,7 +10,7 @@ public class Frog_Action : MonoBehaviour
 	public Transform muzzlePos;
 	public Camera shotPoint;
 	public Transform knockbackPos;
-	
+	public Transform jumpDir;
 
 	private Rigidbody rb;
 	private CinemachineVirtualCamera virtualCamera;
@@ -19,14 +20,17 @@ public class Frog_Action : MonoBehaviour
 	private InputAction fireAction;
 
 	[Header("반동으로 인한 넉백, 점프, 흔들림")]
-	[Range(0,5)]
+	[Range(0, 5)]
 	public float knockbackForce;
 	public float jumpForce;
-	[HideInInspector] public bool isJumping;
 	public float shakeDuration;
 	public float shakePower;
 	//public float shakeOffset;
 	private float shakeTimer = 0.5f;
+
+	private float jumpInput;
+	public bool isJumping;
+	private bool fireCooldown;
 
 	private Vector3 moveDir;
 	private Frog_Move frogMove;
@@ -46,21 +50,38 @@ public class Frog_Action : MonoBehaviour
 	private void OnEnable()
 	{
 		fireAction.performed += OnClickEvent;
+		fireAction.canceled += OnClickEvent;
 		jumpAction.performed += OnJumpEvent;
+		jumpAction.canceled += OnJumpEvent;
 
-		isJumping = true;
 	}
 
 	//없어도 작동은 하나 불필요한 호출로 인한 메모리 낭비 방지
 	private void OnDisable()
 	{
 		fireAction.performed -= OnClickEvent;
+		fireAction.canceled -= OnClickEvent;
 		jumpAction.performed -= OnJumpEvent;
+		jumpAction.canceled -= OnJumpEvent;
 	}
 
 	private void Start()
 	{
 		shakeTimer = shakeDuration;
+		fireCooldown = true;
+		StartCoroutine(FireCooldown());
+	}
+
+	private IEnumerator FireCooldown()
+	{
+		while (true)
+		{
+			Debug.Log($"coroutine : {fireCooldown}");
+			yield return new WaitWhile(() => fireCooldown);
+			yield return new WaitForSeconds(0.5f);
+			fireCooldown = true;
+		}
+
 	}
 
 	private void Update()
@@ -83,58 +104,64 @@ public class Frog_Action : MonoBehaviour
 	{
 		Debug.Log("클릭 감지");
 		//마우스 좌클릭 입력이 감지되면
-		if (context.ReadValue<float>() > 0)
+		Debug.Log($"input : {fireCooldown}");
+		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
-			Ray ray = shotPoint.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 1000f))
-			{
-				Transform hitTarget = hit.transform;
+			//Ray ray = shotPoint.ScreenPointToRay(Input.mousePosition);
+			//RaycastHit hit;
+			//if (Physics.Raycast(ray, out hit, 1000f))
+			//{
+			//	Transform hitTarget = hit.transform;
 
-				Debug.Log(hitTarget.transform.position);
+			//	Debug.Log(hitTarget.transform.position);
 
-				//레이가 명중한곳의 좌표와
-				Vector3 hitPos = hit.point;
+			//레이가 명중한곳의 좌표와
+			//Vector3 hitPos = hit.point;
 
-				//개구리 뒤통수에 붙은 반동용 포지션과 계산하여 방향을 구함
-				//반동 포지션은 새로 수정 예정
-				//Vector3 knockbackdir = knockbackPos.position - hitPos;
-				Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
+			//개구리 뒤통수에 붙은 반동용 포지션과 계산하여 방향을 구함
+			//반동 포지션은 새로 수정 예정
+			//Vector3 knockbackdir = knockbackPos.position - hitPos;
+			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
 
 
-				//반동으로 튀어오를때 떨어지는 속도가 너무 빠르면 제대로 튀어오르지 못하므로 Y축 속도만 제어
-				//rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
+			//반동으로 튀어오를때 떨어지는 속도가 너무 빠르면 제대로 튀어오르지 못하므로 Y축 속도만 제어
+			//rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
 
-				//방향대로 AddForce메서드 실행
-				//반동 포지션은 새로 수정 예정
-				rb.AddForce(knockbackdir * knockbackForce, ForceMode.VelocityChange);
+			//방향대로 AddForce메서드 실행
+			//반동 포지션은 새로 수정 예정
+			rb.AddForce(knockbackdir * knockbackForce, ForceMode.VelocityChange);
 
-				//카메라 흔들림 변수 초기화
-				shakeDuration = shakeTimer;
+			//카메라 흔들림 변수 초기화
+			shakeDuration = shakeTimer;
 
-				//카메라 흔들림 메서드 실행
-				ShakeCamera(shakePower, shakeDuration);
-			}
+			//카메라 흔들림 메서드 실행
+			ShakeCamera(shakePower, shakeDuration);
+			fireCooldown = false;
 		}
+
 	}
+
 
 	private void OnJumpEvent(Context context)
 	{
-		Debug.Log(context.ReadValue<float>());
 
-		if (context.ReadValue<float>() > 0 && frogMove.isGround == true)
+		jumpInput = context.ReadValue<float>();
+		Debug.Log(jumpInput);
+		isJumping = jumpInput != 0;
+		frogMove.isMove = false;
+		if (isJumping && frogMove.isGround == true)
 		{
 			Debug.Log("점프진입");
 			//플레이어가 보는 전방 방향 계산
-			Vector3 forwardDir = transform.forward;
-
+			Vector3 forwardDir = jumpDir.position - transform.position;
+			rb.AddForce(forwardDir * jumpForce, ForceMode.Impulse);
 			//전방 방향과 점프 방향을 더하고
-			Vector3 jumpDir = forwardDir + new Vector3(moveDir.x, 0, moveDir.z);
+			//Vector3 jumpDir = forwardDir + new Vector3(moveDir.x, 0, moveDir.z);
 
-			//정규화 및 Y축 속도 초기화후 점프
-			Vector3 normalizedDir = jumpDir.normalized;
-			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			rb.AddForce(normalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
+			////정규화 및 Y축 속도 초기화후 점프
+			//Vector3 normalizedDir = jumpDir.normalized;
+			//rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+			//rb.AddForce(normalizedDir * jumpForce + Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 	}
 
