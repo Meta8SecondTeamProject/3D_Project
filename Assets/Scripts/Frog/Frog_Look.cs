@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using UnityTemplateProjects;
 using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
@@ -10,9 +11,11 @@ using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 public class Frog_Look : MonoBehaviour
 {
 	public Transform cameraPos;
+	public Transform cameraNearPos;
 	public Camera mainCamera;
-	private CinemachineVirtualCamera virtualCamera;
-	public Cinemachine3rdPersonFollow cameraDis;
+	public CinemachineVirtualCamera freeLookCam;
+	public CinemachineVirtualCamera nearLookCam;
+	private CinemachineBrain brain;
 
 
 	[Header("마우스 감도")][Range(5f, 30f)] public float mouseSensivity;
@@ -30,15 +33,12 @@ public class Frog_Look : MonoBehaviour
 
 	private bool isZoom;
 	private Vector2 lookInput;
-	float X;
-	float Y;
-
+	private float fixedYPos = 35;
 	private void Awake()
 	{
 		rb = GetComponentInParent<Rigidbody>();
 		controlDefine = GetComponent<PlayerInput>().actions;
-		virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-		cameraDis = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+		brain = GetComponentInChildren<CinemachineBrain>();
 		lookAction = controlDefine.FindAction("Look");
 		zoomAction = controlDefine.FindAction("Zoom");
 	}
@@ -60,7 +60,8 @@ public class Frog_Look : MonoBehaviour
 
 	private void Start()
 	{
-		originalZoomMag = virtualCamera.m_Lens.FieldOfView;
+		//originalZoomMag = freeLookCam.m_Lens.FieldOfView;
+
 	}
 
 	private void FixedUpdate()
@@ -68,8 +69,8 @@ public class Frog_Look : MonoBehaviour
 		//lookInput = lookAction.ReadValue<Vector2>();
 		//Look(lookInput);
 
-		isZoom = zoomAction.IsPressed();
-		Zoom(isZoom);
+		//isZoom = zoomAction.IsPressed();
+		//Zoom(isZoom);
 
 	}
 
@@ -80,38 +81,40 @@ public class Frog_Look : MonoBehaviour
 	}
 	private void Look(Vector2 mouseDelta)
 	{
-		//X += mouseDelta.x * mouseSensivity * Time.fixedDeltaTime;
-		//Y -= mouseDelta.y * mouseSensivity * Time.fixedDeltaTime;
-		//Y = Mathf.Clamp(Y, -35f, 89f);
-		//cameraPos.localRotation = Quaternion.Euler(Y, X, 0f);
-		//캐릭터 좌우 회전 (y축 회전)
 		float yRotation = mouseDelta.x * mouseSensivity * Time.fixedDeltaTime;
-		float xRotation = mouseDelta.y * 0.0001f * Time.fixedDeltaTime;
 		Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
 		rb.MoveRotation(rb.rotation * playerRotation);
-
-		//카메라 상하 회전(x축 회전)
-		rigAngle = new Vector3(rigAngle.x + mouseDelta.y, rigAngle.y + mouseDelta.x, 0);
-		rigAngle.x -= xRotation;
-		rigAngle.x = Mathf.Clamp(rigAngle.x, -35f, 89f);
-		cameraPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
-	}
-
-	private void Zoom(bool isZoom)
-	{
-		if (isZoom)
+		rigAngle.x -= mouseDelta.y * (mouseSensivity * 0.01f);
+		if (rigAngle.x < 0)
 		{
-			//Debug.Log("Zoom 활성화");
-			Time.timeScale = bulletTimeMag;
-			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.1f);
+			freeLookCam.gameObject.SetActive(false);
+			rigAngle.x = Mathf.Clamp(rigAngle.x, -40f, 89f);
+			cameraNearPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
 		}
 		else
 		{
-			//Debug.Log("Zoom 비활성화");
-			Time.timeScale = 1f;
-			virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.1f);
+			freeLookCam.gameObject.SetActive(true);
+			rigAngle.x = Mathf.Clamp(rigAngle.x, -15f, 89f);
+			cameraPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
 		}
+
 	}
+
+	//private void Zoom(bool isZoom)
+	//{
+	//	if (isZoom)
+	//	{
+	//		//Debug.Log("Zoom 활성화");
+	//		Time.timeScale = bulletTimeMag;
+	//		virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, zoomMag, 0.1f);
+	//	}
+	//	else
+	//	{
+	//		//Debug.Log("Zoom 비활성화");
+	//		Time.timeScale = 1f;
+	//		virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, originalZoomMag, 0.1f);
+	//	}
+	//}
 
 
 
