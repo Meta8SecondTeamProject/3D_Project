@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class King_God_Toad_Test : Boss_Test
 {
-    //이 친구는 어떻게 움직일까?
+    protected override IEnumerator WhatName()
+    {
+        while (true)
+        {
 
+        }
+    }
 }
