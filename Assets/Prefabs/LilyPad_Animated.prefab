@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5119679516522818399}
   - component: {fileID: 5449654514568848829}
   - component: {fileID: 8096347459262228761}
+  - component: {fileID: 5299962916947214822}
   m_Layer: 0
   m_Name: LillyPad_Renderer
   m_TagString: LilyPad
@@ -105,6 +106,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!64 &5299962916947214822
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120386271638576383}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5188659854175571616, guid: 0b5667a9395de6f46ba3742f097d2bd0, type: 3}
 --- !u!1 &4574890079777458105
 GameObject:
   m_ObjectHideFlags: 0

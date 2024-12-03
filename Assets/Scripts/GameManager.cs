@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonManager<GameManager>
 {
 
-    internal Player player;
+    [Header("생성할 개구리 프리팹")] internal Player player;
     public List<GameObject>[] enemy = new List<GameObject>[5];
 
     //TODO : 적 리스트 추가 예정
@@ -19,7 +19,7 @@ public class GameManager : SingletonManager<GameManager>
         }
     }
 
-    public Vector3 spawnPos;
+    private  Vector3 spawnPos;
     public GameObject playerPrefab;
     public void PlayerInstantiate()
     {

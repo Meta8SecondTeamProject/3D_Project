@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 [DisallowMultipleComponent]
 public class UIManager : SingletonManager<UIManager>
@@ -49,6 +50,7 @@ public class UIManager : SingletonManager<UIManager>
 
     public void ChangeScene()
     {
+        Debug.Log("ChangeScene 호출됨");
         gameSceneUI.SetActive(false);
         startSceneUI.SetActive(false);
         loadingSceneUI.SetActive(false);
@@ -104,11 +106,25 @@ public class UIManager : SingletonManager<UIManager>
 
     private IEnumerator Loading(string nextSceneName)
     {
-        SceneManager.LoadScene("LoadingScene");
-        yield return null;
+        //SceneManager.LoadScene("LoadingScene");
+        //yield return null;
+
+        AsyncOperation ap = SceneManager.LoadSceneAsync("LoadingScene");
+        yield return new WaitUntil(()=>ap.isDone);
+
+        //간헐적으로 UI가 없어지지 않는 문제가 발생하여 씬 로드가 끝날때까지 기다림
+        //기다릴려 했는데 에러떠서 포기
+        //yield return StartCoroutine(LoadTest());
+
         ChangeScene();
         yield return null;
         loadingController.StartLoadingScene(nextSceneName);
+    }
+
+    private IEnumerator LoadTest()
+    {
+        yield return null;
+        SceneManager.LoadScene("LoadingScene");
     }
 }
 

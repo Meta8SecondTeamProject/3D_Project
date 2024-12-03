@@ -791,20 +791,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputValue: {x: 0, y: 0}
-  groundCheck: {fileID: 2324586960439366741}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  waterMask:
-    serializedVersion: 2
-    m_Bits: 16
   moveSpeed: 4
-  jumpForce: 20
-  maxVelocity: 30
-  text: {fileID: 0}
+  onAirSpeed: 0
+  force: 0
+  isGround: 0
   isWater: 0
   readyToJump: 0
+  isPressed: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7865818544646993223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPos: {fileID: 731840808223177689}
   mainCamera: {fileID: 8171145327987682106}
+  cameraDis: {fileID: 0}
   mouseSensivity: 15
   bulletTimeMag: 0.66
   zoomMag: 25
@@ -834,14 +831,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49da1ba5e77722845a7e703fb6656819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzle: {fileID: 4262012625611690213}
+  muzzlePos: {fileID: 0}
   shotPoint: {fileID: 8171145327987682106}
   knockbackPos: {fileID: 1903502076913852842}
-  knockbackForce: 18
+  knockbackForce: 5
   jumpForce: 10
   isJumping: 0
   shakeDuration: 0.3
   shakePower: 0.5
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &9215763674279906698
 MonoBehaviour:
   m_ObjectHideFlags: 0

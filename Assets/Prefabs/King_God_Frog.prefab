@@ -833,8 +833,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6697238814698496520}
   - {fileID: 1966975986662628531}
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944691162318759527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -961,17 +961,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944691162318759527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  onAirSpeed: 0
   force: 0
   isGround: 0
   isWater: 0
   readyToJump: 0
   isPressed: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8724096283879680197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,15 +1001,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944691162318759527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49da1ba5e77722845a7e703fb6656819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzle: {fileID: 8400540697179706379}
+  muzzlePos: {fileID: 0}
   shotPoint: {fileID: 4601293231386451623}
   knockbackPos: {fileID: 2492838310681456003}
-  knockbackForce: 18
+  knockbackForce: 5
   jumpForce: 10
   isJumping: 0
   shakeDuration: 0.3
@@ -1020,7 +1024,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944691162318759527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 280980bf47ea1e740a87398167a9c91b, type: 3}
   m_Name: 

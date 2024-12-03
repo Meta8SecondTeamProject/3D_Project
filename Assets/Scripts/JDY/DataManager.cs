@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,8 @@ public class DataManager : SingletonManager<DataManager>
 
     public Vector3 StartPosition()
     {
+        NewGamePositionSet();
+
         int index = SceneManager.GetActiveScene().buildIndex;
         Debug.Log(index);
         if (playerStartPos.Length >= index - 2)
@@ -39,7 +42,6 @@ public class DataManager : SingletonManager<DataManager>
 
     protected override void Awake()
     {
-
         base.Awake();
         //NewGame();
         //SaveManager.SaveGame(data);
@@ -60,7 +62,18 @@ public class DataManager : SingletonManager<DataManager>
         //    NewGame();
             
         //}
+    }
 
+    private void NewGamePositionSet()
+    {
+        if (DataManager.Instance.data.isClear == false)
+        {
+            playerStartPos[0] = new Vector3(27, 45, 5);
+        }
+        else
+        {
+            playerStartPos[0] = new Vector3(-359.5f, 18f, 365.5f);
+        }
     }
 
     [ContextMenu("Test")]
@@ -82,41 +95,44 @@ public class DataManager : SingletonManager<DataManager>
     }
 
     #region 세이브 로드 테스트용 
-    //private void Update()
-    //{
-    //   
-    //    if (Input.GetKeyDown(KeyCode.Keypad1))
-    //    {
-    //        data.ammo--;
-    //        Debug.Log("탄약 감소됨");
+    private void Update()
+    {
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad2))
-    //    {
-    //        SaveManager.SaveGame(data);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad3))
-    //    {
-    //        UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("KCY_Scene"));
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad4))
-    //    {
-    //        Debug.Log($"DataManager.data.ammo : {data.ammo}");
-    //        Debug.Log($"DataManager.data.ammo : {data.currentAmmo}");
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad5))
-    //    {
-    //        data = SaveManager.LoadGame();
-    //        Debug.Log("LoadGame호출");
-    //        UIManager.Instance.StartCoroutine(UIManager.Instance.Loading(data.currentSceneName));
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            data.ammo--;
+            Debug.Log("탄약 감소됨");
 
-    //    }
-    //    if  (Input.GetKeyDown(KeyCode.Keypad6))
-    //    {
-    //        UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("JDY_Scene"));
-    //    }
-    //    
-    //}
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            SaveManager.SaveGame(data);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            UIManager.Instance.TransitionToLoadScene("KCY_Scene");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            Debug.Log($"DataManager.data.ammo : {data.ammo}");
+            Debug.Log($"DataManager.data.ammo : {data.currentAmmo}");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            data = SaveManager.LoadGame();
+            Debug.Log("LoadGame호출");
+            UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            UIManager.Instance.TransitionToLoadScene("JDY_Scene");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            UIManager.Instance.TransitionToLoadScene("BBH_Scene");
+        }
+
+    }
     #endregion
 
     public void RetryGame()
