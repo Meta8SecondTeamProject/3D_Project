@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 public class Frog_Action : MonoBehaviour
@@ -35,6 +36,8 @@ public class Frog_Action : MonoBehaviour
 	private Vector3 moveDir;
 	private Frog_Move frogMove;
 	public LayerMask groundMask;
+
+	public RawImage crossHair;
 
 	private void Awake()
 	{
@@ -77,6 +80,8 @@ public class Frog_Action : MonoBehaviour
 		while (true)
 		{
 			Debug.Log($"coroutine : {fireCooldown}");
+			Ray ray = new Ray(crossHair.transform.position, crossHair.transform.forward);
+			Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 0.2f);
 			yield return new WaitWhile(() => fireCooldown);
 			yield return new WaitForSeconds(0.5f);
 			fireCooldown = true;

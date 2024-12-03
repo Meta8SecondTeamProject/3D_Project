@@ -7,6 +7,7 @@ public class Frog_MeshMovement : MonoBehaviour
 	private Rigidbody rb;
 	private Rigidbody parent_Rb;
 	public Transform lookPos;
+	public Transform lookDir;
 	private Vector3 rotDir;
 	private void Awake()
 	{
@@ -17,15 +18,12 @@ public class Frog_MeshMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		rb.MovePosition(parent_Rb.position);
 		Look();
 	}
 
 	private void Look()
 	{
-		rotDir = lookPos.position - Vector3.left;
-		Quaternion newRotation = Quaternion.LookRotation(rotDir);
-		rb.MoveRotation(newRotation);
+		//lookDir.LookAt(lookPos);
 	}
 
 }
