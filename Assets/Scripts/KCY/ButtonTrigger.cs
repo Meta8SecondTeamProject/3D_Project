@@ -5,18 +5,29 @@ using UnityEngine;
 public class ButtonTrigger : MonoBehaviour
 {
 
-	public GameObject triggerOn;
-	public GameObject triggerOff;
-	private void Awake()
-	{
-		triggerOn.SetActive(false);
-	}
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.collider.CompareTag("Projectile"))
-		{
-			triggerOff.SetActive(false);
-			triggerOn.SetActive(true);
-		}
-	}
+    public GameObject[] triggerOns;
+    public GameObject[] triggerOffs;
+    private void Awake()
+    {
+        TriggerOnOff(false);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Projectile"))
+        {
+            TriggerOnOff(true);
+        }
+    }
+
+    private void TriggerOnOff(bool setBool)
+    {
+        foreach (var triggerOff in triggerOffs)
+        {
+            triggerOff.SetActive(!setBool);
+        }
+        foreach (var triggerOn in triggerOns)
+        {
+            triggerOn.SetActive(setBool);
+        }
+    }
 }
