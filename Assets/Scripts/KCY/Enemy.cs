@@ -30,8 +30,16 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		moveDir = target.position - attackSpot.transform.position;
-	}
+		if (target == null)
+		{
+			target = GameManager.Instance.player.transform;
+			return;
+		}
+		else
+		{
+            moveDir = target.position - attackSpot.transform.position;
+        }
+    }
 
 	protected virtual void Move(Vector3 dir)
 	{
