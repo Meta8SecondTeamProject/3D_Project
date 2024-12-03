@@ -3012,7 +3012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &479010742
 Transform:
   m_ObjectHideFlags: 0
@@ -4722,6 +4722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817046921}
   - component: {fileID: 817046920}
+  - component: {fileID: 817046922}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -4806,6 +4807,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 222.696, z: 0}
+--- !u!114 &817046922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817046919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6bdf2b561692c44ba75c3f12e1e61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &845988593
 GameObject:
   m_ObjectHideFlags: 0
@@ -5984,10 +5997,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5645192463324973663, guid: a3686be55ea8fea428ef8a317545aaa3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3686be55ea8fea428ef8a317545aaa3, type: 3}
 --- !u!4 &945748966 stripped
 Transform:
@@ -8329,6 +8339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e646470e776a54d84ff78713f829da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerPrefab: {fileID: 3714378390100717, guid: 8ac7898c36d19c4478efe1778bb11629, type: 3}
 --- !u!4 &1307451358
 Transform:
@@ -8623,10 +8634,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1540759884466106462, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
 --- !u!1 &1383156428
 GameObject:
@@ -9827,10 +9835,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1128774883622225433, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
 --- !u!4 &1522780223 stripped
 Transform:
@@ -11802,10 +11807,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7523606680829630455, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
 --- !u!4 &1768816600 stripped
 Transform:
@@ -13149,17 +13151,21 @@ MonoBehaviour:
     isDoubleJump: 0
     isClear: 0
     isHardClear: 0
-  playerStartPos: []
+  playerStartPos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   currentStartPos: {x: 0, y: 0, z: 0}
   jumpCount: 0
   triggerOn: 0
   bombFliesSpeed: 0
   fishSpeed: 0
   birdSpeed: 0
-  fliesMaxCount: 0
-  fishMaxCount: 0
-  birdMaxCount: 0
-  birdBlackMaxCount: 0
+  fliesMaxCount: 49
+  fishMaxCount: 82
+  birdMaxCount: 74
+  birdBlackMaxCount: 42
   fliesKillCount: 0
   fishKillCount: 0
   birdKillCount: 0
@@ -18575,7 +18581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634479468066681975, guid: e730f1ae7a483ec48a9f527b7c12e946, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963744080391734227, guid: e730f1ae7a483ec48a9f527b7c12e946, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28027,7 +28033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a2c87e3d144f24f9319481d1101a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfEnemy: 0
+  numberOfEnemy: 1
 --- !u!4 &5086423341804513487
 Transform:
   m_ObjectHideFlags: 0
@@ -28748,10 +28754,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7523606680829630455, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
 --- !u!1 &5345517105686492464
 GameObject:
