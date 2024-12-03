@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Ammo_Merchant_Frog : NPC
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         price = 2;
         interactionValue = 4;
     }

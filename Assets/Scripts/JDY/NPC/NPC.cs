@@ -15,6 +15,10 @@ public class NPC : MonoBehaviour
 
     protected string str;
 
+    protected virtual void Start()
+    {
+        ambassadorWindow.SetActive(false);
+    }
     protected void NotEnoughMoney()
     {
         if (DataManager.Instance.data.money < price)

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Doctor_Merchant_Frog : NPC
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         price = 5;
         interactionValue = 1;
     }
