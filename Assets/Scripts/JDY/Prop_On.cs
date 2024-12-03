@@ -9,7 +9,7 @@ public class Prop_On : MonoBehaviour
 
     private void Start()
     {
-        arrivePos = transform.position + (Vector3.up * movePos);
+        arrivePos = transform.position + (Vector3.up * movePos);    
     }
 
     public IEnumerator PropOn()

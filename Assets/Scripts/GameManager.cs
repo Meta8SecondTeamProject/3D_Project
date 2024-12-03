@@ -19,6 +19,12 @@ public class GameManager : SingletonManager<GameManager>
         PlayerInstantiate();
     }
 
+    private void Start()
+    {
+        //프레임 제한용 코드
+        Application.targetFrameRate = 60;
+    }
+
     private Vector3 spawnPos;
     [Header("생성할 개구리 프리팹")]
     public GameObject playerPrefab;

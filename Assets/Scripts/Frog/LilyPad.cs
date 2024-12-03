@@ -17,7 +17,9 @@ public class LilyPad : MonoBehaviour
 
             if (other.gameObject.TryGetComponent(out Rigidbody rb))
             {
-                rb.AddForce((rb.transform.forward * forwardForce) + (rb.transform.up * upForce), ForceMode.Impulse);
+                //rb.velocity=new Vector3(rb.velocity.x,0,rb.velocity.z);
+                rb.velocity = new Vector3(rb.velocity.x, upForce, rb.velocity.z) + (rb.transform.right * forwardForce);
+                //rb.AddForce(rb.transform.up * upForce, ForceMode.VelocityChange);
             }
         }
     }
