@@ -22,8 +22,10 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		target = GameManager.Instance.player.transform;
-		if (isFly == false) { rb.useGravity = true; }
+		if (GameManager.Instance.player != null)
+            target = GameManager.Instance.player.transform;
+
+        if (isFly == false) { rb.useGravity = true; }
 		else { rb.useGravity = false; }
 	}
 
@@ -32,7 +34,9 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (target == null)
 		{
-			target = GameManager.Instance.player.transform;
+            if (GameManager.Instance.player != null)
+                target = GameManager.Instance.player.transform;
+
 			return;
 		}
 		else

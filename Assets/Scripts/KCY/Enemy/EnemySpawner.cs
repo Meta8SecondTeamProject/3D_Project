@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         switch (numberOfEnemy)
         {
             case 0:
-                StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxCount));
+                StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxCount)); 
                 //Debug.Log(DataManager.Instance.fishMaxCount);
                 break;
             case 1:
