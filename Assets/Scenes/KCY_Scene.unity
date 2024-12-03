@@ -33330,9 +33330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  childPos: {fileID: 0}
   moveSpeed: 15
   onAirSpeed: 1
   force: 4
+  isMove: 0
   isGround: 0
   isWater: 0
   readyToJump: 0
@@ -54479,11 +54481,12 @@ MonoBehaviour:
   muzzlePos: {fileID: 810416793062640453}
   shotPoint: {fileID: 7744262166299395198}
   knockbackPos: {fileID: 8816612861384193589}
+  jumpDir: {fileID: 0}
   knockbackForce: 1.5
   jumpForce: 50
-  isJumping: 0
   shakeDuration: 1
   shakePower: 1
+  isJumping: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 8

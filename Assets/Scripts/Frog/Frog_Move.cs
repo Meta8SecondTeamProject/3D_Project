@@ -15,13 +15,15 @@ public class Frog_Move : MonoBehaviour
 	private Rigidbody rb;
 	private InputActionAsset controlDefine;
 	private InputAction moveAction;
+	private Frog_Action frogAction;
+	public Transform childPos;
 
 	//[HideInInspector] public Vector2 inputValue; // 입력 값
 	//private Vector3 moveDir;
 	//private Vector3 inputDir;
 
 	//[Header("지면 체크용")]
-	//public Transform groundCheck;
+	//public Trans	form groundCheck;
 	//public LayerMask groundMask;
 	//public LayerMask waterMask;
 
@@ -41,6 +43,7 @@ public class Frog_Move : MonoBehaviour
 	private float tempTime;
 	public float force;
 
+	public bool isMove;
 	public bool isGround;
 	public bool isWater; //Water에서 사용하기 위해 public
 	[HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
@@ -57,7 +60,7 @@ public class Frog_Move : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		controlDefine = GetComponent<PlayerInput>().actions;
 		moveAction = controlDefine.FindAction("Move");
-		//frogAction = GetComponent<Frog_Action>();
+		frogAction = GetComponent<Frog_Action>();
 	}
 
 	private void OnEnable()
@@ -73,6 +76,23 @@ public class Frog_Move : MonoBehaviour
 		moveAction.canceled -= OnMoveEvent;
 	}
 
+	private void Start()
+	{
+		isMove = true;
+		StartCoroutine(MoveCoroutine());
+	}
+
+	private IEnumerator MoveCoroutine()
+	{
+		while (true)
+		{
+
+			yield return new WaitWhile(() => isMove);
+			yield return new WaitForSeconds(0.2f);
+			isMove = true;
+		}
+	}
+
 	private void Update()
 	{
 		//FrogState();
@@ -82,6 +102,7 @@ public class Frog_Move : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Move();
+		childPos.position = transform.position;
 		////maxVelocity = isJumpByShot ? 30 : 15;
 		////moveSpeed = frogAction.isJumping ? jumpSpeed : moveSpeed;
 
@@ -152,17 +173,19 @@ public class Frog_Move : MonoBehaviour
 		{
 			Vector3 inputMoveDir = new Vector3(input.y, 0, input.x) * moveSpeed;
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
-			if (isWater == false && isGround && tempTime >= 0.5f)
+			if (isWater == false && isGround && tempTime >= 0.5f && isMove && frogAction.isJumping != true)
 			{
+				Vector3 moveDir = frogAction.jumpDir.position - transform.position;
 				Debug.Log("나 앞으로감");
-				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-				rb.AddForce(actualMoveDir * 100, ForceMode.Force);
+				rb.AddForce(moveDir * force, ForceMode.Impulse);
+				//rb.AddForce(actualMoveDir * 100, ForceMode.Force);
+				isMove = false;
 			}
 			else if (isWater)
 			{
 				rb.AddForce(actualMoveDir, ForceMode.Acceleration);
 			}
-				rb.AddForce(actualMoveDir * onAirSpeed);
+			rb.AddForce(actualMoveDir * onAirSpeed);
 
 		}
 		if (isPressed == false)

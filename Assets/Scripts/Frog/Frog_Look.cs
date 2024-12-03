@@ -21,7 +21,7 @@ public class Frog_Look : MonoBehaviour
 	[Range(25f, 50f)] public float zoomMag;
 	private float originalZoomMag;
 
-	private float rigAngle = 0f;
+	private Vector3 rigAngle;
 
 	private InputActionAsset controlDefine;
 	private InputAction lookAction;
@@ -30,6 +30,8 @@ public class Frog_Look : MonoBehaviour
 
 	private bool isZoom;
 	private Vector2 lookInput;
+	float X;
+	float Y;
 
 	private void Awake()
 	{
@@ -63,8 +65,8 @@ public class Frog_Look : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		lookInput = lookAction.ReadValue<Vector2>();
-		Look(lookInput);
+		//lookInput = lookAction.ReadValue<Vector2>();
+		//Look(lookInput);
 
 		isZoom = zoomAction.IsPressed();
 		Zoom(isZoom);
@@ -78,15 +80,20 @@ public class Frog_Look : MonoBehaviour
 	}
 	private void Look(Vector2 mouseDelta)
 	{
+		X += mouseDelta.x * mouseSensivity * Time.fixedDeltaTime;
+		Y -= mouseDelta.y * mouseSensivity * Time.fixedDeltaTime;
+		Y = Mathf.Clamp(Y, -35f, 89f);
+		cameraPos.localRotation = Quaternion.Euler(Y, X, 0f);
 		//캐릭터 좌우 회전 (y축 회전)
 		float yRotation = mouseDelta.x * mouseSensivity * Time.fixedDeltaTime;
-		Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
-		rb.MoveRotation(rb.rotation * playerRotation);
+		float xRotation = mouseDelta.y * mouseSensivity * Time.fixedDeltaTime;
+		//Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
+		//rb.MoveRotation(rb.rotation * playerRotation);
 
 		//카메라 상하 회전(x축 회전)
-		rigAngle -= mouseDelta.y * mouseSensivity * Time.fixedDeltaTime;
-		rigAngle = Mathf.Clamp(rigAngle, -35f, 89f);
-		cameraPos.localRotation = Quaternion.Euler(rigAngle, -90, 0);
+		//rigAngle = new Vector3(rigAngle.x + mouseDelta.y, rigAngle.y + mouseDelta.x, 0);
+		//rigAngle.x = Mathf.Clamp(xRotation, -35f, 89f);
+		//cameraPos.localRotation = Quaternion.Euler(0, rigAngle.y, rigAngle.x);
 	}
 
 	private void Zoom(bool isZoom)
