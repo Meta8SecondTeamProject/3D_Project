@@ -20337,6 +20337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554359278240370644}
+  - component: {fileID: 1554359278240370645}
   m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
@@ -22464,6 +22465,33 @@ Transform:
   - {fileID: 8270270590190619431}
   m_Father: {fileID: 7468609758019341001}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
+--- !u!54 &1554359278240370645
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681774053188328674}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1567342045850683202
 GameObject:
   m_ObjectHideFlags: 0
@@ -32258,7 +32286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5199341647459644206
 GameObject:
   m_ObjectHideFlags: 0
@@ -32543,6 +32571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6221840174973891493}
+  - component: {fileID: 6221840174973891494}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
@@ -36120,6 +36149,33 @@ Transform:
   - {fileID: 1362657366476637645}
   m_Father: {fileID: 7468609758019341001}
   m_LocalEulerAnglesHint: {x: -98.618, y: 90, z: 0}
+--- !u!54 &6221840174973891494
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351957267509748549}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!33 &6223436683821302467
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -37450,13 +37506,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7468609758019341001}
+  - component: {fileID: 7468609758019341002}
   m_Layer: 0
   m_Name: Frog_Mk5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6776436874620056145
 Transform:
   m_ObjectHideFlags: 0
@@ -44026,6 +44083,9 @@ MonoBehaviour:
   - {fileID: 1933340737133944255}
   - {fileID: 2718754120575453274}
   - {fileID: 4740079264845683655}
+  - {fileID: 1554359278240370645}
+  - {fileID: 6221840174973891494}
+  - {fileID: 7291849915828600202}
   explosionForce: 2500
   explosionRadius: 10
   explosionOffset: {x: 0, y: 2, z: 0}
@@ -44407,13 +44467,41 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1351999861630666954}
+  - component: {fileID: 7291849915828600202}
   m_Layer: 0
   m_Name: Ammo_Belt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!54 &7291849915828600202
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291849915828600201}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7302729455791422308
 GameObject:
   m_ObjectHideFlags: 0
@@ -44457,6 +44545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3901718549624566634}
+  - component: {fileID: 7319794987482410542}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -44464,6 +44553,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7319794987482410542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319794987482410541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b2ac14fb0c36c44af78b0872b44ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodys:
+  - {fileID: 3013065920573242576}
+  - {fileID: 5376113206500105497}
+  - {fileID: 8878802761051944897}
+  - {fileID: 5197668831852489943}
+  - {fileID: 5351957267509748549}
+  - {fileID: 7291849915828600201}
+  - {fileID: 681774053188328674}
 --- !u!33 &7320711183037792238
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44884,6 +44993,43 @@ Transform:
   - {fileID: 1351999861630666954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7468609758019341002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770835683462764721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd9b95db5a201945b330d96fedfd88b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    currentSceneName: 
+    currentHP: 0
+    currentAmmo: 0
+    maxAmmo: 0
+    money: 0
+    isHat: 0
+    isAmmoBelt: 0
+    isDoubleJump: 0
+    isClear: 0
+    isHardClear: 0
+  playerStartPos: []
+  currentStartPos: {x: 0, y: 0, z: 0}
+  jumpCount: 0
+  triggerOn: 0
+  bombFliesSpeed: 0
+  fishSpeed: 0
+  birdSpeed: 0
+  fliesMaxCount: 0
+  fishMaxCount: 0
+  birdMaxCount: 0
+  birdBlackMaxCount: 0
+  fliesKillCount: 0
+  fishKillCount: 0
+  birdKillCount: 0
 --- !u!1 &7469134846127744733
 GameObject:
   m_ObjectHideFlags: 0

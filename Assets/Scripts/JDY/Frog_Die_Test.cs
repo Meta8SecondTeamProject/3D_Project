@@ -11,6 +11,12 @@ public class Frog_Die_Test : MonoBehaviour
 
     public float delay = 5f;
 
+    private void Start()
+    {
+        TriggerDeathEffect();
+    }
+
+
     [ContextMenu("Test/사지분해")]
     public void TriggerDeathEffect()
     {
@@ -18,7 +24,7 @@ public class Frog_Die_Test : MonoBehaviour
 
         foreach (Rigidbody rigidbody in rigidbodys)
         {
-            if(rigidbody == null) continue;
+            if (rigidbody == null) continue;
 
             rigidbody.isKinematic = false;
 
