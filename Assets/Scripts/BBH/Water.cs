@@ -58,6 +58,8 @@ public class Water : MonoBehaviour
 		{
 			if (other.TryGetComponent(out Frog_Move frog_Move))
 				frog_Move.isWater = false;
+			Physics.gravity = new Vector3(0, -20, 0);
+
 		}
 
 	}

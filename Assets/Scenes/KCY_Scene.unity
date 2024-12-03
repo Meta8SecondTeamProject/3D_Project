@@ -9559,8 +9559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf62774a4e51ac40b454077cb34b5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancyForce: 35
-  waterDrag: 3
+  buoyancyForce: 40
+  waterDrag: 2
 --- !u!1 &951035874
 GameObject:
   m_ObjectHideFlags: 0
@@ -38497,7 +38497,7 @@ Transform:
   m_GameObject: {fileID: 5701220814378834955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.61, y: 0.86, z: 0}
+  m_LocalPosition: {x: -0.485, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39189,7 +39189,7 @@ Transform:
   m_GameObject: {fileID: 6918367513076982217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 700, z: 0}
+  m_LocalPosition: {x: -100, y: 388, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39235,8 +39235,8 @@ MonoBehaviour:
   knockbackPos: {fileID: 508976676114788200}
   jumpDir: {fileID: 311867896344739296}
   particle: {fileID: 1125563563}
-  knockbackForce: 1.5
-  jumpForce: 120
+  knockbackForce: 35
+  jumpForce: 350
   shakeDuration: 1
   shakePower: 1
   isJumping: 0
@@ -45546,7 +45546,7 @@ Transform:
   m_GameObject: {fileID: 2813541541499858779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.867884, y: 14.27, z: -10.275787}
+  m_LocalPosition: {x: -13.867884, y: 13.2, z: -10.275787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56678,9 +56678,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childPos: {fileID: 7590937926812479617}
-  moveSpeed: 30
-  onAirSpeed: 1
-  force: 90
+  moveSpeed: 25
+  onAirSpeed: 20
+  force: 8
   isMove: 0
   isGround: 0
   isWater: 0
@@ -61078,8 +61078,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2813541541499858779}
   serializedVersion: 4
-  m_Mass: 10
-  m_Drag: 0
+  m_Mass: 20
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

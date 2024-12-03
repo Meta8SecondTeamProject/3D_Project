@@ -21,7 +21,7 @@ public class Frog_Action : MonoBehaviour
 	private InputAction fireAction;
 
 	[Header("반동으로 인한 넉백, 점프, 흔들림")]
-	[Range(0, 5)]
+	[Range(0, 100)]
 	public float knockbackForce;
 	public float jumpForce;
 	public float shakeDuration;
@@ -59,8 +59,6 @@ public class Frog_Action : MonoBehaviour
 		jumpAction.canceled += OnJumpEvent;
 
 	}
-
-	//없어도 작동은 하나 불필요한 호출로 인한 메모리 낭비 방지
 	private void OnDisable()
 	{
 		fireAction.performed -= OnClickEvent;
@@ -81,10 +79,8 @@ public class Frog_Action : MonoBehaviour
 		while (true)
 		{
 			Debug.Log($"coroutine : {fireCooldown}");
-			//Ray ray = new Ray(crossHair.transform.position, crossHair.transform.forward);
-			//Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 0.2f);
 			yield return new WaitWhile(() => fireCooldown);
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.3f);
 			fireCooldown = true;
 		}
 
@@ -113,30 +109,12 @@ public class Frog_Action : MonoBehaviour
 		Debug.Log($"Fireinput : {fireCooldown}");
 		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
+			Physics.gravity = new Vector3(0, -20, 0);
 			particle.Play(true);
-			//Ray ray = shotPoint.ScreenPointToRay(Input.mousePosition);
-			//RaycastHit hit;
-			//if (Physics.Raycast(ray, out hit, 1000f))
-			//{
-			//	Transform hitTarget = hit.transform;
-
-			//	Debug.Log(hitTarget.transform.position);
-
-			//레이가 명중한곳의 좌표와
-			//Vector3 hitPos = hit.point;
-
-			//개구리 뒤통수에 붙은 반동용 포지션과 계산하여 방향을 구함
-			//반동 포지션은 새로 수정 예정
-			//Vector3 knockbackdir = knockbackPos.position - hitPos;
 			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
 
 
-			//반동으로 튀어오를때 떨어지는 속도가 너무 빠르면 제대로 튀어오르지 못하므로 Y축 속도만 제어
-			//rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y / 2, rb.velocity.z);
-
-			//방향대로 AddForce메서드 실행
-			//반동 포지션은 새로 수정 예정
-			rb.AddForce(knockbackdir * knockbackForce, ForceMode.VelocityChange);
+			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
 
 			//카메라 흔들림 변수 초기화
 			shakeDuration = shakeTimer;
@@ -171,7 +149,3 @@ public class Frog_Action : MonoBehaviour
 		noise.m_FrequencyGain = shakeDuration;
 	}
 }
-
-//1. Frog_Move 에서 Grounded가 true일때 앞쪽으로 AddForce하도록 하고, 뒤 제한값 수정하기
-//2. 반동 로직 수정하기, 왜 고장났는지 파악하기
-//3. 마우스 눌렀을 때 투사체 발사 기능 추가

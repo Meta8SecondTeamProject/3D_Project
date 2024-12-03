@@ -1,5 +1,6 @@
 using Cinemachine;
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,6 @@ public class Frog_Look : MonoBehaviour
 
 	private bool isZoom;
 	private Vector2 lookInput;
-	private float fixedYPos = 35;
 	private void Awake()
 	{
 		rb = GetComponentInParent<Rigidbody>();
@@ -71,6 +71,7 @@ public class Frog_Look : MonoBehaviour
 
 		//isZoom = zoomAction.IsPressed();
 		//Zoom(isZoom);
+
 
 	}
 
