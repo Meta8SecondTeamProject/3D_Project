@@ -15,7 +15,7 @@ public class NPC : MonoBehaviour
 
     protected string str;
 
-    protected void Start()
+    protected virtual void Start()
     {
         ambassadorWindow.SetActive(false);
     }
