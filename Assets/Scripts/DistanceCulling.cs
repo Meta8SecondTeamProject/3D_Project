@@ -52,10 +52,8 @@ public class DistanceCulling : MonoBehaviour
             Debug.Log($"거리 : {distance}");
             Debug.Log($"플레이어 이름 : {player.name}");
             Debug.Log($"오브젝트 이름 : {obj.name}");
-            //obj.SetActive(distance <= cullingDis);                
+            obj.SetActive(distance <= cullingDis);                
         }
     }
 }
-//모든 오브젝트가 꺼지고 켜짐
-//오브젝트마다 개별적으로 적용되게 하는 로직이 필요함
 
