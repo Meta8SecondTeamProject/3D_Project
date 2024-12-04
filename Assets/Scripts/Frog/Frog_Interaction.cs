@@ -49,6 +49,8 @@ public class Frog_Interaction : MonoBehaviour
             {
                 npc.isInteraction = true;
                 //readyToInteraction = true;
+                npc.ambassadorWindow.SetActive(true);
+                UIManager.Instance.OnOffInteractionText();
             }
             else
             {
@@ -71,6 +73,8 @@ public class Frog_Interaction : MonoBehaviour
             {
                 UIManager.Instance.OnOffInteractionText();
                 npc.isMessage = false;
+                npc.ambassadorWindow.SetActive(false);
+                UIManager.Instance.OnOffInteractionText();
             }
         }
     }

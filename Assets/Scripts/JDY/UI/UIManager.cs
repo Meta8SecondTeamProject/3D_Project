@@ -26,6 +26,7 @@ public class UIManager : SingletonManager<UIManager>
     private void Start()
     {
         ChangeScene();
+        OnOffInteractionText();
     }
 
     private void CurrentSceneUI()
