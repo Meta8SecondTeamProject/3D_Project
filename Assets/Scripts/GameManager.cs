@@ -22,6 +22,10 @@ public class GameManager : SingletonManager<GameManager>
 
 	private void Start()
 	{
+		SceneManager.sceneLoaded += (x, y) =>
+		{
+			pool = FindAnyObjectByType<ObjectPool>();
+		};
 		//프레임 제한용 코드
 		Application.targetFrameRate = 60;
 
@@ -35,20 +39,16 @@ public class GameManager : SingletonManager<GameManager>
 	public GameObject playerPrefab;
 	public void PlayerInstantiate()
 	{
-
-		spawnPos = DataManager.Instance.StartPosition();
-
-		if (playerPrefab != null)
+		if (SceneManager.GetActiveScene().name != "GameStartScene")
 		{
-			Instantiate(playerPrefab).transform.position = spawnPos;
-			player = playerPrefab.GetComponent<Player>();
+			spawnPos = DataManager.Instance.StartPosition();
+
+			if (playerPrefab != null)
+			{
+				Debug.LogWarning("아야!");
+				Instantiate(playerPrefab).transform.position = spawnPos;
+				player = playerPrefab.GetComponent<Player>();
+			}
 		}
-	}
-	public void FindPool()
-	{
-		SceneManager.sceneLoaded += (x, y) =>
-		{
-			pool = FindAnyObjectByType<ObjectPool>();
-		};
 	}
 }
