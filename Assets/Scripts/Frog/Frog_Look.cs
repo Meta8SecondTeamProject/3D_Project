@@ -30,39 +30,55 @@ public class Frog_Look : MonoBehaviour
 	private InputActionAsset controlDefine;
 	private InputAction lookAction;
 	private InputAction zoomAction;
+	private InputAction escapeAction;
 	private Rigidbody rb;
 
 	private bool isZoom;
 	private Vector2 lookInput;
+	private float escapeInput;
+	private bool escapeDown;
+
 	private void Awake()
 	{
-		rb = GetComponentInParent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
 		controlDefine = GetComponent<PlayerInput>().actions;
 		brain = GetComponentInChildren<CinemachineBrain>();
 		lookAction = controlDefine.FindAction("Look");
 		zoomAction = controlDefine.FindAction("Zoom");
+		escapeAction = controlDefine.FindAction("ESC");
+		//야매
+		cameraNearPos.localRotation = Quaternion.Euler(0, -90, 0);
 	}
 
 	private void OnEnable()
 	{
-		//마우스 커서 중앙으로 고정 및 숨기기 활성화
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = true;
-
 		lookAction.performed += OnLookEvent;
 		lookAction.canceled += OnLookEvent;
+		//TODO : 줌 추가예정
+
+		escapeAction.performed += OnEscapeEvent;
 	}
 
 	private void OnDisable()
 	{
-		//Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		lookAction.performed -= OnLookEvent;
+		lookAction.canceled -= OnLookEvent;
+		//TODO : 줌 추가예정
+
+		escapeAction.performed -= OnEscapeEvent;
 	}
 
+	private void OnEscapeEvent(Context context)
+	{
+		escapeInput = context.ReadValue<float>();
+		escapeDown = escapeInput != 0;
+		Debug.Log("OnEscape");
+		if (escapeDown)
+			CursorManager.Instance.CursorChange();
+	}
 	private void Start()
 	{
 		//originalZoomMag = freeLookCam.m_Lens.FieldOfView;
-
 	}
 
 	private void FixedUpdate()
@@ -73,8 +89,6 @@ public class Frog_Look : MonoBehaviour
 		//isZoom = zoomAction.IsPressed();
 		//Zoom(isZoom);
 		//Debug.Log($"마우스 상태 {Cursor.lockState}");
-		Cursor.visible = true;
-
 	}
 
 	private void OnLookEvent(Context context)

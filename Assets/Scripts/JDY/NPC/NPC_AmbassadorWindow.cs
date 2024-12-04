@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class NPC_AmbassadorWindow : MonoBehaviour
 {
-    //임시
-    //플레이어의 위치를 받을수 있는 싱글톤이 있을 시 해당 객체를 참조
-    public GameObject player;
-    private void Update()
-    {
-        LookAtAmbassadorWindow();
-    }
+	//임시
+	//플레이어의 위치를 받을수 있는 싱글톤이 있을 시 해당 객체를 참조
+	private Player player;
+	private void Start()
+	{
+		player = GameManager.Instance.player;
+	}
+	private void Update()
+	{
+		LookAtAmbassadorWindow();
+	}
 
-    private void LookAtAmbassadorWindow()
-    {
-        gameObject.transform.LookAt(player.transform.position);
-    }
+	private void LookAtAmbassadorWindow()
+	{
+		gameObject.transform.LookAt(player.transform.position);
+	}
 }

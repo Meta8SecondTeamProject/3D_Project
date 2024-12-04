@@ -54,7 +54,7 @@ public class Frog_Action : MonoBehaviour
 
 	private void Awake()
 	{
-		rb = GetComponentInParent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
 		virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
 		noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 		controlDefine = GetComponent<PlayerInput>().actions;
@@ -132,6 +132,7 @@ public class Frog_Action : MonoBehaviour
 		//Debug.Log("클릭 감지");
 		//마우스 좌클릭 입력이 감지되면
 		//Debug.Log($"Fireinput : {fireCooldown}");
+		Debug.Log("Click");
 		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
 			Physics.gravity = new Vector3(0, -20, 0);
@@ -144,10 +145,11 @@ public class Frog_Action : MonoBehaviour
 			//카메라 흔들림 메서드 실행
 			ShakeCamera(shakePower, shakeDuration);
 			fireCooldown = false;
-
 			GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
 			proj.transform.position = shotPoint.position;
 			Vector3 dir = shotDir.position - shotPoint.position;
+			Debug.DrawRay(shotPoint.position, dir, Color.red, 10);
+			proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 			proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
 		}
 	}
