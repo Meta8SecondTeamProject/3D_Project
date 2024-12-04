@@ -21,4 +21,14 @@ public class Prop_On : MonoBehaviour
         }
         transform.position = arrivePos;
     }
+
+    [ContextMenu("콘덴서 만들어요")]
+    public void Test()
+    {
+        while (Vector3.Distance(transform.position, arrivePos) > 0.1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, arrivePos, 0.5f * Time.unscaledDeltaTime);
+        }
+        transform.position = arrivePos;
+    }
 }
