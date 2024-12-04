@@ -33,7 +33,7 @@ public class SaveManager : MonoBehaviour
         if (File.Exists(SavePath)) //파일이 존재하는지 확인
         {
             string json = File.ReadAllText(SavePath); //파일에서 JSON읽기
-            Debug.Log("Loaded JSON: " + json);
+            //Debug.Log("Loaded JSON: " + json);
             Data data = JsonUtility.FromJson<Data>(json); //JSON문자열을 GameSaveData객체로 변환
             //Debug.Log("Game Loaded" + SavePath);
             return data;

@@ -21,7 +21,10 @@ public class UIManager : SingletonManager<UIManager>
 	[SerializeField] private TextMeshProUGUI pressText;
 	[SerializeField] private TextMeshProUGUI interactionText;
 
+	public GameMenuController gameMenuController;
+
 	private CurrentScene currentScene;
+
 
 	private void Start()
 	{
@@ -32,31 +35,31 @@ public class UIManager : SingletonManager<UIManager>
 	private void CurrentSceneUI()
 	{
 		int index = SceneManager.GetActiveScene().buildIndex;
-		Debug.Log($"씬 빌드 인덱스 {index}");
+		//Debug.Log($"씬 빌드 인덱스 {index}");
 		switch (index)
 		{
 			case 0:
 				currentScene = CurrentScene.Start;
-				Debug.Log("Start 씬 현재씬으로 설정");
+				//Debug.Log("Start 씬 현재씬으로 설정");
 				break;
 			case 1:
 				currentScene = CurrentScene.End;
-				Debug.Log("End 씬 로드 현재씬으로 설정");
+				//Debug.Log("End 씬 로드 현재씬으로 설정");
 				break;
 			case 2:
 				currentScene = CurrentScene.Loading;
-				Debug.Log("Loading 로딩 씬 현재씬으로 설정");
+				//Debug.Log("Loading 로딩 씬 현재씬으로 설정");
 				break;
 			default:
 				currentScene = CurrentScene.Game;
-				Debug.Log("Game 씬 로드 현재씬으로 설정");
+				//Debug.Log("Game 씬 로드 현재씬으로 설정");
 				break;
 		}
 	}
 
 	public void ChangeScene()
 	{
-		Debug.Log("ChangeScene 호출됨");
+		//Debug.Log("ChangeScene 호출됨");
 		gameSceneUI.SetActive(false);
 		startSceneUI.SetActive(false);
 		loadingSceneUI.SetActive(false);
@@ -68,22 +71,21 @@ public class UIManager : SingletonManager<UIManager>
 			case CurrentScene.Start:
 				startSceneUI.SetActive(true);
 				mainButtons.ButtonInitialization();
+				Cursor.lockState = CursorLockMode.None;
 				break;
 			case CurrentScene.Game:
 				gameSceneUI.SetActive(true);
 				GameManager.Instance.PlayerInstantiate();
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
 				break;
 			case CurrentScene.End:
 				//아직 없음.
 				break;
 			case CurrentScene.Loading:
-				Debug.Log("로딩중");
+				//Debug.Log("로딩중");
 				loadingSceneUI.SetActive(true);
 				break;
 			default:
-				Debug.LogError("UIManager / ChangeScene");
+				//Debug.LogError("UIManager / ChangeScene");
 				break;
 		}
 	}
@@ -117,10 +119,10 @@ public class UIManager : SingletonManager<UIManager>
 	{
 		//SceneManager.LoadScene("LoadingScene");
 		//yield return null;
-		Debug.Log("포탈 진입 후 로딩중");
+		//Debug.Log("포탈 진입 후 로딩중");
 		AsyncOperation ap = SceneManager.LoadSceneAsync("LoadingScene");
 		yield return new WaitUntil(() => ap.isDone);
-		Debug.Log("포탈 진입 후 로딩 끝");
+		//Debug.Log("포탈 진입 후 로딩 끝");
 
 		//간헐적으로 UI가 없어지지 않는 문제가 발생하여 씬 로드가 끝날때까지 기다림
 		//기다릴려 했는데 에러떠서 포기

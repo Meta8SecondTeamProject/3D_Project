@@ -19318,6 +19318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6bdf2b561692c44ba75c3f12e1e61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frogMove: {fileID: 0}
+  frogLook: {fileID: 0}
+  frogAction: {fileID: 0}
 --- !u!114 &2603305307944327919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19363,6 +19366,7 @@ MonoBehaviour:
   mouseSensivity: 10
   bulletTimeMag: 0.66
   zoomMag: 25
+  isSetting: 0
 --- !u!114 &4109521341416777806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19389,6 +19393,7 @@ MonoBehaviour:
   fireForce: 20
   jumpCount: 0
   isJumping: 0
+  canFire: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 8

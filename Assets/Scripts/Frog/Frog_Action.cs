@@ -40,18 +40,19 @@ public class Frog_Action : MonoBehaviour
 	private float jumpInput;
 	public int jumpCount;
 	public bool isJumping;
+
 	private bool fireCooldown;
-	private Vector2 input;
+	public bool canFire;
+	private bool isFiring;
+	private float fireInput;
 
 	private Frog_Move frogMove;
 	private Frog_Look frogLook;
+	
 	public LayerMask groundMask;
 
 	public RawImage crossHair;
 	public GameObject projectile;
-
-	private ObjectPool pool;
-
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -62,23 +63,17 @@ public class Frog_Action : MonoBehaviour
 		fireAction = controlDefine.FindAction("Fire");
 		moveAction = controlDefine.FindAction("Move");
 		frogMove = GetComponent<Frog_Move>();
-
-		pool = FindAnyObjectByType<ObjectPool>();
 	}
 
 	private void OnEnable()
 	{
-		fireAction.performed += OnClickEvent;
-		fireAction.canceled += OnClickEvent;
+		fireAction.started += OnClickEvent;
 		jumpAction.performed += OnJumpEvent;
-		jumpAction.canceled += OnJumpEvent;
 	}
 	private void OnDisable()
 	{
-		fireAction.performed -= OnClickEvent;
-		fireAction.canceled -= OnClickEvent;
+		fireAction.started -= OnClickEvent;
 		jumpAction.performed -= OnJumpEvent;
-		jumpAction.canceled -= OnJumpEvent;
 	}
 
 	private void Start()
@@ -92,14 +87,13 @@ public class Frog_Action : MonoBehaviour
 	{
 		while (true)
 		{
-			//Debug.Log($"coroutine : {fireCooldown}");
+
 			yield return new WaitWhile(() => fireCooldown);
 			yield return new WaitForSeconds(0.3f);
 			fireCooldown = true;
 		}
 
 	}
-
 
 
 	private void Update()
@@ -116,7 +110,11 @@ public class Frog_Action : MonoBehaviour
 				noise.m_FrequencyGain = 0f;
 			}
 		}
-
+		if (canFire)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 	private void FixedUpdate()
 	{
@@ -124,33 +122,56 @@ public class Frog_Action : MonoBehaviour
 		{
 			jumpCount = DataManager.Instance.jumpCount;
 		}
+
 	}
 
 	private void OnClickEvent(Context context)
 	{
-		//Debug.Log("클릭 감지");
-		//마우스 좌클릭 입력이 감지되면
-		//Debug.Log($"Fireinput : {fireCooldown}");
-		Debug.Log("Click");
-		if (context.ReadValue<float>() > 0 && fireCooldown)
+		fireInput = context.ReadValue<float>();
+		isFiring = fireInput != 0;
+		//if (frogLook.escapeDown || UIManager.Instance.ga) return;
+		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf == false)
+		{
+			canFire = true;
+		}
+		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
+		{
+			canFire = false;
+		}
+
+		if (canFire) Fire(isFiring);
+	}
+
+	private void Fire(bool isfiring)
+	{
+		
+		if (isfiring && fireCooldown)
 		{
 			Physics.gravity = new Vector3(0, -20, 0);
+			
 			fire_Particle.Play(true);
 			smoke_Particle.Play(true);
+		
 			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
 			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
+
 			//카메라 흔들림 변수 초기화
 			shakeDuration = shakeTimer;
 			//카메라 흔들림 메서드 실행
 			ShakeCamera(shakePower, shakeDuration);
+
 			fireCooldown = false;
-			GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
-			proj.transform.position = shotPoint.position;
-			Vector3 dir = shotDir.position - shotPoint.position;
-			Debug.DrawRay(shotPoint.position, dir, Color.red, 10);
-			proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-			proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
+			InstantiateProj();
 		}
+	}
+
+	private	void InstantiateProj()
+	{
+		GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
+		proj.transform.position = shotPoint.position;
+		Vector3 dir = shotDir.position - shotPoint.position;
+		proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
 	}
 
 	private void OnJumpEvent(Context context)
@@ -158,14 +179,14 @@ public class Frog_Action : MonoBehaviour
 		jumpInput = context.ReadValue<float>();
 		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
-		if (frogMove.isWater) jumpCount = DataManager.Instance.jumpCount;
+		if (frogMove.isWater && DataManager.Instance.jumpCount > 1) jumpCount = 1;
 		if (isJumping && jumpCount >= 1)
 		{
 			if (!frogMove.isGround)
 			{
 				JumpForcing(2f);
 			}
-			else if (jumpCount != 0)
+			else if (jumpCount > 0)
 			{
 				JumpForcing(2f);
 				frogMove.isGround = false;
@@ -174,7 +195,7 @@ public class Frog_Action : MonoBehaviour
 	}
 	private void JumpForcing(float y)
 	{
-		//Debug.Log("점프진입");
+		Debug.Log("점프진입");
 		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 		jumpCount--;
@@ -183,6 +204,7 @@ public class Frog_Action : MonoBehaviour
 
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{
+		
 		noise.m_PivotOffset = Vector3.one;// * shakeOffset;
 		noise.m_AmplitudeGain = shakePower;
 		noise.m_FrequencyGain = shakeDuration;

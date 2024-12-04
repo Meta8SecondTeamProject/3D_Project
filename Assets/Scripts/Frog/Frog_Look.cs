@@ -31,12 +31,15 @@ public class Frog_Look : MonoBehaviour
 	private InputAction lookAction;
 	private InputAction zoomAction;
 	private InputAction escapeAction;
+
 	private Rigidbody rb;
 
 	private bool isZoom;
 	private Vector2 lookInput;
 	private float escapeInput;
-	private bool escapeDown;
+	public bool isSetting = false;
+
+	
 
 	private void Awake()
 	{
@@ -68,32 +71,34 @@ public class Frog_Look : MonoBehaviour
 		escapeAction.performed -= OnEscapeEvent;
 	}
 
+	private void Start()
+	{
+		//StartCoroutine(SettingMenu());
+	}
+
+	private void Update()
+	{
+		
+	}
 	private void OnEscapeEvent(Context context)
 	{
 		escapeInput = context.ReadValue<float>();
-		escapeDown = escapeInput != 0;
-		Debug.Log("OnEscape");
-		if (escapeDown)
-			CursorManager.Instance.CursorChange();
-	}
-	private void Start()
-	{
-		//originalZoomMag = freeLookCam.m_Lens.FieldOfView;
-	}
-
-	private void FixedUpdate()
-	{
-		//lookInput = lookAction.ReadValue<Vector2>();
-		//Look(lookInput);
-
-		//isZoom = zoomAction.IsPressed();
-		//Zoom(isZoom);
-		//Debug.Log($"마우스 상태 {Cursor.lockState}");
+		isSetting = escapeInput != 0;
+		UIManager.Instance.gameMenuController.SettingMenuOnOff();
+		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf == false)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			GameManager.Instance.player.frogAction.canFire = true;
+		}
+		else if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
 	}
 
 	private void OnLookEvent(Context context)
 	{
-		if (false == SimpleMouseControl.isFocusing) return;
 		Look(context.ReadValue<Vector2>());
 	}
 	private void Look(Vector2 mouseDelta)

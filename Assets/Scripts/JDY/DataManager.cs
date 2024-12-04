@@ -34,7 +34,7 @@ public class DataManager : SingletonManager<DataManager>
         NewGamePositionSet();
 
         int index = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(index);
+        //Debug.Log(index);
         if (playerStartPos.Length >= index - 2)
             currentStartPos = playerStartPos[index - 3];
         return currentStartPos;
@@ -49,12 +49,12 @@ public class DataManager : SingletonManager<DataManager>
         //데이터를 처음부터 로드하여서 관련 정보를 받을 수 있게
         if (data != null)
         {
-            data = SaveManager.LoadGame(); 
-            Debug.Log(data.isClear);
+            data = SaveManager.LoadGame();
+            //Debug.Log(data.isClear);
         }
         else
         {
-            Debug.Log("데이터 없음!");
+            //Debug.Log("데이터 없음!");
         }
 
         //if (data == null)

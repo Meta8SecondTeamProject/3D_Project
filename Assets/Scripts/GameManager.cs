@@ -7,6 +7,7 @@ public class GameManager : SingletonManager<GameManager>
 {
 
 	public Player player;
+	public GameObject playerObj;
 	public List<GameObject>[] enemy = new List<GameObject>[5];
 	public ObjectPool pool;
 	//TODO : 적 리스트 추가 예정
@@ -25,6 +26,7 @@ public class GameManager : SingletonManager<GameManager>
 		SceneManager.sceneLoaded += (x, y) =>
 		{
 			pool = FindAnyObjectByType<ObjectPool>();
+			Cursor.lockState = CursorLockMode.Locked;
 		};
 		//프레임 제한용 코드
 		Application.targetFrameRate = 60;
@@ -45,9 +47,10 @@ public class GameManager : SingletonManager<GameManager>
 
 			if (playerPrefab != null)
 			{
-				Debug.LogWarning("아야!");
-				Instantiate(playerPrefab).transform.position = spawnPos;
-				player = playerPrefab.GetComponent<Player>();
+				//Debug.LogWarning("아야!");
+				playerObj = Instantiate(playerPrefab);
+				playerObj.transform.position = spawnPos;
+				player = playerObj.GetComponent<Player>();
 			}
 		}
 	}

@@ -99,6 +99,8 @@ public class Frog_Move : MonoBehaviour
 			{
 				rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
 				frogAction.jumpCount--;
+				Debug.Log("확인");
+				Debug.Log($"점프 카운트 : {frogAction.jumpCount}");
 				isMove = false;
 			}
 			else if (isWater)
@@ -137,6 +139,7 @@ public class Frog_Move : MonoBehaviour
 			isGround = false;
 			if (DataManager.Instance.jumpCount == 2)
 			{
+				Debug.Log("점프강화됐네?");
 				frogAction.jumpCount = 1;
 			}
 		}

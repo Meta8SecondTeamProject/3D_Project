@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerObj: {fileID: 0}
   pool: {fileID: 0}
   playerPrefab: {fileID: 5561982681359402082, guid: 2f6fcd108a5b04a44b531ed241c6ab21, type: 3}
 --- !u!4 &394465221
@@ -8449,6 +8450,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6167613732706006855, guid: eae6505a72ca3ff4eb04afd7742697bf, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634110194089872321, guid: eae6505a72ca3ff4eb04afd7742697bf, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7837615617375291541, guid: eae6505a72ca3ff4eb04afd7742697bf, type: 3}

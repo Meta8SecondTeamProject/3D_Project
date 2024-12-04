@@ -19,7 +19,7 @@ public class GameMenuController : MonoBehaviour
 
 	private float baseTimeScale;
 
-	private void Start()
+	private void Awake()
 	{
 		background = GetComponent<Image>();
 		baseColor = background.color;
@@ -29,24 +29,6 @@ public class GameMenuController : MonoBehaviour
 		baseTimeScale = Time.timeScale;
 		interactionText.SetActive(false);
 	}
-
-	private void OnDisable()
-	{
-		//pausedMenu.SetActive(false);
-		ResumeButtonOnClick();
-	}
-
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape) || (Application.isFocused == false && pausedMenu.activeSelf == false))
-		{
-			Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
-			print(Time.timeScale);
-			pausedMenu.SetActive(!pausedMenu.activeSelf);
-			background.color = background.color == baseColor ? background.color * 0f : baseColor;
-		}
-	}
-
 	private void ButtonInitialization()
 	{
 		resumeButton.onClick.RemoveAllListeners();
@@ -57,12 +39,34 @@ public class GameMenuController : MonoBehaviour
 		settingsButton.onClick.AddListener(SettingsButtonOnClick);
 		savequitButton.onClick.AddListener(SaveQuitButtonOnClick);
 	}
+	private void OnDisable()
+	{
+		//pausedMenu.SetActive(false);
+		ResumeButtonOnClick();
+	}
 
+	private void Update()
+	{
+		if (pausedMenu.activeSelf)
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+	}
+
+	public void SettingMenuOnOff()
+	{
+		Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
+		//print(Time.timeScale);
+		pausedMenu.SetActive(!pausedMenu.activeSelf);
+		background.color = background.color == baseColor ? background.color * 0f : baseColor;
+	}
 	private void ResumeButtonOnClick()
 	{
 		background.color *= 0;
 		pausedMenu.SetActive(false);
 		Time.timeScale = baseTimeScale;
+		
 	}
 
 	private void SettingsButtonOnClick()

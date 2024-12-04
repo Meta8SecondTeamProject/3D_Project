@@ -23,16 +23,6 @@ public class CursorManager : SingletonManager<CursorManager>
 
 	public void CursorChange()
 	{
-		Cursor.visible = !Cursor.visible;
-		Debug.Log($"커서 보임? : {Cursor.visible}");
-		if (Cursor.visible)
-		{
-			Cursor.lockState = CursorLockMode.None;
-		}
-		else
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-		Debug.Log($"{Cursor.lockState}");
+
 	}
 }
