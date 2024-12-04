@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
-	public GameObject[] enemise;
+	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í\n5. ÃÑ¾Ë")]
+	public GameObject[] obj;
 	public Dictionary<string, GameObject> originalPool = new();
 	public Dictionary<string, List<GameObject>> poolDic = new();
 
 
 	public void Awake()
 	{
-		for (int i = 0; i < enemise.Length; i++)
+		for (int i = 0; i < obj.Length; i++)
 		{
-			originalPool.Add(enemise[i].name, enemise[i]);
-			poolDic.Add(enemise[i].name, new());
+			originalPool.Add(obj[i].name, obj[i]);
+			poolDic.Add(obj[i].name, new());
 		}
 	}
 

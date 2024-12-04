@@ -77,8 +77,8 @@ public class Frog_Move : MonoBehaviour
 		//childPos.position = transform.position;
 		if (!isGround & !isWater)
 		{
-			Debug.LogWarning("중력강화중");
-			Physics.gravity -= new Vector3(0, 0.2f, 0);
+			//Debug.LogWarning("중력강화중");
+			Physics.gravity -= new Vector3(0, 0.3f, 0);
 		}
 	}
 	private void OnMoveEvent(Context value)
@@ -93,15 +93,16 @@ public class Frog_Move : MonoBehaviour
 
 		if (isPressed)
 		{
-			Vector3 inputMoveDir = new Vector3(-input.y, 0, input.x) * moveSpeed;
+			Vector3 inputMoveDir = new Vector3(-input.y, 1, input.x) * moveSpeed;
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
 				Debug.Log("나 앞으로감");
-				rb.AddForce(Vector3.up * force, ForceMode.VelocityChange);
-				//rb.AddForce(actualMoveDir * 100, ForceMode.Force);
+				rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+
+				Debug.Log($"개구리 점프 카운트 {frogAction.jumpCount}");
 				isMove = false;
 			}
 			else if (isWater)
@@ -130,7 +131,7 @@ public class Frog_Move : MonoBehaviour
 		{
 			isGround = true;
 			Physics.gravity = new Vector3(0, -20, 0);
-			Debug.Log("hi");
+			//Debug.Log("hi");
 		}
 	}
 
@@ -140,6 +141,7 @@ public class Frog_Move : MonoBehaviour
 		{
 			Debug.Log("hi");
 			isGround = false;
+			frogAction.jumpCount = 1; //바닥에 닿았을 때 2라서...
 		}
 	}
 

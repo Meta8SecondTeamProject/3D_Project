@@ -19,11 +19,11 @@ public class FliesMovement : MonoBehaviour
 	public int rand;
 	public float dir;
 
-	private EnemyPool pool;
+	private ObjectPool pool;
 
 	private void Awake()
 	{
-		pool = FindAnyObjectByType<EnemyPool>();
+		pool = FindAnyObjectByType<ObjectPool>();
 		rand = UniRan.Range(0, 2);
 	}
 	private void Update()

@@ -3,16 +3,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static Unity.Collections.AllocatorManager;
 using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 public class Frog_Action : MonoBehaviour
 {
 	[Header("머즐(총구)에 임시로 개구리 포지션 넣어주세요")]
 	public Transform muzzlePos;
-	public Camera shotPoint;
+	public Transform shotPoint;
+	public Transform shotDir;
 	public Transform knockbackPos;
 	public Transform jumpDir;
-	public ParticleSystem particle;
+
+	public ParticleSystem fire_Particle;
+	public ParticleSystem smoke_Particle;
+
+
 	private Rigidbody rb;
 	private CinemachineVirtualCamera virtualCamera;
 	private CinemachineBasicMultiChannelPerlin noise;
@@ -29,6 +35,7 @@ public class Frog_Action : MonoBehaviour
 	public float shakePower;
 	//public float shakeOffset;
 	private float shakeTimer = 0.5f;
+	public float fireForce;
 
 	private float jumpInput;
 	public int jumpCount;
@@ -37,6 +44,7 @@ public class Frog_Action : MonoBehaviour
 	private Vector2 input;
 
 	private Frog_Move frogMove;
+	private Frog_Look frogLook;
 	public LayerMask groundMask;
 
 	public RawImage crossHair;
@@ -80,7 +88,7 @@ public class Frog_Action : MonoBehaviour
 	{
 		while (true)
 		{
-			Debug.Log($"coroutine : {fireCooldown}");
+			//Debug.Log($"coroutine : {fireCooldown}");
 			yield return new WaitWhile(() => fireCooldown);
 			yield return new WaitForSeconds(0.3f);
 			fireCooldown = true;
@@ -104,14 +112,12 @@ public class Frog_Action : MonoBehaviour
 		}
 
 	}
-
-	private bool canJump = true;
 	private void FixedUpdate()
 	{
 		if (frogMove.isGround)
 		{
 			jumpCount = DataManager.Instance.jumpCount;
-			Debug.Log("점프카운트 2");
+			//Debug.Log("점프카운트 2");
 		}
 	}
 
@@ -123,51 +129,50 @@ public class Frog_Action : MonoBehaviour
 		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
 			Physics.gravity = new Vector3(0, -20, 0);
-			particle.Play(true);
+			fire_Particle.Play(true);
+			smoke_Particle.Play(true);
 			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
-
 			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
-
 			//카메라 흔들림 변수 초기화
 			shakeDuration = shakeTimer;
-
 			//카메라 흔들림 메서드 실행
 			ShakeCamera(shakePower, shakeDuration);
 			fireCooldown = false;
+			GameObject proj = Instantiate(projectile);
+			proj.transform.position = shotPoint.position;
+			Vector3 dir = shotDir.position - shotPoint.position;
+			proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
 		}
 	}
 
 	private void OnJumpEvent(Context context)
 	{
-		//아 이런 ㅈ같은 점프로직~~~
-		//2단 점프 안되는거 수정해야함
-		//WASD눌렀을 때 해당하는 방향으로 점프하는데,
-		//점프력이 너무 강하니까 적당한 force를 찾아야함.
 		jumpInput = context.ReadValue<float>();
 		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
+		if (frogMove.isWater) jumpCount = 1;
 		if (isJumping && jumpCount >= 1)
 		{
-			Vector3 inputMoveDir = new Vector3(-frogMove.input.y, 0, frogMove.input.x);
-			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 			if (!frogMove.isGround)
 			{
-
-				Debug.Log("점프카운트 1");
-				jumpCount = 1;
-				rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
-				jumpCount--;
+				JumpForcing(2f);
 			}
 			else
 			{
-				Debug.Log("점프진입");
-				Vector3 forwardDir = jumpDir.position - transform.position;
-				rb.AddForce((actualMoveDir + Vector3.up) * jumpForce, ForceMode.Impulse);
-				jumpCount--;
+				JumpForcing(1f);
 				frogMove.isGround = false;
 			}
 		}
 	}
+	private void JumpForcing(float y)
+	{
+		Debug.Log("점프진입");
+		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
+		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+		jumpCount--;
+		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
+	}
+
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{
 		noise.m_PivotOffset = Vector3.one;// * shakeOffset;

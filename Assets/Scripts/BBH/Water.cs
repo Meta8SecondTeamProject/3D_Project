@@ -18,6 +18,7 @@ public class Water : MonoBehaviour
 		//레이어로 비교하는 걸로 변경해봤습니다.
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
 		{
+			Physics.gravity = new Vector3(0, -20, 0);
 			if (other.TryGetComponent(out Rigidbody rb))
 			{
 				Vector3 force = Vector3.up * buoyancyForce;
@@ -29,26 +30,7 @@ public class Water : MonoBehaviour
 			{
 				frog_Move.isWater = true;
 			}
-			//물의 저항 효과	
 		}
-
-
-		//Debug.Log("OnTriggerStay진입");
-		//if (other.CompareTag("Player"))
-		//{
-		//	Debug.Log("OnTriggerStay 외부 if문 진입");
-		//	if (other.TryGetComponent(out Rigidbody rb) && other.TryGetComponent(out Frog_Move move))
-		//	{
-		//		Debug.Log("OnTriggerStay 내부 if문 진입");
-
-		//		move.isWater = true;
-		//		Vector3 force = Vector3.up * buoyancyForce;
-		//		rb.AddForce(force, ForceMode.Acceleration);
-
-		//		//물의 저항 효과
-		//		rb.velocity *= 1f - (waterDrag * Time.deltaTime);
-		//	}
-		//}
 	}
 
 
@@ -58,8 +40,6 @@ public class Water : MonoBehaviour
 		{
 			if (other.TryGetComponent(out Frog_Move frog_Move))
 				frog_Move.isWater = false;
-			Physics.gravity = new Vector3(0, -20, 0);
-
 		}
 
 	}

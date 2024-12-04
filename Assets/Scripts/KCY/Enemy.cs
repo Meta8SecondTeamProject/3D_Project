@@ -12,20 +12,20 @@ public abstract class Enemy : MonoBehaviour
 	protected Vector3 moveDir;
 	public Transform attackSpot;
 
-	protected EnemyPool pool;
+	protected ObjectPool pool;
 
 	protected virtual void Awake()
 	{
-		pool = FindAnyObjectByType<EnemyPool>();
+		pool = FindAnyObjectByType<ObjectPool>();
 		rb = GetComponent<Rigidbody>();
 	}
 
 	protected virtual void Start()
 	{
 		if (GameManager.Instance.player != null)
-            target = GameManager.Instance.player.transform;
+			target = GameManager.Instance.player.transform;
 
-        if (isFly == false) { rb.useGravity = true; }
+		if (isFly == false) { rb.useGravity = true; }
 		else { rb.useGravity = false; }
 	}
 
@@ -34,16 +34,16 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (target == null)
 		{
-            if (GameManager.Instance.player != null)
-                target = GameManager.Instance.player.transform;
+			if (GameManager.Instance.player != null)
+				target = GameManager.Instance.player.transform;
 
 			return;
 		}
 		else
 		{
-            moveDir = target.position - attackSpot.transform.position;
-        }
-    }
+			moveDir = target.position - attackSpot.transform.position;
+		}
+	}
 
 	protected virtual void Move(Vector3 dir)
 	{

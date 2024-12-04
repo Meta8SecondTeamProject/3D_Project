@@ -47,14 +47,15 @@ public class Frog_Look : MonoBehaviour
 	{
 		//마우스 커서 중앙으로 고정 및 숨기기 활성화
 		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		Cursor.visible = true;
+
 		lookAction.performed += OnLookEvent;
 		lookAction.canceled += OnLookEvent;
 	}
 
 	private void OnDisable()
 	{
-		Cursor.lockState = CursorLockMode.None;
+		//Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 	}
 
@@ -71,7 +72,8 @@ public class Frog_Look : MonoBehaviour
 
 		//isZoom = zoomAction.IsPressed();
 		//Zoom(isZoom);
-
+		Debug.Log($"마우스 상태 {Cursor.lockState}");
+		Cursor.visible = true;
 
 	}
 
