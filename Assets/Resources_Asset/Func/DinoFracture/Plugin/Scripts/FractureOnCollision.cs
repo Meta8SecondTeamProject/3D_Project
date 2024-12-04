@@ -272,6 +272,8 @@ namespace DinoFracture
                         }
 
                         rb.AddForce(thisImpulse * percentForce, ForceMode.Impulse);
+
+                        Destroy(rb.gameObject,2f);
                     }
                 }
 
