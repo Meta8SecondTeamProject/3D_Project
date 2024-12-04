@@ -24,21 +24,29 @@ public class ObjectPool : MonoBehaviour
 		List<GameObject> targetPool = poolDic[key];
 		if (targetPool.Count <= 0)
 		{
-			GameObject newEnemy = Instantiate(originalPool[key]);
-			newEnemy.name = key;
-			targetPool.Add(newEnemy);
+			GameObject newObj = Instantiate(originalPool[key]);
+			newObj.name = key;
+			targetPool.Add(newObj);
 		}
-		GameObject returnEnemy = targetPool[0];
+		GameObject returnObj = targetPool[0];
 		targetPool.RemoveAt(0);
-		returnEnemy.gameObject.SetActive(true);
-		returnEnemy.transform.SetParent(null);
-		return returnEnemy;
+		returnObj.gameObject.SetActive(true);
+		returnObj.transform.SetParent(null);
+		return returnObj;
 	}
-	public void Push(GameObject enemy)
+	public void Push(GameObject obj)
 	{
-		enemy.gameObject.SetActive(false);
-		enemy.transform.SetParent(transform);
-		poolDic[enemy.name].Add(enemy);
+		obj.gameObject.SetActive(false);
+		obj.transform.SetParent(transform);
+		poolDic[obj.name].Add(obj);
+	}
+	public IEnumerator Push(GameObject obj, float t)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(t);
+			Push(obj);
+		}
 	}
 }
 

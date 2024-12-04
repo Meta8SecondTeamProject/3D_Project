@@ -72,7 +72,7 @@ public class Frog_Look : MonoBehaviour
 
 		//isZoom = zoomAction.IsPressed();
 		//Zoom(isZoom);
-		Debug.Log($"마우스 상태 {Cursor.lockState}");
+		//Debug.Log($"마우스 상태 {Cursor.lockState}");
 		Cursor.visible = true;
 
 	}

@@ -85,8 +85,6 @@ public class Frog_Move : MonoBehaviour
 	{
 		input = value.ReadValue<Vector2>();
 		isPressed = input != Vector2.zero;
-		Debug.Log($"IN MOVE : {input}");
-
 	}
 	private void Move()
 	{
@@ -99,10 +97,7 @@ public class Frog_Move : MonoBehaviour
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
-				Debug.Log("나 앞으로감");
 				rb.AddForce(Vector3.up * force, ForceMode.Impulse);
-
-				Debug.Log($"개구리 점프 카운트 {frogAction.jumpCount}");
 				isMove = false;
 			}
 			else if (isWater)
@@ -131,7 +126,6 @@ public class Frog_Move : MonoBehaviour
 		{
 			isGround = true;
 			Physics.gravity = new Vector3(0, -20, 0);
-			//Debug.Log("hi");
 		}
 	}
 
@@ -139,9 +133,11 @@ public class Frog_Move : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
-			Debug.Log("hi");
 			isGround = false;
-			frogAction.jumpCount = 1; //바닥에 닿았을 때 2라서...
+			if (DataManager.Instance.jumpCount == 2)
+			{
+				frogAction.jumpCount = 1;
+			}
 		}
 	}
 

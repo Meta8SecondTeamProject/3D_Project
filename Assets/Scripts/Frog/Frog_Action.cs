@@ -50,6 +50,8 @@ public class Frog_Action : MonoBehaviour
 	public RawImage crossHair;
 	public GameObject projectile;
 
+	private ObjectPool pool;
+
 	private void Awake()
 	{
 		rb = GetComponentInParent<Rigidbody>();
@@ -60,6 +62,8 @@ public class Frog_Action : MonoBehaviour
 		fireAction = controlDefine.FindAction("Fire");
 		moveAction = controlDefine.FindAction("Move");
 		frogMove = GetComponent<Frog_Move>();
+
+		pool = FindAnyObjectByType<ObjectPool>();
 	}
 
 	private void OnEnable()
@@ -96,6 +100,8 @@ public class Frog_Action : MonoBehaviour
 
 	}
 
+
+
 	private void Update()
 	{
 		if (shakeDuration > 0)
@@ -123,9 +129,9 @@ public class Frog_Action : MonoBehaviour
 
 	private void OnClickEvent(Context context)
 	{
-		Debug.Log("클릭 감지");
+		//Debug.Log("클릭 감지");
 		//마우스 좌클릭 입력이 감지되면
-		Debug.Log($"Fireinput : {fireCooldown}");
+		//Debug.Log($"Fireinput : {fireCooldown}");
 		if (context.ReadValue<float>() > 0 && fireCooldown)
 		{
 			Physics.gravity = new Vector3(0, -20, 0);
@@ -138,7 +144,8 @@ public class Frog_Action : MonoBehaviour
 			//카메라 흔들림 메서드 실행
 			ShakeCamera(shakePower, shakeDuration);
 			fireCooldown = false;
-			GameObject proj = Instantiate(projectile);
+
+			GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
 			proj.transform.position = shotPoint.position;
 			Vector3 dir = shotDir.position - shotPoint.position;
 			proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
@@ -150,7 +157,7 @@ public class Frog_Action : MonoBehaviour
 		jumpInput = context.ReadValue<float>();
 		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
-		if (frogMove.isWater) jumpCount = 1;
+		if (frogMove.isWater) jumpCount = DataManager.Instance.jumpCount;
 		if (isJumping && jumpCount >= 1)
 		{
 			if (!frogMove.isGround)
@@ -166,7 +173,7 @@ public class Frog_Action : MonoBehaviour
 	}
 	private void JumpForcing(float y)
 	{
-		Debug.Log("점프진입");
+		//Debug.Log("점프진입");
 		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 		jumpCount--;

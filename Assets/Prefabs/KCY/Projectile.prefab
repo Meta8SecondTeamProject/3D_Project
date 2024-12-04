@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6962808951553875306}
   - component: {fileID: 1714817823281098628}
   - component: {fileID: 7891965905683827194}
+  - component: {fileID: 442495357025495562}
   m_Layer: 0
-  m_Name: BulletFatFire
-  m_TagString: Untagged
+  m_Name: Projectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4910,6 +4911,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &442495357025495562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710766314591949603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f020b9d9b6436a46853750604ef7f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6567650217734760300
 GameObject:
   m_ObjectHideFlags: 0
