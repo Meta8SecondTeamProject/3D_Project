@@ -46,22 +46,28 @@ public class DistanceCulling : SingletonManager<DistanceCulling>
     }
     
     //플레이어와 Culling 태그가 붙은 오브젝트를 찾아와서 플레이어와의 거리에 따라 비활성화 처리함
-    private void Update()
+    public IEnumerator DistanceCullingCoroutine()
     {
-        //null 체크
-        if (player == null)
-            return;
-        
-        //태그로 찾는건 좋으나, 매 프레임마다 Find를 호출하는건 성능에 좋지도 않고,
-        //Find는 비활성화된 오브젝트를 찾지 못하므로 다시 활성화되게 하려면 다른 로직이 필요함
-        foreach (GameObject obj in cullingObj)//GameObject.FindGameObjectsWithTag("Culling"))
+        while (player != null)
         {
-            float distance = Vector3.Distance(player.transform.position, obj.transform.position);
-            Debug.Log($"거리 : {distance}");
-            
-            Debug.Log($"플레이어 이름 : {player.name}");
-            Debug.Log($"오브젝트 이름 : {obj.name}");
-            obj.SetActive(distance <= cullingDis);                
+            yield return null;
+
+            //null 체크
+            //if (player == null)
+            //    return;
+
+            //태그로 찾는건 좋으나, 매 프레임마다 Find를 호출하는건 성능에 좋지도 않고,
+            //Find는 비활성화된 오브젝트를 찾지 못하므로 다시 활성화되게 하려면 다른 로직이 필요함
+            foreach (GameObject obj in cullingObj)//GameObject.FindGameObjectsWithTag("Culling"))
+            {
+                float distance = Vector3.Distance(player.transform.position, obj.transform.position);
+
+                //Debug.Log($"거리 : {distance}");
+                //Debug.Log($"플레이어 이름 : {player.name}");
+                //Debug.Log($"오브젝트 이름 : {obj.name}");
+
+                obj.SetActive(distance <= cullingDis);
+            }
         }
     }
 }
