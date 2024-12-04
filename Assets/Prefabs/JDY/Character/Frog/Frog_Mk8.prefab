@@ -19334,7 +19334,7 @@ MonoBehaviour:
   moveSpeed: 25
   onAirSpeed: 5
   input: {x: 0, y: 0}
-  force: 200
+  force: 5
   isMove: 0
   isGround: 0
   isWater: 0
@@ -19443,6 +19443,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6eb4fe0e-ff0e-4907-8f44-afe3253b79a9
     m_ActionName: PlayerActions/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8023efa0-3021-4513-94c5-c1d63504863c
+    m_ActionName: PlayerActions/ESC[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions

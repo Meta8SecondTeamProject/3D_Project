@@ -97,7 +97,8 @@ public class Frog_Move : MonoBehaviour
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
-				rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+				rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
+				frogAction.jumpCount--;
 				isMove = false;
 			}
 			else if (isWater)

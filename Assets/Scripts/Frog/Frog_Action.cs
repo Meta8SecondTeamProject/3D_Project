@@ -123,7 +123,6 @@ public class Frog_Action : MonoBehaviour
 		if (frogMove.isGround)
 		{
 			jumpCount = DataManager.Instance.jumpCount;
-			//Debug.Log("점프카운트 2");
 		}
 	}
 
@@ -166,9 +165,9 @@ public class Frog_Action : MonoBehaviour
 			{
 				JumpForcing(2f);
 			}
-			else
+			else if (jumpCount != 0)
 			{
-				JumpForcing(1f);
+				JumpForcing(2f);
 				frogMove.isGround = false;
 			}
 		}
