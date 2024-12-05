@@ -44,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
 				break;
 			case 2:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxSpawnCount));
+				Debug.Log(DataManager.Instance.birdMaxSpawnCount);
 				break;
 			default:
 				//Debug.LogWarning("±×·± ³ğ ¾ø´Ù.");
@@ -65,6 +66,8 @@ public class EnemySpawner : MonoBehaviour
 			if (numberOfEnemy == 3) numberOfEnemy = 0;
 			yield return null;
 			//EditorApplication.isPaused = true;
+
+			Debug.Log(GameManager.Instance.enemy[numberOfEnemy].Count);
 			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
 		}
 	}

@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.collider.CompareTag("AttackPos"))
+		if (collision.collider.CompareTag("Enemy"))
 		{
 			if (Knockback(collision, out Rigidbody otherRb))
 			{

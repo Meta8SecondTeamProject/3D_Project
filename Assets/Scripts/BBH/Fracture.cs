@@ -13,9 +13,9 @@ public class Fracture : MonoBehaviour
 
 	private void OnDisable()
 	{
-		//	foreach (var f in fracture)
-		//	{
-		//		f.transform.position = transform.position;
-		//	}
+		foreach (var f in fracture)
+		{
+			f.transform.position = transform.position;
+		}
 	}
 }

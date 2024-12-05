@@ -25,16 +25,16 @@ public class Projectile : MonoBehaviour
 		explosion.SetActive(false);
 	}
 
-	private void FixedUpdate()
+	private void OnCollisionEnter(Collision collision)
 	{
-		DetectCollision();
-
-
-	}
-	private void DetectCollision()
-	{
-		Collider[] colls = Physics.OverlapSphere(gameObject.transform.position, m_coll.radius, includeLayer);
-		foreach (Collider coll in colls)
+		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		{
+			rb.velocity = Vector3.zero;
+			m_particle.Stop(true);
+			explosion.SetActive(true);
+			StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
+		}
+		else
 		{
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);

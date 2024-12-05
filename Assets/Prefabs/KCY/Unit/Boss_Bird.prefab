@@ -294,7 +294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 511525545512282712}
-  - component: {fileID: 6928413388126701721}
   m_Layer: 8
   m_Name: RigRArmPalm
   m_TagString: Untagged
@@ -318,27 +317,6 @@ Transform:
   - {fileID: 5816355263272410180}
   m_Father: {fileID: 1595254972485856345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6928413388126701721
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3610323599810382722}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1 &3784900553478863950
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +742,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpot: {fileID: 284254959519770204}
+  fracture: {fileID: 0}
+  enemyNumber: 0
   isBomb: 0
 --- !u!54 &4509679810146003697
 Rigidbody:
@@ -864,7 +844,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7705787642284439930}
-  - component: {fileID: 8484311932017409413}
   m_Layer: 8
   m_Name: RigLArmPalm
   m_TagString: Untagged
@@ -888,27 +867,6 @@ Transform:
   - {fileID: 5631417008711528186}
   m_Father: {fileID: 497905059558920782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8484311932017409413
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000866974568626824}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: -0.24}
 --- !u!1 &6325529487365755068
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +876,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8273066214936182432}
-  - component: {fileID: 4686931782548803378}
   m_Layer: 8
   m_Name: RigJawUp
   m_TagString: AttackPos
@@ -941,27 +898,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4258896411725922825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4686931782548803378
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325529487365755068}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.1
-  m_Center: {x: -0.12, y: 0.03, z: 0}
 --- !u!1 &6557069860490027097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1119,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8069132095982141008}
-  - component: {fileID: 1777253629319594791}
   m_Layer: 8
   m_Name: RigRibcage
   m_TagString: Untagged
@@ -1209,29 +1144,6 @@ Transform:
   - {fileID: 430051589144322295}
   m_Father: {fileID: 8559203372447715950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1777253629319594791
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7393652316717851965}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.17
-  m_Direction: 0
-  m_Center: {x: 0.12, y: -0.06, z: 0}
 --- !u!1 &7794314093269269771
 GameObject:
   m_ObjectHideFlags: 0

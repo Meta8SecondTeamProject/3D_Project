@@ -16,8 +16,8 @@ public class FliesMovement : MonoBehaviour
 
 	public Transform rotateTarget;
 
-	public int rand;
-	public float dir;
+	private int rand;
+	private float dir;
 
 	private ObjectPool pool;
 

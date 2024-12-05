@@ -30,7 +30,7 @@ public class DataManager : SingletonManager<DataManager>
 	public int fliesMaxSpawnCount;
 	public int fishMaxSpawnCount;
 	public int birdMaxSpawnCount;
-	public int birdBlackSpawnCount;
+	public int birdBlackMaxSpawnCount;
 
 	//현재 킬 수
 	public int fliesKillCount;
@@ -119,13 +119,13 @@ public class DataManager : SingletonManager<DataManager>
 			//SaveManager.SaveGame(data);
 			Save();
 		}
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            //data = SaveManager.LoadGame();
+		if (Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			//data = SaveManager.LoadGame();
 			Load();
-            Debug.Log("LoadGame호출");
-            UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
-        }
+			Debug.Log("LoadGame호출");
+			UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
+		}
 		if (Input.GetKeyDown(KeyCode.Keypad4))
 		{
 			Debug.Log("BBH씬으로 이동");
@@ -134,15 +134,15 @@ public class DataManager : SingletonManager<DataManager>
 
 		if (Input.GetKeyDown(KeyCode.Keypad5))
 		{
-            Debug.Log("JDY씬으로 이동");
-            UIManager.Instance.TransitionToLoadScene("JDY_Scene");
+			Debug.Log("JDY씬으로 이동");
+			UIManager.Instance.TransitionToLoadScene("JDY_Scene");
 		}
 		if (Input.GetKeyDown(KeyCode.Keypad6))
 		{
-            Debug.Log("KCY씬으로 이동");
-            UIManager.Instance.TransitionToLoadScene("KCY_Scene");
+			Debug.Log("KCY씬으로 이동");
+			UIManager.Instance.TransitionToLoadScene("KCY_Scene");
 		}
-    }
+	}
 	#endregion
 
 	public void RetryGame()

@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
 	public int enemyNumber;
 	protected virtual void OnEnable()
 	{
+		GameManager.Instance.enemy[enemyNumber].Add(gameObject);
 	}
 
 	protected virtual void Awake()

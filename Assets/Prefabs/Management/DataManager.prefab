@@ -47,8 +47,8 @@ MonoBehaviour:
   data:
     currentSceneName: 
     currentHP: 2
-    currentAmmo: 4
-    maxAmmo: 16
+    currentAmmo: 100
+    maxAmmo: 100
     money: 0
     isHat: 0
     isAmmoBelt: 0
@@ -66,9 +66,13 @@ MonoBehaviour:
   fishSpeed: 5
   birdSpeed: 10
   fliesMaxCount: 16
-  fishMaxCount: 4
-  birdMaxCount: 4
-  birdBlackMaxCount: 4
+  fishMaxCount: 16
+  birdMaxCount: 16
+  birdBlackMaxCount: 100
+  fliesMaxSpawnCount: 4
+  fishMaxSpawnCount: 4
+  birdMaxSpawnCount: 4
+  birdBlackSpawnCount: 4
   fliesKillCount: 0
   fishKillCount: 0
   birdKillCount: 0

@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 8466236975164449921}
   m_Layer: 8
   m_Name: Bat
-  m_TagString: Enemy
+  m_TagString: Flies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 5534861226279802954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.53776, y: 24.878105, z: -78.14525}
+  m_LocalPosition: {x: 96.097046, y: 18.350319, z: -64.24715}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -524,8 +524,6 @@ MonoBehaviour:
   YAmplitude: 0.47
   rotateSpeed: 0.2
   rotateTarget: {fileID: 5251757842017437727}
-  rand: 0
-  dir: 0
 --- !u!1 &5705434166454767771
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +882,7 @@ GameObject:
   - component: {fileID: 1276664003859943213}
   - component: {fileID: 1940860308503489005}
   - component: {fileID: 8278332580100669961}
+  - component: {fileID: 7725111710747446361}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
@@ -952,7 +951,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -977,10 +976,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf840b5bb5b529045b86f8d0c1e3f05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpot: {fileID: 0}
+  attackSpot: {fileID: 5251757842017437727}
   fracture: {fileID: 2406773684591326426, guid: baec8109e51d30b439e4fafddecf7649, type: 3}
   enemyNumber: 0
   isBomb: 0
+--- !u!54 &7725111710747446361
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413671569436832428}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8597193556867125520
 GameObject:
   m_ObjectHideFlags: 0
