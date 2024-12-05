@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +9,9 @@ public class Prop_On : MonoBehaviour
     [SerializeField]
     private TextMeshPro[] texts;
     private int data;
+
+    public GameObject prefab;
+    public Transform spawnPos;
 
     private void Start()
     {
@@ -32,6 +34,17 @@ public class Prop_On : MonoBehaviour
             {
                 text.text = $"Á×ÀÌ´Ù {data}\n »õ³¢";
             }
+        }
+
+        if (data <= 0)
+        {
+            foreach (var text in texts)
+            {
+                text.text = null;
+            }
+
+            Instantiate(prefab).transform.position = spawnPos.position;
+            Destroy(this);
         }
     }
 
