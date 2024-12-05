@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3166914413813103106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3007634483425362996}
+  - component: {fileID: 1483398585387600733}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3007634483425362996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166914413813103106}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -32.117004, y: 74.263275, z: -46.55741}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483398585387600733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166914413813103106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6202fc9e536c242af8bdf24806765c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    currentSceneName: 
+    currentHP: 0
+    currentAmmo: 0
+    maxAmmo: 0
+    money: 0
+    isHat: 0
+    isAmmoBelt: 0
+    isDoubleJump: 0
+    isClear: 0
+    isHardClear: 0
+  playerStartPos:
+  - {x: -400, y: 8, z: 323}
+  - {x: 4, y: 4, z: -360}
+  - {x: 0, y: 30, z: 0}
+  currentStartPos: {x: 0, y: 0, z: 0}
+  jumpCount: 1
+  triggerOn: 0
+  bombFliesSpeed: 5
+  fishSpeed: 5
+  birdSpeed: 10
+  fliesMaxCount: 16
+  fishMaxCount: 4
+  birdMaxCount: 4
+  birdBlackMaxCount: 4
+  fliesKillCount: 0
+  fishKillCount: 0
+  birdKillCount: 0

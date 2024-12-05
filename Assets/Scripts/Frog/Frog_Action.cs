@@ -48,7 +48,7 @@ public class Frog_Action : MonoBehaviour
 
 	private Frog_Move frogMove;
 	private Frog_Look frogLook;
-	
+
 	public LayerMask groundMask;
 
 	public RawImage crossHair;
@@ -144,14 +144,14 @@ public class Frog_Action : MonoBehaviour
 
 	private void Fire(bool isfiring)
 	{
-		
+
 		if (isfiring && fireCooldown)
 		{
 			Physics.gravity = new Vector3(0, -20, 0);
-			
+
 			fire_Particle.Play(true);
 			smoke_Particle.Play(true);
-		
+
 			Vector3 knockbackdir = knockbackPos.position - muzzlePos.position;
 			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
 
@@ -165,12 +165,12 @@ public class Frog_Action : MonoBehaviour
 		}
 	}
 
-	private	void InstantiateProj()
+	private void InstantiateProj()
 	{
 		GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
 		proj.transform.position = shotPoint.position;
 		Vector3 dir = shotDir.position - shotPoint.position;
-		proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		//proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
 	}
 
@@ -204,7 +204,7 @@ public class Frog_Action : MonoBehaviour
 
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{
-		
+
 		noise.m_PivotOffset = Vector3.one;// * shakeOffset;
 		noise.m_AmplitudeGain = shakePower;
 		noise.m_FrequencyGain = shakeDuration;
