@@ -23,6 +23,8 @@ public class GameManager : SingletonManager<GameManager>
 
 	private void Start()
 	{
+
+
 		SceneManager.sceneLoaded += (x, y) =>
 		{
 			pool = FindAnyObjectByType<ObjectPool>();
@@ -44,9 +46,12 @@ public class GameManager : SingletonManager<GameManager>
 		if (SceneManager.GetActiveScene().name != "GameStartScene")
 		{
 			spawnPos = DataManager.Instance.StartPosition();
-
+			Debug.Log(spawnPos);
 			if (playerPrefab != null)
 			{
+				Debug.Log("생성");
+				//최종 빌드 시 삭제요망
+				pool = FindAnyObjectByType<ObjectPool>();
 				//Debug.LogWarning("아야!");
 				playerObj = Instantiate(playerPrefab);
 				playerObj.transform.position = spawnPos;
