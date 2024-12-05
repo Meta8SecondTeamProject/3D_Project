@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Shotgun_Shell : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             DataManager.Instance.data.ammo += 4;
             Destroy(gameObject);
