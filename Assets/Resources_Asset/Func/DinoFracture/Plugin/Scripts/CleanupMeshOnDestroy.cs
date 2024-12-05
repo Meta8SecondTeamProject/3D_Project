@@ -46,7 +46,7 @@ namespace DinoFracture
 #if UNITY_EDITOR
                     if (!UnityEditor.AssetDatabase.IsSubAsset(mesh))
                     {
-                        DestroyImmediate(mesh);
+                        //DestroyImmediate(mesh);
                     }
 #endif
                 }
@@ -54,7 +54,7 @@ namespace DinoFracture
                 {
                     if (_isRuntimeAsset)
                     {
-                        Destroy(mesh);
+                        //Destroy(mesh);
                     }
                 }
             }

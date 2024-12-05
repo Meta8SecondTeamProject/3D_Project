@@ -114,8 +114,23 @@ namespace DinoFracture
             }
         }
 
+        //private void OnCollisionEnter(Collision col)
+        //{
+        //    if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
+        //    {
+        //        GatherCollisionInfo(col);
+        //    }
+        //}
+
         private void OnCollisionEnter(Collision col)
         {
+            if (!col.gameObject.CompareTag("Projectile"))
+            {
+
+                Debug.Log($"태그 불일치 , {col.gameObject.name}");
+                return;
+            }
+
             if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
             {
                 GatherCollisionInfo(col);
@@ -273,7 +288,7 @@ namespace DinoFracture
 
                         rb.AddForce(thisImpulse * percentForce, ForceMode.Impulse);
 
-                        Destroy(rb.gameObject,2f);
+                        //Destroy(rb.gameObject,2f);
                     }
                 }
 
