@@ -52,7 +52,7 @@ public class GameManager : SingletonManager<GameManager>
 			if (playerPrefab != null)
 			{
 				Debug.Log("생성");
-				//최종 빌드 시 삭제요망
+				//TODO : 최종 빌드 시 삭제요망
 				pool = FindAnyObjectByType<ObjectPool>();
 				playerObj = Instantiate(playerPrefab);
 				playerObj.transform.position = spawnPos;

@@ -88,6 +88,9 @@ public class UIManager : SingletonManager<UIManager>
                 //Debug.LogError("UIManager / ChangeScene");
                 break;
         }
+
+        DistanceCulling.Instance.SetPlayerAndTarget();
+
     }
 
     public void GameSceneTextUpdate()
@@ -117,6 +120,9 @@ public class UIManager : SingletonManager<UIManager>
 
     private IEnumerator Loading(string nextSceneName)
     {
+        //로딩전 Culling 리셋
+        DistanceCulling.Instance.ResetPlayerAndTarget();
+
         //SceneManager.LoadScene("LoadingScene");
         //yield return null;
         //Debug.Log("포탈 진입 후 로딩중");
@@ -131,6 +137,7 @@ public class UIManager : SingletonManager<UIManager>
         ChangeScene();
         yield return null;
         loadingController.StartLoadingScene(nextSceneName);
+
     }
 
     private IEnumerator LoadTest()

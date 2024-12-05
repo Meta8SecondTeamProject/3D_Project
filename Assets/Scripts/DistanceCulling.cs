@@ -36,6 +36,7 @@ public class DistanceCulling : SingletonManager<DistanceCulling>
                 cullingObj.Add(obj);
             }
         }
+        StartCoroutine(DistanceCullingCoroutine());
     }
 
     [ContextMenu("Reset")]
