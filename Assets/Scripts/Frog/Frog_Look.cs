@@ -82,7 +82,9 @@ public class Frog_Look : MonoBehaviour
 	private void Start()
 	{
 		//StartCoroutine(SettingMenu());
-	}
+		originalZoomMag = freeLookCam.m_Lens.FieldOfView;
+
+    }
 
 	private void Update()
 	{
@@ -126,14 +128,14 @@ public class Frog_Look : MonoBehaviour
 		rigAngle.x -= mouseDelta.y * (mouseSensivity * 0.01f);
 		if (rigAngle.x <= 0)
 		{
-			Debug.Log("1");
+			//Debug.Log("1");
 			freeLookCam.gameObject.SetActive(false);
 			rigAngle.x = Mathf.Clamp(rigAngle.x, -40f, 35f);
 			cameraNearPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
 		}
 		else
 		{
-			Debug.Log("2");
+			//Debug.Log("2");
 			freeLookCam.gameObject.SetActive(true);
 			rigAngle.x = Mathf.Clamp(rigAngle.x, -15f, 89f);
 			cameraPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
