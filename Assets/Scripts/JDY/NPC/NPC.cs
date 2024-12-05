@@ -6,6 +6,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     //플레이의 액션에서 같이 온오프 되게
+    [Tooltip("상인들은 대사창, 스포너면 프리팹")]
     public GameObject ambassadorWindow;
 
     public bool isMessage = false;
