@@ -54,7 +54,6 @@ public class GameManager : SingletonManager<GameManager>
 				Debug.Log("생성");
 				//최종 빌드 시 삭제요망
 				pool = FindAnyObjectByType<ObjectPool>();
-				Debug.LogWarning("아야!");
 				playerObj = Instantiate(playerPrefab);
 				playerObj.transform.position = spawnPos;
 				player = playerObj.GetComponent<Player>();

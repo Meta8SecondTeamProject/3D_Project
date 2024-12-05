@@ -20,11 +20,19 @@ public class DataManager : SingletonManager<DataManager>
 	public float fishSpeed;
 	public float birdSpeed;
 
+	//목표 킬 카운트
 	public int fliesMaxCount;
 	public int fishMaxCount;
 	public int birdMaxCount;
 	public int birdBlackMaxCount;
 
+	//최대 스폰될 수 있는 적의 수
+	public int fliesMaxSpawnCount;
+	public int fishMaxSpawnCount;
+	public int birdMaxSpawnCount;
+	public int birdBlackSpawnCount;
+
+	//현재 킬 수
 	public int fliesKillCount;
 	public int fishKillCount;
 	public int birdKillCount;

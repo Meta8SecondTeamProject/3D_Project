@@ -6,10 +6,8 @@ using UniRan = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-	//[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í")]
-	[TextArea(3,6)]
-	public string explanation = "0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í";
-    public int numberOfEnemy;
+	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í")]
+	public int numberOfEnemy;
 	private BoxCollider rangeColl;
 	private ObjectPool enemyPool;
 	private float bomb;
@@ -37,15 +35,15 @@ public class EnemySpawner : MonoBehaviour
 		switch (numberOfEnemy)
 		{
 			case 0:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxSpawnCount));
 				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 1:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fishMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fishMaxSpawnCount));
 				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 2:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxSpawnCount));
 				break;
 			default:
 				//Debug.LogWarning("±×·± ³ğ ¾ø´Ù.");
@@ -57,23 +55,17 @@ public class EnemySpawner : MonoBehaviour
 	{
 		while (true)
 		{
-			Debug.Log($"È°¼ºÈ­µÈ Æ®¸®°Å ¼ö : {DataManager.Instance.triggerOn}");
-
-			if (DataManager.Instance.triggerOn >= 3)
+			if (numberOfEnemy == 0)
 			{
-				if (numberOfEnemy == 0)
-				{
-					bomb = UniRan.Range(0f, 1f);
-					if (bomb > 0.9f) numberOfEnemy = 3;
-				}
-				enemyPool.Pop(enemyPool.obj[numberOfEnemy].name);
-				enemyPool.obj[numberOfEnemy].transform.position = GetSpawnPos();
-				if (numberOfEnemy == 3) numberOfEnemy = 0;
-				GameManager.Instance.enemy[numberOfEnemy].Add(enemyPool.obj[numberOfEnemy]);
-				yield return null;
-				//EditorApplication.isPaused = true;
-				yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
+				bomb = UniRan.Range(0f, 1f);
+				if (bomb > 0.9f) numberOfEnemy = 3;
 			}
+			enemyPool.Pop(enemyPool.obj[numberOfEnemy].name);
+			enemyPool.obj[numberOfEnemy].transform.position = GetSpawnPos();
+			if (numberOfEnemy == 3) numberOfEnemy = 0;
+			yield return null;
+			//EditorApplication.isPaused = true;
+			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
 		}
 	}
 
@@ -108,11 +100,6 @@ public class EnemySpawner : MonoBehaviour
 			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
 		}
 	}
-
-	//private void FindColls()
-	//{
-	//	Collider[] colls = Physics.OverlapSphereNonAlloc
-	//}
 
 
 

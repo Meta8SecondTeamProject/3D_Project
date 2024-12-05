@@ -5,85 +5,74 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected Rigidbody rb;
-    protected bool isFly;
-    protected float moveSpeed;
-    protected Transform target;
-    protected Vector3 moveDir;
-    public Transform attackSpot;
+	protected Rigidbody rb;
+	protected bool isFly;
+	protected float moveSpeed;
+	protected Transform target;
+	protected Vector3 moveDir;
+	public Transform attackSpot;
+	public GameObject fracture;
+	public int enemyNumber;
+	protected virtual void OnEnable()
+	{
+	}
 
-    protected ObjectPool pool;
+	protected virtual void Awake()
+	{
+		rb = GetComponent<Rigidbody>();
+	}
 
-    protected virtual void Awake()
-    {
-        pool = FindAnyObjectByType<ObjectPool>();
-        rb = GetComponent<Rigidbody>();
-    }
+	protected virtual void Start()
+	{
+		if (GameManager.Instance.player != null)
+			target = GameManager.Instance.player.transform;
 
-    protected virtual void Start()
-    {
-        if (GameManager.Instance.player != null)
-            target = GameManager.Instance.player.transform;
-
-        if (isFly == false) { rb.useGravity = true; }
-        else { rb.useGravity = false; }
-    }
-
-
-    protected virtual void Update()
-    {
-        if (target == null)
-        {
-            if (GameManager.Instance.player != null)
-                target = GameManager.Instance.player.transform;
-
-            return;
-        }
-        else
-        {
-            moveDir = target.position - attackSpot.transform.position;
-        }
-    }
-
-    protected virtual void Move(Vector3 dir)
-    {
-        if (Time.timeScale == 0) return;
-        rb.AddForce(dir * moveSpeed);
-    }
-
-    protected virtual void Look(Vector3 dir, float rotVal)
-    {
-        //Debug.Log($"Look TimeScale : {Time.timeScale}");
-        if (Time.timeScale == 0) return;
-        Quaternion dirRot = Quaternion.LookRotation(dir);
-        rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);
-    }
+		if (isFly == false) { rb.useGravity = true; }
+		else { rb.useGravity = false; }
+	}
 
 
+	protected virtual void Update()
+	{
+		if (target == null)
+		{
+			if (GameManager.Instance.player != null)
+				target = GameManager.Instance.player.transform;
 
-    protected virtual void OnCollisionEnter(Collision collision)
-    {
-        //if (collision.collider.CompareTag("Projectile"))
-        //{
-        //    baseEnemyObj.SetActive(false);
-        //    fratureObj.SetActive(true);
-        //    //pool.Push(gameObject);
+			return;
+		}
+		else
+		{
+			moveDir = target.position - attackSpot.transform.position;
+		}
+	}
 
-        //}
-        //if (collision.collider.CompareTag("Projectile"))
-        //{
-        //    myHealth--;
-        //}
-        //if (myHealth == 0)
-        //{
-        //    baseEnemyObj.SetActive(false);
-        //    fratureObj.SetActive(true);
-        //}
+	protected virtual void Move(Vector3 dir)
+	{
+		if (Time.timeScale == 0) return;
+		rb.AddForce(dir * moveSpeed);
+	}
 
-        //if (collision.collider.CompareTag("Player"))
-        //{
-        //	rb.AddForce(Vector3.back * 20f, ForceMode.VelocityChange);
-        //	print("밀려남");
-        //}
-    }
+	protected virtual void Look(Vector3 dir, float rotVal)
+	{
+		//Debug.Log($"Look TimeScale : {Time.timeScale}");
+		if (Time.timeScale == 0) return;
+		Quaternion dirRot = Quaternion.LookRotation(dir);
+		rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);
+	}
+
+
+
+	protected virtual void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.CompareTag("Projectile"))
+		{
+			Debug.Log("적이 총알 감지");
+			GameObject fracture = GameManager.Instance.pool.Pop(this.fracture.name);
+			fracture.transform.position = transform.position;
+			GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
+			GameManager.Instance.pool.Push(gameObject);
+		}
+
+	}
 }

@@ -958,6 +958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpot: {fileID: 686464001031325340}
+  fracture: {fileID: 0}
+  enemyNumber: 3
   isBomb: 1
 --- !u!1 &3663349740623696115
 GameObject:
@@ -1292,7 +1294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 686464001031325340}
-  - component: {fileID: 4550254534934368283}
   m_Layer: 8
   m_Name: RigHead
   m_TagString: Untagged
@@ -1315,27 +1316,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5499597078238962640}
   m_LocalEulerAnglesHint: {x: 10.941375, y: -5.0730324, z: 21.360035}
---- !u!135 &4550254534934368283
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5424619650656252577}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5597837195504368277
 GameObject:
   m_ObjectHideFlags: 0

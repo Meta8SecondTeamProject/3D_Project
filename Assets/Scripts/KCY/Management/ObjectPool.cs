@@ -39,6 +39,7 @@ public class ObjectPool : MonoBehaviour
 		obj.gameObject.SetActive(false);
 		obj.transform.SetParent(transform);
 		poolDic[obj.name].Add(obj);
+		Debug.Log($"옵젝 이름 : {obj.name}");
 	}
 	public IEnumerator Push(GameObject obj, float t)
 	{

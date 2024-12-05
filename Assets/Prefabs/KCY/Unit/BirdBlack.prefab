@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284241947736898405}
   - component: {fileID: 5535784611363395997}
+  - component: {fileID: 8936227322420634219}
   m_Layer: 8
   m_Name: Bird
   m_TagString: Enemy
@@ -278,6 +279,28 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.05818233, y: -0.024169505, z: 0.0014206767}
     m_Extent: {x: 1.0391794, y: 0.57908005, z: 1.8482962}
   m_DirtyAABB: 0
+--- !u!64 &8936227322420634219
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500132792337810322}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f23115f35c3b52f4ab230c9854adc176, type: 3}
 --- !u!1 &826112392780689041
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +373,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4626773065659150595}
-  - component: {fileID: 4216098152131855976}
   m_Layer: 8
   m_Name: RigRibcage
   m_TagString: Untagged
@@ -376,29 +398,6 @@ Transform:
   - {fileID: 8965016641863189578}
   m_Father: {fileID: 7201364842521444889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4216098152131855976
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281324596900683649}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.17
-  m_Direction: 0
-  m_Center: {x: 0.12, y: -0.06, z: 0}
 --- !u!1 &1383127010741472518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,6 +1128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpot: {fileID: 2318891250730090926}
+  fracture: {fileID: 0}
+  enemyNumber: 4
   isBomb: 0
 --- !u!54 &1431643167794142734
 Rigidbody:
@@ -1261,7 +1262,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309362618979847302}
-  - component: {fileID: 8055328873564708114}
   m_Layer: 8
   m_Name: RigRArmPalm
   m_TagString: Untagged
@@ -1285,27 +1285,6 @@ Transform:
   - {fileID: 823203079541533604}
   m_Father: {fileID: 6295798858397413313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8055328873564708114
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6625074689312530378}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1 &7172489744989722077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,7 +1455,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9039360546261128623}
-  - component: {fileID: 4454707834002936413}
   m_Layer: 8
   m_Name: RigLArmPalm
   m_TagString: Untagged
@@ -1500,24 +1478,3 @@ Transform:
   - {fileID: 2983808494331762318}
   m_Father: {fileID: 5277711227024902199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4454707834002936413
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9132999636131771726}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: -0.24}

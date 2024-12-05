@@ -7,7 +7,6 @@ public class Fish_Enemy : Enemy
 	public float jumpCooldown;
 	public float jumpForce;
 	public float forceGravity;
-
 	protected override void Awake()
 	{
 		base.Awake();
@@ -55,8 +54,4 @@ public class Fish_Enemy : Enemy
 		}
 	}
 
-	protected override void OnCollisionEnter(Collision collision)
-	{
-		base.OnCollisionEnter(collision);
-	}
 }
