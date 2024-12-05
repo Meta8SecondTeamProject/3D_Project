@@ -35,15 +35,15 @@ public class EnemySpawner : MonoBehaviour
 		switch (numberOfEnemy)
 		{
 			case 0:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fliesMaxSpawnCount));
 				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 1:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fishMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.fishMaxSpawnCount));
 				//Debug.Log(DataManager.Instance.fishMaxCount);
 				break;
 			case 2:
-				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxCount));
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxSpawnCount));
 				break;
 			default:
 				//Debug.LogWarning("±×·± ³ğ ¾ø´Ù.");
@@ -63,7 +63,6 @@ public class EnemySpawner : MonoBehaviour
 			enemyPool.Pop(enemyPool.obj[numberOfEnemy].name);
 			enemyPool.obj[numberOfEnemy].transform.position = GetSpawnPos();
 			if (numberOfEnemy == 3) numberOfEnemy = 0;
-			GameManager.Instance.enemy[numberOfEnemy].Add(enemyPool.obj[numberOfEnemy]);
 			yield return null;
 			//EditorApplication.isPaused = true;
 			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
@@ -101,11 +100,6 @@ public class EnemySpawner : MonoBehaviour
 			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
 		}
 	}
-
-	//private void FindColls()
-	//{
-	//	Collider[] colls = Physics.OverlapSphereNonAlloc
-	//}
 
 
 

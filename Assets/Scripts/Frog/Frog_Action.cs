@@ -201,8 +201,6 @@ public class Frog_Action : MonoBehaviour
 	}
 	private void JumpForcing(float y)
 	{
-
-		Debug.Log("점프진입");
 		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
 		if (jumpCount == 1)
 		{
@@ -210,9 +208,7 @@ public class Frog_Action : MonoBehaviour
 		}
 		jumpCount--;
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
-		Debug.Log($"점포 점카 : {jumpCount}");
 
-		Debug.Log($"감소 후 점카 : {jumpCount}");
 		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
 	}
 

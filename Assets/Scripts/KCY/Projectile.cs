@@ -36,24 +36,10 @@ public class Projectile : MonoBehaviour
 		Collider[] colls = Physics.OverlapSphere(gameObject.transform.position, m_coll.radius, includeLayer);
 		foreach (Collider coll in colls)
 		{
-			Debug.Log(coll.gameObject.name);
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);
 			StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
 		}
 	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		//if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Player") && collision.collider.gameObject.layer != LayerMask.NameToLayer("Projectile"))
-		//{
-		//	Debug.Log($"누구냐 : {collision.collider.gameObject.name}");
-		//	Debug.Log("발동");
-		//	rb.velocity = Vector3.zero;
-		//	m_particle.Stop(true);
-		//	explosion.SetActive(true);
-		//}
-	}
-
 }

@@ -86,7 +86,7 @@ public class Frog_Look : MonoBehaviour
 
 	private void Update()
 	{
-		Zoom(isZoom);
+		//Zoom(isZoom);
 	}
 
 
@@ -126,14 +126,12 @@ public class Frog_Look : MonoBehaviour
 		rigAngle.x -= mouseDelta.y * (mouseSensivity * 0.01f);
 		if (rigAngle.x <= 0)
 		{
-			Debug.Log("1");
 			freeLookCam.gameObject.SetActive(false);
 			rigAngle.x = Mathf.Clamp(rigAngle.x, -40f, 35f);
 			cameraNearPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
 		}
 		else
 		{
-			Debug.Log("2");
 			freeLookCam.gameObject.SetActive(true);
 			rigAngle.x = Mathf.Clamp(rigAngle.x, -15f, 89f);
 			cameraPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
@@ -141,23 +139,23 @@ public class Frog_Look : MonoBehaviour
 
 	}
 
-	private void Zoom(bool isZoom)
-	{
-		if (isZoom)
-		{
-			//Debug.Log("Zoom 활성화");
-			Time.timeScale = bulletTimeMag;
-			freeLookCam.m_Lens.FieldOfView = Mathf.Lerp(freeLookCam.m_Lens.FieldOfView, zoomMag, 0.1f);
-			nearLookCam.m_Lens.FieldOfView = Mathf.Lerp(nearLookCam.m_Lens.FieldOfView, zoomMag, 0.1f);
-		}
-		else
-		{
-			//Debug.Log("Zoom 비활성화");
-			Time.timeScale = 1f;
-			freeLookCam.m_Lens.FieldOfView = Mathf.Lerp(freeLookCam.m_Lens.FieldOfView, originalZoomMag, 0.1f);
-			nearLookCam.m_Lens.FieldOfView = Mathf.Lerp(nearLookCam.m_Lens.FieldOfView, originalZoomMag, 0.1f);
-		}
-	}
+	//private void Zoom(bool isZoom)
+	//{
+	//	if (isZoom)
+	//	{
+	//		//Debug.Log("Zoom 활성화");
+	//		Time.timeScale = bulletTimeMag;
+	//		freeLookCam.m_Lens.FieldOfView = Mathf.Lerp(freeLookCam.m_Lens.FieldOfView, zoomMag, 0.1f);
+	//		nearLookCam.m_Lens.FieldOfView = Mathf.Lerp(nearLookCam.m_Lens.FieldOfView, zoomMag, 0.1f);
+	//	}
+	//	else
+	//	{
+	//		//Debug.Log("Zoom 비활성화");
+	//		Time.timeScale = 1f;
+	//		freeLookCam.m_Lens.FieldOfView = Mathf.Lerp(freeLookCam.m_Lens.FieldOfView, originalZoomMag, 0.1f);
+	//		nearLookCam.m_Lens.FieldOfView = Mathf.Lerp(nearLookCam.m_Lens.FieldOfView, originalZoomMag, 0.1f);
+	//	}
+	//}
 
 
 

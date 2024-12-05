@@ -167,7 +167,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4346452357744123202}
-  - component: {fileID: 8192675772681711750}
   m_Layer: 8
   m_Name: RigRArmPalm
   m_TagString: Untagged
@@ -191,27 +190,6 @@ Transform:
   - {fileID: 6749515143002878768}
   m_Father: {fileID: 6011282840402580295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8192675772681711750
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111764793886465105}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1 &1185805773154499208
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1960865061658431600}
-  - component: {fileID: 5843136716559520391}
+  - component: {fileID: 2223798149276697257}
   m_Layer: 8
   m_Name: RigJawUp
   m_TagString: AttackPos
@@ -307,8 +285,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2419614491972425529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5843136716559520391
-SphereCollider:
+--- !u!136 &2223798149276697257
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -325,9 +303,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.07
-  m_Center: {x: -0.12, y: 0.03, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Height: 0.43
+  m_Direction: 0
+  m_Center: {x: -0.03, y: 0.03, z: 0}
 --- !u!1 &1880579204499265368
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5195664700602571031}
   - component: {fileID: 2377671987823453123}
+  - component: {fileID: 8338705023195194622}
   m_Layer: 8
   m_Name: Bird
   m_TagString: Enemy
@@ -446,6 +427,28 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.05818233, y: -0.024169505, z: 0.0014206767}
     m_Extent: {x: 1.0391794, y: 0.57908005, z: 1.8482962}
   m_DirtyAABB: 0
+--- !u!64 &8338705023195194622
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880579204499265368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f23115f35c3b52f4ab230c9854adc176, type: 3}
 --- !u!1 &2035402923983100643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1224,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5416135820547873619}
-  - component: {fileID: 1213374487008249217}
   m_Layer: 8
   m_Name: RigRibcage
   m_TagString: Untagged
@@ -1247,29 +1249,6 @@ Transform:
   - {fileID: 1080666433186292119}
   m_Father: {fileID: 4726946914074831752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1213374487008249217
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316203108073443278}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1.17
-  m_Direction: 0
-  m_Center: {x: 0.12, y: -0.06, z: 0}
 --- !u!1 &7413479928334721937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1308,7 @@ Transform:
   m_GameObject: {fileID: 7629075747238501687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -117.547134, y: 22.655247, z: 206.8839}
+  m_LocalPosition: {x: -104.444145, y: 32.91429, z: 194.51042}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1374,6 +1353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpot: {fileID: 8556216503556802274}
+  fracture: {fileID: 8799113785760117251, guid: 705a85c117d6d314ab6919d78a178855, type: 3}
+  enemyNumber: 2
   isBomb: 0
 --- !u!54 &1472561591901687719
 Rigidbody:
@@ -1444,7 +1425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070002416445488310}
-  - component: {fileID: 8803133279635482143}
   m_Layer: 8
   m_Name: RigLArmPalm
   m_TagString: Untagged
@@ -1468,27 +1448,6 @@ Transform:
   - {fileID: 5724223173260600842}
   m_Father: {fileID: 9112852551579958112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8803133279635482143
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763999977934497694}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 0.1, z: 0.7}
-  m_Center: {x: 0, y: 0, z: -0.24}
 --- !u!1 &8775159460881628815
 GameObject:
   m_ObjectHideFlags: 0
