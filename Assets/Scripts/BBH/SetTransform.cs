@@ -24,6 +24,10 @@ public class SetTransform : MonoBehaviour
         Invoke("DisableObject", 5f);
     }
 
+    private void Update()
+    {
+    }
+
     private void DisableObject()
     {
         gameObject.SetActive(false);

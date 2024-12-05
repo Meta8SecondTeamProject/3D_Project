@@ -6,7 +6,7 @@ public class Projectile_Test : MonoBehaviour
 {
     public GameObject ProjectileTemplate;
     public float ProjectileSpeed = 10.0f;
-
+    private Enemy enemy;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
