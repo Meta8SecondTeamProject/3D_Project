@@ -173,7 +173,7 @@ public class Frog_Action : MonoBehaviour
 		GameObject proj = GameManager.Instance.pool.Pop(GameManager.Instance.pool.obj[5].name);
 		proj.transform.position = shotPoint.position;
 		Vector3 dir = shotDir.position - shotPoint.position;
-		//proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		proj.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		proj.gameObject.GetComponent<Rigidbody>().AddForce(dir * fireForce, ForceMode.Impulse);
 	}
 

@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 5534861226279802954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.097046, y: 18.350319, z: -64.24715}
+  m_LocalPosition: {x: -69.9122, y: 18.274626, z: -94.637985}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 5993559500890691386}
   - component: {fileID: 4629917481769835360}
   m_Layer: 8
-  m_Name: Bat
+  m_Name: BatRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -712,7 +712,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 7733154652135119895}
   m_AABB:
     m_Center: {x: -0.20866212, y: 0.02321504, z: 0.00000011920929}
-    m_Extent: {x: 0.516392, y: 0.4110338, z: 0.88900506}
+    m_Extent: {x: 0.1, y: 0.1, z: 0.1}
   m_DirtyAABB: 0
 --- !u!1 &7112962420165545677
 GameObject:
@@ -880,9 +880,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5070052545380440969}
   - component: {fileID: 1276664003859943213}
-  - component: {fileID: 1940860308503489005}
   - component: {fileID: 8278332580100669961}
   - component: {fileID: 7725111710747446361}
+  - component: {fileID: 6242789445280957959}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
@@ -941,29 +941,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &1940860308503489005
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8413671569436832428}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 0
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8278332580100669961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +956,10 @@ MonoBehaviour:
   attackSpot: {fileID: 5251757842017437727}
   fracture: {fileID: 2406773684591326426, guid: baec8109e51d30b439e4fafddecf7649, type: 3}
   enemyNumber: 0
+  isBat: 1
   isBomb: 0
+  isBird: 0
+  batMoveMent: {fileID: 0}
 --- !u!54 &7725111710747446361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1007,6 +987,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!135 &6242789445280957959
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413671569436832428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 16255
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.95
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8597193556867125520
 GameObject:
   m_ObjectHideFlags: 0

@@ -890,7 +890,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 1791945024067605637}
   m_AABB:
     m_Center: {x: -0.22815756, y: -0.080308914, z: 0.0000009834766}
-    m_Extent: {x: 0.68901604, y: 0.52073, z: 0.69795203}
+    m_Extent: {x: 0.1, y: 0.1, z: 0.1}
   m_DirtyAABB: 0
 --- !u!1 &2903780358187285586
 GameObject:
@@ -1940,7 +1940,7 @@ Transform:
   m_GameObject: {fileID: 8697124834493462002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -115.12388, y: 32.61985, z: -112.00663}
+  m_LocalPosition: {x: -130.55429, y: 15.909704, z: -73.493515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2010,7 +2010,10 @@ MonoBehaviour:
   attackSpot: {fileID: 259677963101334384}
   fracture: {fileID: 3880124878525423660, guid: 269bf1275ad7b424394911d4eb5f1003, type: 3}
   enemyNumber: 3
+  isBat: 0
   isBomb: 1
+  isBird: 0
+  batMoveMent: {fileID: 0}
 --- !u!1 &8722999520480825639
 GameObject:
   m_ObjectHideFlags: 0

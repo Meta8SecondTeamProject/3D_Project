@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.EditorTools;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.ParticleSystemJobs;
 using UniRan = UnityEngine.Random;
 
 public class FliesMovement : MonoBehaviour
@@ -19,11 +20,8 @@ public class FliesMovement : MonoBehaviour
 	private int rand;
 	private float dir;
 
-	private ObjectPool pool;
-
 	private void Awake()
 	{
-		pool = FindAnyObjectByType<ObjectPool>();
 		rand = UniRan.Range(0, 2);
 	}
 	private void Update()
@@ -44,13 +42,4 @@ public class FliesMovement : MonoBehaviour
 		transform.position = new Vector3(transform.position.x, transform.position.y + dir, transform.position.z);
 		transform.RotateAround(rotateTarget.position, Vector3.down, rotateSpeed);
 	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.collider.CompareTag("Projectile"))
-		{
-			pool.Push(gameObject);
-		}
-	}
-
 }

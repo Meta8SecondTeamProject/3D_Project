@@ -132,14 +132,14 @@ public class EnemySpawner : MonoBehaviour
 	{
 		if (numberOfEnemy == 4 && other.CompareTag("Player"))
 		{
-			StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
+			StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
 		}
 	}
 	private void OnTriggerExit(Collider other)
 	{
 		if (numberOfEnemy == 4 && other.CompareTag("Player"))
 		{
-			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxCount));
+			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
 		}
 	}
 

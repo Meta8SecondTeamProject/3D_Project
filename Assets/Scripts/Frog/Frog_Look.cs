@@ -135,10 +135,12 @@ public class Frog_Look : MonoBehaviour
         Quaternion playerRotation = Quaternion.Euler(0, yRotation, 0);
         rb.MoveRotation(rb.rotation * playerRotation);
         rigAngle.x -= mouseDelta.y * (mouseSensivity * 0.01f);
+        //TODO : 카메라 x 축 변경 시 맘대로 확대되는거 수정해야함.
         if (rigAngle.x <= 0)
         {
             //Debug.Log("1");
             freeLookCam.gameObject.SetActive(false);
+            nearLookCam.gameObject.SetActive(true);
             rigAngle.x = Mathf.Clamp(rigAngle.x, -40f, 35f);
             cameraNearPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
         }
@@ -146,6 +148,7 @@ public class Frog_Look : MonoBehaviour
         {
             //Debug.Log("2");
             freeLookCam.gameObject.SetActive(true);
+            nearLookCam.gameObject.SetActive(false);
             rigAngle.x = Mathf.Clamp(rigAngle.x, -15f, 89f);
             cameraPos.localRotation = Quaternion.Euler(rigAngle.x, -90, 0);
         }

@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Fly_Enemy : Enemy
 {
+	public bool isBat;
 	public bool isBomb;
+	public bool isBird;
+	//실제 콜라이더 붙어있는 곳이 아닌 부모 오브젝트 가져오는 용도
+	public FliesMovement batMoveMent;
 	protected override void Awake()
 	{
 		base.Awake();
+		if (isBat)
+			batMoveMent = GetComponentInParent<FliesMovement>();
 	}
 
 	protected override void Start()
@@ -36,16 +42,20 @@ public class Fly_Enemy : Enemy
 	}
 
 
-	protected override void OnCollisionEnter(Collision collision)
+	protected override void OnTriggerEnter(Collider collision)
 	{
+		base.OnTriggerEnter(collision);
 
-		base.OnCollisionEnter(collision);
+	}
+	private void OnCollisionEnter(Collision collision)
+	{
 		if (isBomb)
 		{
-			if (collision.collider.CompareTag("Player"))
+			if (collision.gameObject.CompareTag("Player"))
 			{
-				Debug.Log("폭탄");
-				Destroy(gameObject);
+				DataManager.Instance.data.currentHP--;
+				GameManager.Instance.player.TakeDamage();
+				GameManager.Instance.pool.Push(gameObject);
 			}
 		}
 	}

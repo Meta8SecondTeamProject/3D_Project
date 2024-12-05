@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -19,16 +20,18 @@ public class Projectile : MonoBehaviour
 	private void OnEnable()
 	{
 		m_particle.Play();
+		explosion.SetActive(false);
 	}
 	private void OnDisable()
 	{
 		explosion.SetActive(false);
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider other)
 	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		if (other.CompareTag("Enemy"))
 		{
+			Debug.Log("트리거 적 감지");
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);
@@ -36,6 +39,7 @@ public class Projectile : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log($"? : {other.gameObject.name}");
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);
