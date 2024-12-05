@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class King_God_Toad_Test : Boss_Test
 {
-    //protected override IEnumerator WhatName()
-    //{
-    //    while (true)
-    //    {
 
-    //    }
-    //}
+
+    protected override IEnumerator WhatName()
+    {
+        while (true)
+        {
+
+        }
+    }
+
+
 }

@@ -4,12 +4,39 @@ using UnityEngine;
 
 public class Frog_Die_Test : MonoBehaviour
 {
+    private Vector3[] pos;
     public Rigidbody[] rigidbodys;
     public float explosionForce = 5000f;
     public float explosionRadius = 5f;
     public Vector3 explosionOffset = Vector3.up;
 
     public float delay = 5f;
+
+    private void OnEnable()
+    {
+        pos = new Vector3[rigidbodys.Length];
+        if (rigidbodys.Length != pos.Length)
+        {
+            Debug.LogError("Frog_Die_Test / OnEnable");
+            return;
+        }
+        for (int i = 0; i < rigidbodys.Length; i++)
+        {
+            pos[i] = rigidbodys[i].position;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (rigidbodys.Length != pos.Length)
+        {
+            Debug.LogError("Frog_Die_Test / OnDisable");
+        }
+        for (int i = 0; i < rigidbodys.Length; i++)
+        {
+            rigidbodys[i].position = pos[i];
+        }
+    }
 
     private void Start()
     {
