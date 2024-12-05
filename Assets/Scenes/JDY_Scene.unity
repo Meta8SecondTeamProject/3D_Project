@@ -5286,10 +5286,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5645192463324973663, guid: a3686be55ea8fea428ef8a317545aaa3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3686be55ea8fea428ef8a317545aaa3, type: 3}
 --- !u!4 &945748966 stripped
 Transform:
@@ -7869,10 +7866,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1540759884466106462, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
 --- !u!1 &1387886815
 GameObject:
@@ -8992,10 +8986,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1128774883622225433, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
 --- !u!4 &1522780223 stripped
 Transform:
@@ -10473,10 +10464,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7523606680829630455, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
 --- !u!4 &1768816600 stripped
 Transform:
@@ -19388,6 +19376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfEnemy: 1
+  bossEnemy: []
 --- !u!64 &2128680438675785950
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23951,6 +23940,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpot: {fileID: 8840622353972453748}
+  fracture: {fileID: 0}
+  enemyNumber: 0
   isBomb: 0
 --- !u!4 &4292851908343442283
 Transform:
@@ -25957,6 +25948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfEnemy: 0
+  bossEnemy: []
 --- !u!1 &5088012887179576149
 GameObject:
   m_ObjectHideFlags: 0
@@ -26723,10 +26715,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7523606680829630455, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ca71c12abee9547944d18d1f02a0f0, type: 3}
 --- !u!4 &5340532921906084190
 Transform:
@@ -31677,6 +31666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfEnemy: 4
+  bossEnemy: []
 --- !u!4 &6916012895824411503
 Transform:
   m_ObjectHideFlags: 0
@@ -39828,7 +39818,7 @@ GameObject:
   - component: {fileID: 7956403426059938883}
   m_Layer: 0
   m_Name: PP_Icicle_01
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
