@@ -67,6 +67,7 @@ namespace DinoFracture
         private Rigidbody _impactBody;
         private Vector3 _impactVelocity;
         private Vector3 _thisVelocity;
+        
 
         private FractureGeometry _fractureGeometry;
         private Rigidbody _thisBody;
@@ -124,21 +125,23 @@ namespace DinoFracture
 
         private void OnCollisionEnter(Collision col)
         {
-            if (!col.gameObject.CompareTag("Projectile"))
-            {
+            Debug.Log($"(Hundred)OnCollisionEnter 진입, {col.transform.name}");
 
-                Debug.Log($"태그 불일치 , {col.gameObject.name}");
+            if (!col.gameObject.CompareTag("Projectile"))
                 return;
-            }
 
             if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
             {
+                
+
                 GatherCollisionInfo(col);
             }
+        
         }
 
-        internal bool GatherCollisionInfo(Collision col)
+        public bool GatherCollisionInfo(Collision col)
         {
+
             if (!_fireFracture && col.contactCount > 0 && (CollidableLayers.value & (1 << col.gameObject.layer)) != 0)
             {
                 _impactBody = col.rigidbody;
