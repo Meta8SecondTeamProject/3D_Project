@@ -100,39 +100,41 @@ public class DataManager : SingletonManager<DataManager>
 
 		if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
-			data.ammo--;
-			Debug.Log("≈∫æ‡ ∞®º“µ ");
+			data.ammo++;
+			UIManager.Instance.GameSceneTextUpdate();
+			Debug.Log("≈∫æ‡ ¡ı∞°µ ");
 
 		}
 		if (Input.GetKeyDown(KeyCode.Keypad2))
 		{
-			SaveManager.SaveGame(data);
+			Debug.Log("SaveGame»£√‚");
+			//SaveManager.SaveGame(data);
+			Save();
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad3))
-		{
-			UIManager.Instance.TransitionToLoadScene("KCY_Scene");
-		}
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            //data = SaveManager.LoadGame();
+			Load();
+            Debug.Log("LoadGame»£√‚");
+            UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
+        }
 		if (Input.GetKeyDown(KeyCode.Keypad4))
 		{
-			Debug.Log($"DataManager.data.ammo : {data.ammo}");
-			Debug.Log($"DataManager.data.ammo : {data.currentAmmo}");
-		}
-		if (Input.GetKeyDown(KeyCode.Keypad5))
-		{
-			data = SaveManager.LoadGame();
-			Debug.Log("LoadGame»£√‚");
-			UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
-		}
-		if (Input.GetKeyDown(KeyCode.Keypad6))
-		{
-			UIManager.Instance.TransitionToLoadScene("JDY_Scene");
-		}
-		if (Input.GetKeyDown(KeyCode.Keypad7))
-		{
+			Debug.Log("BBHæ¿¿∏∑Œ ¿Ãµø");
 			UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 		}
 
-	}
+		if (Input.GetKeyDown(KeyCode.Keypad5))
+		{
+            Debug.Log("JDYæ¿¿∏∑Œ ¿Ãµø");
+            UIManager.Instance.TransitionToLoadScene("JDY_Scene");
+		}
+		if (Input.GetKeyDown(KeyCode.Keypad6))
+		{
+            Debug.Log("KCYæ¿¿∏∑Œ ¿Ãµø");
+            UIManager.Instance.TransitionToLoadScene("KCY_Scene");
+		}
+    }
 	#endregion
 
 	public void RetryGame()

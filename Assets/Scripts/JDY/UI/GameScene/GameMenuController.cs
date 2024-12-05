@@ -56,8 +56,10 @@ public class GameMenuController : MonoBehaviour
 
 	public void SettingMenuOnOff()
 	{
-		Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
-		//print(Time.timeScale);
+		//Debug.Log($"Before TimeScale : {baseTimeScale}");
+        //Debug.Log($"TimeScale : {Time.timeScale}");
+        Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
+		//Debug.Log($"After TimeScale : {Time.timeScale}");
 		pausedMenu.SetActive(!pausedMenu.activeSelf);
 		background.color = background.color == baseColor ? background.color * 0f : baseColor;
 	}
