@@ -10,7 +10,7 @@ public class Boss_Test : MonoBehaviour
     public int MaxHp { private get; set; }
 
     private Rigidbody rb;
-    public Transform target;
+    public Player target;
     public float speed;
 
     protected virtual void Start()
@@ -22,6 +22,11 @@ public class Boss_Test : MonoBehaviour
     private void OnEnable()
     {
         hp = MaxHp;
+
+        if (GameManager.Instance.player != null)
+        {
+            target = GameManager.Instance.player;
+        }
     }
 
     public virtual void Hit()
