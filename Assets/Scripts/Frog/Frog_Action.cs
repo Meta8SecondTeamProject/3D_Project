@@ -145,8 +145,11 @@ public class Frog_Action : MonoBehaviour
 	private void Fire(bool isfiring)
 	{
 
-		if (isfiring && fireCooldown)
+		if (isfiring && fireCooldown && DataManager.Instance.data.ammo > 0)
 		{
+			DataManager.Instance.data.ammo--;
+			UIManager.Instance.GameSceneTextUpdate();
+
 			Physics.gravity = new Vector3(0, -20, 0);
 
 			fire_Particle.Play(true);
@@ -179,7 +182,10 @@ public class Frog_Action : MonoBehaviour
 		jumpInput = context.ReadValue<float>();
 		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
-		if (frogMove.isWater && DataManager.Instance.jumpCount > 1) jumpCount = 1;
+		if (frogMove.isWater && DataManager.Instance.jumpCount > 1)
+		{
+			jumpCount = 1;
+		}
 		if (isJumping && jumpCount >= 1)
 		{
 			if (!frogMove.isGround)
@@ -195,10 +201,18 @@ public class Frog_Action : MonoBehaviour
 	}
 	private void JumpForcing(float y)
 	{
+
 		Debug.Log("점프진입");
 		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
-		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+		if (jumpCount == 1)
+		{
+			inputMoveDir = new Vector3(-frogMove.input.y, 1, frogMove.input.x);
+		}
 		jumpCount--;
+		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+		Debug.Log($"점포 점카 : {jumpCount}");
+
+		Debug.Log($"감소 후 점카 : {jumpCount}");
 		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
 	}
 

@@ -18,7 +18,8 @@ public class GameManager : SingletonManager<GameManager>
 		{
 			enemy[i] = new List<GameObject>();
 		}
-		PlayerInstantiate();
+		//임시적으로 주석처리
+		//PlayerInstantiate();
 	}
 
 	private void Start()
@@ -27,6 +28,7 @@ public class GameManager : SingletonManager<GameManager>
 
 		SceneManager.sceneLoaded += (x, y) =>
 		{
+			UIManager.Instance.GameSceneTextUpdate();
 			pool = FindAnyObjectByType<ObjectPool>();
 			Cursor.lockState = CursorLockMode.Locked;
 		};
@@ -52,7 +54,7 @@ public class GameManager : SingletonManager<GameManager>
 				Debug.Log("생성");
 				//최종 빌드 시 삭제요망
 				pool = FindAnyObjectByType<ObjectPool>();
-				//Debug.LogWarning("아야!");
+				Debug.LogWarning("아야!");
 				playerObj = Instantiate(playerPrefab);
 				playerObj.transform.position = spawnPos;
 				player = playerObj.GetComponent<Player>();

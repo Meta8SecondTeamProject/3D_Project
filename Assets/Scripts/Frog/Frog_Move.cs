@@ -20,10 +20,14 @@ public class Frog_Move : MonoBehaviour
 
 	public float moveSpeed;
 	public float onAirSpeed;
+	public float inWaterSpeed;
 
 	public Vector2 input;
+	private Vector3 actualMoveDir;
+	private Vector3 inputMoveDir;
 	private float tempTime;
 	public float force;
+	public float lillyForce;
 
 	public bool isMove;
 	public bool isGround;
@@ -91,8 +95,8 @@ public class Frog_Move : MonoBehaviour
 
 		if (isPressed)
 		{
-			Vector3 inputMoveDir = new Vector3(-input.y, 1, input.x) * moveSpeed;
-			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+			inputMoveDir = new Vector3(-input.y, 1, input.x) * moveSpeed;
+			actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
@@ -105,7 +109,7 @@ public class Frog_Move : MonoBehaviour
 			}
 			else if (isWater)
 			{
-				rb.AddForce(actualMoveDir, ForceMode.Force);
+				rb.AddForce(actualMoveDir * inWaterSpeed, ForceMode.Force);
 			}
 			else if (!isGround)
 			{
@@ -122,6 +126,15 @@ public class Frog_Move : MonoBehaviour
 		}
 	}
 
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
+		{
+			Physics.gravity = new Vector3(0, -20, 0);
+			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+			rb.AddForce(actualMoveDir * lillyForce, ForceMode.Impulse);
+		}
+	}
 
 	private void OnCollisionStay(Collision collision)
 	{
@@ -130,6 +143,7 @@ public class Frog_Move : MonoBehaviour
 			isGround = true;
 			Physics.gravity = new Vector3(0, -20, 0);
 		}
+
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -137,9 +151,18 @@ public class Frog_Move : MonoBehaviour
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
 			isGround = false;
+			frogAction.jumpCount = 0;
 			if (DataManager.Instance.jumpCount == 2)
 			{
 				Debug.Log("점프강화됐네?");
+				frogAction.jumpCount = 1;
+			}
+		}
+		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
+		{
+			frogAction.jumpCount = 0;
+			if (DataManager.Instance.jumpCount == 2)
+			{
 				frogAction.jumpCount = 1;
 			}
 		}

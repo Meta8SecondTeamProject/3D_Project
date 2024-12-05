@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 			if (Knockback(collision, out Rigidbody otherRb))
 			{
 				otherRb.AddForce(Vector3.back * 20f, ForceMode.Impulse);
+				DataManager.Instance.data.currentHP--;
 			}
 		}
 	}
