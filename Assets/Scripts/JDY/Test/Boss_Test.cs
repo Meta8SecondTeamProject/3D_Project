@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody))]
@@ -9,12 +7,13 @@ public class Boss_Test : MonoBehaviour
     protected int hp;
     public int MaxHp { private get; set; }
 
-    private Rigidbody rb;
+    protected Rigidbody rb;
     public Player target;
     public float speed;
 
     protected virtual void Start()
     {
+        target = GameManager.Instance?.player;
         rb = GetComponent<Rigidbody>();
         StartCoroutine(WhatName());
     }
