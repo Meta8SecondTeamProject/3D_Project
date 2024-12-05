@@ -34,6 +34,9 @@ public class King_God_Toad_Test : Boss_Test
         BodyChange();
 
         isJumping = false;
+
+        print("RigidBody" + rb.name);
+        print(rb);
     }
 
     private void BodyChange()
@@ -54,17 +57,20 @@ public class King_God_Toad_Test : Boss_Test
 
     protected override IEnumerator WhatName()
     {
+        print("코루틴 활성화");
         while (hp > 0)
         {
-            LookAtPlayer();
+            print("코루틴 반복문 실행");
+            StartCoroutine(LookAtPlayer());
             yield return new WaitUntil(() => isJumping);
-            JumpToPlayer();
+            StartCoroutine(JumpToPlayer());
             yield return new WaitWhile(() => isJumping);
         }
     }
 
     private IEnumerator JumpToPlayer()
     {
+        print("JumpToPlayer 코루틴 실행");
         float jumpProgress = 0f;
 
         PointInitialization();
@@ -76,7 +82,8 @@ public class King_God_Toad_Test : Boss_Test
             jumpProgress += Time.deltaTime / jumpDuration;
             //배지어 곡선
             Vector3 position = Mathf.Pow(1 - jumpProgress, 2) * startPoint + 2 * (1 - jumpProgress) * jumpProgress * controlPoint + Mathf.Pow(jumpProgress, 2) * endPoint;
-            rb.AddForce(position, ForceMode.VelocityChange);
+            //rb.AddForce(position * Time.fixedDeltaTime);
+            rb.position = position;
             transform.LookAt(position);
             yield return null;
         }
@@ -101,6 +108,7 @@ public class King_God_Toad_Test : Boss_Test
 
     private IEnumerator LookAtPlayer()
     {
+        print("LookAtPlayer 코루틴 실행");
         float delay = Time.time + lookTime;
         while (delay >= Time.time)
         {

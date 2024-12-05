@@ -11,10 +11,14 @@ public class Boss_Test : MonoBehaviour
     public Player target;
     public float speed;
 
+
+    protected void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     protected virtual void Start()
     {
         target = GameManager.Instance?.player;
-        rb = GetComponent<Rigidbody>();
         StartCoroutine(WhatName());
     }
 
