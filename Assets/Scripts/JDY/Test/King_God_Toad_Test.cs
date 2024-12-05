@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class King_God_Toad_Test : Boss_Test
 {
+    [SerializeField]
+    private GameObject[] bodys;
 
 
     protected override IEnumerator WhatName()
@@ -13,6 +15,12 @@ public class King_God_Toad_Test : Boss_Test
 
         }
     }
+
+    private void MoveToPlayer()
+    {
+
+    }
+
 
 
 }

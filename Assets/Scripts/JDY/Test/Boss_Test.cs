@@ -21,7 +21,14 @@ public class Boss_Test : MonoBehaviour
 
     private void OnEnable()
     {
-        hp = MaxHp;
+        if (MaxHp <= 0)
+        {
+            hp = 10;
+        }
+        else
+        {
+            hp = MaxHp;
+        }
 
         if (GameManager.Instance.player != null)
         {
