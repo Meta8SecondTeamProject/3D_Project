@@ -12,7 +12,7 @@ public class King_God_Toad_Test : Boss_Test
     private GameObject[] bodys;
     //점프할 높이
     [SerializeField, Tooltip("점프할 높이")]
-    private float jumpHeight = 10f;
+    private float jumpHeight = 30f;
     //바라볼 시간
     [SerializeField, Tooltip("플레이어를 바라볼 시간")]
     private float lookTime = 5f;
@@ -34,12 +34,12 @@ public class King_God_Toad_Test : Boss_Test
 
     protected override void Start()
     {
-        base.Start();
 
         BodyChange();
 
         isJumping = false;
 
+        base.Start();
         print("RigidBody" + rb.name);
         print(rb);
     }
@@ -97,12 +97,12 @@ public class King_God_Toad_Test : Boss_Test
             jumpProgress += Time.deltaTime / jumpDuration;
             //배지어 곡선
             Vector3 position = Mathf.Pow(1 - jumpProgress, 2) * startPoint + 2 * (1 - jumpProgress) * jumpProgress * controlPoint + Mathf.Pow(jumpProgress, 2) * endPoint;
-            rb.AddForce(position * Time.fixedDeltaTime);
+            rb.AddForce(position.normalized * 60f);
             //rb.position = position;
-            Vector3 distance = (position - transform.position).normalized;
-            Quaternion rotation = Quaternion.LookRotation(distance);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
-            //transform.LookAt(position);
+            //Vector3 distance = (position - transform.position).normalized;
+            //Quaternion rotation = Quaternion.LookRotation(distance);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+            transform.LookAt(position);
             yield return null;
         }
 
@@ -141,8 +141,6 @@ public class King_God_Toad_Test : Boss_Test
         float delay = Time.time + lookTime;
         while (delay >= Time.time)
         {
-            //rb.AddForce(Vector3.down * gravity);
-
             Vector3 distance = (target.transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(new Vector3(distance.x, 0f, distance.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
