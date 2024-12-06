@@ -23,6 +23,11 @@ public class Prop_On : MonoBehaviour
         }
     }
 
+    private void DataSetting()
+    {
+
+    }
+
     //임시
     //DataManager에서 값이 변경 될 때마다 함수를 호출하는 방식이 좋아 보이는데...
     private void Update()

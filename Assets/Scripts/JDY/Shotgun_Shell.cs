@@ -14,6 +14,7 @@ public class Shotgun_Shell : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GameManager.Instance.player;
+        pool = GameManager.Instance.pool;
     }
 
     private void OnTriggerEnter(Collider other)
