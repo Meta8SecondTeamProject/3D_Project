@@ -17,6 +17,8 @@ public class Shotgun_Shell : MonoBehaviour
         pool = GameManager.Instance.pool;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

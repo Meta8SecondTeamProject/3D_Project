@@ -2,6 +2,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+
+public enum EnemyType { Bird, Fish }
+
 public class Prop_On : MonoBehaviour
 {
     private const float movePos = 33f;
@@ -10,6 +13,8 @@ public class Prop_On : MonoBehaviour
     private TextMeshPro[] texts;
     private int data;
 
+    [SerializeField]
+    private EnemyType enemyType;
     public GameObject prefab;
     public Transform spawnPos;
 
