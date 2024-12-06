@@ -1,7 +1,10 @@
 using DinoFracture;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -63,17 +66,30 @@ public abstract class Enemy : MonoBehaviour
 	}
 
 
-
-	protected virtual void OnCollisionEnter(Collision collision)
+	protected virtual void OnTriggerEnter(Collider collision)
 	{
-		if (collision.collider.CompareTag("Projectile"))
+		if (collision.CompareTag("Projectile"))
 		{
-			Debug.Log("적이 총알 감지");
+			switch (enemyNumber)
+			{
+				case 0:
+					DataManager.Instance.fliesKillCount++;
+					break;
+				case 1:
+					DataManager.Instance.fishKillCount++;
+					break;
+				case 2:
+					DataManager.Instance.birdKillCount++;
+					break;
+				case 3:
+					DataManager.Instance.fliesKillCount++;
+					break;
+			}
 			GameObject fracture = GameManager.Instance.pool.Pop(this.fracture.name);
 			fracture.transform.position = transform.position;
 			GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
 			GameManager.Instance.pool.Push(gameObject);
 		}
-
 	}
+
 }

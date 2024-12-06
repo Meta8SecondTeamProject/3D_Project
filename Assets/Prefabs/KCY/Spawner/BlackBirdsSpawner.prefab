@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5567977842062191709}
   - component: {fileID: 6915480908842919354}
   - component: {fileID: 5206857842971794127}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BlackBirdsSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfEnemy: 4
+  bossEnemy: []
 --- !u!65 &5206857842971794127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
