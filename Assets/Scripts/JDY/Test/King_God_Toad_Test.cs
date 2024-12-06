@@ -92,23 +92,26 @@ public class King_God_Toad_Test : Boss_Test
 
         float jumpTime = Time.time + jumpDuration;
 
+        //rb.AddForce(controlPoint.normalized * speed, ForceMode.Impulse);
         while (jumpTime >= Time.time)
         {
             jumpProgress += Time.deltaTime / jumpDuration;
             //배지어 곡선
             Vector3 position = Mathf.Pow(1 - jumpProgress, 2) * startPoint + 2 * (1 - jumpProgress) * jumpProgress * controlPoint + Mathf.Pow(jumpProgress, 2) * endPoint;
-            rb.AddForce(position.normalized * 60f);
+            //rb.AddForce(position.normalized * speed, ForceMode.Impulse);
             //rb.position = position;
-            //Vector3 distance = (position - transform.position).normalized;
-            //Quaternion rotation = Quaternion.LookRotation(distance);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
-            transform.LookAt(position);
+            Vector3 distance = (position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(distance);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+            //transform.LookAt(endPoint);
+            rb.MovePosition(position);
             yield return null;
         }
 
         isJumping = false;
     }
 
+    public float minValue = 2f;
     //포인터 초기화
     private void PointInitialization()
     {
@@ -119,9 +122,14 @@ public class King_God_Toad_Test : Boss_Test
             target = GameManager.Instance?.player;
         }
 
-        endPoint = target.transform.position;
+        Vector3 targetPos = (target.transform.position - transform.position).normalized;
+
+        endPoint = targetPos * minValue;
+
+        //endPoint = target.transform.position;
 
         controlPoint = (startPoint + endPoint) / 2 + (Vector3.up * jumpHeight);
+        //controlPoint = (startPoint + endPoint) / 2 + (Vector3.up * (Vector3.Distance(transform.position, target.transform.position) / 2));
     }
 
     //바로 돌아가게 되어있으므로 보간과 시간을 설정하여
