@@ -6,26 +6,56 @@ using UnityEngine.SceneManagement;
 
 [Serializable]
 public enum SceneNames { BBH_Scene, JDY_Scene, KCY_Scene }
+public enum BossKilled { killedBossBird, killedBossFish }
 public class Potal : MonoBehaviour
 {
-	public SceneNames sceneName;
-	//public Vector3 arrivePos;
-	private void OnTriggerEnter(Collider other)
-	{
-        //TODO : 보스몬스터 잡아야 포탈이 활성화되도록 로직 변경
-        //e.g : if(CompareTag("Player") && DataManager.Instance.Data.isKilledBossBird && sceneName.ToString() == "JDY_Scene")
-        //			UIManager.Instance.TransitionToLoadScene(sceneName.ToString());
-		//씬 이름 체크부분이 뭔가 이상한거같은데 엄
-        if (other.CompareTag("Player"))
-		{
+    public SceneNames sceneName;
+    public BossKilled bossKilled;
 
+    //TODO : Potal 함수로 좀 줄여주세요 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") == false)
+            return;
 
-			Debug.Log("포탈 진입");
-			//이거 꼭 필요한가요 어짜피 씬 넘어가면 Destroy되는데 괜히 게임창만 이상해지는거같음
-			//TODO : 상의후 필요하면 다시 주석 해제 요망
-			//other.gameObject.SetActive(false);
-			DataManager.Instance.Save();
-			UIManager.Instance.TransitionToLoadScene(sceneName.ToString());
-		}
-	}
+        switch (sceneName)
+        {
+            case SceneNames.JDY_Scene:
+                if (DataManager.Instance.data.isKilledBossBird)
+                {
+                    UIManager.Instance.TransitionToLoadScene(sceneName.ToString());
+                    DataManager.Instance.Save();
+                }
+                else
+                    Debug.LogWarning("(Potal) 아직 BossBird를 쓰러트린 전적이 없음");
+                break;
+
+            case SceneNames.KCY_Scene:
+                if (DataManager.Instance.data.isKilledBossFish)
+                {
+                    UIManager.Instance.TransitionToLoadScene(sceneName.ToString());
+                    DataManager.Instance.Save();
+                }
+                else
+                    Debug.LogWarning("(Potal) 아직 BossFish를 쓰러트린 전적이 없음");
+                break;
+
+            case SceneNames.BBH_Scene:
+                DataManager.Instance.Save();
+                UIManager.Instance.TransitionToLoadScene(sceneName.ToString());
+                break;
+
+            default:
+                Debug.LogWarning("(Potal) 올바르지 않은 인덱스에 접근중");
+                break;
+        }
+    }
 }
+
+//      if(CompareTag("Player") && DataManager.Instance.data.isKilledBossBird
+
+//      if (other.CompareTag("Player"))
+//{
+//	DataManager.Instance.Save();
+//	
+//}
