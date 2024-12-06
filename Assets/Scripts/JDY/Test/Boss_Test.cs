@@ -36,7 +36,7 @@ public class Boss_Test : MonoBehaviour
 
         if (GameManager.Instance.player != null)
         {
-            target = GameManager.Instance.player;
+            target = GameManager.Instance?.player;
         }
     }
 
@@ -58,5 +58,23 @@ public class Boss_Test : MonoBehaviour
     protected virtual IEnumerator WhatName()
     {
         yield return null;
+    }
+
+    protected void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DataManager.Instance.data.HP--;
+
+        }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            rb.useGravity = false;
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            rb.useGravity = true;
+        }
     }
 }
