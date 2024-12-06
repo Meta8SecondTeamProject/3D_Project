@@ -36,7 +36,7 @@ public class Boss_Test : MonoBehaviour
 
         if (GameManager.Instance.player != null)
         {
-            target = GameManager.Instance?.player;
+            target = GameManager.Instance.player;
         }
     }
 
