@@ -82,6 +82,7 @@ public class Frog_Move : MonoBehaviour
 		if (!isGround & !isWater)
 		{
 			//Debug.LogWarning("중력강화중");
+			//TODO : 전체 중력이 아닌, 오브젝트만 중력이 바뀌도록 수정해야함.
 			Physics.gravity -= new Vector3(0, 0.3f, 0);
 		}
 	}
@@ -128,6 +129,7 @@ public class Frog_Move : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
+			//TODO : 여기 중력값 수정되는것도 변경해야함.
 			Physics.gravity = new Vector3(0, -20, 0);
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 			rb.AddForce(actualMoveDir * lillyForce, ForceMode.Impulse);

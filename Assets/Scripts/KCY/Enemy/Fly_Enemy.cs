@@ -42,13 +42,9 @@ public class Fly_Enemy : Enemy
 	}
 
 
-	protected override void OnTriggerEnter(Collider collision)
+	protected override void OnCollisionEnter(Collision collision)
 	{
-		base.OnTriggerEnter(collision);
-
-	}
-	private void OnCollisionEnter(Collision collision)
-	{
+		base.OnCollisionEnter(collision);
 		if (isBomb)
 		{
 			if (collision.gameObject.CompareTag("Player"))
