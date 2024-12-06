@@ -53,12 +53,12 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	private IEnumerator RandPosSpawn_Coroutine(int enemyMaxCount)
+	private IEnumerator RandPosSpawn_Coroutine(int enemyMaxSpawnCount)
 	{
 		while (true)
 		{
 			Debug.Log($"최대 Fish 스폰 카운트 : {DataManager.Instance.fishMaxSpawnCount}");
-			Debug.Log($"비교 연산자 체크용 : {GameManager.Instance.enemy[numberOfEnemy].Count} < {enemyMaxCount}");
+			Debug.Log($"비교 연산자 체크용 : {GameManager.Instance.enemy[numberOfEnemy].Count} < {enemyMaxSpawnCount}");
 			//Debug.Log($"활성화된 트리거 수 : {DataManager.Instance.triggerOn}");
 			if (numberOfEnemy == 0)
 			{
@@ -75,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
 			//EditorApplication.isPaused = true;
 
 			Debug.Log($"이름 : {enemyPool.obj[numberOfEnemy].name} 수 : {GameManager.Instance.enemy[numberOfEnemy].Count}");
-			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
+			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxSpawnCount);
 			//TODO : 목표 Enemy량을 채우면 보스 Enemy가 스폰되도록 설정,
 			//       지금 쌉하드코딩인데 이거 고칠방법 아는사람 손,
 			//       인덱스를 쓰던 뭘 하던 하긴 해야하는데 으으윽흑흑

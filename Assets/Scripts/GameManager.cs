@@ -40,6 +40,7 @@ public class GameManager : SingletonManager<GameManager>
 		//player = FindAnyObjectByType<Player>();
 	}
 
+
 	private Vector3 spawnPos;
 	[Header("积己且 俺备府 橇府普")]
 	public GameObject playerPrefab;

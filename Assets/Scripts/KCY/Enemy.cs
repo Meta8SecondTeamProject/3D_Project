@@ -5,25 +5,47 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
+	private FliesMovement batMoveMent;
+
 	protected Rigidbody rb;
-	protected bool isFly;
-	protected float moveSpeed;
 	protected Transform target;
 	protected Vector3 moveDir;
+	protected float moveSpeed;
+	protected bool isFly;
+
 	public Transform attackSpot;
 	public GameObject fracture;
+	public GameObject shotgunShell;
+
 	public int enemyNumber;
-	protected virtual void OnEnable()
-	{
-		GameManager.Instance.enemy[enemyNumber].Add(gameObject);
-	}
+	public bool isBat;
+
+	public bool isBoss;
+	public bool isBossFish;
+	public bool isBossBird;
+	public int bossHp;
+	public int bossMaxHp;
+	public float hpAmount { get { return bossHp / bossMaxHp; } }
+	public Slider hpBar;
 
 	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
+		if (isBoss)
+		{
+			hpBar = GetComponentInChildren<Slider>();
+		}
+	}
+
+	protected virtual void OnEnable()
+	{
+		GameManager.Instance.enemy[enemyNumber].Add(gameObject);
+		if (isBat)
+			batMoveMent = GetComponentInParent<FliesMovement>();
 	}
 
 	protected virtual void Start()
@@ -70,26 +92,90 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
 		{
-			switch (enemyNumber)
+			if (isBoss == false)
 			{
-				case 0:
-					DataManager.Instance.fliesKillCount++;
-					break;
-				case 1:
-					DataManager.Instance.fishKillCount++;
-					break;
-				case 2:
-					DataManager.Instance.birdKillCount++;
-					break;
-				case 3:
-					DataManager.Instance.fliesKillCount++;
-					break;
+				GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
+				KillCountUpdater();
+				FractureGen();
+				if (DataManager.Instance.totalKillCount % 3 == 0 && isBoss == false)
+				{
+					AmmoGen(collision);
+				}
+				if (isBat == false)
+				{
+					Destroy(gameObject);
+				}
+				else if (isBat)
+				{
+					Destroy(batMoveMent.gameObject);
+				}
 			}
-			GameObject fracture = GameManager.Instance.pool.Pop(this.fracture.name);
-			fracture.transform.position = transform.position;
-			GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
-			Destroy(gameObject);
+			else
+			{
+				Boss();
+				if (DataManager.Instance.data.isKilledBossBird || DataManager.Instance.data.isKilledBossFish)
+				{
+					for (int i = 0; i < 4; i++)
+					{
+						AmmoGen(collision);
+					}
+				}
+			}
 		}
 	}
 
+	private void Boss()
+	{
+		bossHp--;
+		if (bossHp <= 0)
+		{
+			if (isBossBird)
+			{
+				DataManager.Instance.data.isKilledBossBird = true;
+			}
+			else if (isBossFish)
+			{
+				DataManager.Instance.data.isKilledBossFish = true;
+			}
+		}
+
+
+	}
+
+	private void AmmoGen(Collision collision)
+	{
+		Debug.Log($"ÃÑ¾Ë »ý¼ºµÊ {shotgunShell.name}");
+		GameObject shell = GameManager.Instance.pool.Pop(shotgunShell.name);
+		shell.transform.position = collision.gameObject.transform.position;
+	}
+
+	private void KillCountUpdater()
+	{
+		switch (enemyNumber)
+		{
+			case 0:
+				DataManager.Instance.fliesKillCount++;
+				DataManager.Instance.totalKillCount++;
+				break;
+			case 1:
+				DataManager.Instance.fishKillCount++;
+				DataManager.Instance.totalKillCount++;
+				break;
+			case 2:
+				DataManager.Instance.birdKillCount++;
+				DataManager.Instance.totalKillCount++;
+				break;
+			case 3:
+				DataManager.Instance.fliesKillCount++;
+				DataManager.Instance.totalKillCount++;
+				break;
+			default:
+				break;
+		}
+	}
+	private void FractureGen()
+	{
+		GameObject fracture = GameManager.Instance.pool.Pop(this.fracture.name);
+		fracture.transform.position = transform.position;
+	}
 }

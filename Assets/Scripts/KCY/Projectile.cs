@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
 	private Rigidbody rb;
 	private SphereCollider m_coll;
 	public LayerMask includeLayer;
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour
 	{
 		m_particle.Play();
 		explosion.SetActive(false);
+		m_coll.enabled = true;
 		StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
 	}
 	private void OnDisable()
@@ -36,7 +38,7 @@ public class Projectile : MonoBehaviour
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);
-			StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
+			m_coll.enabled = false;
 		}
 		else
 		{
