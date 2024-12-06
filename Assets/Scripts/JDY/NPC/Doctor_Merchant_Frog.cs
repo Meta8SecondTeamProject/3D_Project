@@ -21,6 +21,8 @@ public class Doctor_Merchant_Frog : NPC
             DataManager.Instance.data.HP += interactionValue;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
+            GameManager.Instance.player.bodyChange.BodyChange();
+            return;
         }
 
         NotEnoughMoney();
