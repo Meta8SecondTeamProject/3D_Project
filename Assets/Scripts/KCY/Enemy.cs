@@ -27,18 +27,14 @@ public abstract class Enemy : MonoBehaviour
 	public bool isBoss;
 	public bool isBossFish;
 	public bool isBossBird;
-	public int bossHp;
-	public int bossMaxHp;
+	public float bossHp;
+	public float bossMaxHp;
 	public float hpAmount { get { return bossHp / bossMaxHp; } }
-	public Slider hpBar;
+	public Image hpBar;
 
 	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
-		if (isBoss)
-		{
-			hpBar = GetComponentInChildren<Slider>();
-		}
 	}
 
 	protected virtual void OnEnable()
@@ -94,6 +90,7 @@ public abstract class Enemy : MonoBehaviour
 		{
 			if (isBoss == false)
 			{
+				Debug.Log("¤¾¤·");
 				GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
 				KillCountUpdater();
 				FractureGen();
@@ -127,16 +124,21 @@ public abstract class Enemy : MonoBehaviour
 	private void Boss()
 	{
 		bossHp--;
+		hpBar.fillAmount = hpAmount;
+		Debug.Log("¾Æ¾ß");
 		if (bossHp <= 0)
 		{
 			if (isBossBird)
 			{
+
 				DataManager.Instance.data.isKilledBossBird = true;
 			}
 			else if (isBossFish)
 			{
 				DataManager.Instance.data.isKilledBossFish = true;
 			}
+			FractureGen();
+			Destroy(gameObject);
 		}
 
 
@@ -154,8 +156,9 @@ public abstract class Enemy : MonoBehaviour
 		switch (enemyNumber)
 		{
 			case 0:
-				DataManager.Instance.fliesKillCount++;
+				DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
+				UIManager.Instance.GameSceneTextUpdate();
 				break;
 			case 1:
 				DataManager.Instance.fishKillCount++;
@@ -166,8 +169,9 @@ public abstract class Enemy : MonoBehaviour
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 3:
-				DataManager.Instance.fliesKillCount++;
+				DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
+				UIManager.Instance.GameSceneTextUpdate();
 				break;
 			default:
 				break;
