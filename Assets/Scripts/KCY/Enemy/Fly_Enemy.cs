@@ -1,21 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fly_Enemy : Enemy
 {
-	public bool isBat;
-	public bool isBomb;
-	public bool isBird;
-	//실제 콜라이더 붙어있는 곳이 아닌 부모 오브젝트 가져오는 용도
-	public FliesMovement batMoveMent;
-	protected override void Awake()
-	{
-		base.Awake();
-		if (isBat)
-			batMoveMent = GetComponentInParent<FliesMovement>();
-	}
 
+	public bool isBomb;
+	//실제 콜라이더 붙어있는 곳이 아닌 부모 오브젝트 가져오는 용도
+	protected override void OnEnable()
+	{
+		if (isBoss == false)
+		{
+			base.OnEnable();
+		}
+	}
 	protected override void Start()
 	{
 		isFly = true;
@@ -44,14 +44,18 @@ public class Fly_Enemy : Enemy
 
 	protected override void OnCollisionEnter(Collision collision)
 	{
-		base.OnCollisionEnter(collision);
+		if (isBoss == false)
+		{
+			base.OnCollisionEnter(collision);
+		}
+
 		if (isBomb)
 		{
 			if (collision.gameObject.CompareTag("Player"))
 			{
 				DataManager.Instance.data.currentHP--;
-				GameManager.Instance.player.TakeDamage();
-				GameManager.Instance.pool.Push(gameObject);
+				GameManager.Instance.player.TakeDamage(true);
+				Destroy(gameObject);
 			}
 		}
 	}

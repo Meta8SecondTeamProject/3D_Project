@@ -1921,9 +1921,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582340555683213385}
-  - component: {fileID: 7264139721400228760}
   - component: {fileID: 6180041581928004250}
   - component: {fileID: 5504071277677326565}
+  - component: {fileID: 118235780224851127}
   m_Layer: 8
   m_Name: Spook
   m_TagString: AttackPos
@@ -1940,34 +1940,13 @@ Transform:
   m_GameObject: {fileID: 8697124834493462002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.865021, y: 26.687288, z: -197.59387}
+  m_LocalPosition: {x: -143.50711, y: 27.955658, z: 192.49872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4310588849821823551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7264139721400228760
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697124834493462002}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 2.3, z: 0}
 --- !u!54 &6180041581928004250
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1984,7 +1963,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1994,7 +1973,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5504071277677326565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,13 +1986,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf840b5bb5b529045b86f8d0c1e3f05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpot: {fileID: 259677963101334384}
-  fracture: {fileID: 3880124878525423660, guid: 269bf1275ad7b424394911d4eb5f1003, type: 3}
-  enemyNumber: 3
   isBat: 0
+  attackSpot: {fileID: 259677963101334384}
+  fracture: {fileID: 1465724068998150309, guid: 269bf1275ad7b424394911d4eb5f1003, type: 3}
+  enemyNumber: 3
+  shotgunShell: {fileID: 310641882191372835, guid: 09be0627e034ad04a8d76d5b6a1ef8a9, type: 3}
   isBomb: 1
-  isBird: 0
-  batMoveMent: {fileID: 0}
+--- !u!136 &118235780224851127
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697124834493462002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8153
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 24614
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 5.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.08, z: 0}
 --- !u!1 &8722999520480825639
 GameObject:
   m_ObjectHideFlags: 0

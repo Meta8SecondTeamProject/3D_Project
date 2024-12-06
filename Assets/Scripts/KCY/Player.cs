@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private bool damageAble;
 	public GameObject bloodExplosion;
-
+	public GameObject bombEffect;
 
 	private void Awake()
 	{
@@ -44,13 +44,18 @@ public class Player : MonoBehaviour
 			}
 			if (damageAble)
 			{
-				TakeDamage();
+				TakeDamage(false);
 			}
 		}
 	}
 
-	public void TakeDamage()
+	public void TakeDamage(bool effect)
 	{
+		bombEffect.SetActive(false);
+		if (effect)
+		{
+			bombEffect.SetActive(effect);
+		}
 		DataManager.Instance.data.currentHP--;
 		bloodExplosion.SetActive(true);
 		rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
