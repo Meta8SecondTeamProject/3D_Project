@@ -28,6 +28,8 @@ public class King_God_Toad_Test : Boss_Test
     private Vector3 controlPoint;
 
     private bool isJumping;
+
+    private const float gravity = 9.8f;
     #endregion
 
     protected override void Start()
@@ -63,6 +65,7 @@ public class King_God_Toad_Test : Boss_Test
         print("코루틴 활성화");
         while (hp > 0)
         {
+
             print("코루틴 반복문 실행");
             StartCoroutine(LookAtPlayer());
             yield return new WaitUntil(() => isJumping);
@@ -78,10 +81,14 @@ public class King_God_Toad_Test : Boss_Test
     //점프하는 것처럼 보이게 할 예정
     private IEnumerator JumpToPlayer()
     {
+
+
         print("JumpToPlayer 코루틴 실행");
         float jumpProgress = 0f;
 
         PointInitialization();
+
+        rb.velocity = Vector3.zero;
 
         float jumpTime = Time.time + jumpDuration;
 
@@ -90,9 +97,12 @@ public class King_God_Toad_Test : Boss_Test
             jumpProgress += Time.deltaTime / jumpDuration;
             //배지어 곡선
             Vector3 position = Mathf.Pow(1 - jumpProgress, 2) * startPoint + 2 * (1 - jumpProgress) * jumpProgress * controlPoint + Mathf.Pow(jumpProgress, 2) * endPoint;
-            //rb.AddForce(position * Time.fixedDeltaTime);
-            rb.position = position;
-            transform.LookAt(position);
+            rb.AddForce(position * Time.fixedDeltaTime);
+            //rb.position = position;
+            Vector3 distance = (position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(distance);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+            //transform.LookAt(position);
             yield return null;
         }
 
@@ -121,11 +131,22 @@ public class King_God_Toad_Test : Boss_Test
     //몸체는 플레이어의 x,z 축만 설정하고 헤드는 플레이어를 바라보게 설정 예정
     private IEnumerator LookAtPlayer()
     {
+        if (target == null)
+        {
+            Debug.LogError("Toad_Test / LookAtPlayer / target == null");
+            target = GameManager.Instance?.player;
+        }
+
         print("LookAtPlayer 코루틴 실행");
         float delay = Time.time + lookTime;
         while (delay >= Time.time)
         {
-            transform.LookAt(target.transform);
+            //rb.AddForce(Vector3.down * gravity);
+
+            Vector3 distance = (target.transform.position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(new Vector3(distance.x, 0f, distance.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+            //transform.LookAt(target.transform);
             yield return null;
         }
         isJumping = true;

@@ -18,7 +18,8 @@ public class Boss_Test : MonoBehaviour
     }
     protected virtual void Start()
     {
-        target = GameManager.Instance?.player;
+        if (GameManager.Instance != null && GameManager.Instance.player != null)
+            target = GameManager.Instance.player;
         StartCoroutine(WhatName());
     }
 
