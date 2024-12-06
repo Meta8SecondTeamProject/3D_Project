@@ -529,7 +529,7 @@ Transform:
   m_GameObject: {fileID: 7636293178683201813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.5412, y: 25.501987, z: 4.0847473}
+  m_LocalPosition: {x: -135.68564, y: 29.140976, z: -157.71747}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -610,11 +610,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb31989243cd1d143a78a04ed60afdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBat: 0
   attackSpot: {fileID: 8737531395605709947}
   fracture: {fileID: 8421356878412980025, guid: 824b6844d2a413944978cf5bda745dc6, type: 3}
-  enemyNumber: 1
   shotgunShell: {fileID: 310641882191372835, guid: 09be0627e034ad04a8d76d5b6a1ef8a9, type: 3}
+  enemyNumber: 1
+  isBat: 0
+  isBoss: 0
+  isBossFish: 0
+  isBossBird: 0
+  bossHp: 0
+  bossMaxHp: 0
+  hpBar: {fileID: 0}
   jumpCooldown: 15
   jumpForce: 20
   forceGravity: 10

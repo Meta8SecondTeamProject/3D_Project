@@ -44,10 +44,8 @@ public class Fly_Enemy : Enemy
 
 	protected override void OnCollisionEnter(Collision collision)
 	{
-		if (isBoss == false)
-		{
-			base.OnCollisionEnter(collision);
-		}
+
+		base.OnCollisionEnter(collision);
 
 		if (isBomb)
 		{
