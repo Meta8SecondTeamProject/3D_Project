@@ -16,6 +16,7 @@ public class ObjectPool : MonoBehaviour
 		{
 			originalPool.Add(obj[i].name, obj[i]);
 			poolDic.Add(obj[i].name, new());
+
 		}
 	}
 
@@ -36,10 +37,11 @@ public class ObjectPool : MonoBehaviour
 	}
 	public void Push(GameObject obj)
 	{
-		obj.gameObject.SetActive(false);
+		obj.SetActive(false);
+
 		obj.transform.SetParent(transform);
 		poolDic[obj.name].Add(obj);
-		Debug.Log($"옵젝 이름 : {obj.name}");
+		Debug.Log($"푸쉬된 옵젝 이름 : {obj.name} 활성화 유무 : {obj.activeSelf}");
 	}
 	public IEnumerator Push(GameObject obj, float t)
 	{

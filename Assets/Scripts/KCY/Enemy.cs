@@ -66,9 +66,9 @@ public abstract class Enemy : MonoBehaviour
 	}
 
 
-	protected virtual void OnTriggerEnter(Collider collision)
+	protected virtual void OnCollisionEnter(Collision collision)
 	{
-		if (collision.CompareTag("Projectile"))
+		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
 		{
 			switch (enemyNumber)
 			{
@@ -88,7 +88,7 @@ public abstract class Enemy : MonoBehaviour
 			GameObject fracture = GameManager.Instance.pool.Pop(this.fracture.name);
 			fracture.transform.position = transform.position;
 			GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
-			GameManager.Instance.pool.Push(gameObject);
+			Destroy(gameObject);
 		}
 	}
 

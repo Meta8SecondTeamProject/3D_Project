@@ -21,15 +21,16 @@ public class Projectile : MonoBehaviour
 	{
 		m_particle.Play();
 		explosion.SetActive(false);
+		StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
 	}
 	private void OnDisable()
 	{
 		explosion.SetActive(false);
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void OnCollisionEnter(Collision other)
 	{
-		if (other.CompareTag("Enemy"))
+		if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
 			Debug.Log("트리거 적 감지");
 			rb.velocity = Vector3.zero;
@@ -43,7 +44,6 @@ public class Projectile : MonoBehaviour
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);
-			StartCoroutine(GameManager.Instance.pool.Push(this.gameObject, 1.5f));
 		}
 	}
 }

@@ -744,7 +744,10 @@ MonoBehaviour:
   attackSpot: {fileID: 284254959519770204}
   fracture: {fileID: 0}
   enemyNumber: 0
+  isBat: 0
   isBomb: 0
+  isBird: 0
+  batMoveMent: {fileID: 0}
 --- !u!54 &4509679810146003697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -761,7 +764,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
