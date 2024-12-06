@@ -28,45 +28,27 @@ public class King_God_Toad_Test : Boss_Test
     private Vector3 controlPoint;
 
     private bool isJumping;
-
-    private const float gravity = 9.8f;
     #endregion
 
     protected override void Start()
     {
-
         BodyChange();
-
         isJumping = false;
-
         base.Start();
-        print("RigidBody" + rb.name);
-        print(rb);
     }
 
     private void BodyChange()
     {
         if (bodys == null) return;
 
-        if (hp > 0)
-        {
-            bodys[0].SetActive(true);
-            bodys[1].SetActive(false);
-        }
-        else
-        {
-            bodys[0].SetActive(false);
-            bodys[1].SetActive(true);
-        }
+        bodys[0].SetActive(hp > 0);
+        bodys[1].SetActive(hp <= 0);
     }
 
     protected override IEnumerator WhatName()
     {
-        print("코루틴 활성화");
         while (hp > 0)
         {
-
-            print("코루틴 반복문 실행");
             StartCoroutine(LookAtPlayer());
             yield return new WaitUntil(() => isJumping);
             StartCoroutine(JumpToPlayer());
@@ -81,15 +63,9 @@ public class King_God_Toad_Test : Boss_Test
     //점프하는 것처럼 보이게 할 예정
     private IEnumerator JumpToPlayer()
     {
-
-
-        print("JumpToPlayer 코루틴 실행");
         float jumpProgress = 0f;
-
         PointInitialization();
-
         rb.velocity = Vector3.zero;
-
         float jumpTime = Time.time + jumpDuration;
 
         //rb.AddForce(controlPoint.normalized * speed, ForceMode.Impulse);
@@ -98,20 +74,25 @@ public class King_God_Toad_Test : Boss_Test
             jumpProgress += Time.deltaTime / jumpDuration;
             //배지어 곡선
             Vector3 position = Mathf.Pow(1 - jumpProgress, 2) * startPoint + 2 * (1 - jumpProgress) * jumpProgress * controlPoint + Mathf.Pow(jumpProgress, 2) * endPoint;
-            //rb.AddForce(position.normalized * speed, ForceMode.Impulse);
-            //rb.position = position;
+            //매 프레임마다 호출시 강제로 위치를 변경하므로 물리 연산과 충돌하여 버벅임 처럼 보임.
+            //rb.MovePosition(position);
+
+            Vector3 velocity = (position - rb.position) / Time.fixedDeltaTime;
+
+            rb.velocity = velocity;
+
             Vector3 distance = (position - transform.position).normalized;
-            Quaternion rotation = Quaternion.LookRotation(distance);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
-            //transform.LookAt(endPoint);
-            rb.MovePosition(position);
-            yield return null;
+            if (distance.sqrMagnitude > 0.01f)
+            {
+                Quaternion rotation = Quaternion.LookRotation(distance);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+            }
+            yield return new WaitForFixedUpdate();
         }
 
         isJumping = false;
     }
 
-    public float minValue = 2f;
     //포인터 초기화
     private void PointInitialization()
     {
@@ -122,14 +103,9 @@ public class King_God_Toad_Test : Boss_Test
             target = GameManager.Instance?.player;
         }
 
-        Vector3 targetPos = (target.transform.position - transform.position).normalized;
-
-        endPoint = targetPos * minValue;
-
-        //endPoint = target.transform.position;
+        endPoint = target.transform.position;
 
         controlPoint = (startPoint + endPoint) / 2 + (Vector3.up * jumpHeight);
-        //controlPoint = (startPoint + endPoint) / 2 + (Vector3.up * (Vector3.Distance(transform.position, target.transform.position) / 2));
     }
 
     //바로 돌아가게 되어있으므로 보간과 시간을 설정하여
@@ -145,7 +121,6 @@ public class King_God_Toad_Test : Boss_Test
             target = GameManager.Instance?.player;
         }
 
-        print("LookAtPlayer 코루틴 실행");
         float delay = Time.time + lookTime;
         while (delay >= Time.time)
         {

@@ -29,7 +29,7 @@ public class UIManager : SingletonManager<UIManager>
     private void Start()
     {
         ChangeScene();
-        OnOffInteractionText();
+        OnOffInteractionText(false);
     }
 
     private void CurrentSceneUI()
@@ -104,9 +104,9 @@ public class UIManager : SingletonManager<UIManager>
         interactionText.text = str;
     }
 
-    public void OnOffInteractionText()
+    public void OnOffInteractionText(bool OnOff)
     {
-        gameBaseText.SetActive(!gameBaseText.activeSelf);
+        gameBaseText.SetActive(OnOff);
         if (gameBaseText.activeSelf == false)
         {
             interactionText.text = null;
