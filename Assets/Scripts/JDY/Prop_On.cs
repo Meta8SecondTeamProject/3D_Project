@@ -21,39 +21,54 @@ public class Prop_On : MonoBehaviour
     private void Start()
     {
         arrivePos = transform.position + (Vector3.up * movePos);
-        data = DataManager.Instance.birdKillCount;
-        foreach (var text in texts)
-        {
-            text.text = $"죽이다 {data}\n 새끼";
-        }
+        DataSetting();
+        TextSetting(true);
     }
 
     private void DataSetting()
     {
-
+        switch (enemyType)
+        {
+            case EnemyType.Bird:
+                data = DataManager.Instance.birdKillCount;
+                break;
+            case EnemyType.Fish:
+                data = DataManager.Instance.fishKillCount;
+                break;
+            default:
+                Debug.LogError("Prop_On / DataSetting / enemyType missing");
+                break;
+        }
     }
 
-    //임시
-    //DataManager에서 값이 변경 될 때마다 함수를 호출하는 방식이 좋아 보이는데...
-    private void Update()
+    private void TextSetting(bool booool)
     {
-        if (DataManager.Instance.birdKillCount != data)
+        if (booool)
         {
-            data = DataManager.Instance.birdKillCount;
             foreach (var text in texts)
             {
                 text.text = $"죽이다 {data}\n 새끼";
-                //text.text = $"killd {data}\n birds/dolphins";
             }
         }
-
-        if (data <= 0)
+        else
         {
             foreach (var text in texts)
             {
                 text.text = null;
             }
+        }
+    }
 
+    //임시
+    //TODO : DataManager에서 변수를 추가하여 함수를 호출하는 방식이 좋아보임
+    private void Update()
+    {
+        DataSetting();
+        TextSetting(true);
+
+        if (data <= 0)
+        {
+            TextSetting(false);
             Instantiate(prefab).transform.position = spawnPos.position;
             Destroy(this);
         }
