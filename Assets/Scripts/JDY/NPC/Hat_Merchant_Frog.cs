@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Hat_Merchant_Frog : NPC
 {
+    [SerializeField]
+    private GameObject hat;
     protected override void Start()
     {
+        hat.SetActive(!DataManager.Instance.data.isHat);
         base.Start();
         price = 20;
     }
@@ -22,6 +25,8 @@ public class Hat_Merchant_Frog : NPC
             DataManager.Instance.data.isHat = true;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
+            GameManager.Instance.player.bodyChange.BodyChange();
+            hat.SetActive(!DataManager.Instance.data.isHat);
             return;
         }
 

@@ -92,6 +92,9 @@ public class Frog_Look : MonoBehaviour
         if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
             return;
 
+        if (DataManager.Instance.data.HP <= 0)
+            return;
+
         Zoom(isZoom);
 
     }

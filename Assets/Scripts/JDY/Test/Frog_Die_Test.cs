@@ -40,7 +40,9 @@ public class Frog_Die_Test : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 0f;
         TriggerDeathEffect();
+        print(Time.timeScale);
     }
 
 
@@ -67,5 +69,6 @@ public class Frog_Die_Test : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         obj.SetActive(false);
+        DataManager.Instance.RetryGame();
     }
 }

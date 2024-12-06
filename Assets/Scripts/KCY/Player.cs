@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool damageAble;
     public GameObject bloodExplosion;
     public GameObject bombEffect;
+    public Frog_Body_Change bodyChange;
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour
         bloodExplosion.SetActive(true);
         rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
         damageAble = false;
+        bodyChange.BodyChange();
     }
 
     private bool Knockback(Collision collision, out Rigidbody otherRb)

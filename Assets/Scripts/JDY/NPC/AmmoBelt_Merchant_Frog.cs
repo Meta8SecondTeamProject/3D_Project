@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class AmmoBelt_Merchant_Frog : NPC
 {
+    [SerializeField]
+    private GameObject belt;
     protected override void Start()
     {
+        belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
         base.Start();
         price = 20;
     }
@@ -22,6 +25,9 @@ public class AmmoBelt_Merchant_Frog : NPC
             DataManager.Instance.data.isAmmoBelt = true;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
+            GameManager.Instance.player.bodyChange.BodyChange();
+            belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
+            DataManager.Instance.data.maxAmmo = 32;
             return;
         }
 
