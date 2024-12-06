@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
 			yield return null;
 			//EditorApplication.isPaused = true;
 
-			Debug.Log(GameManager.Instance.enemy[numberOfEnemy].Count);
+			Debug.Log($"이름 : {enemyPool.obj[numberOfEnemy].name} 수 : {GameManager.Instance.enemy[numberOfEnemy].Count}");
 			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxCount);
 			//TODO : 목표 Enemy량을 채우면 보스 Enemy가 스폰되도록 설정,
 			//       지금 쌉하드코딩인데 이거 고칠방법 아는사람 손,
