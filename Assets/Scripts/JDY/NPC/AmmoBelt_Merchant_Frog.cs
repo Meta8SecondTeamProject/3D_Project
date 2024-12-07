@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoBelt_Merchant_Frog : NPC
@@ -8,9 +6,9 @@ public class AmmoBelt_Merchant_Frog : NPC
     private GameObject belt;
     protected override void Start()
     {
-        belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
         base.Start();
         price = 20;
+        belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
     }
 
     public override void Interaction()

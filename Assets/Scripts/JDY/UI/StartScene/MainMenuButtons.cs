@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +22,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         continueButton.gameObject.SetActive(false);
         //저장된 데이터가 있을 떄 활성화
-        if (DataManager.Instance.data.isClear == true)
+        if (DataManager.Instance.data.isPlaying == true)
         {
             continueButton.gameObject.SetActive(true);
             continueButton.onClick.RemoveAllListeners();
@@ -45,11 +43,10 @@ public class MainMenuButtons : MonoBehaviour
     }
 
     private void ContinueButtonOnClick()
-    { 
-        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading(DataManager.Instance.data.currentSceneName));
+    {
         UIManager.Instance.TransitionToLoadScene(DataManager.Instance.data.currentSceneName);
     }
-    
+
 
     private void NewGameButtonOnClick()
     {

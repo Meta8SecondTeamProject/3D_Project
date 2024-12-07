@@ -1,8 +1,4 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -70,7 +66,7 @@ public class DataManager : SingletonManager<DataManager>
     private void NewGamePositionSet()
     {
 
-        if (DataManager.Instance.data.isClear == false)
+        if (DataManager.Instance.data.isPlaying == false)
         {
             playerStartPos[0] = new Vector3(27, 45, 5);
         }
@@ -88,7 +84,7 @@ public class DataManager : SingletonManager<DataManager>
 
     public void Save()
     {
-        data.isClear = true;
+        data.isPlaying = true;
         data.currentSceneName = SceneManager.GetActiveScene().name;
         SaveManager.SaveGame(data);
     }
@@ -148,8 +144,15 @@ public class DataManager : SingletonManager<DataManager>
         data.ammo = 4;
         Save();
         Load();
+        UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
     }
 
+    public void EndGame()
+    {
+        data.isClear = true;
+        data.isPlaying = false;
+        UIManager.Instance.TransitionToLoadScene("GameEndScene");
+    }
 }
 
 [Serializable] //이 클래스가 JSON으로 변활될 수 있도록 설정하는데 필요함
@@ -168,10 +171,11 @@ public class Data
     public bool isAmmoBelt;
     public bool isDoubleJump;
 
-    public bool isClear;
+    public bool isPlaying;
     public bool isHardClear;
 
     public bool isKilledBossBird;
     public bool isKilledBossFish;
     //TODO : 보스Enemy를 잡았는지 체크해주는 변수나 로직 작성요망
+    public bool isClear;
 }

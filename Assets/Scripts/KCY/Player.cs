@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -62,11 +60,20 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
         damageAble = false;
         bodyChange.BodyChange();
+        if (DataManager.Instance.data.HP <= 0)
+            OffAction();
     }
 
     private bool Knockback(Collision collision, out Rigidbody otherRb)
     {
         otherRb = collision.collider.GetComponentInParent<Rigidbody>();
         return true;
+    }
+
+    private void OffAction()
+    {
+        frogMove.enabled = false;
+        frogLook.enabled = false;
+        frogAction.enabled = false;
     }
 }

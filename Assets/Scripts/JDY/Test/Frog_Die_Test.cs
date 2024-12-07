@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Frog_Die_Test : MonoBehaviour
@@ -11,6 +10,8 @@ public class Frog_Die_Test : MonoBehaviour
     public Vector3 explosionOffset = Vector3.up;
 
     public float delay = 5f;
+
+    private int remainingObjects;
 
     private void OnEnable()
     {
@@ -40,15 +41,15 @@ public class Frog_Die_Test : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 0f;
         TriggerDeathEffect();
-        print(Time.timeScale);
     }
 
 
     [ContextMenu("Test/사지분해")]
     public void TriggerDeathEffect()
     {
+        remainingObjects = rigidbodys.Length;
+
         Vector3 explosionCenter = transform.position + explosionOffset;
 
         foreach (Rigidbody rigidbody in rigidbodys)
@@ -63,12 +64,18 @@ public class Frog_Die_Test : MonoBehaviour
 
             StartCoroutine(DisableObject(rigidbody.gameObject));
         }
+
+
     }
 
     private IEnumerator DisableObject(GameObject obj)
     {
         yield return new WaitForSeconds(delay);
         obj.SetActive(false);
-        DataManager.Instance.RetryGame();
+        remainingObjects--;
+        if (remainingObjects <= 0 && CompareTag("Frog"))
+        {
+            DataManager.Instance.RetryGame();
+        }
     }
 }

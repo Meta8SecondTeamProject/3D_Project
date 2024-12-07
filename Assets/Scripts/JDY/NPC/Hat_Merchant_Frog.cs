@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hat_Merchant_Frog : NPC
@@ -8,9 +6,9 @@ public class Hat_Merchant_Frog : NPC
     private GameObject hat;
     protected override void Start()
     {
-        hat.SetActive(!DataManager.Instance.data.isHat);
         base.Start();
         price = 20;
+        hat.SetActive(!DataManager.Instance.data.isHat);
     }
 
     public override void Interaction()
