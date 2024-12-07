@@ -8,6 +8,14 @@ public class Boss_Spawn : NPC
 {
 	private bool isBoos;
 	public GameObject spawnPos;
+	public GameObject birdSpawner;
+	public GameObject fishSpawner;
+
+	private void Awake()
+	{
+		birdSpawner.SetActive(false);
+		fishSpawner.SetActive(false);
+	}
 
 	protected override void Start()
 	{
@@ -26,8 +34,10 @@ public class Boss_Spawn : NPC
 		if (isBoos)
 		{
 			isBoos = false;
+			birdSpawner.SetActive(true);
+			fishSpawner.SetActive(true);
 			Instantiate(chatWindow).transform.position = spawnPos.transform.position;
-			UIManager.Instance.ChangeInteractionText(str = "Are You Ready?");
+			UIManager.Instance.ChangeInteractionText(str = "The King Is Comming...");
 		}
 	}
 

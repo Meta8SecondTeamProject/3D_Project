@@ -25,7 +25,6 @@ public class Frog_Action : MonoBehaviour
 	private InputActionAsset controlDefine;
 	private InputAction jumpAction;
 	private InputAction fireAction;
-	private InputAction moveAction;
 
 	[Header("반동으로 인한 넉백, 점프, 흔들림")]
 	[Range(0, 100)]
@@ -47,7 +46,6 @@ public class Frog_Action : MonoBehaviour
 	private float fireInput;
 
 	private Frog_Move frogMove;
-	private Frog_Look frogLook;
 
 	public LayerMask groundMask;
 
@@ -61,7 +59,6 @@ public class Frog_Action : MonoBehaviour
 		controlDefine = GetComponent<PlayerInput>().actions;
 		jumpAction = controlDefine.FindAction("Jump");
 		fireAction = controlDefine.FindAction("Fire");
-		moveAction = controlDefine.FindAction("Move");
 		frogMove = GetComponent<Frog_Move>();
 	}
 

@@ -21,9 +21,15 @@ public class DistanceCulling : SingletonManager<DistanceCulling>
 		//아마? 뜰?거임
 		GameObject playerObj = GameObject.FindWithTag("Player");
 
+		//TODO : (확인부탁드립니다.)조건 추가해서 플레이어가 생성되지 않는 씬은 플레이어를 찾아오지 않도록 수정
+		//플레이어를 못찾아오면 오브젝트를 찾아오도록 수정
 		if (playerObj != null)
+		{
 			player = playerObj.transform;
-		else if (SceneManager.GetActiveScene().name != "LoadingScene" && playerObj == null)
+		}
+		else if (SceneManager.GetActiveScene().name != "GameStartScene"
+			&& SceneManager.GetActiveScene().name != "LoadingScene"
+			&& SceneManager.GetActiveScene().name != "GameEndingScene" && playerObj == null)
 		{
 			playerObj = FindAnyObjectByType<Player>().gameObject;
 			Debug.LogWarning("플레이어를 찾을수 없음 (Distance Culling)");
