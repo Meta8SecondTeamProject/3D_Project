@@ -13756,7 +13756,7 @@ GameObject:
   - component: {fileID: 4093764927353175013}
   - component: {fileID: 2245905103859371823}
   - component: {fileID: 300600684526038757}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Ice_Floe_Big_02
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -16382,7 +16382,7 @@ GameObject:
   - component: {fileID: 3290242671500084893}
   - component: {fileID: 742457386002330199}
   - component: {fileID: 1246724686225019779}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Pebbles_Snow_02
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -16626,7 +16626,7 @@ GameObject:
   - component: {fileID: 3353687493623455586}
   - component: {fileID: 679557869553085352}
   - component: {fileID: 1328203690299345532}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_03
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -16645,7 +16645,7 @@ GameObject:
   - component: {fileID: 3353687493344108247}
   - component: {fileID: 679557870347545117}
   - component: {fileID: 1328203691627203529}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_03
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -16708,7 +16708,7 @@ GameObject:
   - component: {fileID: 3353687493353428430}
   - component: {fileID: 679557870358929668}
   - component: {fileID: 1328203691643044048}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_03
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -19117,7 +19117,7 @@ GameObject:
   - component: {fileID: 2389437226245796319}
   - component: {fileID: 489778789009147157}
   - component: {fileID: 2147363004646614209}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Iceberg_04
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -20393,6 +20393,7 @@ MonoBehaviour:
   ambassadorWindow: {fileID: 2858693855263476374}
   isMessage: 0
   isInteraction: 0
+  belt: {fileID: 3465906073472996515}
 --- !u!33 &2726677877089578778
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20428,7 +20429,7 @@ GameObject:
   - component: {fileID: 1935792506409824110}
   - component: {fileID: 4411740167505402788}
   - component: {fileID: 2754331873270626930}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_02
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -20469,9 +20470,9 @@ GameObject:
   - component: {fileID: 1935792505965045330}
   - component: {fileID: 4411740167396135576}
   - component: {fileID: 2754331873614738254}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_02
-  m_TagString: Untagged
+  m_TagString: LilyPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24236,7 +24237,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6604128035164274550, guid: 540bd91d62026e24d875939f0fc9d887, type: 3}
 --- !u!1 &4328908596080475373
@@ -24251,6 +24252,7 @@ GameObject:
   - component: {fileID: 69617053534628338}
   - component: {fileID: 2815773543565712696}
   - component: {fileID: 4328908596080475370}
+  - component: {fileID: 4328908596080475374}
   m_Layer: 0
   m_Name: PP_Santa_Statue_01
   m_TagString: Culling
@@ -24258,6 +24260,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &4328908596080475374
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328908596080475373}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!23 &4330660504332174882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25647,7 +25676,7 @@ GameObject:
   - component: {fileID: 8716115746514940929}
   - component: {fileID: 6850303093673214155}
   - component: {fileID: 4904936965201813789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Tree_Leafless_Snow_02
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -26109,7 +26138,7 @@ GameObject:
   - component: {fileID: 8722352283084650150}
   - component: {fileID: 6838982639240807020}
   - component: {fileID: 5037291618851136442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Iceberg_07 (2)
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -27299,7 +27328,7 @@ GameObject:
   - component: {fileID: 8551577617729772353}
   - component: {fileID: 5857417029352828811}
   - component: {fileID: 5352886259176541789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Tree_Snow_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31503,7 +31532,7 @@ GameObject:
   - component: {fileID: 7288217958518262453}
   - component: {fileID: 4809849726533533311}
   - component: {fileID: 6467442463255945109}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Tree_Snow_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42220,9 +42249,9 @@ GameObject:
   - component: {fileID: 5678793387069648665}
   - component: {fileID: 7578387427443563475}
   - component: {fileID: 8226716726681729537}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PP_Snowman_01
-  m_TagString: Untagged
+  m_TagString: LilyPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43620,7 +43649,7 @@ GameObject:
   - component: {fileID: 5359302577803705671}
   - component: {fileID: 7891685357614516621}
   - component: {fileID: 8539979884916402265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PP_Tree_Leafless_Snow_01
   m_TagString: Culling
   m_Icon: {fileID: 0}
@@ -44907,7 +44936,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8096464196911343070, guid: 545c7bd381d949c458492364d480103a, type: 3}
 --- !u!1 &8859442435041983867
