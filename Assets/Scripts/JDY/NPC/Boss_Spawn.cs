@@ -22,7 +22,7 @@ public class Boss_Spawn : NPC
         if (isBoos)
         {
             isBoos = false;
-            Instantiate(ambassadorWindow).transform.position = spawnPos.transform.position;
+            Instantiate(chatWindow).transform.position = spawnPos.transform.position;
         }
     }
 

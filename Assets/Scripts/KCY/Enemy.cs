@@ -88,6 +88,7 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
 		{
+			Debug.Log("적 총알 감지");
 			if (isBoss == false)
 			{
 				Debug.Log("ㅎㅇ");
@@ -109,6 +110,7 @@ public abstract class Enemy : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("나 보스야");
 				Boss();
 				if (DataManager.Instance.data.isKilledBossBird || DataManager.Instance.data.isKilledBossFish)
 				{

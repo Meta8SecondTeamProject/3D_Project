@@ -51,7 +51,6 @@ public class Fly_Enemy : Enemy
 		{
 			if (collision.gameObject.CompareTag("Player"))
 			{
-				DataManager.Instance.data.HP--;
 				GameManager.Instance.player.TakeDamage(true);
 				Destroy(gameObject);
 			}
