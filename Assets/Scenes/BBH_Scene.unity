@@ -5480,6 +5480,7 @@ GameObject:
   - component: {fileID: 1588772152}
   - component: {fileID: 1588772151}
   - component: {fileID: 1588772150}
+  - component: {fileID: 1588772154}
   m_Layer: 0
   m_Name: KCY_Potal
   m_TagString: Untagged
@@ -5575,6 +5576,20 @@ Transform:
   - {fileID: 944698792}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 155.728, z: 0}
+--- !u!114 &1588772154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588772149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8dbe2ad2a294e48aa768ee8e3bc4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potal: {fileID: 944698791}
+  boss: 1
 --- !u!1 &1619436137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13601,6 +13616,7 @@ MonoBehaviour:
   enemyType: 0
   prefab: {fileID: 5849061151677122868, guid: 3e18e2a47cedbbc4a9978e06f7519d71, type: 3}
   spawnPos: {fileID: 972332360}
+  spawner: {fileID: 0}
 --- !u!1 &244333674539409027
 GameObject:
   m_ObjectHideFlags: 0
@@ -74769,6 +74785,7 @@ GameObject:
   - component: {fileID: 5097273099993586360}
   - component: {fileID: 7014868419096178290}
   - component: {fileID: 3719424320661499342}
+  - component: {fileID: 8816128156071808936}
   m_Layer: 0
   m_Name: JDY_Potal
   m_TagString: Untagged
@@ -74776,6 +74793,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8816128156071808936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816128156071808935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8dbe2ad2a294e48aa768ee8e3bc4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potal: {fileID: 1231784476}
+  boss: 0
 --- !u!1 &8816279091287311768
 GameObject:
   m_ObjectHideFlags: 0

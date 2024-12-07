@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [Serializable]
 public enum SceneNames { BBH_Scene, JDY_Scene, KCY_Scene }
-public enum BossKilled { killedBossBird, killedBossFish }
+public enum BossKilled { killedBossBird, killedBossFish, None }
 public class Potal : MonoBehaviour
 {
     public SceneNames sceneName;
