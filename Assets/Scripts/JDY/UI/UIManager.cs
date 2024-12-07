@@ -128,15 +128,16 @@ public class UIManager : SingletonManager<UIManager>
 		//yield return null;
 		//Debug.Log("포탈 진입 후 로딩중");
 		AsyncOperation ap = SceneManager.LoadSceneAsync("LoadingScene");
+		Debug.Log("Loading");
 		yield return new WaitUntil(() => ap.isDone);
 		//Debug.Log("포탈 진입 후 로딩 끝");
-
+		Debug.Log("Loading End");
 		//간헐적으로 UI가 없어지지 않는 문제가 발생하여 씬 로드가 끝날때까지 기다림
 		//기다릴려 했는데 에러떠서 포기
 		//yield return StartCoroutine(LoadTest());
 
 		ChangeScene();
-		yield return null;
+		yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 3f));
 		loadingController.StartLoadingScene(nextSceneName);
 
 	}
