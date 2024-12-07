@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.7866027, g: 0.8207547, b: 0.7471965, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 16895759}
   m_Layer: 3
   m_Name: SmallHouseBase (3)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 57973081}
   m_Layer: 3
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 60476339}
   m_Layer: 3
   m_Name: LargeHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1004,7 +1004,7 @@ GameObject:
   - component: {fileID: 98296143}
   m_Layer: 3
   m_Name: BlacksmithBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 111036118}
   m_Layer: 3
   m_Name: LargeHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1586,7 +1586,7 @@ GameObject:
   - component: {fileID: 124137187}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 145549317}
   m_Layer: 3
   m_Name: BlacksmithBase (3)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1860,7 +1860,7 @@ GameObject:
   - component: {fileID: 148862156}
   m_Layer: 3
   m_Name: SmallHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1971,7 +1971,7 @@ GameObject:
   - component: {fileID: 158251881}
   m_Layer: 3
   m_Name: WindmillBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2143,7 +2143,7 @@ GameObject:
   - component: {fileID: 203813303}
   m_Layer: 3
   m_Name: Post04
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2946,7 +2946,7 @@ GameObject:
   - component: {fileID: 237886137}
   m_Layer: 3
   m_Name: BlacksmithBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3238,7 +3238,7 @@ GameObject:
   - component: {fileID: 266472019}
   m_Layer: 3
   m_Name: Post01
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3662,7 +3662,7 @@ GameObject:
   - component: {fileID: 298548150}
   m_Layer: 3
   m_Name: SmallHouseBase (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3943,6 +3943,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324026555}
   m_Mesh: {fileID: 4392972968333988764, guid: c5a7cf25b63692d4f96ce6c096773fa6, type: 3}
+--- !u!1001 &326147481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7407195703432301953, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_Name
+      value: Boss_Spawn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4424801
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.81678
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.1758785
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735471584455327730, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 864af27af9ba52b42839aff407fdc590, type: 3}
 --- !u!1 &334472359
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,7 +4143,7 @@ GameObject:
   - component: {fileID: 342553556}
   m_Layer: 3
   m_Name: Post04
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4188,7 +4245,7 @@ GameObject:
   - component: {fileID: 344544613}
   m_Layer: 0
   m_Name: Medikit (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4620,9 +4677,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1921327910}
     m_Modifications:
+    - target: {fileID: 802334459122523564, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 998036603713778879, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301864319518680610, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955650298570169141, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
     - target: {fileID: 3100263497278716775, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
       propertyPath: m_Name
       value: Doctor_Merchant_Mk1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100263497278716775, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798743354394175750, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
       objectReference: {fileID: 0}
     - target: {fileID: 5918093802816989193, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4663,6 +4744,10 @@ PrefabInstance:
     - target: {fileID: 5918093802816989193, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438513570365849126, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: m_TagString
+      value: Culling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4804,7 +4889,7 @@ GameObject:
   - component: {fileID: 382459756}
   m_Layer: 3
   m_Name: SmallHouseBase (4)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5508,7 +5593,7 @@ GameObject:
   - component: {fileID: 424675392}
   m_Layer: 3
   m_Name: DockNoRailingStart (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5679,7 +5764,7 @@ GameObject:
   - component: {fileID: 443881211}
   m_Layer: 3
   m_Name: SmallHouseBase (4)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6006,7 +6091,7 @@ GameObject:
   - component: {fileID: 494589538}
   m_Layer: 3
   m_Name: BlacksmithBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6239,7 +6324,7 @@ GameObject:
   - component: {fileID: 544749030}
   m_Layer: 3
   m_Name: WindmillBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6408,7 +6493,7 @@ GameObject:
   - component: {fileID: 552617830}
   m_Layer: 3
   m_Name: Post03
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6906,9 +6991,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1921327910}
     m_Modifications:
+    - target: {fileID: 629089721161913627, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270265690493276193, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540759884466106462, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946777692841674171, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342313637923777046, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517223457336136157, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
     - target: {fileID: 5700380988440035275, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
       propertyPath: m_Name
       value: Ammo_Merchant_Mk1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700380988440035275, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864528195631925778, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942793199661629940, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195910165173695523, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
       objectReference: {fileID: 0}
     - target: {fileID: 7120540181927980240, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6950,6 +7075,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8217603206453552862, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371627870117613382, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447445764680004549, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: m_TagString
+      value: Culling
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6972,7 +7109,7 @@ GameObject:
   - component: {fileID: 582596240}
   m_Layer: 3
   m_Name: LargeHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7141,7 +7278,7 @@ GameObject:
   - component: {fileID: 615371918}
   m_Layer: 3
   m_Name: BlacksmithBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7543,7 +7680,7 @@ GameObject:
   - component: {fileID: 648880125}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7946,7 +8083,7 @@ GameObject:
   - component: {fileID: 725719016}
   m_Layer: 3
   m_Name: Propeller
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8212,7 +8349,7 @@ GameObject:
   - component: {fileID: 753531459}
   m_Layer: 3
   m_Name: DockNoRailingStart (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8913,7 +9050,7 @@ GameObject:
   - component: {fileID: 788854157}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9019,7 +9156,7 @@ GameObject:
   - component: {fileID: 789512003}
   m_Layer: 3
   m_Name: BlacksmithBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9252,7 +9389,7 @@ GameObject:
   - component: {fileID: 798166267}
   m_Layer: 3
   m_Name: BlacksmithBase (3)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9459,7 +9596,7 @@ GameObject:
   - component: {fileID: 836591828}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9734,7 +9871,7 @@ GameObject:
   - component: {fileID: 866629666}
   m_Layer: 3
   m_Name: SmallHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9874,7 +10011,7 @@ GameObject:
   - component: {fileID: 891054236}
   m_Layer: 3
   m_Name: WindmillBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10345,7 +10482,7 @@ GameObject:
   - component: {fileID: 937471700}
   m_Layer: 0
   m_Name: Prop
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10959,7 +11096,7 @@ GameObject:
   - component: {fileID: 962564718}
   m_Layer: 3
   m_Name: Post03
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12856,7 +12993,7 @@ GameObject:
   - component: {fileID: 1121497382}
   m_Layer: 0
   m_Name: Doctor_Sign (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13144,7 +13281,7 @@ GameObject:
   - component: {fileID: 1155132801}
   m_Layer: 3
   m_Name: SmallHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13352,7 +13489,7 @@ GameObject:
   - component: {fileID: 1157946274}
   m_Layer: 0
   m_Name: Prop (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13455,7 +13592,7 @@ GameObject:
   - component: {fileID: 1165674468}
   m_Layer: 3
   m_Name: SmallHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14336,7 +14473,7 @@ GameObject:
   - component: {fileID: 1236027817}
   m_Layer: 3
   m_Name: House (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14706,7 +14843,7 @@ GameObject:
   - component: {fileID: 1285850101}
   m_Layer: 3
   m_Name: SmallHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15675,7 +15812,7 @@ GameObject:
   - component: {fileID: 1396648084}
   m_Layer: 3
   m_Name: SmallHouseBase (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15817,7 +15954,7 @@ GameObject:
   - component: {fileID: 1406470935}
   m_Layer: 3
   m_Name: BlacksmithBase (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15962,7 +16099,7 @@ GameObject:
   - component: {fileID: 1411749885}
   m_Layer: 3
   m_Name: Post02
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16332,7 +16469,7 @@ GameObject:
   - component: {fileID: 1441616982}
   m_Layer: 3
   m_Name: BlacksmithBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17178,7 +17315,7 @@ GameObject:
   - component: {fileID: 1516737733}
   m_Layer: 3
   m_Name: Post01
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18118,7 +18255,7 @@ GameObject:
   - component: {fileID: 1599595876}
   m_Layer: 3
   m_Name: LargeHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18287,7 +18424,7 @@ GameObject:
   - component: {fileID: 1627346166}
   m_Layer: 3
   m_Name: BlacksmithBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18393,7 +18530,7 @@ GameObject:
   - component: {fileID: 1632656777}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18499,7 +18636,7 @@ GameObject:
   - component: {fileID: 1637697212}
   m_Layer: 3
   m_Name: SmallHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18979,7 +19116,7 @@ GameObject:
   - component: {fileID: 1733182647}
   m_Layer: 3
   m_Name: LargeHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19399,7 +19536,7 @@ GameObject:
   - component: {fileID: 1764136312}
   m_Layer: 3
   m_Name: SmallHouseBase (3)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20164,7 +20301,7 @@ GameObject:
   - component: {fileID: 1822823764}
   m_Layer: 3
   m_Name: Post02
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20733,7 +20870,7 @@ GameObject:
   - component: {fileID: 1904803842}
   m_Layer: 3
   m_Name: LargeHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21063,7 +21200,7 @@ GameObject:
   - component: {fileID: 1964250195}
   m_Layer: 3
   m_Name: SmallHouseBase (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21231,7 +21368,7 @@ GameObject:
   - component: {fileID: 1974316047}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21565,7 +21702,7 @@ GameObject:
   - component: {fileID: 2041121561}
   m_Layer: 3
   m_Name: SmallHouseBase (3)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21738,7 +21875,7 @@ GameObject:
   - component: {fileID: 2053433799}
   m_Layer: 3
   m_Name: Propeller
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22322,7 +22459,7 @@ GameObject:
   - component: {fileID: 2112149701}
   m_Layer: 3
   m_Name: Propeller
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22573,7 +22710,7 @@ GameObject:
   - component: {fileID: 2130076614}
   m_Layer: 3
   m_Name: LargeHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22831,7 +22968,7 @@ GameObject:
   - component: {fileID: 2141669216}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23046,7 +23183,7 @@ GameObject:
   - component: {fileID: 3233848380582804756}
   m_Layer: 3
   m_Name: SquareTower
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23084,7 +23221,7 @@ GameObject:
   - component: {fileID: 8621430634396876297}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23103,7 +23240,7 @@ GameObject:
   - component: {fileID: 1083010853327529188}
   m_Layer: 0
   m_Name: WellEmpty
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23122,7 +23259,7 @@ GameObject:
   - component: {fileID: 1676549258884579527}
   m_Layer: 0
   m_Name: Cannon (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23141,7 +23278,7 @@ GameObject:
   - component: {fileID: 1676549259385658084}
   m_Layer: 0
   m_Name: Cannon (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23179,7 +23316,7 @@ GameObject:
   - component: {fileID: 1676549259614659201}
   m_Layer: 0
   m_Name: Cannon
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23255,7 +23392,7 @@ GameObject:
   - component: {fileID: 3674364828025015634}
   m_Layer: 0
   m_Name: WoodPile
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23274,7 +23411,7 @@ GameObject:
   - component: {fileID: 9204870770870281294}
   m_Layer: 0
   m_Name: Anvil
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23312,7 +23449,7 @@ GameObject:
   - component: {fileID: 1412056398164508748}
   m_Layer: 0
   m_Name: Bench
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23372,7 +23509,7 @@ GameObject:
   - component: {fileID: 2109178505189051794}
   m_Layer: 0
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23391,7 +23528,7 @@ GameObject:
   - component: {fileID: 6711929398129169206}
   m_Layer: 0
   m_Name: Cart
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23429,7 +23566,7 @@ GameObject:
   - component: {fileID: 5629887980772512703}
   m_Layer: 0
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23671,7 +23808,7 @@ Transform:
   m_GameObject: {fileID: 1034782945343911}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 95.27356, y: -6.59, z: 42.064514}
+  m_LocalPosition: {x: 95.27356, y: -5.6, z: 42.064514}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -25314,7 +25451,7 @@ GameObject:
   - component: {fileID: 3886456658688904584}
   m_Layer: 3
   m_Name: AngleCollision 2
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25938,7 +26075,7 @@ GameObject:
   - component: {fileID: 1279882973986079056}
   m_Layer: 0
   m_Name: Cannon (1)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26914,7 +27051,7 @@ GameObject:
   - component: {fileID: 1981004893494539403}
   m_Layer: 0
   m_Name: Cannon
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29198,7 +29335,7 @@ GameObject:
   - component: {fileID: 3063023902192336739}
   m_Layer: 0
   m_Name: WoodPile
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30415,7 +30552,7 @@ GameObject:
   - component: {fileID: 7694746644679992796}
   m_Layer: 0
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31766,7 +31903,7 @@ GameObject:
   - component: {fileID: 5952774111461584215}
   m_Layer: 0
   m_Name: Anvil
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32058,7 +32195,7 @@ GameObject:
   - component: {fileID: 5804273384149888262}
   m_Layer: 3
   m_Name: HangingRoof
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33813,7 +33950,7 @@ GameObject:
   - component: {fileID: 742526897485668598}
   m_Layer: 3
   m_Name: CastleStairs
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34200,7 +34337,7 @@ GameObject:
   - component: {fileID: 2374900995004487675}
   m_Layer: 0
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35481,7 +35618,7 @@ GameObject:
   - component: {fileID: 1617917070290054701}
   m_Layer: 3
   m_Name: SmallHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38536,7 +38673,7 @@ GameObject:
   - component: {fileID: 6137880653993560959}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38796,7 +38933,7 @@ GameObject:
   - component: {fileID: 5111618041282458655}
   m_Layer: 0
   m_Name: Bench
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39263,7 +39400,7 @@ GameObject:
   - component: {fileID: 1528531363028860312}
   m_Layer: 3
   m_Name: Propeller
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39622,7 +39759,7 @@ GameObject:
   - component: {fileID: 299990401844665910}
   m_Layer: 0
   m_Name: Cart
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39873,7 +40010,7 @@ GameObject:
   - component: {fileID: 4505899551543108607}
   m_Layer: 3
   m_Name: LargeHouseBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41124,7 +41261,7 @@ GameObject:
   - component: {fileID: 8499310290326850842}
   m_Layer: 3
   m_Name: WindmillBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42402,7 +42539,7 @@ GameObject:
   - component: {fileID: 8834028641619741941}
   m_Layer: 0
   m_Name: Cannon (2)
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42727,7 +42864,7 @@ GameObject:
   - component: {fileID: 8982202897836543637}
   m_Layer: 3
   m_Name: BlacksmithBase
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44396,7 +44533,7 @@ GameObject:
   - component: {fileID: 1066588042766564752}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45693,7 +45830,7 @@ GameObject:
   - component: {fileID: 1356563807607571890}
   m_Layer: 3
   m_Name: AngleCollision 1
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45788,3 +45925,4 @@ SceneRoots:
   - {fileID: 1497741434}
   - {fileID: 1921327910}
   - {fileID: 1428130316}
+  - {fileID: 326147481}
