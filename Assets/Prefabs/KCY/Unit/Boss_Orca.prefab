@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 5306782148934549378}
   - component: {fileID: 6186382324160450665}
   - component: {fileID: 1026868399855032763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss_Orca
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4340732784919185278
 Transform:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   isBossBird: 0
   bossHp: 16
   bossMaxHp: 16
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 1915181896700455910}
   jumpCooldown: 7
   jumpForce: 20
   forceGravity: 10
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2296496810959623731}
   - component: {fileID: 6133469839030624675}
   - component: {fileID: 1915181896700455910}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481115189222267445}
   - component: {fileID: 4736858251710010380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3406454224116525615}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2324604190282450290}
   - component: {fileID: 4158629635359405307}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286509097659503506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fin.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 3951265808281873142}
   - component: {fileID: 1417941007005629701}
   - component: {fileID: 5256799228365339385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639749813255783090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tail.02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7193675574154329271}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fin.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1525526679766756919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51839718173101355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tail.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6599745903122371428}
   - component: {fileID: 6141517465624158481}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1650785346574825512}
   - component: {fileID: 586151500257749508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailRenderer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -981,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4330775997130305728}
   - component: {fileID: 8594066573324634685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailRenderer (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1125,7 +1125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1035241898406114189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fin.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425309608305219857}
   - component: {fileID: 3074173182248243876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   - component: {fileID: 6893908975724426957}
   - component: {fileID: 473903239306469256}
   - component: {fileID: 250596523736963721}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 62151476474550538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,7 +1441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6431277754444441909}
   - component: {fileID: 7760361089533832192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailRenderer (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 4290145224558932976}
   - component: {fileID: 9163768671410677738}
   - component: {fileID: 8751854316184406540}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,7 +1661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3433982690583269982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

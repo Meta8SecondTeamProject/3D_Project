@@ -11,6 +11,13 @@ public class Fish_Enemy : Enemy
 	{
 		base.Awake();
 	}
+	protected override void OnEnable()
+	{
+		if (isBoss == false)
+		{
+			base.OnEnable();
+		}
+	}
 
 	protected override void Start()
 	{
