@@ -62,3 +62,14 @@ public class GameManager : SingletonManager<GameManager>
 		}
 	}
 }
+
+//interface IBuiable
+//{
+//	public int BuySometing(ISellable seller);
+//}
+
+//interface ISellable
+//{
+//	public int SellSometing(IBuiable customer);
+//	public int SellPrice { get; set; }
+//}

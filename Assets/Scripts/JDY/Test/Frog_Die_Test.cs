@@ -4,71 +4,72 @@ using UnityEngine;
 
 public class Frog_Die_Test : MonoBehaviour
 {
-    private Vector3[] pos;
-    public Rigidbody[] rigidbodys;
-    public float explosionForce = 5000f;
-    public float explosionRadius = 5f;
-    public Vector3 explosionOffset = Vector3.up;
+	private Vector3[] pos;
+	public Rigidbody[] rigidbodys;
+	public float explosionForce = 5000f;
+	public float explosionRadius = 5f;
+	public Vector3 explosionOffset = Vector3.up;
 
-    public float delay = 5f;
+	public float delay = 5f;
 
-    private void OnEnable()
-    {
-        pos = new Vector3[rigidbodys.Length];
-        if (rigidbodys.Length != pos.Length)
-        {
-            Debug.LogError("Frog_Die_Test / OnEnable");
-            return;
-        }
-        for (int i = 0; i < rigidbodys.Length; i++)
-        {
-            pos[i] = rigidbodys[i].position;
-        }
-    }
+	private void OnEnable()
+	{
+		pos = new Vector3[rigidbodys.Length];
+		if (rigidbodys.Length != pos.Length)
+		{
+			Debug.LogError("Frog_Die_Test / OnEnable");
+			return;
+		}
+		for (int i = 0; i < rigidbodys.Length; i++)
+		{
+			pos[i] = rigidbodys[i].position;
+		}
+	}
 
-    private void OnDisable()
-    {
-        if (rigidbodys.Length != pos.Length)
-        {
-            Debug.LogError("Frog_Die_Test / OnDisable");
-        }
-        for (int i = 0; i < rigidbodys.Length; i++)
-        {
-            rigidbodys[i].position = pos[i];
-        }
-    }
+	private void OnDisable()
+	{
+		if (rigidbodys.Length != pos.Length)
+		{
+			Debug.LogError("Frog_Die_Test / OnDisable");
+		}
+		for (int i = 0; i < rigidbodys.Length; i++)
+		{
+			rigidbodys[i].position = pos[i];
+		}
+	}
 
-    private void Start()
-    {
-        Time.timeScale = 0f;
-        TriggerDeathEffect();
-        print(Time.timeScale);
-    }
+	private void Start()
+	{
+		Time.timeScale = 0f;
+		TriggerDeathEffect();
+		print(Time.timeScale);
+	}
 
 
-    [ContextMenu("Test/사지분해")]
-    public void TriggerDeathEffect()
-    {
-        Vector3 explosionCenter = transform.position + explosionOffset;
+	[ContextMenu("Test/사지분해")]
+	public void TriggerDeathEffect()
+	{
+		Vector3 explosionCenter = transform.position + explosionOffset;
 
-        foreach (Rigidbody rigidbody in rigidbodys)
-        {
-            if (rigidbody == null) continue;
+		foreach (Rigidbody rigidbody in rigidbodys)
+		{
+			if (rigidbody == null) continue;
 
-            rigidbody.isKinematic = false;
+			rigidbody.isKinematic = false;
 
-            rigidbody.useGravity = true;
+			rigidbody.useGravity = true;
 
-            rigidbody.AddExplosionForce(explosionForce, explosionCenter, explosionRadius);
+			rigidbody.AddExplosionForce(explosionForce, explosionCenter, explosionRadius);
 
-            StartCoroutine(DisableObject(rigidbody.gameObject));
-        }
-    }
+			StartCoroutine(DisableObject(rigidbody.gameObject));
+		}
 
-    private IEnumerator DisableObject(GameObject obj)
-    {
-        yield return new WaitForSeconds(delay);
-        obj.SetActive(false);
-        DataManager.Instance.RetryGame();
-    }
+	}
+
+	private IEnumerator DisableObject(GameObject obj)
+	{
+		yield return new WaitForSeconds(delay);
+		obj.SetActive(false);
+		DataManager.Instance.RetryGame();
+	}
 }

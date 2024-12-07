@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 		frogLook = GetComponent<Frog_Look>();
 		frogMove = GetComponent<Frog_Move>();
 		frogAction = GetComponent<Frog_Action>();
-		bodyChange = GetComponent<Frog_Body_Change>();
+		bodyChange = GetComponentInChildren<Frog_Body_Change>();
 	}
 
 	private IEnumerator Start()
