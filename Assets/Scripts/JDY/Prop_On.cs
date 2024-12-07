@@ -18,8 +18,12 @@ public class Prop_On : MonoBehaviour
     public GameObject prefab;
     public Transform spawnPos;
 
+    [SerializeField]
+    private GameObject spawner;
+
     private void Start()
     {
+        spawner.SetActive(false);
         arrivePos = transform.position + (Vector3.up * movePos);
         DataSetting();
         TextSetting(true);
@@ -76,6 +80,7 @@ public class Prop_On : MonoBehaviour
 
     public IEnumerator PropOn()
     {
+        spawner.SetActive(true);
         while (Vector3.Distance(transform.position, arrivePos) > 0.1f)
         {
             transform.position = Vector3.Lerp(transform.position, arrivePos, 0.5f * Time.unscaledDeltaTime);
