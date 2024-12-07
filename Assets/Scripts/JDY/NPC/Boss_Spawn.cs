@@ -6,30 +6,35 @@ using UnityEngine.UIElements;
 
 public class Boss_Spawn : NPC
 {
-    private bool isBoos;
-    public GameObject spawnPos;
+	private bool isBoos;
+	public GameObject spawnPos;
 
+	protected override void Start()
+	{
 
-    private void OnEnable()
-    {
-        isBoos = true;
-    }
+	}
 
-    public override void Interaction()
-    {
-        base.Interaction();
+	private void OnEnable()
+	{
+		isBoos = true;
+	}
 
-        if (isBoos)
-        {
-            isBoos = false;
-            Instantiate(chatWindow).transform.position = spawnPos.transform.position;
-        }
-    }
+	public override void Interaction()
+	{
+		base.Interaction();
 
-    private void OnDisable()
-    {
-        isBoos = false;
-    }
+		if (isBoos)
+		{
+			isBoos = false;
+			Instantiate(chatWindow).transform.position = spawnPos.transform.position;
+			UIManager.Instance.ChangeInteractionText(str = "Are You Ready?");
+		}
+	}
+
+	private void OnDisable()
+	{
+		isBoos = false;
+	}
 
 
 }

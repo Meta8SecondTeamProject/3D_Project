@@ -23,6 +23,6 @@ public class NPC_ChatWindow : MonoBehaviour
 			player = GameManager.Instance?.player;
 			return;
 		}
-		gameObject.transform.LookAt(player.transform.position);
+		gameObject.transform.LookAt(player.frogLook.mainCamera.transform.position);
 	}
 }
