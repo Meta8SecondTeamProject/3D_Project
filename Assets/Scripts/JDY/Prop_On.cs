@@ -75,6 +75,7 @@ public class Prop_On : MonoBehaviour
             TextSetting(false);
             Instantiate(prefab).transform.position = spawnPos.position;
             spawner.SetActive(false);
+            EnemysToPool();
             Destroy(this);
         }
     }
@@ -99,5 +100,21 @@ public class Prop_On : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, arrivePos, 0.5f * Time.unscaledDeltaTime);
         }
         transform.position = arrivePos;
+    }
+
+    private void EnemysToPool()
+    {
+        switch (enemyType)
+        {
+            case EnemyType.Bird:
+                GameManager.Instance.EnemyToPool(2);
+                break;
+            case EnemyType.Fish:
+                GameManager.Instance.EnemyToPool(1);
+                break;
+            default:
+                Debug.LogError("Prop_On / EnemysToPool / enemyType Error");
+                break;
+        }
     }
 }
