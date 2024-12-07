@@ -82,21 +82,14 @@ public class Frog_Die_Test : MonoBehaviour
 
 	private IEnumerator DisableObject(GameObject obj)
 	{
-
-		Debug.Log("Èì...");
 		yield return new WaitForSeconds(Random.Range(3, delay));
-		Debug.Log("¾ø¾î º´Âµ¥..");
 		obj.SetActive(false);
 		remainingObjects--;
 		yield return null;
 		if (remainingObjects <= 0 && CompareTag("Frog"))
 		{
-
 			Debug.Log("RetryGame");
 			DataManager.Instance.RetryGame();
 		}
 	}
-
-
-
 }

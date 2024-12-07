@@ -42,7 +42,6 @@ public class GameManager : SingletonManager<GameManager>
 
 	}
 
-
 	private Vector3 spawnPos;
 	[Header("积己且 俺备府 橇府普")]
 	public GameObject playerPrefab;

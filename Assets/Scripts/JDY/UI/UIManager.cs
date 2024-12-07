@@ -89,9 +89,7 @@ public class UIManager : SingletonManager<UIManager>
 				//Debug.LogError("UIManager / ChangeScene");
 				break;
 		}
-
 		DistanceCulling.Instance.SetPlayerAndTarget();
-
 	}
 
 	public void GameSceneTextUpdate()
