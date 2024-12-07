@@ -74,6 +74,7 @@ public class Prop_On : MonoBehaviour
         {
             TextSetting(false);
             Instantiate(prefab).transform.position = spawnPos.position;
+            spawner.SetActive(false);
             Destroy(this);
         }
     }
