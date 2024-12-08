@@ -67,6 +67,7 @@ public class EnemySpawner : MonoBehaviour
 	{
 		while (true)
 		{
+			yield return new WaitUntil(() => playerTrigger);
 			if (numberOfEnemy == 0)
 			{
 				bomb = UniRan.Range(0f, 1f);
@@ -86,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
 			//TODO : 목표 Enemy량을 채우면 보스 Enemy가 스폰되도록 설정,
 			//       지금 쌉하드코딩인데 이거 고칠방법 아는사람 손,
 			//       인덱스를 쓰던 뭘 하던 하긴 해야하는데 으으윽흑흑
+
 			//if(DataManager.Instance.birdMaxCount > DataManager.Instance.birdKillCount)
 			//{
 			//	SpawnBoss();
@@ -139,13 +141,14 @@ public class EnemySpawner : MonoBehaviour
 	{
 		if (numberOfEnemy == 4 && other.CompareTag("Player"))
 		{
+			playerTrigger = true;
 		}
 	}
 	private void OnTriggerExit(Collider other)
 	{
 		if (numberOfEnemy == 4 && other.CompareTag("Player"))
 		{
-			StopCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
+			playerTrigger = false;
 		}
 	}
 

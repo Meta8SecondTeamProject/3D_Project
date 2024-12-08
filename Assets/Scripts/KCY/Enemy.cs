@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour
 	protected Rigidbody rb;
 	protected Transform target;
 	protected Vector3 moveDir;
-	protected float moveSpeed;
+	public float moveSpeed;
 	protected bool isFly;
 
 	public Transform attackSpot;
