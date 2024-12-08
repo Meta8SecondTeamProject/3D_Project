@@ -115,11 +115,14 @@ public class Frog_Look : MonoBehaviour
 		UIManager.Instance.gameMenuController.SettingMenuOnOff();
 		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf == false)
 		{
+			Debug.Log("커서 잠금 활성화");
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 			GameManager.Instance.player.frogAction.canFire = true;
 		}
-		else if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
+		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
 		{
+			Debug.Log("커서 잠금 비활성화");
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 		}

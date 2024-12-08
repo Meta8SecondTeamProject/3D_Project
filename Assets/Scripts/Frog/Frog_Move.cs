@@ -79,12 +79,15 @@ public class Frog_Move : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Move();
+
+		Debug.Log($"현재 속력 : {rb.velocity.magnitude}");
+
 		//childPos.position = transform.position;
 		if (!isGround & !isWater)
 		{
 			//Debug.LogWarning("중력강화중");
 			//TODO : 전체 중력이 아닌, 오브젝트만 중력이 바뀌도록 수정해야함.
-			rb.velocity -= new Vector3(0, 0.3f, 0);
+			rb.AddForce(Vector3.down * 15f, ForceMode.Acceleration);
 		}
 	}
 

@@ -18,7 +18,6 @@ public class Water : MonoBehaviour
 		//레이어로 비교하는 걸로 변경해봤습니다.
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
 		{
-			Physics.gravity = new Vector3(0, -20, 0);
 			if (other.TryGetComponent(out Rigidbody rb))
 			{
 				Vector3 force = Vector3.up * buoyancyForce;

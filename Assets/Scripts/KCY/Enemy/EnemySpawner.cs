@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
 	private BoxCollider rangeColl;
 	private ObjectPool enemyPool;
 	private float bomb;
+	private bool playerTrigger;
 
 	[Header("Bird, Fish, Toad")]
 	public GameObject[] bossEnemy;
@@ -33,6 +34,14 @@ public class EnemySpawner : MonoBehaviour
 
 	private void Start()
 	{
+		if (numberOfEnemy == 4)
+		{
+			playerTrigger = false;
+		}
+		else
+		{
+			playerTrigger = true;
+		}
 		switch (numberOfEnemy)
 		{
 			case 0:
@@ -47,7 +56,8 @@ public class EnemySpawner : MonoBehaviour
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxSpawnCount));
 				Debug.Log(DataManager.Instance.birdMaxSpawnCount);
 				break;
-			default:
+			case 4:
+				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
 				//Debug.LogWarning("그런 놈 없다.");
 				break;
 		}
@@ -57,9 +67,6 @@ public class EnemySpawner : MonoBehaviour
 	{
 		while (true)
 		{
-			Debug.Log($"최대 Fish 스폰 카운트 : {DataManager.Instance.fishMaxSpawnCount}");
-			Debug.Log($"비교 연산자 체크용 : {GameManager.Instance.enemy[numberOfEnemy].Count} < {enemyMaxSpawnCount}");
-			//Debug.Log($"활성화된 트리거 수 : {DataManager.Instance.triggerOn}");
 			if (numberOfEnemy == 0)
 			{
 				bomb = UniRan.Range(0f, 1f);
@@ -132,7 +139,6 @@ public class EnemySpawner : MonoBehaviour
 	{
 		if (numberOfEnemy == 4 && other.CompareTag("Player"))
 		{
-			StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
 		}
 	}
 	private void OnTriggerExit(Collider other)
