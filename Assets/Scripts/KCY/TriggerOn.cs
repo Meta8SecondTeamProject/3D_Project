@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerOn : MonoBehaviour
@@ -9,7 +7,7 @@ public class TriggerOn : MonoBehaviour
     private void OnEnable()
     {
         DataManager.Instance.triggerOn += 1;
-        if (DataManager.Instance.triggerOn >= 3)
+        if (DataManager.Instance.triggerOn >= 3 && DataManager.Instance.triggerOn % 3 == 0)
         {
             prop.StartCoroutine(prop.PropOn());
         }
