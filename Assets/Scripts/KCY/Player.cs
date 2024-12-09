@@ -62,10 +62,10 @@ public class Player : MonoBehaviour
 		{ 
 			AudioManager.Instance.PlaySFX(frogHitClip);
 		}
-		else
-		{
-            AudioManager.Instance.PlaySFX(frogDeathClip);
-        }
+		//else
+		//{
+  //          AudioManager.Instance.PlaySFX(frogDeathClip);
+  //      }
 
         bloodExplosion.SetActive(true);
 		rb.AddForce(Vector3.up * 250, ForceMode.Impulse);

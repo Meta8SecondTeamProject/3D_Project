@@ -22,7 +22,7 @@ public class AudioPool : SingletonManager<AudioPool>
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = new GameObject("PooledSFX"); //오브젝트 이름
-            obj.transform.SetParent(this.transform); //풀 관리 오브젝트의 자식으로 둬서 보기 편하게
+            //obj.transform.SetParent(this.transform); //풀 관리 오브젝트의 자식으로 둬서 보기 편하게
             AudioSource audioSource = obj.AddComponent<AudioSource>(); //오디오 소스 컴포넌트 부착하고 관련 설정
             audioSource.spatialBlend = 1.0f; //3D 관련 설정, 0.5로 하면 2.5D 사운드 됨
             audioSource.minDistance = 10f; //소리가 최대로 들리는 최소 거리
@@ -56,6 +56,7 @@ public class AudioPool : SingletonManager<AudioPool>
         audioSource.maxDistance = 200f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.dopplerLevel = 0.0f;
+        audioSource.playOnAwake = false;
         return audioSource;
     }
 

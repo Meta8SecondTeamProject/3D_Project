@@ -13,8 +13,11 @@ public class Frog_Die_Test : MonoBehaviour
 
 	private int remainingObjects;
 
+	public AudioClip deathClip;
 	private void OnEnable()
 	{
+		//NOTE : 사운드 추가됨
+		AudioManager.Instance.PlaySFX(deathClip);
 		if (rigidbodys == null || rigidbodys.Length == 0)
 		{
 			Debug.LogError("Frog_Die_Test / OnEnable: No rigidbodies assigned.");

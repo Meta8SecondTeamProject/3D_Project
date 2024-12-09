@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
 	private SphereCollider m_coll;
 	public LayerMask includeLayer;
 
+	public AudioClip hitClip;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -32,7 +33,9 @@ public class Projectile : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
-		if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        AudioManager.Instance.PlaySFX(hitClip, transform.position);
+
+        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
 			Debug.Log("트리거 적 감지");
 			rb.velocity = Vector3.zero;

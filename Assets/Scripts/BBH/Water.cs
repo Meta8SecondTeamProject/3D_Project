@@ -6,6 +6,10 @@ public class Water : MonoBehaviour
 	public float buoyancyForce = 30f;
 	public float waterDrag = 5f;
 
+	public AudioSource waterAudioSource;
+	public AudioClip contactWaterClip;
+	public AudioClip swimmingClip;
+	
 
 	private void Start()
 	{
@@ -13,12 +17,24 @@ public class Water : MonoBehaviour
 
 	}
 
-	private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            AudioManager.Instance.PlaySFX(contactWaterClip);
+            waterAudioSource.clip = swimmingClip;
+			waterAudioSource.loop = true;
+			waterAudioSource.Play();
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
 	{
 		//레이어로 비교하는 걸로 변경해봤습니다.
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Item"))
 		{
-			if (other.TryGetComponent(out Rigidbody rb))
+            if (other.TryGetComponent(out Rigidbody rb))
 			{
 				Vector3 force = Vector3.up * buoyancyForce;
 				rb.AddForce(force, ForceMode.Acceleration);
@@ -30,6 +46,7 @@ public class Water : MonoBehaviour
 				frog_Move.isWater = true;
 			}
 		}
+
 	}
 
 
@@ -39,6 +56,11 @@ public class Water : MonoBehaviour
 		{
 			if (other.TryGetComponent(out Frog_Move frog_Move))
 				frog_Move.isWater = false;
+		}
+
+		if (other.CompareTag("Player"))
+		{
+			waterAudioSource.Stop();
 		}
 
 	}

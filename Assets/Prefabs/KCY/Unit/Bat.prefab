@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 5534861226279802954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -132.77359, y: 20.748672, z: 70.31145}
+  m_LocalPosition: {x: -7.2713623, y: 86.4374, z: -54.1164}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -524,6 +524,7 @@ MonoBehaviour:
   YAmplitude: 0.47
   rotateSpeed: 0.2
   rotateTarget: {fileID: 5251757842017437727}
+  idleClip: {fileID: 0}
 --- !u!1 &5705434166454767771
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +966,11 @@ MonoBehaviour:
   bossHp: 0
   bossMaxHp: 0
   hpBar: {fileID: 0}
+  flyDeathClip: {fileID: 0}
+  fishDeathClip: {fileID: 0}
+  birdDeathClip: {fileID: 0}
+  ghostDeathClip: {fileID: 0}
+  crowDeathClip: {fileID: 0}
   bombEffect: {fileID: 0}
   SpookRenderer: {fileID: 0}
   isBomb: 0
