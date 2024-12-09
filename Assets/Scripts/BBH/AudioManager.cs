@@ -151,4 +151,10 @@ public class AudioManager : SingletonManager<AudioManager>
         BGM.volume = volume;
         BGM.Play();
     }
+
+    public void SetVolume(float BGMvalue, float SFXVolume)
+    {
+        BGM.volume = BGMvalue;
+        SFX.volume = SFXVolume;
+    }
 }
