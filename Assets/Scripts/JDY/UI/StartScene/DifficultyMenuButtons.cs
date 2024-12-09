@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,26 +13,35 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void EasyButtonOnClick()
     {
-        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        DataManager.Instance.fliesMaxSpawnCount = 0;
+        DataManager.Instance.fishMaxSpawnCount = 0;
+        DataManager.Instance.birdMaxSpawnCount = 0;
+        DataManager.Instance.birdBlackMaxSpawnCount = 0;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     private void NormalButtonOnClick()
     {
-        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        DataManager.Instance.fliesMaxSpawnCount = 0;
+        DataManager.Instance.fishMaxSpawnCount = 0;
+        DataManager.Instance.birdMaxSpawnCount = 0;
+        DataManager.Instance.birdBlackMaxSpawnCount = 0;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
-
     }
     private void HardButtonOnClick()
     {
-        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        DataManager.Instance.fliesMaxSpawnCount = 0;
+        DataManager.Instance.fishMaxSpawnCount = 0;
+        DataManager.Instance.birdMaxSpawnCount = 0;
+        DataManager.Instance.birdBlackMaxSpawnCount = 0;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
-
     }
     private void ExtaemeButtonOnClick()
     {
-        //UIManager.Instance.StartCoroutine(UIManager.Instance.Loading("BBH_Scene"));
+        DataManager.Instance.fliesMaxSpawnCount = 0;
+        DataManager.Instance.fishMaxSpawnCount = 0;
+        DataManager.Instance.birdMaxSpawnCount = 0;
+        DataManager.Instance.birdBlackMaxSpawnCount = 0;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
-
     }
     #endregion
 
@@ -57,12 +64,12 @@ public class DifficultyMenuButtons : MonoBehaviour
         backButton.gameObject.SetActive(true);
 
         //Hard 난이도를 클리어 했을 시 활성화
-        //if (DataManager.Instance.data.isHardClear)
-        //{
-        //    extaemeButton.gameObject.SetActive(true);
-        //    extaemeButton.onClick.RemoveAllListeners();
-        //    extaemeButton.onClick.AddListener(ExtaemeButtonOnClick);
-        //}
+        if (DataManager.Instance.data.isHardClear)
+        {
+            extaemeButton.gameObject.SetActive(true);
+            extaemeButton.onClick.RemoveAllListeners();
+            extaemeButton.onClick.AddListener(ExtaemeButtonOnClick);
+        }
 
         easyButton.onClick.RemoveAllListeners();
         normalButton.onClick.RemoveAllListeners();
