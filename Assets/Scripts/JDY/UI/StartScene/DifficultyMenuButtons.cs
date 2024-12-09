@@ -13,34 +13,45 @@ public class DifficultyMenuButtons : MonoBehaviour
 
     private void EasyButtonOnClick()
     {
-        DataManager.Instance.fliesMaxSpawnCount = 0;
-        DataManager.Instance.fishMaxSpawnCount = 0;
-        DataManager.Instance.birdMaxSpawnCount = 0;
-        DataManager.Instance.birdBlackMaxSpawnCount = 0;
+        DataManager.Instance.fliesMaxSpawnCount = 10;
+        DataManager.Instance.fishMaxSpawnCount = 10;
+        DataManager.Instance.birdMaxSpawnCount = 4;
+        DataManager.Instance.birdBlackMaxSpawnCount = 4;
+        DataManager.Instance.fishKillCount = 16;
+        DataManager.Instance.birdKillCount = 16;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     private void NormalButtonOnClick()
     {
-        DataManager.Instance.fliesMaxSpawnCount = 0;
-        DataManager.Instance.fishMaxSpawnCount = 0;
-        DataManager.Instance.birdMaxSpawnCount = 0;
-        DataManager.Instance.birdBlackMaxSpawnCount = 0;
+        DataManager.Instance.fliesMaxSpawnCount = 15;
+        DataManager.Instance.fishMaxSpawnCount = 15;
+        DataManager.Instance.birdMaxSpawnCount = 6;
+        DataManager.Instance.birdBlackMaxSpawnCount = 6;
+        DataManager.Instance.fishKillCount = 20;
+        DataManager.Instance.birdKillCount = 20;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     private void HardButtonOnClick()
     {
-        DataManager.Instance.fliesMaxSpawnCount = 0;
-        DataManager.Instance.fishMaxSpawnCount = 0;
-        DataManager.Instance.birdMaxSpawnCount = 0;
-        DataManager.Instance.birdBlackMaxSpawnCount = 0;
+        DataManager.Instance.fliesMaxSpawnCount = 20;
+        DataManager.Instance.fishMaxSpawnCount = 20;
+        DataManager.Instance.birdMaxSpawnCount = 10;
+        DataManager.Instance.birdBlackMaxSpawnCount = 10;
+        DataManager.Instance.fishKillCount = 25;
+        DataManager.Instance.birdKillCount = 25;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     private void ExtaemeButtonOnClick()
     {
-        DataManager.Instance.fliesMaxSpawnCount = 0;
-        DataManager.Instance.fishMaxSpawnCount = 0;
-        DataManager.Instance.birdMaxSpawnCount = 0;
-        DataManager.Instance.birdBlackMaxSpawnCount = 0;
+        DataManager.Instance.fliesMaxSpawnCount = 40;
+        DataManager.Instance.fishMaxSpawnCount = 40;
+        DataManager.Instance.birdMaxSpawnCount = 20;
+        DataManager.Instance.birdBlackMaxSpawnCount = 20;
+        DataManager.Instance.fishKillCount = 50;
+        DataManager.Instance.birdKillCount = 50;
+        DataManager.Instance.bombFliesSpeed = 10;
+        DataManager.Instance.fishSpeed = 30;
+        DataManager.Instance.birdSpeed = 20;
         UIManager.Instance.TransitionToLoadScene("BBH_Scene");
     }
     #endregion
