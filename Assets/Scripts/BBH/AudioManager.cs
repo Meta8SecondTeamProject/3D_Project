@@ -121,6 +121,14 @@ public class AudioManager : SingletonManager<AudioManager>
     private IEnumerator ReturnToPool(AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);
+
+
+        if (source == null || source.gameObject == null)
+        {
+            Debug.LogWarning("오디오 소스 또는 게임 오브젝트가 파괴된 상태에서 접근함");
+        }
+
+
         AudioPool.Instance.ReturnAudioSource(source);
     }
 
