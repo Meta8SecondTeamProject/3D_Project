@@ -7,6 +7,9 @@ public class Fish_Enemy : Enemy
 	public float jumpCooldown;
 	public float jumpForce;
 	public float forceGravity;
+
+	public AudioSource fishGulp;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -31,7 +34,7 @@ public class Fish_Enemy : Enemy
 	{
 		while (true)
 		{
-
+			fishGulp.Play();
 			yield return new WaitForSeconds(jumpCooldown);
 			rb.AddForce(moveDir.normalized * jumpForce, ForceMode.Impulse);
 		}

@@ -11,6 +11,8 @@ public class Boss_Spawn : NPC
 	public GameObject birdSpawner;
 	public GameObject fishSpawner;
 
+	//NOTE : 만약 보스 전용 BGM이 선정되면 여기서 변경하는걸로?
+
 	private void Awake()
 	{
 		birdSpawner.SetActive(false);
@@ -19,7 +21,7 @@ public class Boss_Spawn : NPC
 
 	protected override void Start()
 	{
-
+		//상속받은 Start 아무동작안하도록 초기화.
 	}
 
 	private void OnEnable()

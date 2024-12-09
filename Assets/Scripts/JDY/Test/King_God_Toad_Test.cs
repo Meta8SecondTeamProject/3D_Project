@@ -32,6 +32,9 @@ public class King_God_Toad_Test : Boss_Test
 	private bool isJumping;
 	#endregion
 
+	public AudioClip idleClip;
+	public AudioClip jumpClip;
+
 
 	private BoxCollider coll;
 

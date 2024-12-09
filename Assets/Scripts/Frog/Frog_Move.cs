@@ -113,9 +113,9 @@ public class Frog_Move : MonoBehaviour
 				frogAction.jumpCount--;
 				isMove = false;
 
-                //NOTE : 사운드 추가
-                AudioManager.Instance.PlaySFX(jumpClip);
-            }
+				//NOTE : 사운드 추가
+				//AudioManager.Instance.PlaySFX(jumpClip);
+			}
 			else if (isWater)
 			{
 				rb.AddForce(actualMoveDir * inWaterSpeed, ForceMode.Force);
@@ -144,9 +144,9 @@ public class Frog_Move : MonoBehaviour
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 			rb.AddForce(actualMoveDir * lillyForce, ForceMode.Impulse);
 
-            //NOTE : 사운드 추가
-            AudioManager.Instance.PlaySFX(lillypadClip);
-        }
+			//NOTE : 사운드 추가
+			AudioManager.Instance.PlaySFX(lillypadClip);
+		}
 	}
 
 	private void OnCollisionStay(Collision collision)

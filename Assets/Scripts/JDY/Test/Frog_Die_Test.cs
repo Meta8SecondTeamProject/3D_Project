@@ -13,6 +13,8 @@ public class Frog_Die_Test : MonoBehaviour
 
 	private int remainingObjects;
 
+	public AudioClip frogDeathClip;
+
 	private void OnEnable()
 	{
 		if (rigidbodys == null || rigidbodys.Length == 0)
@@ -48,6 +50,7 @@ public class Frog_Die_Test : MonoBehaviour
 	private void Start()
 	{
 		TriggerDeathEffect();
+		AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
 	}
 
 
