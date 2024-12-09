@@ -51,6 +51,9 @@ public class Frog_Action : MonoBehaviour
 
 	public RawImage crossHair;
 	public GameObject projectile;
+
+	public AudioClip fireClip;
+	public AudioClip jumpClip;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -163,7 +166,10 @@ public class Frog_Action : MonoBehaviour
 
 			fireCooldown = false;
 			InstantiateProj();
-		}
+
+			//NOTE : 사운드 추가
+            AudioManager.Instance.PlaySFX(fireClip);
+        }
 	}
 
 	private void InstantiateProj()
@@ -208,7 +214,10 @@ public class Frog_Action : MonoBehaviour
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
-	}
+
+		//NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(jumpClip);
+    }
 
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{

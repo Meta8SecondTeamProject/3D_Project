@@ -11,7 +11,6 @@ public class Fly_Enemy : Enemy
 	private CapsuleCollider capsuleCollider;
 	public bool isBomb;
 	//실제 콜라이더 붙어있는 곳이 아닌 부모 오브젝트 가져오는 용도
-
 	protected override void Awake()
 	{
 		base.Awake();

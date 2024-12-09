@@ -19,6 +19,8 @@ public class GameMenuController : MonoBehaviour
 
 	private float baseTimeScale;
 
+
+	public AudioClip clickClip;
 	private void Awake()
 	{
 		background = GetComponent<Image>();
@@ -56,7 +58,10 @@ public class GameMenuController : MonoBehaviour
 
 	public void SettingMenuOnOff()
 	{
-		//Debug.Log($"Before TimeScale : {baseTimeScale}");
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
+
+        //Debug.Log($"Before TimeScale : {baseTimeScale}");
         //Debug.Log($"TimeScale : {Time.timeScale}");
         Time.timeScale = Time.timeScale == 0 ? baseTimeScale : 0f;
 		//Debug.Log($"After TimeScale : {Time.timeScale}");
@@ -65,7 +70,10 @@ public class GameMenuController : MonoBehaviour
 	}
 	private void ResumeButtonOnClick()
 	{
-		background.color *= 0;
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
+
+        background.color *= 0;
 		pausedMenu.SetActive(false);
 		Time.timeScale = baseTimeScale;
 		
@@ -78,8 +86,11 @@ public class GameMenuController : MonoBehaviour
 
 	private void SaveQuitButtonOnClick()
 	{
-		//데이터를 저장할 기능을 추가할 시
-		if (DataManager.Instance.data != null)
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
+
+        //데이터를 저장할 기능을 추가할 시
+        if (DataManager.Instance.data != null)
 		{
 			//저장
 			//파일이 없으면 생성해서 저장

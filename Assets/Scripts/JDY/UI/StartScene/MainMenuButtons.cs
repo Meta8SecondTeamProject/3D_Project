@@ -13,6 +13,7 @@ public class MainMenuButtons : MonoBehaviour
     public Button settingsButton;
     public Button quitButton;
 
+    public AudioClip clickClip;
     private void Start()
     {
         ButtonInitialization();
@@ -44,24 +45,32 @@ public class MainMenuButtons : MonoBehaviour
 
     private void ContinueButtonOnClick()
     {
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
         UIManager.Instance.TransitionToLoadScene(DataManager.Instance.data.currentSceneName);
     }
 
 
     private void NewGameButtonOnClick()
     {
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
         moveController.MenuMovePosition();
         menuController.MenuChange(StartMenuController.StartMenus.difficulty);
     }
 
     private void SettingsButtonOnClick()
     {
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
         moveController.MenuMovePosition();
         menuController.MenuChange(StartMenuController.StartMenus.setting);
     }
 
     private void QuitButtonOnClick()
     {
+        //NOTE : 사운드 추가
+        AudioManager.Instance.PlaySFX(clickClip);
         Application.Quit();
     }
 }

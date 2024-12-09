@@ -32,7 +32,14 @@ public abstract class Enemy : MonoBehaviour
 	public float hpAmount { get { return bossHp / bossMaxHp; } }
 	public Image hpBar;
 
-	protected virtual void Awake()
+    public AudioClip flyDeathClip;
+    public AudioClip fishDeathClip;
+    public AudioClip birdDeathClip;
+	public AudioClip ghostDeathClip;
+	public AudioClip crowDeathClip;
+
+
+    protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
@@ -154,24 +161,32 @@ public abstract class Enemy : MonoBehaviour
 	{
 		switch (enemyNumber)
 		{
+			//NOTE : 사운드 추가됨
 			case 0:
-				DataManager.Instance.data.money++;
+                //AudioManager.Instance.PlaySFX(flyDeathClip, transform.position, this.transform);
+                DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
 				UIManager.Instance.GameSceneTextUpdate();
 				break;
 			case 1:
-				DataManager.Instance.fishKillCount--;
+                //AudioManager.Instance.PlaySFX(fishDeathClip, transform.position, this.transform);
+                DataManager.Instance.fishKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 2:
-				DataManager.Instance.birdKillCount--;
+                //AudioManager.Instance.PlaySFX(birdDeathClip, transform.position, this.transform);
+                DataManager.Instance.birdKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 3:
-				DataManager.Instance.data.money++;
+                //AudioManager.Instance.PlaySFX(ghostDeathClip, transform.position, this.transform);
+                DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
 				UIManager.Instance.GameSceneTextUpdate();
 				break;
+			case 4:
+                //AudioManager.Instance.PlaySFX(crowDeathClip, transform.position, this.transform);
+                break;
 			default:
 				break;
 		}
