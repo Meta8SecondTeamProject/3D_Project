@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
 			enemyPool.Pop(enemyPool.obj[numberOfEnemy].name);
 			enemyPool.obj[numberOfEnemy].transform.position = GetSpawnPos();
 			if (numberOfEnemy == 3) numberOfEnemy = 0;
-			yield return null;
+			yield return new WaitForSeconds(1f);
 			//EditorApplication.isPaused = true;
 
 			Debug.Log($"ÀÌ¸§ : {enemyPool.obj[numberOfEnemy].name} ¼ö : {GameManager.Instance.enemy[numberOfEnemy].Count}");

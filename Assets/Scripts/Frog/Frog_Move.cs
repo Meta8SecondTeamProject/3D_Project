@@ -89,7 +89,7 @@ public class Frog_Move : MonoBehaviour
 		{
 			//Debug.LogWarning("중력강화중");
 			//TODO : 전체 중력이 아닌, 오브젝트만 중력이 바뀌도록 수정해야함.
-			rb.AddForce(Vector3.down * 15f, ForceMode.Acceleration);
+			rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
 		}
 	}
 
@@ -103,18 +103,17 @@ public class Frog_Move : MonoBehaviour
 
 		if (isPressed)
 		{
-			inputMoveDir = new Vector3(-input.y, 1, input.x) * moveSpeed;
+			inputMoveDir = new Vector3(-input.y, 0, input.x) * moveSpeed;
 			actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
 				rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
+				rb.AddForce(Vector3.up * 200f, ForceMode.Impulse);
 				frogAction.jumpCount--;
 				isMove = false;
-
-				//NOTE : 사운드 추가
-				//AudioManager.Instance.PlaySFX(jumpClip);
+				AudioManager.Instance.PlaySFX(jumpClip);
 			}
 			else if (isWater)
 			{
@@ -139,11 +138,7 @@ public class Frog_Move : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
-			//TODO : 여기 중력값 수정되는것도 변경해야함.
-			//Physics.gravity = new Vector3(0, -20, 0);
-			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
-			rb.AddForce(actualMoveDir * lillyForce, ForceMode.Impulse);
-
+			rb.AddForce(Vector3.up * lillyForce, ForceMode.Impulse);
 			//NOTE : 사운드 추가
 			AudioManager.Instance.PlaySFX(lillypadClip);
 		}
@@ -154,9 +149,7 @@ public class Frog_Move : MonoBehaviour
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
 			isGround = true;
-			//Physics.gravity = new Vector3(0, -20, 0);
 		}
-
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -167,7 +160,6 @@ public class Frog_Move : MonoBehaviour
 			frogAction.jumpCount = 0;
 			if (DataManager.Instance.jumpCount == 2)
 			{
-				Debug.Log("점프강화됐네?");
 				frogAction.jumpCount = 1;
 			}
 		}
