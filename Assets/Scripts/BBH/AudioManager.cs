@@ -20,8 +20,7 @@ public class AudioManager : SingletonManager<AudioManager>
     { 
         BGM.loop = true;
         //PlayBGM(backgroundMusic[0]);
-        BGMChange(SceneManager.GetActiveScene().buildIndex);
-    }
+        BGMChange(SceneManager.GetActiveScene().buildIndex);    }
 
     public void Update()
     {

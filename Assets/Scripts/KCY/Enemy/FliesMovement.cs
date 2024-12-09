@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.EditorTools;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
-using UnityEngine.ParticleSystemJobs;
 using UniRan = UnityEngine.Random;
 
 public class FliesMovement : MonoBehaviour

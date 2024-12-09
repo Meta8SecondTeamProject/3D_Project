@@ -1568,7 +1568,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1483398585387600733, guid: 75ec01f906387814193e7b960ecd0fc7, type: 3}
       propertyPath: birdMaxSpawnCount
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3007634483425362996, guid: 75ec01f906387814193e7b960ecd0fc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4325,6 +4325,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 842617053378665731, guid: 90e95be206ea68a47aaef4905593e210, type: 3}
   m_PrefabInstance: {fileID: 1469289074}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1104112253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1104112254}
+  - component: {fileID: 1104112256}
+  - component: {fileID: 1104112255}
+  m_Layer: 0
+  m_Name: Crow_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1104112254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104112253}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 72, y: 18, z: -51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2011541181}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1104112255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104112253}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 600, y: 50, z: 600}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1104112256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104112253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a2c87e3d144f24f9319481d1101a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfEnemy: 4
+  bossEnemy: []
 --- !u!1 &1168111965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,6 +5883,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671934056}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1676274518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1676274519}
+  - component: {fileID: 1676274521}
+  - component: {fileID: 1676274520}
+  m_Layer: 0
+  m_Name: Fly_Spawne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1676274519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676274518}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 188, y: -92, z: -68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2011541181}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1676274520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676274518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 500, y: 50, z: 690.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1676274521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676274518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a2c87e3d144f24f9319481d1101a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfEnemy: 0
+  bossEnemy: []
 --- !u!1 &1683661253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11477,6 +11613,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4201633076901042862}
+  - {fileID: 1104112254}
+  - {fileID: 1676274519}
   - {fileID: 681603165}
   - {fileID: 721813313}
   - {fileID: 1901019036}
@@ -13614,7 +13752,7 @@ MonoBehaviour:
   - {fileID: 2790045883967557779}
   - {fileID: 7151997831545049913}
   enemyType: 0
-  prefab: {fileID: 6337912570114523205, guid: 3a5fd14125e7e684686b2c377218e1d0, type: 3}
+  prefab: {fileID: 5090919668377362162, guid: 3e18e2a47cedbbc4a9978e06f7519d71, type: 3}
   spawnPos: {fileID: 972332360}
   spawner: {fileID: 5297305028533971885}
 --- !u!1 &244333674539409027
@@ -42603,7 +42741,7 @@ Transform:
   m_GameObject: {fileID: 5297305028533971885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -373.8, y: 57, z: 282.8}
+  m_LocalPosition: {x: 72, y: 18, z: -51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46392,7 +46530,7 @@ GameObject:
   - component: {fileID: 5083575042193919233}
   - component: {fileID: 4615933066869102913}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Chicken_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
