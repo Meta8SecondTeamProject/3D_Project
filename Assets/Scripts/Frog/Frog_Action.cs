@@ -168,7 +168,7 @@ public class Frog_Action : MonoBehaviour
 			InstantiateProj();
 
 			//NOTE : 사운드 추가
-			//AudioManager.Instance.PlaySFX(fireClip);
+			AudioManager.Instance.PlaySFX(fireClip);
 		}
 	}
 

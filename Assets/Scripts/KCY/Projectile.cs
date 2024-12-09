@@ -33,7 +33,9 @@ public class Projectile : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
-        //AudioManager.Instance.PlaySFX(hitClip, other.transform.position);
+		ContactPoint contactPoint = other.contacts[0];
+		Vector3 audioPos = contactPoint.point;
+		AudioManager.Instance.PlaySFX(hitClip, audioPos, null, 0.5f);
 
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{

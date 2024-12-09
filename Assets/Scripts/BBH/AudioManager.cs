@@ -69,7 +69,7 @@ public class AudioManager : SingletonManager<AudioManager>
             tempAudioSource.clip = clip;
             tempAudioSource.spatialBlend = 1.0f; //3D 사운드로 설정
             tempAudioSource.minDistance = 10f; //최소 거리 
-            tempAudioSource.maxDistance = 200f; //최대 거리 
+            tempAudioSource.maxDistance = 500f; //최대 거리 
             tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
             tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
             tempAudioSource.volume = volume;

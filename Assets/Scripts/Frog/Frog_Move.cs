@@ -114,7 +114,7 @@ public class Frog_Move : MonoBehaviour
 				isMove = false;
 
 				//NOTE : 사운드 추가
-				//AudioManager.Instance.PlaySFX(jumpClip);
+				AudioManager.Instance.PlaySFX(jumpClip);
 			}
 			else if (isWater)
 			{
