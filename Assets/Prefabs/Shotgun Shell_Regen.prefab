@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 299322202617329845}
   - component: {fileID: 9189971457482040261}
   - component: {fileID: 2600239006768251582}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Shotgun_Shell_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 686653222444113774}
   - component: {fileID: 1901954431156571312}
   - component: {fileID: 6557203700385282520}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,8 +135,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.14378785, y: -0.6923331, z: 0.5587902, w: 0.4333053}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 85}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 25, y: 25, z: 42.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6158214575234049352}
   - {fileID: 3279698550464507848}
@@ -157,6 +157,7 @@ MonoBehaviour:
   isEnemyDrop: 0
   moveSpeed: 0
   pool: {fileID: 0}
+  shell: {fileID: 0}
 --- !u!54 &1901954431156571312
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786969108760216773}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -217,7 +218,7 @@ GameObject:
   - component: {fileID: 7888742961176087330}
   - component: {fileID: 8561579883354641463}
   - component: {fileID: 5886245586179702435}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Shotgun_Shell_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,4 +358,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shell: {fileID: 686653222444113774}
-  spawnTime: 1
+  spawnTime: 10

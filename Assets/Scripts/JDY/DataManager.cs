@@ -22,8 +22,7 @@ public class DataManager : SingletonManager<DataManager>
 	public int birdMaxSpawnCount;
 	public int birdBlackMaxSpawnCount;
 
-	//현재 킬 수
-	public int fliesKillCount;
+	//목표 킬 수
 	public int fishKillCount;
 	public int birdKillCount;
 
