@@ -29,7 +29,7 @@ public class GameMenuController : MonoBehaviour
 		ButtonInitialization();
 		background.color *= 0;
 		baseTimeScale = Time.timeScale;
-		interactionText.SetActive(false);
+		//interactionText.SetActive(false);
 	}
 	private void ButtonInitialization()
 	{
@@ -59,7 +59,7 @@ public class GameMenuController : MonoBehaviour
 	public void SettingMenuOnOff()
 	{
         //NOTE : 사운드 추가
-        AudioManager.Instance.PlaySFX(clickClip);
+        //AudioManager.Instance.PlaySFX(clickClip);
 
         //Debug.Log($"Before TimeScale : {baseTimeScale}");
         //Debug.Log($"TimeScale : {Time.timeScale}");
@@ -71,7 +71,7 @@ public class GameMenuController : MonoBehaviour
 	private void ResumeButtonOnClick()
 	{
         //NOTE : 사운드 추가
-        AudioManager.Instance.PlaySFX(clickClip);
+        //AudioManager.Instance.PlaySFX(clickClip);
 
         background.color *= 0;
 		pausedMenu.SetActive(false);
@@ -87,7 +87,7 @@ public class GameMenuController : MonoBehaviour
 	private void SaveQuitButtonOnClick()
 	{
         //NOTE : 사운드 추가
-        AudioManager.Instance.PlaySFX(clickClip);
+        //AudioManager.Instance.PlaySFX(clickClip);
 
         //데이터를 저장할 기능을 추가할 시
         if (DataManager.Instance.data != null)

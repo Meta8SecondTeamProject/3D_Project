@@ -45,47 +45,47 @@ public class AudioManager : SingletonManager<AudioManager>
         }
     }
 
-    //DEPRECATED : 기존 Destroy방식 멸망함
-    //public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
-    //{
-
-    //    if (clip != null)
-    //    {
-    //        //이 방법으로 했었는데 소리가 너무 작음
-    //        // AudioSource sfx = AudioSource.PlayClipAtPoint(clip, pos, volume);
-
-    //        // 새로운 GameObject에 AudioSource를 추가하고 재생해야됨
-    //        GameObject tempObj = new GameObject("TempSFX3D");
-    //        tempObj.transform.position = pos;
-
-    //        if (parent != null)
-    //        {
-    //            Debug.Log("부모 설정");
-    //            tempObj.transform.parent = parent;
-    //        }
-
-    //        AudioSource tempAudioSource = tempObj.AddComponent<AudioSource>();
-
-    //        tempAudioSource.clip = clip;
-    //        tempAudioSource.spatialBlend = 1.0f; //3D 사운드로 설정
-    //        tempAudioSource.minDistance = 10f; //최소 거리 
-    //        tempAudioSource.maxDistance = 200f; //최대 거리 
-    //        tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
-    //        tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
-    //        tempAudioSource.volume = volume;
-
-    //        tempAudioSource.Play();
-    //        Destroy(tempObj, clip.length); //클립 길이만큼 재생 후 오브젝트 삭제
-
-    //        //다만 이러면 GC가 자주 호출되서 메모리가 효율이 바닥을 기게되며
-    //        //사운드 또한 이 메서드를 호출한 객체에서 나는게 아닌, 호출한 순간의 위치에서 재생되게 됨
-    //        //즉, 움직이는 객체에게 적용하면 어색해짐
-    //        //HACK : 일단 이렇게 하고 다른일 하면서 추후에 오브젝트 풀링으로 리팩토링 필요
-    //        //(완료됨) 생성된 오브젝트의 부모를 메서드를 호출한 객체의 자식으로 설정하면 사운드가 계속 따라갈거같음
-    //    }
-    //}
-
+    //DEPRECATED : 기존 Destroy방식 부활함
     public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
+    {
+
+        if (clip != null)
+        {
+            //이 방법으로 했었는데 소리가 너무 작음
+            // AudioSource sfx = AudioSource.PlayClipAtPoint(clip, pos, volume);
+
+            // 새로운 GameObject에 AudioSource를 추가하고 재생해야됨
+            GameObject tempObj = new GameObject("TempSFX3D");
+            tempObj.transform.position = pos;
+
+            if (parent != null)
+            {
+                Debug.Log("부모 설정");
+                tempObj.transform.parent = parent;
+            }
+
+            AudioSource tempAudioSource = tempObj.AddComponent<AudioSource>();
+
+            tempAudioSource.clip = clip;
+            tempAudioSource.spatialBlend = 1.0f; //3D 사운드로 설정
+            tempAudioSource.minDistance = 10f; //최소 거리 
+            tempAudioSource.maxDistance = 200f; //최대 거리 
+            tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
+            tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
+            tempAudioSource.volume = volume;
+
+            tempAudioSource.Play();
+            Destroy(tempObj, clip.length); //클립 길이만큼 재생 후 오브젝트 삭제
+
+            //다만 이러면 GC가 자주 호출되서 메모리가 효율이 바닥을 기게되며
+            //사운드 또한 이 메서드를 호출한 객체에서 나는게 아닌, 호출한 순간의 위치에서 재생되게 됨
+            //즉, 움직이는 객체에게 적용하면 어색해짐
+            //HACK : 일단 이렇게 하고 다른일 하면서 추후에 오브젝트 풀링으로 리팩토링 필요
+            //(완료됨) 생성된 오브젝트의 부모를 메서드를 호출한 객체의 자식으로 설정하면 사운드가 계속 따라갈거같음
+        }
+    }
+
+    public void PlaySFX2(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
     {
         //3D 사운드, 오디오 리스너와의 거리, 방향에 따라 소리가 달라짐
         if (clip != null)
