@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,12 +8,14 @@ public class ButtonSet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     private Color baseColor;
     private Image image;
+    private AudioClip clip;
 
     private void Start()
     {
         image = GetComponent<Image>();
         baseColor = image.color;
         image.color *= 0;
+        clip = AudioManager.Instance.UIAudioClip;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -31,5 +31,6 @@ public class ButtonSet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         image.color *= 0;
+        AudioManager.Instance.PlaySFX(clip);
     }
 }

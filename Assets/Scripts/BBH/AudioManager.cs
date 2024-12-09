@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,17 +8,18 @@ public class AudioManager : SingletonManager<AudioManager>
     //오디오 소스는 스피커 같은 역할이라서 둘 다 같이 재생되게 하려면 따로 써야됨
     public AudioSource SFX;
     public AudioSource BGM;
-
+    public AudioClip UIAudioClip;
     //씬 인덱스에 맞는 BGM할당
     //재생할 소스만 싱글톤으로 하고, 재생할 클립은 씬마다 따로 있는게 맞는거같기는 한데 몰?루겠다
     [Header("툴팁 있음, 씬 인덱스에 맞게 연결해주시길 바랍니다"), Tooltip("0 : GameStartScene\n1 : GameEndScene\n2 : LoadingScene\n3 : BBH_Scene\n4 : JDY_Scene\n5 : KCY_Scene")]
     public AudioClip[] backgroundMusic;
 
     private void Start()
-    { 
+    {
         BGM.loop = true;
         //PlayBGM(backgroundMusic[0]);
-        BGMChange(SceneManager.GetActiveScene().buildIndex);    }
+        BGMChange(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void Update()
     {
@@ -132,7 +131,7 @@ public class AudioManager : SingletonManager<AudioManager>
         //예외처리 로직 추가
         if (0 <= sceneBuildIndex && sceneBuildIndex < backgroundMusic.Length)
         {
-           // Debug.Log($"현재 씬 인덱스 : {sceneBuildIndex}");
+            // Debug.Log($"현재 씬 인덱스 : {sceneBuildIndex}");
             PlayBGM(backgroundMusic[sceneBuildIndex]);
         }
         else
