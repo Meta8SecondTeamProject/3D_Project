@@ -36,9 +36,17 @@ public class Fly_Enemy : Enemy
 		isFly = true;
 		base.Start();
 		if (isBomb)
+		{
 			moveSpeed = DataManager.Instance.bombFliesSpeed;
+		}
+		else if (isBossBird)
+		{
+			moveSpeed = DataManager.Instance.birdBossSpeed;
+		}
 		else
+		{
 			moveSpeed = DataManager.Instance.birdSpeed;
+		}
 	}
 
 	protected override void Update()

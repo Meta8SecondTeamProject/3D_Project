@@ -29,6 +29,7 @@ public class DifficultyMenuButtons : MonoBehaviour
 		DataManager.Instance.birdBlackMaxSpawnCount = 6;
 		DataManager.Instance.fishKillCount = 20;
 		DataManager.Instance.birdKillCount = 20;
+		DataManager.Instance.NewGame();
 		UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 	}
 	private void HardButtonOnClick()
@@ -39,6 +40,7 @@ public class DifficultyMenuButtons : MonoBehaviour
 		DataManager.Instance.birdBlackMaxSpawnCount = 10;
 		DataManager.Instance.fishKillCount = 25;
 		DataManager.Instance.birdKillCount = 25;
+		DataManager.Instance.NewGame();
 		UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 	}
 	private void ExtaemeButtonOnClick()
@@ -52,6 +54,7 @@ public class DifficultyMenuButtons : MonoBehaviour
 		DataManager.Instance.bombFliesSpeed = 10;
 		DataManager.Instance.fishSpeed = 30;
 		DataManager.Instance.birdSpeed = 20;
+		DataManager.Instance.NewGame();
 		UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 	}
 	#endregion

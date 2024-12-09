@@ -27,7 +27,14 @@ public class Fish_Enemy : Enemy
 		isFly = false;
 		base.Start();
 		StartCoroutine(Jump());
-		moveSpeed = DataManager.Instance.fishSpeed;
+		if (isBossFish)
+		{
+			moveSpeed = DataManager.Instance.fishBossSpeed;
+		}
+		else
+		{
+			moveSpeed = DataManager.Instance.fishSpeed;
+		}
 	}
 
 	private IEnumerator Jump()

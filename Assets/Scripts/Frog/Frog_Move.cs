@@ -89,7 +89,7 @@ public class Frog_Move : MonoBehaviour
 		{
 			//Debug.LogWarning("중력강화중");
 			//TODO : 전체 중력이 아닌, 오브젝트만 중력이 바뀌도록 수정해야함.
-			rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
+			rb.AddForce(Vector3.down * 20f, ForceMode.Acceleration);
 		}
 	}
 

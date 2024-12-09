@@ -57,6 +57,19 @@ MonoBehaviour:
     isHardClear: 0
     isKilledBossBird: 0
     isKilledBossFish: 0
+  newGameData:
+    currentSceneName: 
+    currentHP: 2
+    currentAmmo: 4
+    maxAmmo: 16
+    money: 0
+    isHat: 0
+    isAmmoBelt: 0
+    isDoubleJump: 0
+    isPlaying: 0
+    isHardClear: 0
+    isKilledBossBird: 0
+    isKilledBossFish: 0
   playerStartPos:
   - {x: -400, y: 8, z: 323}
   - {x: 4, y: 4, z: -360}
@@ -67,6 +80,8 @@ MonoBehaviour:
   bombFliesSpeed: 3
   fishSpeed: 10
   birdSpeed: 5
+  birdBossSpeed: 0
+  fishBossSpeed: 0
   fliesMaxSpawnCount: 16
   fishMaxSpawnCount: 4
   birdMaxSpawnCount: 4
