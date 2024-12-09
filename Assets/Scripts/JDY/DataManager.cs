@@ -148,7 +148,6 @@ public class DataManager : SingletonManager<DataManager>
 
 	public void EndGame()
 	{
-		data.isClear = true;
 		data.isPlaying = false;
 		UIManager.Instance.TransitionToLoadScene("GameEndScene");
 	}
@@ -175,7 +174,5 @@ public class Data
 
 	public bool isKilledBossBird;
 	public bool isKilledBossFish;
-	public bool isKilledBossTode;
 	//TODO : 보스Enemy를 잡았는지 체크해주는 변수나 로직 작성요망
-	public bool isClear;
 }

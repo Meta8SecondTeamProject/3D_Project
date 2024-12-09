@@ -146,7 +146,6 @@ public class King_God_Toad_Test : Boss_Test
 
 	public override void Die()
 	{
-		DataManager.Instance.data.isKilledBossTode = true;
 		coll.isTrigger = true;
 		BodyChange();
 	}
