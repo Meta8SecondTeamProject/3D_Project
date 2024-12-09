@@ -39,6 +39,8 @@ public class Frog_Move : MonoBehaviour
 
 	public LayerMask groundLayer;
 
+	public AudioClip jumpClip;
+	public AudioClip lillypadClip;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -110,7 +112,10 @@ public class Frog_Move : MonoBehaviour
 				rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
 				frogAction.jumpCount--;
 				isMove = false;
-			}
+
+                //NOTE : 사운드 추가
+                AudioManager.Instance.PlaySFX(jumpClip);
+            }
 			else if (isWater)
 			{
 				rb.AddForce(actualMoveDir * inWaterSpeed, ForceMode.Force);
@@ -138,7 +143,10 @@ public class Frog_Move : MonoBehaviour
 			//Physics.gravity = new Vector3(0, -20, 0);
 			Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 			rb.AddForce(actualMoveDir * lillyForce, ForceMode.Impulse);
-		}
+
+            //NOTE : 사운드 추가
+            AudioManager.Instance.PlaySFX(lillypadClip);
+        }
 	}
 
 	private void OnCollisionStay(Collision collision)

@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 	public GameObject bloodExplosion;
 	public Frog_Body_Change bodyChange;
 
+	public AudioClip frogHitClip;
+	public AudioClip frogDeathClip;
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -53,7 +56,18 @@ public class Player : MonoBehaviour
 	{
 		damageAble = false;
 		DataManager.Instance.data.HP--;
-		bloodExplosion.SetActive(true);
+
+		//NOTE : 사운드 추가됨
+		if (DataManager.Instance.data.HP >= 1)
+		{ 
+			AudioManager.Instance.PlaySFX(frogHitClip);
+		}
+		else
+		{
+            AudioManager.Instance.PlaySFX(frogDeathClip);
+        }
+
+        bloodExplosion.SetActive(true);
 		rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
 		bodyChange.BodyChange();
 		if (DataManager.Instance.data.HP <= 0)
