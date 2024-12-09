@@ -32,14 +32,10 @@ public abstract class Enemy : MonoBehaviour
 	public float hpAmount { get { return bossHp / bossMaxHp; } }
 	public Image hpBar;
 
-    public AudioClip flyDeathClip;
-    public AudioClip fishDeathClip;
-    public AudioClip birdDeathClip;
-	public AudioClip ghostDeathClip;
-	public AudioClip crowDeathClip;
+	public AudioClip deathClip;
+	public AudioClip idleClip;
 
-
-    protected virtual void Awake()
+	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
@@ -49,6 +45,17 @@ public abstract class Enemy : MonoBehaviour
 		GameManager.Instance.enemy[enemyNumber].Add(gameObject);
 		if (isBat)
 			batMoveMent = GetComponentInParent<FliesMovement>();
+
+		StartCoroutine(PlayIdleClipCoroutine());
+	}
+	//NOTE : 까마귀 제외 모든 적 사운드 추가
+	private IEnumerator PlayIdleClipCoroutine()
+	{
+		while (gameObject.activeSelf == true)
+		{
+			yield return new WaitForSeconds(idleClip.length + Random.Range(3f, 5f));
+			AudioManager.Instance.PlaySFX(idleClip, transform.position, this.transform);
+		}
 	}
 
 	protected virtual void Start()
@@ -98,6 +105,8 @@ public abstract class Enemy : MonoBehaviour
 			if (isBoss == false)
 			{
 				GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
+				//NOTE : 적 Death 사운드 추가(까마귀 제외)
+				AudioManager.Instance.PlaySFX(deathClip, transform.position);
 				KillCountUpdater();
 				FractureGen();
 				if (DataManager.Instance.totalKillCount % 3 == 0 && isBoss == false)
@@ -115,7 +124,8 @@ public abstract class Enemy : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("나 보스야");
+				//NOTE : 중간보스 Death 사운드 추가
+				AudioManager.Instance.PlaySFX(deathClip, transform.position);
 				Boss();
 				if (DataManager.Instance.data.isKilledBossBird || DataManager.Instance.data.isKilledBossFish)
 				{
@@ -163,30 +173,23 @@ public abstract class Enemy : MonoBehaviour
 		{
 			//NOTE : 사운드 추가됨
 			case 0:
-                //AudioManager.Instance.PlaySFX(flyDeathClip, transform.position, this.transform);
-                DataManager.Instance.data.money++;
+				DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
 				UIManager.Instance.GameSceneTextUpdate();
 				break;
 			case 1:
-                //AudioManager.Instance.PlaySFX(fishDeathClip, transform.position, this.transform);
-                DataManager.Instance.fishKillCount--;
+				DataManager.Instance.fishKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 2:
-                //AudioManager.Instance.PlaySFX(birdDeathClip, transform.position, this.transform);
-                DataManager.Instance.birdKillCount--;
+				DataManager.Instance.birdKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 3:
-                //AudioManager.Instance.PlaySFX(ghostDeathClip, transform.position, this.transform);
-                DataManager.Instance.data.money++;
+				DataManager.Instance.data.money++;
 				DataManager.Instance.totalKillCount++;
 				UIManager.Instance.GameSceneTextUpdate();
 				break;
-			case 4:
-                //AudioManager.Instance.PlaySFX(crowDeathClip, transform.position, this.transform);
-                break;
 			default:
 				break;
 		}

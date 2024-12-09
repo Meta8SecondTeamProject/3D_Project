@@ -406,6 +406,7 @@ MonoBehaviour:
   explosionRadius: 5
   explosionOffset: {x: 0, y: 1, z: 0}
   delay: 5
+  frogDeathClip: {fileID: 8300000, guid: e1d1bbaaab3a7d14a8de7e6490b03320, type: 3}
 --- !u!1 &655275269778644979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4228,6 +4229,8 @@ MonoBehaviour:
   jumpHeight: 50
   lookTime: 3
   jumpDuration: 2.5
+  idleClip: {fileID: 8300000, guid: 574f88825acc8354d8753605d153faae, type: 3}
+  jumpClip: {fileID: 8300000, guid: 0d7d4880197543342860a3c41b135db6, type: 3}
 --- !u!65 &7715494432988925170
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5887,7 +5890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4349219084850550139}
   m_Layer: 8
-  m_Name: "\uC544\uB9C8\uD29C\uC5B4"
+  m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

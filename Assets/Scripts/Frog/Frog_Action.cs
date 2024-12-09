@@ -168,8 +168,8 @@ public class Frog_Action : MonoBehaviour
 			InstantiateProj();
 
 			//NOTE : 사운드 추가
-            AudioManager.Instance.PlaySFX(fireClip);
-        }
+			//AudioManager.Instance.PlaySFX(fireClip);
+		}
 	}
 
 	private void InstantiateProj()
@@ -216,8 +216,8 @@ public class Frog_Action : MonoBehaviour
 		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
 
 		//NOTE : 사운드 추가
-        AudioManager.Instance.PlaySFX(jumpClip);
-    }
+		AudioManager.Instance.PlaySFX(jumpClip);
+	}
 
 	private void ShakeCamera(float shakePower, float shakeDuration)
 	{
