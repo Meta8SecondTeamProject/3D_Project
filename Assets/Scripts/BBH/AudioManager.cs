@@ -46,7 +46,7 @@ public class AudioManager : SingletonManager<AudioManager>
     }
 
     //DEPRECATED : 기존 Destroy방식 부활함
-    public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
+    public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f, float maxDis = 150)
     {
 
         if (clip != null)
@@ -69,10 +69,11 @@ public class AudioManager : SingletonManager<AudioManager>
             tempAudioSource.clip = clip;
             tempAudioSource.spatialBlend = 1.0f; //3D 사운드로 설정
             tempAudioSource.minDistance = 10f; //최소 거리 
-            tempAudioSource.maxDistance = 500f; //최대 거리 
+            tempAudioSource.maxDistance = maxDis; //최대 거리 
             tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
             tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
             tempAudioSource.volume = volume;
+            
 
             tempAudioSource.Play();
             Destroy(tempObj, clip.length); //클립 길이만큼 재생 후 오브젝트 삭제

@@ -21,7 +21,7 @@ public class Water : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			AudioManager.Instance.PlaySFX(contactWaterClip, 0.1f);
+			//AudioManager.Instance.PlaySFX(contactWaterClip, 0.1f);
 			waterAudioSource.clip = swimmingClip;
 			waterAudioSource.loop = true;
 			waterAudioSource.Play();
