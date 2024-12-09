@@ -214,7 +214,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Need some Ammo?
+  m_text: 'Need some Ammo?
+
+    Pay 2 coins for 4 ammo'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c0df328cad378045b6bf41fef150a38, type: 2}
   m_sharedMaterial: {fileID: -6071173556519646942, guid: 2c0df328cad378045b6bf41fef150a38, type: 2}
@@ -577,6 +579,7 @@ MonoBehaviour:
   chatWindow: {fileID: 8447445764680004549}
   isMessage: 0
   isInteraction: 0
+  getAmmoClip: {fileID: 0}
 --- !u!65 &906232508374517599
 BoxCollider:
   m_ObjectHideFlags: 0
