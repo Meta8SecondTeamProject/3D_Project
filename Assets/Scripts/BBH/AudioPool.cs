@@ -47,6 +47,10 @@ public class AudioPool : SingletonManager<AudioPool>
             source.gameObject.SetActive(true);
             return source;
         }
+        else
+        {
+            Debug.Log("풀이 가득차서 새로 생성함");
+        }
 
         //풀이 부족하면 새로 생성
         GameObject obj = new GameObject("PooledSFX");
@@ -60,10 +64,20 @@ public class AudioPool : SingletonManager<AudioPool>
         return audioSource;
     }
 
+    public void ReturnAudioSourceTest(AudioSource source)
+    {
+
+    }
+
     public void ReturnAudioSource(AudioSource source)
     {
         //다시 큐로 넣는 메서드
         //AudioManager에서 코루틴으로 실행됨
+        //Debug.Log($"ReturnAudioSource : {source.clip.name}");
+        if (source == null)
+        {
+            Debug.LogWarning($"오디오 소스가 null상태임 , {source.clip.name}");
+        }
         source.Stop();
         source.clip = null;
         source.gameObject.SetActive(false);

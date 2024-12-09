@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa61a7028abe69d4e867e108e57a395c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 10
+  poolSize: 100
 --- !u!4 &392654939
 Transform:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SFX: {fileID: 954540083}
   BGM: {fileID: 1330838793}
-  UIAudioClip: {fileID: 8300000, guid: cc37e46d8b66f6749a3f5873d6360633, type: 3}
+  UIAudioClip: {fileID: 0}
   backgroundMusic:
   - {fileID: 8300000, guid: aee281423fd2c15429218102800adaa9, type: 3}
   - {fileID: 8300000, guid: aee281423fd2c15429218102800adaa9, type: 3}
@@ -1278,6 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662c3b43b3bf7a940933348ac67880fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickClip: {fileID: 0}
 --- !u!114 &1984725524
 MonoBehaviour:
   m_ObjectHideFlags: 0
