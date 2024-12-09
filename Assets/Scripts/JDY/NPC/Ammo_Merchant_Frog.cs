@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ammo_Merchant_Frog : NPC
 {
+    public AudioClip getAmmoClip;
     protected override void Start()
     {
         base.Start();
@@ -16,8 +17,10 @@ public class Ammo_Merchant_Frog : NPC
         print("Ammo_Merchant_Frog / Interaction / Start");
         if (DataManager.Instance.data.money >= price && DataManager.Instance.data.ammo < DataManager.Instance.data.maxAmmo)
         {
+            //NOTE : 사운드 추가됨
             DataManager.Instance.data.money -= price;
             DataManager.Instance.data.ammo += interactionValue;
+            AudioManager.Instance.PlaySFX(getAmmoClip);
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
             return;

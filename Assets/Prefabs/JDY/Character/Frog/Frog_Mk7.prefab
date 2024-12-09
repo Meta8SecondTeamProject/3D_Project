@@ -5405,7 +5405,7 @@ MonoBehaviour:
   explosionRadius: 10
   explosionOffset: {x: 0, y: 2, z: 0}
   delay: 5
-  frogDeathClip: {fileID: 8300000, guid: dd2261d28b39aa64c80f4e03116e459c, type: 3}
+  deathClip: {fileID: 0}
 --- !u!1 &1108147445137890990
 GameObject:
   m_ObjectHideFlags: 0
@@ -21343,8 +21343,8 @@ MonoBehaviour:
   frogAction: {fileID: 0}
   bloodExplosion: {fileID: 2035527195196885046}
   bodyChange: {fileID: 2073378929737527373}
-  frogHitClip: {fileID: 8300000, guid: cbc81d8e4df80934e869a1c7918d3ebb, type: 3}
-  frogDeathClip: {fileID: 8300000, guid: dd2261d28b39aa64c80f4e03116e459c, type: 3}
+  frogHitClip: {fileID: 8300000, guid: 1b73dc13d5246b54d8a99cafb4d0dfc9, type: 3}
+  frogDeathClip: {fileID: 8300000, guid: 7643b18a3c3d35a4e86f29e818e6f487, type: 3}
 --- !u!114 &6682719509741215475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21428,8 +21428,8 @@ MonoBehaviour:
     m_Bits: 8
   crossHair: {fileID: 3448488270276289617}
   projectile: {fileID: 1710766314591949603, guid: c17bc418cd599fc488d22af808e2124d, type: 3}
-  fireClip: {fileID: 0}
-  jumpClip: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: 38f44e0dd6f2eca42bd45740d043c577, type: 3}
+  jumpClip: {fileID: 8300000, guid: 88baeb7f8f2c2b54c9912e3308399e2c, type: 3}
 --- !u!114 &206994569928949434
 MonoBehaviour:
   m_ObjectHideFlags: 0

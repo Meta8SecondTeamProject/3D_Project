@@ -10,6 +10,7 @@ public class Shotgun_Shell : MonoBehaviour
 	public ObjectPool pool;
 	public GameObject shell;
 
+	public AudioClip getAmmoClip;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -24,6 +25,8 @@ public class Shotgun_Shell : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
+			//NOTE : 사운드 추가됨
+			AudioManager.Instance.PlaySFX(getAmmoClip);
 			DataManager.Instance.data.ammo += 4;
 			UIManager.Instance.GameSceneTextUpdate();
 			if (isEnemyDrop)
