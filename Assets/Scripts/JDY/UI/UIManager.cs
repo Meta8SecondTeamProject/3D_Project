@@ -86,8 +86,9 @@ public class UIManager : SingletonManager<UIManager>
                 //Debug.LogError("UIManager / ChangeScene");
                 break;
         }
+        GameManager.Instance.EnemyListReset();
         AudioManager.Instance.BGMChange(SceneManager.GetActiveScene().buildIndex);
-
+        DataManager.Instance.triggerOn = 0;
         DistanceCulling.Instance.SetPlayerAndTarget();
     }
 
