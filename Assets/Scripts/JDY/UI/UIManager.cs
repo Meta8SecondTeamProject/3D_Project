@@ -135,7 +135,7 @@ public class UIManager : SingletonManager<UIManager>
 		//yield return StartCoroutine(LoadTest());
 
 		ChangeScene();
-		yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 3f));
+		//yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 3f));
 		loadingController.StartLoadingScene(nextSceneName);
 
 	}

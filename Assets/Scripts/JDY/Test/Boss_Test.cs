@@ -1,18 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody))]
 public class Boss_Test : MonoBehaviour
 {
-	protected int hp;
-	public int MaxHp { private get; set; }
+	public float bossHp;
+	public float bossMaxHp;
+	public float hpAmount { get { return bossHp / bossMaxHp; } }
+	public Image hpBar;
 
 	protected Rigidbody rb;
 	public Player target;
 	public float speed;
 
-
-	protected void Awake()
+	protected virtual void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
@@ -25,14 +27,6 @@ public class Boss_Test : MonoBehaviour
 
 	private void OnEnable()
 	{
-		if (MaxHp <= 0)
-		{
-			hp = 10;
-		}
-		else
-		{
-			hp = MaxHp;
-		}
 
 		if (GameManager.Instance.player != null)
 		{
@@ -42,8 +36,9 @@ public class Boss_Test : MonoBehaviour
 
 	public virtual void Hit()
 	{
-		hp -= 1;
-		if (hp <= 0)
+		bossHp--;
+		hpBar.fillAmount = hpAmount;
+		if (bossHp <= 0)
 		{
 			Die();
 		}
@@ -51,8 +46,6 @@ public class Boss_Test : MonoBehaviour
 
 	public virtual void Die()
 	{
-		//죽는 애니메이션
-		gameObject.SetActive(false);
 	}
 
 	protected virtual IEnumerator WhatName()
@@ -64,7 +57,7 @@ public class Boss_Test : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Projectile"))
 		{
-
+			Hit();
 		}
 
 		if (collision.gameObject.CompareTag("Water"))

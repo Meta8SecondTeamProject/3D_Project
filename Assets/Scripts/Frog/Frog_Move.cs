@@ -80,7 +80,7 @@ public class Frog_Move : MonoBehaviour
 	{
 		Move();
 
-		Debug.Log($"현재 속력 : {rb.velocity.magnitude}");
+		//Debug.Log($"현재 속력 : {rb.velocity.magnitude}");
 
 		//childPos.position = transform.position;
 		if (!isGround & !isWater)

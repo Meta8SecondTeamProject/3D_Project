@@ -29,11 +29,12 @@ public class GameManager : SingletonManager<GameManager>
 		SceneManager.sceneLoaded += (x, y) =>
 		{
 			UIManager.Instance.GameSceneTextUpdate();
+			UIManager.Instance.ChangeScene();
 			pool = FindAnyObjectByType<ObjectPool>();
 			Cursor.lockState = CursorLockMode.Locked;
 		};
 		//프레임 제한용 코드
-		//Application.targetFrameRate = 60;
+		Application.targetFrameRate = 60;
 
 		//임시로 옵젝 찾기
 		//pool = FindAnyObjectByType<ObjectPool>();

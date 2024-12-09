@@ -88,10 +88,8 @@ public abstract class Enemy : MonoBehaviour
 	{
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
 		{
-			Debug.Log("Àû ÃÑ¾Ë °¨Áö");
 			if (isBoss == false)
 			{
-				Debug.Log("¤¾¤·");
 				GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
 				KillCountUpdater();
 				FractureGen();
@@ -132,7 +130,6 @@ public abstract class Enemy : MonoBehaviour
 		{
 			if (isBossBird)
 			{
-
 				DataManager.Instance.data.isKilledBossBird = true;
 			}
 			else if (isBossFish)

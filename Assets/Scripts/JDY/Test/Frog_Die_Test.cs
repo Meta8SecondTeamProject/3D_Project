@@ -91,5 +91,10 @@ public class Frog_Die_Test : MonoBehaviour
 			Debug.Log("RetryGame");
 			DataManager.Instance.RetryGame();
 		}
+		else if (remainingObjects <= 0 && CompareTag("Enemy"))
+		{
+			Debug.Log("Ending");
+			DataManager.Instance.EndGame();
+		}
 	}
 }
