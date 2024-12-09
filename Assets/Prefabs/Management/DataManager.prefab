@@ -47,8 +47,8 @@ MonoBehaviour:
   data:
     currentSceneName: 
     currentHP: 2
-    currentAmmo: 100
-    maxAmmo: 100
+    currentAmmo: 4
+    maxAmmo: 16
     money: 0
     isHat: 0
     isAmmoBelt: 0
@@ -57,8 +57,6 @@ MonoBehaviour:
     isHardClear: 0
     isKilledBossBird: 0
     isKilledBossFish: 0
-    isKilledBossTode: 0
-    isClear: 0
   playerStartPos:
   - {x: -400, y: 8, z: 323}
   - {x: 4, y: 4, z: -360}
@@ -76,3 +74,4 @@ MonoBehaviour:
   fishKillCount: 16
   birdKillCount: 16
   totalKillCount: 0
+  difficulty: 0

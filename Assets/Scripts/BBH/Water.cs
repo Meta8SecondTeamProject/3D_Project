@@ -9,7 +9,7 @@ public class Water : MonoBehaviour
 	public AudioSource waterAudioSource;
 	public AudioClip contactWaterClip;
 	public AudioClip swimmingClip;
-	
+
 
 	private void Start()
 	{
@@ -17,24 +17,24 @@ public class Water : MonoBehaviour
 
 	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            AudioManager.Instance.PlaySFX(contactWaterClip);
-            waterAudioSource.clip = swimmingClip;
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			AudioManager.Instance.PlaySFX(contactWaterClip, 0.1f);
+			waterAudioSource.clip = swimmingClip;
 			waterAudioSource.loop = true;
 			waterAudioSource.Play();
-        }
+		}
 
-    }
+	}
 
-    private void OnTriggerStay(Collider other)
+	private void OnTriggerStay(Collider other)
 	{
 		//레이어로 비교하는 걸로 변경해봤습니다.
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Item"))
 		{
-            if (other.TryGetComponent(out Rigidbody rb))
+			if (other.TryGetComponent(out Rigidbody rb))
 			{
 				Vector3 force = Vector3.up * buoyancyForce;
 				rb.AddForce(force, ForceMode.Acceleration);
