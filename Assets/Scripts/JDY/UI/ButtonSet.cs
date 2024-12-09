@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(UnityEngine.UI.Button), typeof(Image))]
 public class ButtonSet : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public AudioClip clickClip;
     private Color baseColor;
     private Image image;
     private AudioClip clip;
