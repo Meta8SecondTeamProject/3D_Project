@@ -16,7 +16,7 @@ public class Water : MonoBehaviour
 	private void OnTriggerStay(Collider other)
 	{
 		//레이어로 비교하는 걸로 변경해봤습니다.
-		if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+		if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Item"))
 		{
 			if (other.TryGetComponent(out Rigidbody rb))
 			{

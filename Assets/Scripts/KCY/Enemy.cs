@@ -160,11 +160,11 @@ public abstract class Enemy : MonoBehaviour
 				UIManager.Instance.GameSceneTextUpdate();
 				break;
 			case 1:
-				DataManager.Instance.fishKillCount++;
+				DataManager.Instance.fishKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 2:
-				DataManager.Instance.birdKillCount++;
+				DataManager.Instance.birdKillCount--;
 				DataManager.Instance.totalKillCount++;
 				break;
 			case 3:

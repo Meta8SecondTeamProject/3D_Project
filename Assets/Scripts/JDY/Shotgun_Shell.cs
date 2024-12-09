@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shotgun_Shell : MonoBehaviour
 {
-	private Player player;
 	private Rigidbody rb;
 	public bool isEnemyDrop = false;
 	public float moveSpeed;
@@ -14,8 +13,6 @@ public class Shotgun_Shell : MonoBehaviour
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
-		player = GameManager.Instance.player;
-		pool = GameManager.Instance.pool;
 	}
 
 	private void OnEnable()
@@ -31,7 +28,7 @@ public class Shotgun_Shell : MonoBehaviour
 			UIManager.Instance.GameSceneTextUpdate();
 			if (isEnemyDrop)
 			{
-				pool.Push(shell);
+				GameManager.Instance.pool.Push(shell);
 			}
 			else
 			{
@@ -42,7 +39,7 @@ public class Shotgun_Shell : MonoBehaviour
 
 	public void MoveToPlayer()
 	{
-		Vector3 angle = player.transform.position - transform.position;
+		Vector3 angle = GameManager.Instance.player.transform.position - transform.position;
 		Quaternion rot = Quaternion.Euler(0, 0, 30);
 		rb.velocity += angle.normalized * moveSpeed;
 		rb.rotation *= rot;
