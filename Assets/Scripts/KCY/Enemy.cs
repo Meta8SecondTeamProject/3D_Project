@@ -54,7 +54,14 @@ public abstract class Enemy : MonoBehaviour
 		while (gameObject.activeSelf == true)
 		{
 			yield return new WaitForSeconds(idleClip.length + Random.Range(3f, 5f));
-			AudioManager.Instance.PlaySFX(idleClip, transform.position, this.transform);
+			if (isBat)
+			{
+				AudioManager.Instance.PlaySFX(idleClip, transform.position, this.transform, 0.1f);
+			}
+			else
+			{
+				AudioManager.Instance.PlaySFX(idleClip, transform.position, this.transform, 0.1f);
+			}
 		}
 	}
 
@@ -106,7 +113,7 @@ public abstract class Enemy : MonoBehaviour
 			{
 				GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
 				//NOTE : 적 Death 사운드 추가(까마귀 제외)
-				AudioManager.Instance.PlaySFX(deathClip, transform.position);
+				AudioManager.Instance.PlaySFX(deathClip, transform.position, null, 0.1f);
 				KillCountUpdater();
 				FractureGen();
 				if (DataManager.Instance.totalKillCount % 3 == 0 && isBoss == false)
@@ -125,7 +132,7 @@ public abstract class Enemy : MonoBehaviour
 			else
 			{
 				//NOTE : 중간보스 Death 사운드 추가
-				AudioManager.Instance.PlaySFX(deathClip, transform.position);
+				AudioManager.Instance.PlaySFX(deathClip, transform.position, null, 0.1f);
 				Boss();
 				if (DataManager.Instance.data.isKilledBossBird || DataManager.Instance.data.isKilledBossFish)
 				{
