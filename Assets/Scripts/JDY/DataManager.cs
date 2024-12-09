@@ -135,6 +135,10 @@ public class DataManager : SingletonManager<DataManager>
             Debug.Log("KCYæ¿¿∏∑Œ ¿Ãµø");
             UIManager.Instance.TransitionToLoadScene("KCY_Scene");
         }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            UIManager.Instance.TransitionToLoadScene("GameEndScene");
+        }
     }
     #endregion
 
