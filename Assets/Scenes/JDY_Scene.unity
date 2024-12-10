@@ -5599,9 +5599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buoyancyForce: 15
   waterDrag: 5
-  waterAudioSource: {fileID: 944665769}
   contactWaterClip: {fileID: 8300000, guid: a256f74e583a0bd4ea80fc4712bfe8ba, type: 3}
-  swimmingClip: {fileID: 8300000, guid: 66b07c965bd59cd47a89917089b5f060, type: 3}
 --- !u!82 &944665769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5612,7 +5610,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 66b07c965bd59cd47a89917089b5f060, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
