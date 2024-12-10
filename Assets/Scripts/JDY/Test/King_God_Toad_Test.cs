@@ -154,9 +154,9 @@ public class King_God_Toad_Test : Boss_Test
 
 		coll.isTrigger = true;
 		AudioManager.Instance.BGM.Stop();
-		AudioManager.Instance.PlaySFX(toadDeathClip);
+		AudioManager.Instance.PlaySFX(toadDeathClip, 0.75f);
 		BodyChange();
-		
+
 	}
 
 }

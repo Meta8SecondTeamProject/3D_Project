@@ -7,7 +7,7 @@ public class Fish_Enemy : Enemy
 	public float jumpCooldown;
 	public float jumpForce;
 	public float forceGravity;
-
+	private bool isWater = false;
 
 	protected override void Awake()
 	{
@@ -41,7 +41,10 @@ public class Fish_Enemy : Enemy
 		while (true)
 		{
 			yield return new WaitForSeconds(jumpCooldown);
+			yield return new WaitUntil(() => isWater);
+			jumpForce += Vector3.Distance(GameManager.Instance.player.transform.position, transform.position);
 			rb.AddForce(moveDir.normalized * jumpForce, ForceMode.Impulse);
+
 		}
 	}
 	private void FixedUpdate()
@@ -56,16 +59,21 @@ public class Fish_Enemy : Enemy
 		Look(moveDir, 5f);
 	}
 
-
-	private void OnCollisionStay(Collision collision)
+	private void OnTriggerStay(Collider other)
 	{
-		if (collision.collider.CompareTag("Water"))
+		if (other.CompareTag("Water"))
 		{
 			rb.useGravity = false;
+			isWater = true;
 		}
-		if (collision.collider.CompareTag("Ground"))
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.CompareTag("Water"))
 		{
 			rb.useGravity = true;
+			isWater = false;
 		}
 	}
 
