@@ -113,7 +113,7 @@ public class Frog_Move : MonoBehaviour
 				rb.AddForce(Vector3.up * 200f, ForceMode.Impulse);
 				frogAction.jumpCount--;
 				isMove = false;
-				AudioManager.Instance.PlaySFX(jumpClip);
+				AudioManager.Instance.PlaySFX(jumpClip,0.75f);
 			}
 			else if (isWater)
 			{

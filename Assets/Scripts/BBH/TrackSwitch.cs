@@ -22,6 +22,7 @@ public class TrackSwitch : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(fadeController.FadeOut());
         cart.m_Speed = cartSpeed[0];
 
         //이상한 실수 방지용으로 이미지 알파값 조절해서 전부 투명하게 바꿔줌
@@ -34,7 +35,7 @@ public class TrackSwitch : MonoBehaviour
     private void Update()
     {
         //카트가 트랙의 80% 이상 도달하면 코루틴을 시작함
-        if (cart.m_Position+(cart.m_Path.PathLength * 0.20f) >= cart.m_Path.PathLength && isSwitching == false)
+        if (cart.m_Position+(cart.m_Path.PathLength * 0.25f) >= cart.m_Path.PathLength && isSwitching == false)
         {
             StartCoroutine(SwitchToNextTrack());
         }
@@ -59,13 +60,13 @@ public class TrackSwitch : MonoBehaviour
         //현재 트랙 인덱스값이 이미지 배열의 크기 - 1보다 작으면,
         //이미지 배열의 크기가 5니까, Index < (5-1)
         //0,1,2,3 총 4번의 이미지를 보여줌
-        if (currentTrackIndex < creditsImages.Length - 1)
-        {
-            //ShowImage에서 이미지 보여주고, waitTime만큼 기다림
-            yield return StartCoroutine(fadeController.ShowImage(creditsImages[currentTrackIndex], waitTime));
-            //ShowImage끝나면 HideImage 실행해서 이미지 숨겨줌
-            yield return StartCoroutine(fadeController.HideImage(creditsImages[currentTrackIndex]));
-        }
+        //if (currentTrackIndex < creditsImages.Length - 1)
+        //{
+        //    //ShowImage에서 이미지 보여주고, waitTime만큼 기다림
+        //    yield return StartCoroutine(fadeController.ShowImage(creditsImages[currentTrackIndex], waitTime));
+        //    //ShowImage끝나면 HideImage 실행해서 이미지 숨겨줌
+        //    yield return StartCoroutine(fadeController.HideImage(creditsImages[currentTrackIndex]));
+        //}
         
         //만약 현재 씬 인덱스가 이미지 배열의 크기 - 2면,
         //트랙의 최대 인덱스는 3, 이미지 배열의 크기는 5니까 3 == (5 - 2) 즉, 마지막 트랙이면
