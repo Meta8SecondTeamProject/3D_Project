@@ -4,6 +4,8 @@ public class Hat_Merchant_Frog : NPC
 {
     [SerializeField]
     private GameObject hat;
+
+    public AudioClip clip;
     protected override void Start()
     {
         base.Start();
@@ -25,6 +27,7 @@ public class Hat_Merchant_Frog : NPC
             UIManager.Instance.ChangeInteractionText(str = null);
             GameManager.Instance.player.bodyChange.BodyChange();
             hat.SetActive(!DataManager.Instance.data.isHat);
+            AudioManager.Instance.PlaySFX(clip);
             return;
         }
 

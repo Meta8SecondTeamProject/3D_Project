@@ -4348,22 +4348,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 479010742}
     m_Modifications:
-    - target: {fileID: 2000570476507021253, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_Size.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000570476507021253, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_Center.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2984693991715606803, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2984693991715606803, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_Center.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8121240149168627945, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
       propertyPath: m_LocalPosition.x
       value: -312.13422
@@ -4407,14 +4391,6 @@ PrefabInstance:
     - target: {fileID: 8657787760356735718, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
       propertyPath: m_Name
       value: Magician_Mk1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657787760356735718, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657787760356735718, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
-      propertyPath: m_TagString
-      value: Culling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5903,7 +5879,6 @@ GameObject:
   - component: {fileID: 944665765}
   - component: {fileID: 944665764}
   - component: {fileID: 944665768}
-  - component: {fileID: 944665769}
   m_Layer: 4
   m_Name: Pond
   m_TagString: Water
@@ -6012,102 +5987,6 @@ MonoBehaviour:
   buoyancyForce: 15
   waterDrag: 5
   contactWaterClip: {fileID: 8300000, guid: a256f74e583a0bd4ea80fc4712bfe8ba, type: 3}
---- !u!82 &944665769
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944665763}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 66b07c965bd59cd47a89917089b5f060, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 691.9426
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &955024024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 842617053378665731, guid: 90e95be206ea68a47aaef4905593e210, type: 3}
@@ -19771,6 +19650,7 @@ MonoBehaviour:
   isMessage: 0
   isInteraction: 0
   belt: {fileID: 3465906073472996515}
+  clip: {fileID: 8300000, guid: 59157d0c6a949d547b36ae987f91beac, type: 3}
 --- !u!33 &2726677877089578778
 MeshFilter:
   m_ObjectHideFlags: 0
