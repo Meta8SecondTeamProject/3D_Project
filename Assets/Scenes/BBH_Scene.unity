@@ -2464,8 +2464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf62774a4e51ac40b454077cb34b5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancyForce: 35
-  waterDrag: 5
+  buoyancyForce: 15
+  waterDrag: 1
   contactWaterClip: {fileID: 8300000, guid: a256f74e583a0bd4ea80fc4712bfe8ba, type: 3}
 --- !u!82 &340446253
 AudioSource:
@@ -54564,7 +54564,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5579780076931105937, guid: d4523a3803e84cf46bcdb70ac6d84776, type: 3}
 --- !u!33 &5730192707048482989
