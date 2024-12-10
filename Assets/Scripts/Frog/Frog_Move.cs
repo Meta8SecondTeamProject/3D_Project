@@ -134,10 +134,16 @@ public class Frog_Move : MonoBehaviour
 		}
 	}
 
+	private bool lillypadContacted;
+
 	private void OnCollisionEnter(Collision collision)
 	{
+		if (lillypadContacted == true)
+			return;
+
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
+			lillypadContacted = true;
 			rb.AddForce(Vector3.up * lillyForce, ForceMode.Impulse);
 			//NOTE : 사운드 추가
 			AudioManager.Instance.PlaySFX(lillypadClip);
@@ -154,7 +160,8 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnCollisionExit(Collision collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
 			isGround = false;
 			frogAction.jumpCount = 0;
@@ -165,10 +172,13 @@ public class Frog_Move : MonoBehaviour
 		}
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
-			frogAction.jumpCount = 0;
+            lillypadContacted = false;
+
+            frogAction.jumpCount = 0;
 			if (DataManager.Instance.jumpCount == 2)
 			{
-				frogAction.jumpCount = 1;
+
+                frogAction.jumpCount = 1;
 			}
 		}
 	}
