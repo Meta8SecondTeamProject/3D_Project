@@ -88,7 +88,6 @@ public class Frog_Action : MonoBehaviour
 	{
 		while (true)
 		{
-
 			yield return new WaitWhile(() => fireCooldown);
 			yield return new WaitForSeconds(0.3f);
 			fireCooldown = true;
@@ -98,6 +97,11 @@ public class Frog_Action : MonoBehaviour
 
 
 	private void Update()
+	{
+		HandleShakeEffect();
+		HandleCursorVisible();
+	}
+	private void HandleShakeEffect()
 	{
 		if (shakeDuration > 0)
 		{
@@ -111,12 +115,16 @@ public class Frog_Action : MonoBehaviour
 				noise.m_FrequencyGain = 0f;
 			}
 		}
+	}
+	private void HandleCursorVisible()
+	{
 		if (canFire && UIManager.Instance.currentScene == CurrentScene.Game)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
 	}
+
 	private void FixedUpdate()
 	{
 		if (frogMove.isGround)
@@ -187,7 +195,7 @@ public class Frog_Action : MonoBehaviour
 		jumpInput = context.ReadValue<float>();
 		//if (frogMove.isGround) jumpCount = 2;
 		isJumping = jumpInput != 0;
-		if (frogMove.isWater && DataManager.Instance.jumpCount > 1)
+		if (GameManager.Instance.player.frogMove.isWater && DataManager.Instance.jumpCount > 1)
 		{
 			jumpCount = 1;
 		}
@@ -206,10 +214,10 @@ public class Frog_Action : MonoBehaviour
 	}
 	private void JumpForcing(float y)
 	{
-		Vector3 inputMoveDir = new Vector3(-frogMove.input.y, y, frogMove.input.x);
+		Vector3 inputMoveDir = new Vector3(-frogMove.moveInput.y, y, frogMove.moveInput.x);
 		if (jumpCount == 1)
 		{
-			inputMoveDir = new Vector3(-frogMove.input.y, 1, frogMove.input.x);
+			inputMoveDir = new Vector3(-frogMove.moveInput.y, 1, frogMove.moveInput.x);
 		}
 		jumpCount--;
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);

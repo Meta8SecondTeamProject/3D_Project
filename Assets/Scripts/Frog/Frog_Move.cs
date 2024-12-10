@@ -13,27 +13,22 @@ using System.Collections;
 public class Frog_Move : MonoBehaviour
 {
 	private Rigidbody rb;
-	private InputActionAsset controlDefine;
 	private InputAction moveAction;
-	private Frog_Action frogAction;
-	public Transform childPos;
 
 	public float moveSpeed;
 	public float onAirSpeed;
 	public float inWaterSpeed;
 
-	public Vector2 input;
+	public Vector2 moveInput;
 	private Vector3 actualMoveDir;
 	private Vector3 inputMoveDir;
 	private float tempTime;
 	public float force;
 	public float lillyForce;
 
-	public bool isMove;
+	private bool isMove;
 	public bool isGround;
 	public bool isWater; //Water에서 사용하기 위해 public
-	[HideInInspector] public bool readyToJump; //FrogAction에서 사용하기 위해 public, State랑 관계없음
-
 
 	public bool isPressed;
 
@@ -44,16 +39,13 @@ public class Frog_Move : MonoBehaviour
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
-		controlDefine = GetComponent<PlayerInput>().actions;
-		moveAction = controlDefine.FindAction("Move");
-		frogAction = GetComponent<Frog_Action>();
+		moveAction = GetComponent<PlayerInput>().actions.FindAction("Move");
 	}
 
 	private void OnEnable()
 	{
 		moveAction.performed += OnMoveEvent;
 		moveAction.canceled += OnMoveEvent;
-
 	}
 
 	private void OnDisable()
@@ -65,6 +57,7 @@ public class Frog_Move : MonoBehaviour
 	private void Start()
 	{
 		isMove = true;
+		tempTime = 0;
 		StartCoroutine(MoveCoroutine());
 	}
 
@@ -80,8 +73,10 @@ public class Frog_Move : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		Move();
-
+		if (isMove)
+		{
+			Move();
+		}
 		//Debug.Log($"현재 속력 : {rb.velocity.magnitude}");
 
 		//childPos.position = transform.position;
@@ -95,25 +90,20 @@ public class Frog_Move : MonoBehaviour
 
 	private void OnMoveEvent(Context value)
 	{
-		input = value.ReadValue<Vector2>();
-		isPressed = input != Vector2.zero;
+		moveInput = value.ReadValue<Vector2>();
+		isPressed = moveInput != Vector2.zero;
 	}
 	private void Move()
 	{
-
 		if (isPressed)
 		{
-			inputMoveDir = new Vector3(-input.y, 0, input.x) * moveSpeed;
+			inputMoveDir = new Vector3(-moveInput.y, 0, moveInput.x) * moveSpeed;
 			actualMoveDir = transform.TransformDirection(inputMoveDir);
 
 
 			if (isWater == false && isGround && tempTime >= 0.5f && isMove)
 			{
-				rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
-				rb.AddForce(Vector3.up * 200f, ForceMode.Impulse);
-				frogAction.jumpCount--;
-				isMove = false;
-				AudioManager.Instance.PlaySFX(jumpClip);
+				Jump();
 			}
 			else if (isWater)
 			{
@@ -124,6 +114,11 @@ public class Frog_Move : MonoBehaviour
 				rb.AddForce(actualMoveDir * onAirSpeed, ForceMode.Force);
 			}
 		}
+		UpdateTempTime();
+	}
+
+	private void UpdateTempTime()
+	{
 		if (isPressed == false)
 		{
 			tempTime = 0;
@@ -131,6 +126,24 @@ public class Frog_Move : MonoBehaviour
 		else if (isPressed)
 		{
 			tempTime += Time.deltaTime;
+		}
+	}
+
+	public void Jump()
+	{
+		rb.AddForce(actualMoveDir * force, ForceMode.Impulse);
+		rb.AddForce(Vector3.up * 200f, ForceMode.Impulse);
+		GameManager.Instance.player.frogAction.jumpCount--;
+		isMove = false;
+		AudioManager.Instance.PlaySFX(jumpClip);
+	}
+
+	private void ResetJumpCount()
+	{
+		GameManager.Instance.player.frogAction.jumpCount = 0;
+		if (DataManager.Instance.jumpCount == 2)
+		{
+			GameManager.Instance.player.frogAction.jumpCount = 1;
 		}
 	}
 
@@ -161,27 +174,16 @@ public class Frog_Move : MonoBehaviour
 	private void OnCollisionExit(Collision collision)
 	{
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
 		{
 			isGround = false;
-			frogAction.jumpCount = 0;
-			if (DataManager.Instance.jumpCount == 2)
-			{
-				frogAction.jumpCount = 1;
-			}
+			ResetJumpCount();
 		}
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
-            lillypadContacted = false;
-
-            frogAction.jumpCount = 0;
-			if (DataManager.Instance.jumpCount == 2)
-			{
-
-                frogAction.jumpCount = 1;
-			}
+			lillypadContacted = false;
+			ResetJumpCount();
 		}
 	}
-
 }
 

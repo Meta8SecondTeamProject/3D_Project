@@ -22,6 +22,11 @@ public class ObjectPool : MonoBehaviour
 
 	public GameObject Pop(string key)
 	{
+		if (!poolDic.ContainsKey(key))
+		{
+			Debug.LogError("Key ¾ø´Âµ¥?");
+			return null;
+		}
 		List<GameObject> targetPool = poolDic[key];
 		if (targetPool.Count <= 0)
 		{
