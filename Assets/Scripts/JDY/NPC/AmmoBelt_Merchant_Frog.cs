@@ -4,6 +4,7 @@ public class AmmoBelt_Merchant_Frog : NPC
 {
     [SerializeField]
     private GameObject belt;
+    public AudioClip clip;
     protected override void Start()
     {
         base.Start();
@@ -26,6 +27,7 @@ public class AmmoBelt_Merchant_Frog : NPC
             GameManager.Instance.player.bodyChange.BodyChange();
             belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
             DataManager.Instance.data.maxAmmo = 32;
+            AudioManager.Instance.PlaySFX(clip);
             return;
         }
 

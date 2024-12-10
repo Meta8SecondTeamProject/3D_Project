@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wizard_Merchant_Frog : NPC
 {
-
+	public AudioClip clip;
 	protected override void Start()
 	{
 		base.Start();
@@ -24,6 +24,8 @@ public class Wizard_Merchant_Frog : NPC
 			DataManager.Instance.jumpCount = 2;
 			UIManager.Instance.GameSceneTextUpdate();
 			UIManager.Instance.ChangeInteractionText(str = null);
+			AudioManager.Instance.PlaySFX(clip);
+			return;
 		}
 
 		NotEnoughMoney();

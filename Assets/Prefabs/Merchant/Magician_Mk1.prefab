@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 2984693991715606803}
   m_Layer: 0
   m_Name: Magician_Mk1
-  m_TagString: Untagged
+  m_TagString: Culling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   chatWindow: {fileID: 4782748484839135432}
   isMessage: 0
   isInteraction: 0
+  clip: {fileID: 8300000, guid: 59157d0c6a949d547b36ae987f91beac, type: 3}
 --- !u!65 &2000570476507021253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1175,8 +1176,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Size: {x: 5, y: 4, z: 5}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!65 &2984693991715606803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1196,8 +1197,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8663901958864506281
 GameObject:
   m_ObjectHideFlags: 0
