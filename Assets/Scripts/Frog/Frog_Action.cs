@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.Collections.AllocatorManager;
 using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
@@ -110,7 +111,7 @@ public class Frog_Action : MonoBehaviour
 				noise.m_FrequencyGain = 0f;
 			}
 		}
-		if (canFire)
+		if (canFire && UIManager.Instance.currentScene == CurrentScene.Game)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;

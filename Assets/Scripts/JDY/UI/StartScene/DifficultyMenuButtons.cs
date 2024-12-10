@@ -19,6 +19,7 @@ public class DifficultyMenuButtons : MonoBehaviour
 		DataManager.Instance.birdBlackMaxSpawnCount = 4;
 		DataManager.Instance.fishKillCount = 16;
 		DataManager.Instance.birdKillCount = 16;
+		DataManager.Instance.NewGame();
 		UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 	}
 	private void NormalButtonOnClick()
