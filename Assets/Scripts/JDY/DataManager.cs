@@ -153,7 +153,7 @@ public class DataManager : SingletonManager<DataManager>
 
     public void EndGame()
     {
-        if (difficulty == Difficulty.Hard)
+        if (difficulty == Difficulty.HARD)
         {
             data.isHardClear = true;
         }
@@ -161,7 +161,30 @@ public class DataManager : SingletonManager<DataManager>
         UIManager.Instance.TransitionToLoadScene("GameEndScene");
     }
 
-
+    public void EnemyCountSet()
+    {
+        switch (difficulty)
+        {
+            case Difficulty.EASY:
+                fishKillCount = 16;
+                birdKillCount = 16;
+                break;
+            case Difficulty.NORMAL:
+                fishKillCount = 20;
+                birdKillCount = 20;
+                break;
+            case Difficulty.HARD:
+                fishKillCount = 25;
+                birdKillCount = 25;
+                break;
+            case Difficulty.EXTREAM:
+                fishKillCount = 50;
+                birdKillCount = 50;
+                break;
+            default:
+                break;
+        }
+    }
 
     public void NewGame()
     {
@@ -183,6 +206,8 @@ public class DataManager : SingletonManager<DataManager>
 [Serializable] //이 클래스가 JSON으로 변활될 수 있도록 설정하는데 필요함
 public class Data
 {
+
+    public Difficulty difficulty;
     public string currentSceneName;
     public int HP { get { return currentHP; } set { currentHP = Mathf.Clamp(value, 0, 2); } }
     public int currentHP;
@@ -201,12 +226,15 @@ public class Data
 
     public bool isKilledBossBird;
     public bool isKilledBossFish;
+
 }
-
-
 
 public enum Difficulty
 {
-    None,
-    Hard
+    EASY,
+    NORMAL,
+    HARD,
+    EXTREAM
 }
+
+

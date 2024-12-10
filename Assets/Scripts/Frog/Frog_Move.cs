@@ -144,7 +144,7 @@ public class Frog_Move : MonoBehaviour
 		if (collision.gameObject.layer == LayerMask.NameToLayer("LillyPad"))
 		{
 			lillypadContacted = true;
-			rb.AddForce(Vector3.up * lillyForce, ForceMode.Impulse);
+			rb.AddForce((transform.up * lillyForce) + ((-transform.right) * (lillyForce / 2)), ForceMode.Impulse);
 			//NOTE : 사운드 추가
 			AudioManager.Instance.PlaySFX(lillypadClip);
 		}

@@ -51,7 +51,7 @@ public class Prop_On : MonoBehaviour
         {
             foreach (var text in texts)
             {
-                text.text = $"Á×ÀÌ´Ù {data}\n »õ³¢";
+                text.text = $"Eliminate {data}\n enemies";
             }
         }
         else

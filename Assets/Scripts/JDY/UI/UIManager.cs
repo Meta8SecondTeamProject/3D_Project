@@ -38,6 +38,7 @@ public class UIManager : SingletonManager<UIManager>
 		{
 			case 0:
 				currentScene = CurrentScene.Start;
+				Cursor.visible = true;
 				//Debug.Log("Start ¾À ÇöÀç¾ÀÀ¸·Î ¼³Á¤");
 				break;
 			case 1:

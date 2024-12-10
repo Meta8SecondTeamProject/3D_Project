@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Doctor_Merchant_Frog : NPC
 {
+    public AudioClip healClip;
     protected override void Start()
     {
         base.Start();
@@ -22,6 +23,7 @@ public class Doctor_Merchant_Frog : NPC
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
             GameManager.Instance.player.bodyChange.BodyChange();
+            AudioManager.Instance.PlaySFX(healClip);
             return;
         }
 

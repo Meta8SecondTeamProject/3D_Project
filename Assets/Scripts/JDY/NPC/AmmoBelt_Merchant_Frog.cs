@@ -33,7 +33,7 @@ public class AmmoBelt_Merchant_Frog : NPC
 
         if (DataManager.Instance.data.isAmmoBelt)
         {
-            UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt, so Get The Fuck Out!!!");
+            UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt");
         }
     }
 }
