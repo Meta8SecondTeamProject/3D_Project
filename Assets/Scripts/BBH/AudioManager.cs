@@ -73,9 +73,10 @@ public class AudioManager : SingletonManager<AudioManager>
             tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
             tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
             tempAudioSource.volume = volume;
-            
 
-            tempAudioSource.Play();
+
+            //tempAudioSource.Play();
+            tempAudioSource.PlayOneShot(clip);
             Destroy(tempObj, clip.length); //클립 길이만큼 재생 후 오브젝트 삭제
 
             //다만 이러면 GC가 자주 호출되서 메모리가 효율이 바닥을 기게되며
