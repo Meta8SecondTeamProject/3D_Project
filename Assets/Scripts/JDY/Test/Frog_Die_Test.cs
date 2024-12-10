@@ -32,7 +32,9 @@ public class Frog_Die_Test : MonoBehaviour
 		{
 			pos[i] = rigidbodys[i].position;
 		}
-	}
+        TriggerDeathEffect();
+        AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
+    }
 
 	private void OnDisable()
 	{
@@ -47,11 +49,11 @@ public class Frog_Die_Test : MonoBehaviour
 		}
 	}
 
-	private void Start()
-	{
-		TriggerDeathEffect();
-		AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
-	}
+	//private void Start()
+	//{
+	//	TriggerDeathEffect();
+	//	AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
+	//}
 
 
 	[ContextMenu("Test/사지분해")]
