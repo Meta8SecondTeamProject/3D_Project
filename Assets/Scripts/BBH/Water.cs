@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Water : MonoBehaviour
@@ -9,25 +10,22 @@ public class Water : MonoBehaviour
 	private float defaultBuoyancy;
 
 	public AudioClip contactWaterClip;
-	private AudioSource swimming;
 
 
 	private void Start()
 	{
 		defaultBuoyancy = buoyancyForce;
-		swimming = GetComponent<AudioSource>();
-		swimming.Stop();
+
 		//Start 됐을 때 게임매니저에 등록된 플레이어의 리지드바디와 Frog_Move 스크립트 가져옴
 
 	}
+
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
 		{
-			AudioManager.Instance.PlaySFX(contactWaterClip);
-			swimming.Play();
-			Debug.Log("물소리");
+			AudioManager.Instance.PlaySFX(contactWaterClip, GameManager.Instance.player.transform.position);
 		}
 
 	}
@@ -50,10 +48,6 @@ public class Water : MonoBehaviour
 			{
 				frog_Move.isWater = true;
 			}
-			if (swimming.isPlaying == false)
-			{
-				swimming.Play();
-			}
 		}
 
 	}
@@ -66,7 +60,6 @@ public class Water : MonoBehaviour
 			if (other.TryGetComponent(out Frog_Move frog_Move))
 				frog_Move.isWater = false;
 			buoyancyForce = defaultBuoyancy;
-			swimming.Stop();
 		}
 	}
 }
