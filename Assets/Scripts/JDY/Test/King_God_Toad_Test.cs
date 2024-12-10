@@ -34,7 +34,8 @@ public class King_God_Toad_Test : Boss_Test
 
 	public AudioClip idleClip;
 	public AudioClip jumpClip;
-
+	public AudioClip toadDeathClip;
+	public AudioClip bossBGM;
 
 	private BoxCollider coll;
 
@@ -46,6 +47,7 @@ public class King_God_Toad_Test : Boss_Test
 
 	protected override void Start()
 	{
+		AudioManager.Instance.PlayBGM(bossBGM, 0.5f);
 		BodyChange();
 		isJumping = false;
 		base.Start();
@@ -149,8 +151,12 @@ public class King_God_Toad_Test : Boss_Test
 
 	public override void Die()
 	{
+
 		coll.isTrigger = true;
+		AudioManager.Instance.BGM.Stop();
+		AudioManager.Instance.PlaySFX(toadDeathClip);
 		BodyChange();
+		
 	}
 
 }

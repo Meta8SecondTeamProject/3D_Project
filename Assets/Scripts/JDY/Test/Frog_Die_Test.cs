@@ -97,6 +97,7 @@ public class Frog_Die_Test : MonoBehaviour
 		else if (remainingObjects <= 0 && CompareTag("Enemy"))
 		{
 			Debug.Log("Ending");
+			DataManager.Instance.data.isHardClear = true;
 			DataManager.Instance.EndGame();
 		}
 	}

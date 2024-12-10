@@ -36,6 +36,7 @@ public class LoadingController : MonoBehaviour
 
                 if (progressBar.fillAmount >= 1f)
                 {
+                    DataManager.Instance.EnemyCountSet();
                     operation.allowSceneActivation = true;
                     yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 2f));
                     yield return new WaitUntil(() => operation.isDone);
