@@ -15,8 +15,11 @@ public class Frog_Die_Test : MonoBehaviour
 
 	public AudioClip frogDeathClip;
 
+	private float tempTime;
+
 	private void OnEnable()
 	{
+		tempTime = 0;
 		if (rigidbodys == null || rigidbodys.Length == 0)
 		{
 			Debug.LogError("Frog_Die_Test / OnEnable: No rigidbodies assigned.");
@@ -32,6 +35,8 @@ public class Frog_Die_Test : MonoBehaviour
 		{
 			pos[i] = rigidbodys[i].position;
 		}
+		TriggerDeathEffect();
+		AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
 	}
 
 	private void OnDisable()
@@ -45,12 +50,6 @@ public class Frog_Die_Test : MonoBehaviour
 			rigidbodys[i].position = pos[i];
 
 		}
-	}
-
-	private void Start()
-	{
-		TriggerDeathEffect();
-		AudioManager.Instance.PlaySFX(frogDeathClip, transform.position);
 	}
 
 
@@ -85,7 +84,8 @@ public class Frog_Die_Test : MonoBehaviour
 
 	private IEnumerator DisableObject(GameObject obj)
 	{
-		yield return new WaitForSeconds(Random.Range(3, delay));
+		Debug.Log($"TempTime : {tempTime}");
+		yield return new WaitForSeconds(tempTime += 0.3f);
 		obj.SetActive(false);
 		remainingObjects--;
 		yield return null;
@@ -100,4 +100,5 @@ public class Frog_Die_Test : MonoBehaviour
 			DataManager.Instance.EndGame();
 		}
 	}
+
 }
