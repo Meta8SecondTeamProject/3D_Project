@@ -111,7 +111,7 @@ public abstract class Enemy : MonoBehaviour
                 AudioManager.Instance.PlaySFX(deathClip, transform.position, null, 0.1f);
                 KillCountUpdater();
                 FractureGen();
-                if (DataManager.Instance.totalKillCount % 3 == 0 && isBoss == false)
+                if (DataManager.Instance.totalKillCount % 3 == 0 && isBoss == false && enemyNumber != 4)
                 {
                     AmmoGen(collision);
                 }
