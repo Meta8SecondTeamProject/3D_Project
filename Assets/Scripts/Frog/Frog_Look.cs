@@ -42,7 +42,8 @@ public class Frog_Look : MonoBehaviour
 	private float escapeInput;
 	public bool isSetting = false;
 
-
+	public GameObject cameraRig;
+	public GameObject cameraRig_;
 
 	private void Awake()
 	{
@@ -76,6 +77,11 @@ public class Frog_Look : MonoBehaviour
 		zoomAction.canceled -= OnZoomEvent;
 
 		escapeAction.performed -= OnEscapeEvent;
+		if (DataManager.Instance.data.currentHP <= 0)
+		{
+			cameraRig.transform.SetParent(null);
+			cameraRig_.transform.SetParent(null);
+		}
 	}
 
 
@@ -89,14 +95,10 @@ public class Frog_Look : MonoBehaviour
 
 	private void Update()
 	{
+
 		if (UIManager.Instance.gameMenuController.pausedMenu.activeSelf)
 			return;
-
-		if (DataManager.Instance.data.HP <= 0)
-			return;
-
 		Zoom(isZoom);
-
 	}
 
 
