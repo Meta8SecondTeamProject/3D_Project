@@ -141,8 +141,12 @@ public class AudioManager : SingletonManager<AudioManager>
         //예외처리 로직 추가
         if (0 <= sceneBuildIndex && sceneBuildIndex < backgroundMusic.Length)
         {
+            Debug.Log($"현재 씬 인덱스 : {sceneBuildIndex}");
             // Debug.Log($"현재 씬 인덱스 : {sceneBuildIndex}");
-            PlayBGM(backgroundMusic[sceneBuildIndex]);
+            if(sceneBuildIndex == 5)
+                PlayBGM(backgroundMusic[sceneBuildIndex], 0.4f);
+            else
+                PlayBGM(backgroundMusic[sceneBuildIndex]);
         }
         else
         {

@@ -85,7 +85,7 @@ public class Frog_Die_Test : MonoBehaviour
 	private IEnumerator DisableObject(GameObject obj)
 	{
 		Debug.Log($"TempTime : {tempTime}");
-		yield return new WaitForSeconds(tempTime += 0.3f);
+		yield return new WaitForSeconds(tempTime += 0.55f);
 		obj.SetActive(false);
 		remainingObjects--;
 		yield return null;
