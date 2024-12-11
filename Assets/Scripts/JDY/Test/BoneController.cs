@@ -8,30 +8,33 @@ public class BoneController : MonoBehaviour
     [SerializeField]
     private Transform[] upper_Bones;
     [SerializeField]
+    private Transform[] upper_Move_Positions;
+    [SerializeField]
     private float lower_speed;
     [SerializeField]
     private float upper_speed;
 
-    private Vector3[] lower_Base_Rotation;
-    private Vector3[] upper_Base_Rotation;
-    private Vector3[] lower_Current_Angles;
-    private Vector3[] upper_Current_Angles;
-    private Vector3[] lower_Clamp_Angles;
-    private Vector3[] upper_Clamp_Angles;
-    private bool isGround;
 
-    private void Start()
+    private Vector3[] lower_Base_Rotation;
+    private Vector3[] upper_Base_Position;
+    private Vector3[] lower_Current_Angles;
+    private Vector3[] upper_Current_Position;
+    private Vector3[] lower_Clamp_Angles;
+    private bool isBack = true;
+
+
+
+    private void OnEnable()
     {
         lower_Base_Rotation = new Vector3[lower_Bones.Length];
         lower_Current_Angles = new Vector3[lower_Bones.Length];
         lower_Clamp_Angles = new Vector3[lower_Bones.Length];
-        upper_Base_Rotation = new Vector3[upper_Bones.Length];
-        upper_Current_Angles = new Vector3[upper_Bones.Length];
-        upper_Clamp_Angles = new Vector3[upper_Bones.Length];
+        upper_Base_Position = new Vector3[upper_Bones.Length];
+        upper_Current_Position = new Vector3[upper_Bones.Length];
 
         BaseSettings();
         LowerClampAnglesSetting();
-        UpperClampAnglesSetting();
+        UpperCurentMovePosition();
     }
 
     private void BaseSettings()
@@ -44,8 +47,8 @@ public class BoneController : MonoBehaviour
 
         for (int i = 0; i < upper_Bones.Length; i++)
         {
-            upper_Base_Rotation[i] = upper_Bones[i].localEulerAngles;
-            upper_Current_Angles[i] = upper_Base_Rotation[i];
+            upper_Base_Position[i] = upper_Bones[i].localPosition;
+            upper_Current_Position[i] = upper_Base_Position[i];
         }
     }
 
@@ -79,56 +82,18 @@ public class BoneController : MonoBehaviour
         //clamp_Angles[index] = new Vector3(randomX, randomY, randomZ);
     }
 
-    private void UpperClampAnglesSetting()
+    private void UpperCurentMovePosition()
     {
-        for (int i = 0; i < lower_Clamp_Angles.Length; i++)
+        if (isBack)
         {
-            if (i == 0)
-            {
-                float randomX = Mathf.Clamp(upper_Current_Angles[i].y + Random.Range(-30f, 30f), upper_Base_Rotation[i].y - 30f, upper_Base_Rotation[i].y + 30f);
-
-                upper_Clamp_Angles[i] = new Vector3(upper_Base_Rotation[i].x, randomX, upper_Base_Rotation[i].z);
-            }
-            else if (i % 2 == 0)
-            {
-                float randomX = Mathf.Clamp(upper_Current_Angles[i].y + Random.Range(-20f, 30f), upper_Base_Rotation[i].y - 20f, upper_Base_Rotation[i].y + 30f);
-
-                upper_Clamp_Angles[i] = new Vector3(upper_Base_Rotation[i].x, randomX, upper_Base_Rotation[i].z);
-            }
-            else
-            {
-                float randomZ = Mathf.Clamp(upper_Current_Angles[i].z + Random.Range(-20f, 30f), upper_Base_Rotation[i].z - 20f, upper_Base_Rotation[i].z + 30f);
-                //upper_Clamp_Angles[i] = new Vector3(upper_Bones[i].transform.rotation.x, upper_Bones[i].transform.rotation.y, randomZ);
-                upper_Clamp_Angles[i] = new Vector3(upper_Base_Rotation[i].x, upper_Base_Rotation[i].y, randomZ);
-            }
-        }
-    }
-
-    private void UpperClampAnglesSetting(int index)
-    {
-        if (index > upper_Bones.Length)
-        {
-            Debug.LogError("BoneController / UpperClampAnglesSetting / Index Error");
-            return;
-        }
-
-        if (index == 0)
-        {
-            float randomY = Mathf.Clamp(upper_Current_Angles[index].y + Random.Range(-30f, 30f), upper_Base_Rotation[index].y - 30f, upper_Base_Rotation[index].y + 30f);
-            upper_Clamp_Angles[index] = new Vector3(upper_Base_Rotation[index].x, randomY, upper_Base_Rotation[index].z);
-        }
-        else if (index % 2 == 0)
-        {
-            float randomY = Mathf.Clamp(upper_Current_Angles[index].y + Random.Range(-20f, 30f), upper_Base_Rotation[index].y - 20f, upper_Base_Rotation[index].y + 30f);
-
-            upper_Clamp_Angles[index] = new Vector3(upper_Base_Rotation[index].x, randomY, upper_Base_Rotation[index].z);
+            upper_Current_Position[0] = upper_Move_Positions[1].localPosition;
+            upper_Current_Position[1] = new Vector3(upper_Move_Positions[1].localPosition.x, upper_Move_Positions[1].localPosition.y, -upper_Move_Positions[1].localPosition.z);
         }
         else
         {
-            float randomZ = Mathf.Clamp(upper_Current_Angles[index].z + Random.Range(-20f, 40f), upper_Base_Rotation[index].z - 20f, upper_Base_Rotation[index].z + 40f);
-            upper_Clamp_Angles[index] = new Vector3(upper_Base_Rotation[index].x, upper_Base_Rotation[index].y, randomZ);
+            upper_Current_Position[0] = upper_Move_Positions[0].localPosition;
+            upper_Current_Position[1] = new Vector3(upper_Move_Positions[0].localPosition.x, upper_Move_Positions[0].localPosition.y, -upper_Move_Positions[0].localPosition.z);
         }
-
     }
 
     private void BonesMovement()
@@ -156,32 +121,13 @@ public class BoneController : MonoBehaviour
 
         for (int i = 0; i < upper_Bones.Length; i++)
         {
-            if (i % 2 == 0)
-            {
-                float angleY = Mathf.Lerp(upper_Current_Angles[i].y, upper_Clamp_Angles[i].y, upper_speed * Time.fixedDeltaTime);
+            upper_Bones[i].localPosition = Vector3.Lerp(upper_Bones[i].localPosition, upper_Current_Position[i], upper_speed * Time.deltaTime);
 
-                upper_Current_Angles[i] = new Vector3(upper_Base_Rotation[i].x, angleY, upper_Base_Rotation[i].z);
-            }
-            else
+            if (Vector3.Distance(upper_Bones[i].localPosition, upper_Current_Position[i]) <= 0.01f)
             {
-                float angleZ = Mathf.Lerp(upper_Current_Angles[i].z, upper_Clamp_Angles[i].z, upper_speed * Time.fixedDeltaTime);
-
-                upper_Current_Angles[i] = new Vector3(upper_Base_Rotation[i].x, upper_Base_Rotation[i].y, angleZ);
-            }
-
-            upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
-
-            if (Mathf.Abs(upper_Current_Angles[i].y - upper_Clamp_Angles[i].y) <= 0.1f && i % 2 == 0)
-            {
-                upper_Current_Angles[i] = upper_Clamp_Angles[i];
-                upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
-                UpperClampAnglesSetting(i);
-            }
-            else if (Mathf.Abs(upper_Current_Angles[i].z - upper_Clamp_Angles[i].z) <= 0.1f && i % 2 == 1)
-            {
-                upper_Current_Angles[i] = upper_Clamp_Angles[i];
-                upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
-                UpperClampAnglesSetting(i);
+                upper_Bones[i].localPosition = upper_Current_Position[i];
+                isBack = !isBack;
+                UpperCurentMovePosition();
             }
         }
     }
@@ -191,6 +137,7 @@ public class BoneController : MonoBehaviour
         if (GameManager.Instance.player.frogMove.isGround)
         {
             BonesBaseMovement();
+            isBack = true;
         }
         else
         {
@@ -217,109 +164,13 @@ public class BoneController : MonoBehaviour
 
         for (int i = 0; i < upper_Bones.Length; i++)
         {
-            if (i % 2 == 0)
-            {
-                float angleY = Mathf.Lerp(upper_Current_Angles[i].y, upper_Base_Rotation[i].y, upper_speed * Time.fixedDeltaTime);
+            upper_Bones[i].localPosition = Vector3.Lerp(upper_Bones[i].localPosition, upper_Base_Position[i], upper_speed * Time.fixedDeltaTime);
 
-                upper_Current_Angles[i] = new Vector3(upper_Base_Rotation[i].x, angleY, upper_Base_Rotation[i].z);
-            }
-            else
+            if (Vector3.Distance(upper_Bones[i].localPosition, upper_Base_Position[i]) <= 0.01f)
             {
-                float angleZ = Mathf.Lerp(upper_Current_Angles[i].z, upper_Base_Rotation[i].z, upper_speed * Time.fixedDeltaTime);
-
-                upper_Current_Angles[i] = new Vector3(upper_Base_Rotation[i].x, upper_Base_Rotation[i].y, angleZ);
-            }
-
-            upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
-
-            if (Mathf.Abs(upper_Current_Angles[i].y - upper_Base_Rotation[i].y) <= 0.1f && i % 2 == 0)
-            {
-                upper_Current_Angles[i] = upper_Base_Rotation[i];
-                upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
-            }
-            else if (Mathf.Abs(upper_Current_Angles[i].z - upper_Base_Rotation[i].z) <= 0.1f && i % 2 == 1)
-            {
-                upper_Current_Angles[i] = upper_Base_Rotation[i];
-                upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i]);
+                upper_Bones[i].localPosition = upper_Base_Position[i];
             }
         }
     }
 
-
-    #region Test
-    //[SerializeField]
-    //private Transform[] upper_Bones;
-    //[SerializeField]
-    //private Transform[] lower_Bones;
-
-    //private float[] upper_Base_Rotations_X;
-    //private float[] lower_Base_Rotations_X;
-
-    //private float speed = 1f;
-    //private float[] upper_Current_Angles;
-    //private float[] upper_Clamp_Angles;
-    //private float[] lower_Current_Angles;
-    //private float[] lower_Clamp_Angles;
-
-
-    //private void Start()
-    //{
-    //    upper_Current_Angles = new float[upper_Bones.Length];
-    //    lower_Current_Angles = new float[lower_Bones.Length];
-    //    upper_Clamp_Angles = new float[upper_Bones.Length];
-    //    lower_Clamp_Angles = new float[lower_Bones.Length];
-    //    upper_Base_Rotations_X = new float[upper_Bones.Length];
-    //    lower_Base_Rotations_X = new float[lower_Bones.Length];
-    //    RandomAngleSettings();
-    //}
-
-    //private void Update()
-    //{
-    //    BonesMoveMent();
-    //}
-
-    //private void RandomAngleSettings()
-    //{
-    //    for (int i = 0; i < upper_Bones.Length; i++)
-    //    {
-    //        upper_Clamp_Angles[i] = Mathf.Clamp(upper_Bones[i].localPosition.y + Random.Range(-15f, 30f), -30f, 30f);
-    //    }
-
-    //    for (int i = 0; i < lower_Bones.Length; i++)
-    //    {
-    //        lower_Clamp_Angles[i] = Mathf.Clamp(lower_Bones[i].localPosition.y + Random.Range(-15f, 30f), -30f, 30f);
-    //    }
-    //}
-
-    //private void BonesMoveMent()
-    //{
-    //    for (int i = 0; i < upper_Bones.Length; i++)
-    //    {
-    //        upper_Current_Angles[i] = Mathf.Lerp(upper_Current_Angles[i], upper_Clamp_Angles[i], Time.fixedDeltaTime * speed);
-    //        upper_Bones[i].localRotation = Quaternion.Euler(upper_Current_Angles[i], 0, 0);
-    //    }
-
-    //    for (int i = 0; i < lower_Bones.Length; i++)
-    //    {
-    //        lower_Current_Angles[i] = Mathf.Lerp(lower_Current_Angles[i], lower_Clamp_Angles[i], Time.fixedDeltaTime * speed);
-    //        lower_Bones[i].localRotation = Quaternion.Euler(lower_Current_Angles[i], 0, 0);
-    //    }
-    //}
-
-    //private void UpperAngleSettings(int index)
-    //{
-    //    if (upper_Bones.Length < 0 || upper_Bones.Length < index)
-    //    {
-    //        Debug.LogError("BoneController / UpperAngleSettings / Upper_Bones Index Error");
-    //        return;
-    //    }
-
-    //    upper_Clamp_Angles[index] = Mathf.Clamp(upper_Bones[index].localPosition.x, )
-    //}
-
-    //private void LowerAngleSettings(int index)
-    //{
-
-    //}
-    #endregion
 }
