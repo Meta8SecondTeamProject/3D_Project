@@ -8,6 +8,10 @@ public class FadeController : MonoBehaviour
     public CanvasGroup fadeCanvasGroup;
     public float fadeDuration = 1f;
 
+    private void Start()
+    {
+        StartCoroutine(FadeOut());
+    }
     public IEnumerator FadeIn()
     {
         //시작전 혹시 모르니 알파값 초기화
