@@ -101,8 +101,6 @@ public class Frog_Look : MonoBehaviour
 		Zoom(isZoom);
 	}
 
-
-
 	private void OnZoomEvent(Context context)
 	{
 		zoomValue = context.ReadValue<float>();
