@@ -5,19 +5,20 @@ using UnityEngine;
 public class Frog_MeshMovement : MonoBehaviour
 {
 
-	//Rigidbody rb;
-	//Vector3 rot;
-	//private void Awake()
-	//{
-	//	rb = GetComponentInParent<Rigidbody>();
+	public GameObject lookDir;
+	Rigidbody rb;
 
-	//}
+	private void Awake()
+	{
+		rb = GetComponentInParent<Rigidbody>();
+	}
 
-	//private void FixedUpdate()
-	//{
-	//	Vector3 dir = new Vector3(0, 0, 0) - transform.position;
-	//	transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 20);
+	private void FixedUpdate()
+	{
+		//transform.rotation = Quaternion.Lerp(Quaternion.Euler(),);
 
-	//}
+		//Vector3 dir = lookDir.transform.position - transform.position;
+		//transform.LookAt(dir);
+	}
 
 }
