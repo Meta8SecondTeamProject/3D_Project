@@ -70,7 +70,7 @@ public class UIManager : SingletonManager<UIManager>
 			case CurrentScene.Start:
 				startSceneUI.SetActive(true);
 				mainButtons.ButtonInitialization();
-				Cursor.lockState = CursorLockMode.None;
+				//Cursor.lockState = CursorLockMode.None;
 				break;
 			case CurrentScene.Game:
 				gameSceneUI.SetActive(true);
