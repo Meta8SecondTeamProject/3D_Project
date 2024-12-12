@@ -104,7 +104,7 @@ public class DataManager : SingletonManager<DataManager>
 	private void Update()
 	{
 
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.T))
 		{
 			data.ammo = 16;
 			data.money++;
@@ -112,31 +112,31 @@ public class DataManager : SingletonManager<DataManager>
 			Debug.Log("≈∫æ‡, ∆ƒ∏Æ ¡ı∞°µ ");
 
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad2))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad2))
 		{
 			Debug.Log("SaveGame»£√‚");
 			//SaveManager.SaveGame(data);
 			Save();
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad3))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad3))
 		{
 			//data = SaveManager.LoadGame();
 			Load();
 			Debug.Log("LoadGame»£√‚");
 			UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad4))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad4))
 		{
 			Debug.Log("BBHæ¿¿∏∑Œ ¿Ãµø");
 			UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Keypad5))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad5))
 		{
 			Debug.Log("JDYæ¿¿∏∑Œ ¿Ãµø");
 			UIManager.Instance.TransitionToLoadScene("JDY_Scene");
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad6))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad6))
 		{
 			Debug.Log("KCYæ¿¿∏∑Œ ¿Ãµø");
 			UIManager.Instance.TransitionToLoadScene("KCY_Scene");
