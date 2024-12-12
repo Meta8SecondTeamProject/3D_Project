@@ -71,7 +71,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
             if (parent != null)
             {
-                Debug.Log("부모 설정");
+                //Debug.Log("부모 설정");
                 tempObj.transform.parent = parent;
             }
 

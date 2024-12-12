@@ -90,19 +90,21 @@ public class DataManager : SingletonManager<DataManager>
 	{
 		data.isPlaying = true;
 		data.currentSceneName = SceneManager.GetActiveScene().name;
+		data.difficulty = difficulty;
 		SaveManager.SaveGame(data);
 	}
 
 	public void Load()
 	{
 		data = SaveManager.LoadGame();
+		difficulty = data.difficulty;	
 	}
 
 	#region 세이브 로드 테스트용 
 	private void Update()
 	{
 
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.T))
 		{
 			data.ammo = 16;
 			data.money++;
@@ -110,31 +112,31 @@ public class DataManager : SingletonManager<DataManager>
 			Debug.Log("탄약, 파리 증가됨");
 
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad2))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad2))
 		{
 			Debug.Log("SaveGame호출");
 			//SaveManager.SaveGame(data);
 			Save();
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad3))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad3))
 		{
 			//data = SaveManager.LoadGame();
 			Load();
 			Debug.Log("LoadGame호출");
 			UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad4))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad4))
 		{
 			Debug.Log("BBH씬으로 이동");
 			UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Keypad5))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad5))
 		{
 			Debug.Log("JDY씬으로 이동");
 			UIManager.Instance.TransitionToLoadScene("JDY_Scene");
 		}
-		if (Input.GetKeyDown(KeyCode.Keypad6))
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad6))
 		{
 			Debug.Log("KCY씬으로 이동");
 			UIManager.Instance.TransitionToLoadScene("KCY_Scene");
@@ -158,6 +160,7 @@ public class DataManager : SingletonManager<DataManager>
 			data.isHardClear = true;
 		}
 		data.isPlaying = false;
+		Save();
 		UIManager.Instance.TransitionToLoadScene("GameEndScene");
 	}
 

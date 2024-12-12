@@ -40,7 +40,7 @@ public class Water : MonoBehaviour
 				Vector3 force = Vector3.up * buoyancyForce;
 				rb.AddForce(force, ForceMode.Acceleration);
 				rb.velocity *= 1f - (waterDrag * Time.deltaTime);
-				Debug.Log("Stay");
+				//Debug.Log("Stay");
 				buoyancyForce += 0.2f;
 
 			}
