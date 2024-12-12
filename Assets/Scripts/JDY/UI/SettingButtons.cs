@@ -12,14 +12,16 @@ public class SettingButtons : MonoBehaviour
     public Slider sfxSlider;
 
 
-    private void Start()
+    private void OnEnable()
     {
-        //bgmSlider.value = AudioManager.Instance.BGM.volume;
-        //sfxSlider.value = AudioManager.Instance.SFX.volume;
+        bgmSlider.value = AudioManager.Instance.BGM.volume;
+        sfxSlider.value = AudioManager.Instance.SFX.volume;
         ButtonInitialization();
 
-        bgmSlider.value = AudioManager.Instance.BGMVolume;
-        sfxSlider.value = AudioManager.Instance.SFXVolume;
+        #region 임시 수정
+        //bgmSlider.value = AudioManager.Instance.BGMVolume;
+        //sfxSlider.value = AudioManager.Instance.SFXVolume;
+        #endregion
     }
 
     private void ButtonInitialization()

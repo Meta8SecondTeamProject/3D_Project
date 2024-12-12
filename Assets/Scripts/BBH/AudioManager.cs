@@ -19,7 +19,9 @@ public class AudioManager : SingletonManager<AudioManager>
     public float SFXVolume = 1f;
     public float BGMVolume = 1f;
     private void Start()
-    {
+    { 
+        SFXVolume = 1f;
+        BGMVolume = 1f;
         BGM.loop = true;
         //PlayBGM(backgroundMusic[0]);
         BGMChange(SceneManager.GetActiveScene().buildIndex);
@@ -27,8 +29,10 @@ public class AudioManager : SingletonManager<AudioManager>
 
     public void Update()
     {
-        SFX.volume = SFXVolume;
-        BGM.volume = BGMVolume;
+        #region 임시 수정
+        //SFX.volume = SFXVolume;
+        //BGM.volume = BGMVolume;
+        #endregion
         if (!Application.isFocused)
         {
             BGM.Pause();
@@ -47,7 +51,8 @@ public class AudioManager : SingletonManager<AudioManager>
         if (clip != null)
         {
             //SFX.clip = clip;
-            SFX.PlayOneShot(clip, volume);
+            //SFX.volume = SFXVolume * volume;
+            SFX.PlayOneShot(clip, volume * SFX.volume);
         }
     }
 
@@ -79,12 +84,12 @@ public class AudioManager : SingletonManager<AudioManager>
             tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
             tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
             //HACK : 임시방편
-            tempAudioSource.volume = tempAudioSource.volume * volume;
+            //tempAudioSource.volume = SFX.volume * volume;
             //tempAudioSource.volume = volume;
 
 
             //tempAudioSource.Play();
-            tempAudioSource.PlayOneShot(clip);
+            tempAudioSource.PlayOneShot(clip, SFX.volume * volume);
             Destroy(tempObj, clip.length); //클립 길이만큼 재생 후 오브젝트 삭제
 
             //다만 이러면 GC가 자주 호출되서 메모리가 효율이 바닥을 기게되며
