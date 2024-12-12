@@ -90,12 +90,14 @@ public class DataManager : SingletonManager<DataManager>
 	{
 		data.isPlaying = true;
 		data.currentSceneName = SceneManager.GetActiveScene().name;
+		data.difficulty = difficulty;
 		SaveManager.SaveGame(data);
 	}
 
 	public void Load()
 	{
 		data = SaveManager.LoadGame();
+		difficulty = data.difficulty;	
 	}
 
 	#region 세이브 로드 테스트용 
@@ -158,6 +160,7 @@ public class DataManager : SingletonManager<DataManager>
 			data.isHardClear = true;
 		}
 		data.isPlaying = false;
+		Save();
 		UIManager.Instance.TransitionToLoadScene("GameEndScene");
 	}
 
