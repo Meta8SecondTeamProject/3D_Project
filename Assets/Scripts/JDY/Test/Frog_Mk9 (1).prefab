@@ -5055,7 +5055,7 @@ Transform:
   m_GameObject: {fileID: 162319009119216748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.97, y: 0.26800156, z: 0.34403014}
+  m_LocalPosition: {x: 0.73, y: 0.26800156, z: 1.0225198}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25317,10 +25317,14 @@ MonoBehaviour:
   - {fileID: 1914056463943932132}
   - {fileID: 6549560612621575778}
   - {fileID: 7601567489781854979}
-  upper_Bones: []
-  upper_Move_Positions: []
-  lower_speed: 1
-  upper_speed: 1
+  upper_Bones:
+  - {fileID: 53488011596815951}
+  - {fileID: 5555037299196065679}
+  upper_Move_Positions:
+  - {fileID: 160089633378088513}
+  - {fileID: 7577029939317456078}
+  upper_Timer: 0.2
+  lower_Timer: 0.1
 --- !u!1 &1310665228553260590
 GameObject:
   m_ObjectHideFlags: 0
@@ -25514,7 +25518,7 @@ Transform:
   m_GameObject: {fileID: 1443770667479896830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.97, y: 0.26800156, z: 0.3440349}
+  m_LocalPosition: {x: -1.97, y: 0.26800156, z: 0.34403205}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25723,7 +25727,7 @@ Transform:
   m_GameObject: {fileID: 1826776045481734226}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5361546, y: -0.4610187, z: -0.5361545, w: -0.4610188}
-  m_LocalPosition: {x: -0.47225848, y: 0.48530537, z: -0.000000036734562}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 70, y: 70.00001, z: 70.00001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40877,7 +40881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5069078554425402536
 Transform:
   m_ObjectHideFlags: 0
@@ -40886,15 +40890,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3303215512176441842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.53615457, y: -0.46101877, z: -0.5361545, w: -0.4610188}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.47099972, y: 0.47700024, z: -2.2737367e-15}
-  m_LocalScale: {x: 70, y: 70, z: 70}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8797864803193095779}
   - {fileID: 1724153845746856450}
   m_Father: {fileID: 5776249301142042789}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3313686710896815887
 GameObject:
   m_ObjectHideFlags: 0
@@ -83303,7 +83307,7 @@ Transform:
   m_GameObject: {fileID: 8385757420427602088}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5361546, y: -0.4610187, z: -0.5361545, w: -0.4610188}
-  m_LocalPosition: {x: -0.47099978, y: 0.47700018, z: -0.00000003601251}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 70, y: 70.00001, z: 70.00001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83526,7 +83530,7 @@ Rigidbody:
     m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -83548,8 +83552,8 @@ MonoBehaviour:
   frogAction: {fileID: 0}
   bloodExplosion: {fileID: 9051810264491681906}
   bodyChange: {fileID: 170213927766989190}
-  frogHitClip: {fileID: 0}
-  frogDeathClip: {fileID: 0}
+  frogHitClip: {fileID: 8300000, guid: 4e641b802b3e1c94484cbed0518497e4, type: 3}
+  frogDeathClip: {fileID: 8300000, guid: dd2261d28b39aa64c80f4e03116e459c, type: 3}
 --- !u!114 &6442350791605318361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83562,20 +83566,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7195998911d8c4c459f9e1caabe96619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
-  onAirSpeed: 10
-  inWaterSpeed: 15
+  moveSpeed: 30
+  onAirSpeed: 20
+  inWaterSpeed: 20
   moveInput: {x: 0, y: 0}
-  force: 5
-  lillyForce: 15
+  force: 8
+  lillyForce: 800
   isGround: 0
   isWater: 0
   isPressed: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  jumpClip: {fileID: 0}
-  lillypadClip: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: 88baeb7f8f2c2b54c9912e3308399e2c, type: 3}
+  lillypadClip: {fileID: 8300000, guid: ea0359c4c97237248b6895dc3482bdad, type: 3}
 --- !u!114 &5512354368246478641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83598,8 +83602,8 @@ MonoBehaviour:
   zoomMag: 25
   zoomValue: 0
   isSetting: 0
-  cameraRig: {fileID: 0}
-  cameraRig_: {fileID: 0}
+  cameraRig: {fileID: 7213191597079983573}
+  cameraRig_: {fileID: 7645989447613625391}
 --- !u!114 &9004955354239738835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83620,7 +83624,7 @@ MonoBehaviour:
   fire_Particle: {fileID: 7879898797488936104}
   smoke_Particle: {fileID: 41844080323911877}
   knockbackForce: 50
-  jumpForce: 200
+  jumpForce: 300
   shakeDuration: 1
   shakePower: 1
   fireForce: 20
@@ -83632,8 +83636,8 @@ MonoBehaviour:
     m_Bits: 8
   crossHair: {fileID: 6092191909688573459}
   projectile: {fileID: 1710766314591949603, guid: c17bc418cd599fc488d22af808e2124d, type: 3}
-  fireClip: {fileID: 0}
-  jumpClip: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: 38f44e0dd6f2eca42bd45740d043c577, type: 3}
+  jumpClip: {fileID: 8300000, guid: 88baeb7f8f2c2b54c9912e3308399e2c, type: 3}
 --- !u!114 &104633768333908539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83657,10 +83661,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1296
+    m_Bits: 120831
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 750
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
