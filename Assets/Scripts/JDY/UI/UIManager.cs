@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using TMPro;
@@ -20,7 +21,6 @@ public class UIManager : SingletonManager<UIManager>
 	public TextMeshProUGUI interactionText;
 
 	public GameMenuController gameMenuController;
-
 	public CurrentScene currentScene;
 
 	private void Start()
@@ -86,7 +86,7 @@ public class UIManager : SingletonManager<UIManager>
 			default:
 				//Debug.LogError("UIManager / ChangeScene");
 				break;
-		}
+		}	
 		GameManager.Instance.EnemyListReset();
 		AudioManager.Instance.BGMChange(SceneManager.GetActiveScene().buildIndex);
 		DataManager.Instance.triggerOn = 0;

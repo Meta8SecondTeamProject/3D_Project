@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Net.Http;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +16,8 @@ public class AudioManager : SingletonManager<AudioManager>
     [Header("툴팁 있음, 씬 인덱스에 맞게 연결해주시길 바랍니다"), Tooltip("0 : GameStartScene\n1 : GameEndScene\n2 : LoadingScene\n3 : BBH_Scene\n4 : JDY_Scene\n5 : KCY_Scene")]
     public AudioClip[] backgroundMusic;
 
+    public float SFXVolume = 1f;
+    public float BGMVolume = 1f;
     private void Start()
     {
         BGM.loop = true;
@@ -23,6 +27,8 @@ public class AudioManager : SingletonManager<AudioManager>
 
     public void Update()
     {
+        SFX.volume = SFXVolume;
+        BGM.volume = BGMVolume;
         if (!Application.isFocused)
         {
             BGM.Pause();
@@ -72,7 +78,9 @@ public class AudioManager : SingletonManager<AudioManager>
             tempAudioSource.maxDistance = maxDis; //최대 거리 
             tempAudioSource.rolloffMode = AudioRolloffMode.Linear;
             tempAudioSource.dopplerLevel = 0.0f; // Doppler 효과 제거
-            tempAudioSource.volume = volume;
+            //HACK : 임시방편
+            tempAudioSource.volume = tempAudioSource.volume * volume;
+            //tempAudioSource.volume = volume;
 
 
             //tempAudioSource.Play();
@@ -112,7 +120,10 @@ public class AudioManager : SingletonManager<AudioManager>
             }
 
             tempAudioSource.clip = clip;
-            tempAudioSource.volume = volume;
+            //HACK : 임시방편
+            //tempAudioSource.volume = volume;
+            tempAudioSource.volume = tempAudioSource.volume * volume;
+
             tempAudioSource.Play();
 
             //재생후 다시 풀에 넣어줌
@@ -162,7 +173,9 @@ public class AudioManager : SingletonManager<AudioManager>
             BGM.Stop();
         }
         BGM.clip = clip;
-        BGM.volume = volume;
+        //HACK : 임시 방편
+        //BGM.volume = volume;
+        BGM.volume = BGM.volume * volume;
         BGM.Play();
     }
 
