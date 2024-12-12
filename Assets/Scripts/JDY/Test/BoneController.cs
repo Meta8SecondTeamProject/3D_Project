@@ -96,14 +96,17 @@ public class BoneController : MonoBehaviour
         }
     }
 
+    public float durationTime;
     private void BonesMovement()
     {
+        float duration = 0f;
         for (int i = 0; i < lower_Bones.Length; i++)
         {
+            duration += Time.fixedDeltaTime;
             //current_Angles[i] = Vector3.Lerp(bones[i].localEulerAngles, clamp_Angles[i], speed * Time.fixedDeltaTime);
             //bones[i].localRotation = Quaternion.Euler(current_Angles[i]);
-
-            float angleZ = Mathf.Lerp(lower_Current_Angles[i].z, lower_Clamp_Angles[i].z, lower_speed * Time.fixedDeltaTime);
+            float lowerspeed = Mathf.Clamp01(Time.fixedDeltaTime * lower_speed);
+            float angleZ = Mathf.LerpAngle(lower_Current_Angles[i].z, lower_Clamp_Angles[i].z, duration / durationTime);
 
             lower_Current_Angles[i] = new Vector3(lower_Base_Rotation[i].x, lower_Base_Rotation[i].y, angleZ);
 
@@ -111,7 +114,7 @@ public class BoneController : MonoBehaviour
 
 
             //if (Vector3.Distance(current_Angles[i], clamp_Angles[i]) <= 0.1f)
-            if (Mathf.Abs(lower_Current_Angles[i].z - lower_Clamp_Angles[i].z) <= 0.01f)
+            if (Mathf.Abs(lower_Current_Angles[i].z - lower_Clamp_Angles[i].z) <= 0.0001f)
             {
                 lower_Current_Angles[i] = lower_Clamp_Angles[i];
                 lower_Bones[i].localRotation = Quaternion.Euler(lower_Current_Angles[i]);
@@ -121,7 +124,8 @@ public class BoneController : MonoBehaviour
 
         for (int i = 0; i < upper_Bones.Length; i++)
         {
-            upper_Bones[i].localPosition = Vector3.Lerp(upper_Bones[i].localPosition, upper_Current_Position[i], upper_speed * Time.deltaTime);
+            float upperspeed = Mathf.Clamp01(upper_speed * Time.fixedDeltaTime);
+            upper_Bones[i].localPosition = Vector3.Lerp(upper_Bones[i].localPosition, upper_Current_Position[i], upperspeed);
 
             if (Vector3.Distance(upper_Bones[i].localPosition, upper_Current_Position[i]) <= 0.01f)
             {
@@ -149,7 +153,8 @@ public class BoneController : MonoBehaviour
     {
         for (int i = 0; i < lower_Bones.Length; i++)
         {
-            float angleZ = Mathf.Lerp(lower_Current_Angles[i].z, lower_Base_Rotation[i].z, lower_speed * Time.fixedDeltaTime);
+            float lowerspeed = Mathf.Clamp01(lower_speed * Time.fixedDeltaTime);
+            float angleZ = Mathf.LerpAngle(lower_Current_Angles[i].z, lower_Base_Rotation[i].z, lowerspeed);
 
             //lower_Current_Angles[i] = new Vector3(angleX, lower_Base_Rotation[i].y, lower_Base_Rotation[i].z);
             lower_Current_Angles[i] = new Vector3(lower_Base_Rotation[i].x, lower_Base_Rotation[i].y, angleZ);
