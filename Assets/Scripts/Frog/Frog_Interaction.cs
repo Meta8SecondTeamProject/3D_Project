@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Frog_Interaction : MonoBehaviour/*, IBuiable*/
 {
     private InputActionAsset controlDefine;
+    private InputAction act;
     private InputAction interaction;
 
     private bool input;
@@ -15,8 +16,10 @@ public class Frog_Interaction : MonoBehaviour/*, IBuiable*/
 
     private void Awake()
     {
-        controlDefine = GetComponent<PlayerInput>().actions;
-        interaction = controlDefine.FindAction("Interaction");
+        //controlDefine = GetComponent<PlayerInput>().actions;
+        //interaction = controlDefine.FindAction("Interaction");
+
+        interaction = GetComponent<PlayerInput>().actions.FindAction("Interaction");
     }
 
     private void OnEnable()
