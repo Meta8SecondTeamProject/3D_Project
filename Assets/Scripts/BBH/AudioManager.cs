@@ -15,7 +15,7 @@ public class AudioManager : SingletonManager<AudioManager>
     //재생할 소스만 싱글톤으로 하고, 재생할 클립은 씬마다 따로 있는게 맞는거같기는 한데 몰?루겠다
     [Header("툴팁 있음, 씬 인덱스에 맞게 연결해주시길 바랍니다"), Tooltip("0 : GameStartScene\n1 : GameEndScene\n2 : LoadingScene\n3 : BBH_Scene\n4 : JDY_Scene\n5 : KCY_Scene")]
     public AudioClip[] backgroundMusic;
-
+    public AudioPool pool;
     public float SFXVolume = 1f;
     public float BGMVolume = 1f;
     private void Start()
@@ -57,7 +57,7 @@ public class AudioManager : SingletonManager<AudioManager>
     }
 
     //DEPRECATED : 기존 Destroy방식 부활함
-    public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f, float maxDis = 150)
+    public void PlaySFX2(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f, float maxDis = 150)
     {
 
         if (clip != null)
@@ -100,7 +100,7 @@ public class AudioManager : SingletonManager<AudioManager>
         }
     }
 
-    public void PlaySFX2(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
+    public void PlaySFX(AudioClip clip, Vector3 pos, Transform parent = null, float volume = 1f)
     {
         //3D 사운드, 오디오 리스너와의 거리, 방향에 따라 소리가 달라짐
         if (clip != null)

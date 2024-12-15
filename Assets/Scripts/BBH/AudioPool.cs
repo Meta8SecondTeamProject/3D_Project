@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioPool : SingletonManager<AudioPool>
-{
+{ 
 	//풀에 미리 생성해둘 오디오 소스의 수
 	[SerializeField] private int poolSize = 10;
 	//누가 왜 큐를 썼는지 물어보면 할 대답 : 이게 젤 쉬운 방법이였어요 
 	private Queue<AudioSource> audioSourcePool = new Queue<AudioSource>();
 
-	protected override void Awake()
-	{
-		base.Awake();
+    private void Start()
+    {
 		InitializePool();
-	}
+    }
 
-	//풀초기화
+    [ContextMenu("Test")]
 	void InitializePool()
 	{
 		//미리 초기화해놓은 풀사이즈만큼 오브젝트를 생성하고 사운드 관련 설정
@@ -30,7 +29,8 @@ public class AudioPool : SingletonManager<AudioPool>
 			audioSource.rolloffMode = AudioRolloffMode.Linear; //소리 감쇠 방식? 
 			audioSource.dopplerLevel = 0.0f; //도플러 효과 비활성화, 피치 관련인데 들어보고 나중에 판단
 			obj.SetActive(false); //생성하고나면 비활성화 해놓고
-			audioSourcePool.Enqueue(audioSource); //생성된 오브젝트들 큐에 집어넣음
+            DontDestroyOnLoad(obj);
+            audioSourcePool.Enqueue(audioSource); //생성된 오브젝트들 큐에 집어넣음
 		}
 	}
 
