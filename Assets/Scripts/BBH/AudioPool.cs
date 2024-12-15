@@ -61,6 +61,8 @@ public class AudioPool : SingletonManager<AudioPool>
 		audioSource.rolloffMode = AudioRolloffMode.Linear;
 		audioSource.dopplerLevel = 0.0f;
 		audioSource.playOnAwake = false;
+		
+		DontDestroyOnLoad(obj);
 		return audioSource;
 	}
 
@@ -79,7 +81,8 @@ public class AudioPool : SingletonManager<AudioPool>
 			Debug.LogWarning($"오디오 소스가 null상태임 , {source.clip.name}");
 		}
 		source.Stop();
-		source.clip = null;
+        source.volume = 1f;
+        source.clip = null;
 		source.gameObject.SetActive(false);
 		audioSourcePool.Enqueue(source);
 	}
