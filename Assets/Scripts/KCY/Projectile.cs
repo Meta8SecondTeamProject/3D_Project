@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 	{
 		ContactPoint contactPoint = other.contacts[0];
 		Vector3 audioPos = contactPoint.point;
-		AudioManager.Instance.PlaySFX(hitClip, audioPos, null, 0.5f,300f);
+		AudioManager.Instance.PlaySFX(hitClip, audioPos, null, 0.5f);
 
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
