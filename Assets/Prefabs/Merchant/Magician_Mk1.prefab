@@ -1044,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8121240149168627945
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,9 +1153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9cd47ccbbb02bc49add2166db87e240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 4782748484839135432}
+  interactionEffectObject: {fileID: 0}
   isMessage: 0
   isInteraction: 0
+  isNonInteractive: 1
   clip: {fileID: 8300000, guid: 59157d0c6a949d547b36ae987f91beac, type: 3}
 --- !u!65 &2000570476507021253
 BoxCollider:

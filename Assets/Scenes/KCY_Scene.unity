@@ -4890,6 +4890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doctor_Merchant_Mk1
       objectReference: {fileID: 0}
+    - target: {fileID: 4945007101821396240, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 1526090638}
     - target: {fileID: 5918093802816989193, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 728.9543
@@ -6443,6 +6447,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494589536}
   m_Mesh: {fileID: 6176869036469442750, guid: a921b0c446d917d448220bd01cffd3c9, type: 3}
+--- !u!1 &509150057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8447445764680004549, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+  m_PrefabInstance: {fileID: 4543190555720140728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &538781150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17874,6 +17883,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521478174}
   m_Mesh: {fileID: -7921943694877257369, guid: 62f34a7c5f82a484aafcddd169b56dca, type: 3}
+--- !u!1 &1526090638 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 998036603713778879, guid: a5e1c5932604cb943a3aec5a872df5e6, type: 3}
+  m_PrefabInstance: {fileID: 368004794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528915014
 GameObject:
   m_ObjectHideFlags: 0
@@ -28473,7 +28487,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3187410148390604479, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
 --- !u!4 &1418206876021347007 stripped
 Transform:
@@ -34839,6 +34856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ammo_Merchant_Mk1
       objectReference: {fileID: 0}
+    - target: {fileID: 5995276764328814249, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 509150057}
     - target: {fileID: 7120540181927980240, guid: b4ff657a8d492ad418ac764ee80eb428, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0812988
