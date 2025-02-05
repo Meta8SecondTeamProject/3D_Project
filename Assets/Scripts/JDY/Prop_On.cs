@@ -63,8 +63,6 @@ public class Prop_On : MonoBehaviour
         }
     }
 
-    //임시
-    //TODO : DataManager에서 변수를 추가하여 함수를 호출하는 방식이 좋아보임
     private void Update()
     {
         DataSetting();

@@ -1,34 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Ammo_Merchant_Frog : NPC
+public class Ammo_Merchant_Frog : Interaction
 {
     public AudioClip getAmmoClip;
+
     protected override void Start()
     {
         base.Start();
         price = 2;
         interactionValue = 4;
     }
-    public override void Interaction()
+
+    public override void InteractionEvent()
     {
-        base.Interaction();
-        print("Ammo_Merchant_Frog / Interaction / Start");
-        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.ammo < DataManager.Instance.data.maxAmmo)
+        base.InteractionEvent();
+        if (isStop)
         {
-            //NOTE : 사운드 추가됨
+            isStop = false;
+            return;
+        }
+
+        if (DataManager.Instance.data.ammo < DataManager.Instance.data.maxAmmo)
+        {
             DataManager.Instance.data.money -= price;
             DataManager.Instance.data.ammo += interactionValue;
             AudioManager.Instance.PlaySFX(getAmmoClip);
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
-            return;
         }
-        if (DataManager.Instance.data.ammo >= DataManager.Instance.data.maxAmmo)
+        else
         {
             UIManager.Instance.ChangeInteractionText(str = "Already full ammo!");
         }
-        NotEnoughMoney();
     }
 }

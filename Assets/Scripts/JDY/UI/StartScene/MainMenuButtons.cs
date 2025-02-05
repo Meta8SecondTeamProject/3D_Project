@@ -5,73 +5,70 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class MainMenuButtons : MonoBehaviour
 {
-	public StartMenuController menuController;
-	public MenuMoveControll moveController;
+    public StartMenuController menuController;
+    public MenuMoveControll moveController;
 
-	public Button continueButton;
-	public Button newGameButton;
-	public Button settingsButton;
-	public Button quitButton;
+    public Button continueButton;
+    public Button newGameButton;
+    public Button settingsButton;
+    public Button quitButton;
 
-	public AudioClip clickClip;
-	private void Start()
-	{
-		ButtonInitialization();
-	}
+    public AudioClip clickClip;
+    private void Start()
+    {
+        ButtonInitialization();
+    }
 
-	public void ButtonInitialization()
-	{
-		continueButton.gameObject.SetActive(false);
-		//저장된 데이터가 있을 떄 활성화
-		if (DataManager.Instance.data.isPlaying == true)
-		{
-			continueButton.gameObject.SetActive(true);
-			continueButton.onClick.RemoveAllListeners();
-			continueButton.onClick.AddListener(ContinueButtonOnClick);
-		}
+    public void ButtonInitialization()
+    {
+        continueButton.gameObject.SetActive(false);
 
-		newGameButton.gameObject.SetActive(true);
-		settingsButton.gameObject.SetActive(true);
-		quitButton.gameObject.SetActive(true);
+        //저장된 데이터가 있을 떄 활성화
+        if (DataManager.Instance.data.isPlaying == true)
+        {
+            continueButton.gameObject.SetActive(true);
+            continueButton.onClick.RemoveAllListeners();
+            continueButton.onClick.AddListener(ContinueButtonOnClick);
+        }
 
-		newGameButton.onClick.RemoveAllListeners();
-		settingsButton.onClick.RemoveAllListeners();
-		quitButton.onClick.RemoveAllListeners();
+        newGameButton.gameObject.SetActive(true);
+        settingsButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
 
-		newGameButton.onClick.AddListener(NewGameButtonOnClick);
-		settingsButton.onClick.AddListener(SettingsButtonOnClick);
-		quitButton.onClick.AddListener(QuitButtonOnClick);
-	}
+        newGameButton.onClick.RemoveAllListeners();
+        settingsButton.onClick.RemoveAllListeners();
+        quitButton.onClick.RemoveAllListeners();
 
-	private void ContinueButtonOnClick()
-	{
-		//NOTE : 사운드 추가
-		AudioManager.Instance.PlaySFX(clickClip);
-		UIManager.Instance.TransitionToLoadScene(DataManager.Instance.data.currentSceneName);
-	}
+        newGameButton.onClick.AddListener(NewGameButtonOnClick);
+        settingsButton.onClick.AddListener(SettingsButtonOnClick);
+        quitButton.onClick.AddListener(QuitButtonOnClick);
+    }
+
+    private void ContinueButtonOnClick()
+    {
+        AudioManager.Instance.PlaySFX(clickClip);
+        UIManager.Instance.TransitionToLoadScene(DataManager.Instance.data.currentSceneName);
+    }
 
 
-	private void NewGameButtonOnClick()
-	{
-		//NOTE : 사운드 추가
-		AudioManager.Instance.PlaySFX(clickClip);
+    private void NewGameButtonOnClick()
+    {
+        AudioManager.Instance.PlaySFX(clickClip);
 
-		moveController.MenuMovePosition();
-		menuController.MenuChange(StartMenuController.StartMenus.difficulty);
-	}
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.difficulty);
+    }
 
-	private void SettingsButtonOnClick()
-	{
-		//NOTE : 사운드 추가
-		AudioManager.Instance.PlaySFX(clickClip);
-		moveController.MenuMovePosition();
-		menuController.MenuChange(StartMenuController.StartMenus.setting);
-	}
+    private void SettingsButtonOnClick()
+    {
+        AudioManager.Instance.PlaySFX(clickClip);
+        moveController.MenuMovePosition();
+        menuController.MenuChange(StartMenuController.StartMenus.setting);
+    }
 
-	private void QuitButtonOnClick()
-	{
-		//NOTE : 사운드 추가
-		AudioManager.Instance.PlaySFX(clickClip);
-		Application.Quit();
-	}
+    private void QuitButtonOnClick()
+    {
+        AudioManager.Instance.PlaySFX(clickClip);
+        Application.Quit();
+    }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class AmmoBelt_Merchant_Frog : NPC
+public class AmmoBelt_Merchant_Frog : Interaction
 {
     [SerializeField]
     private GameObject belt;
     public AudioClip clip;
+
     protected override void Start()
     {
         base.Start();
@@ -12,30 +13,30 @@ public class AmmoBelt_Merchant_Frog : NPC
         belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
     }
 
-    public override void Interaction()
+    public override void InteractionEvent()
     {
-        base.Interaction();
+        base.InteractionEvent();
 
-        print("AmmoBelt_Merchant_Frog / Interaction / Start");
+        if (isStop)
+        {
+            isStop = false;
+            return;
+        }
 
-        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.isAmmoBelt == false)
+        if (DataManager.Instance.data.isAmmoBelt)
+        {
+            UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt");
+        }
+        else
         {
             DataManager.Instance.data.money -= price;
             DataManager.Instance.data.isAmmoBelt = true;
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeInteractionText(str = null);
             GameManager.Instance.player.bodyChange.BodyChange();
-            belt.SetActive(!DataManager.Instance.data.isAmmoBelt);
+            belt.SetActive(false);
             DataManager.Instance.data.maxAmmo = 32;
             AudioManager.Instance.PlaySFX(clip);
-            return;
-        }
-
-        NotEnoughMoney();
-
-        if (DataManager.Instance.data.isAmmoBelt)
-        {
-            UIManager.Instance.ChangeInteractionText(str = "You already have ammo belt");
         }
     }
 }

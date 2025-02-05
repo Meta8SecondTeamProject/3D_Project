@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Doctor_Merchant_Frog : NPC
+public class Doctor_Merchant_Frog : Interaction
 {
     public AudioClip healClip;
+
     protected override void Start()
     {
         base.Start();
@@ -12,11 +11,16 @@ public class Doctor_Merchant_Frog : NPC
         interactionValue = 1;
     }
 
-    public override void Interaction()
+    public override void InteractionEvent()
     {
-        base.Interaction();
-        print("Doctor_Merchant_Frog / Interaction / Start");
-        if (DataManager.Instance.data.money >= price && DataManager.Instance.data.HP < 2)
+        base.InteractionEvent();
+        if (isStop)
+        {
+            isStop = false;
+            return;
+        }
+
+        if (DataManager.Instance.data.HP < 2)
         {
             DataManager.Instance.data.money -= price;
             DataManager.Instance.data.HP += interactionValue;
@@ -24,12 +28,8 @@ public class Doctor_Merchant_Frog : NPC
             UIManager.Instance.ChangeInteractionText(str = null);
             GameManager.Instance.player.bodyChange.BodyChange();
             AudioManager.Instance.PlaySFX(healClip);
-            return;
         }
-
-        NotEnoughMoney();
-
-        if (DataManager.Instance.data.HP >= 2)
+        else
         {
             UIManager.Instance.ChangeInteractionText(str = "Your health is full!");
         }

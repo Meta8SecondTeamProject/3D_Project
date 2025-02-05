@@ -1,38 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard_Merchant_Frog : NPC
+public class Wizard_Merchant_Frog : Interaction
 {
-	public AudioClip clip;
-	protected override void Start()
-	{
-		base.Start();
-		price = 20;
-	}
+    public AudioClip clip;
 
-	public override void Interaction()
-	{
-		base.Interaction();
+    protected override void Start()
+    {
+        base.Start();
+        price = 20;
+    }
 
-		print("Wizard_Merchant_Frog / Interaction / Start");
+    public override void InteractionEvent()
+    {
+        base.InteractionEvent();
 
-		if (DataManager.Instance.data.money >= price && DataManager.Instance.data.isDoubleJump == false)
-		{
-			DataManager.Instance.data.money -= price;
-			DataManager.Instance.data.isDoubleJump = true;
-			DataManager.Instance.jumpCount = 2;
-			UIManager.Instance.GameSceneTextUpdate();
-			UIManager.Instance.ChangeInteractionText(str = null);
-			AudioManager.Instance.PlaySFX(clip);
-			return;
-		}
+        if (isStop)
+        {
+            isStop = false;
+            return;
+        }
 
-		NotEnoughMoney();
-
-		if (DataManager.Instance.data.isDoubleJump)
-		{
-			UIManager.Instance.ChangeInteractionText(str = "You are already enchanted!");
-		}
-	}
+        if (DataManager.Instance.data.isDoubleJump == false)
+        {
+            DataManager.Instance.data.money -= price;
+            DataManager.Instance.data.isDoubleJump = true;
+            DataManager.Instance.jumpCount = 2;
+            UIManager.Instance.GameSceneTextUpdate();
+            UIManager.Instance.ChangeInteractionText(str = null);
+            AudioManager.Instance.PlaySFX(clip);
+        }
+        else
+        {
+            UIManager.Instance.ChangeInteractionText(str = "You are already enchanted!");
+        }
+    }
 }

@@ -1712,6 +1712,98 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e95be206ea68a47aaef4905593e210, type: 3}
+--- !u!1 &310182627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310182630}
+  - component: {fileID: 310182629}
+  - component: {fileID: 310182628}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &310182628
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310182627}
+  m_Enabled: 1
+--- !u!20 &310182629
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310182627}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &310182630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310182627}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.14034976, y: 0.69104934, z: -0.1395157, w: 0.6951893}
+  m_LocalPosition: {x: 99.88559, y: 44.225082, z: -70.18259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &344326604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,6 +4549,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magician_Mk1
       objectReference: {fileID: 0}
+    - target: {fileID: 8830824757452338484, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
+      propertyPath: isNonInteractive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830824757452338484, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 709124095}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4465,6 +4565,11 @@ PrefabInstance:
 --- !u!4 &709124094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8121240149168627945, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
+  m_PrefabInstance: {fileID: 709124093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &709124095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4782748484839135432, guid: f07badd4a1a8b144c963759ba0345f07, type: 3}
   m_PrefabInstance: {fileID: 709124093}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &714757222
@@ -15261,6 +15366,14 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4546699527115665726, guid: a3579fa3c3947ad4681e5d5684c935b8, type: 3}
+      propertyPath: isInteraction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546699527115665726, guid: a3579fa3c3947ad4681e5d5684c935b8, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 452705326336880296}
     - target: {fileID: 4761826548242454985, guid: a3579fa3c3947ad4681e5d5684c935b8, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -20220,6 +20333,10 @@ PrefabInstance:
       propertyPath: chatWindow
       value: 
       objectReference: {fileID: 452705326336880296}
+    - target: {fileID: 8116836145115249667, guid: f8205b99ea3e88849bfd50a45e3243ff, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 2428596780791761102}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20228,6 +20345,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f8205b99ea3e88849bfd50a45e3243ff, type: 3}
+--- !u!1 &2428596780791761102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6928691914518612958, guid: f8205b99ea3e88849bfd50a45e3243ff, type: 3}
+  m_PrefabInstance: {fileID: 2428596780791761101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &2489867190754692054
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20745,9 +20867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269e62f6f301a4b4697e882438e369d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 2858693855263476374}
+  interactionEffectObject: {fileID: 2858693855263476374}
   isMessage: 0
   isInteraction: 0
+  isNonInteractive: 0
   belt: {fileID: 3465906073472996515}
   clip: {fileID: 8300000, guid: 59157d0c6a949d547b36ae987f91beac, type: 3}
 --- !u!33 &2726677877089578778
@@ -21469,9 +21592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e702c4a96f090d4b9f83055e655fb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 9202645945082917186}
+  interactionEffectObject: {fileID: 9202645945082917186}
   isMessage: 0
   isInteraction: 0
+  isNonInteractive: 0
 --- !u!4 &3145109260007891407
 Transform:
   m_ObjectHideFlags: 0
@@ -24958,9 +25082,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee60a4ee5b197a4faa4e12e88277de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 998036602551909505}
+  interactionEffectObject: {fileID: 998036602551909505}
   isMessage: 0
   isInteraction: 0
+  isNonInteractive: 0
   healClip: {fileID: 8300000, guid: faca3969dd96a5b428ae573622c88427, type: 3}
 --- !u!1 &4975815331898781434
 GameObject:
@@ -28475,9 +28600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c76fd8b96631f4459feeb437dfeee44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindow: {fileID: 8447445765483078282}
+  interactionEffectObject: {fileID: 8447445765483078282}
   isMessage: 0
   isInteraction: 0
+  isNonInteractive: 0
   getAmmoClip: {fileID: 8300000, guid: ffe827358d794734783a1bcddb6c13cd, type: 3}
 --- !u!64 &6006401409150118954
 MeshCollider:
@@ -41673,6 +41799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kid_Frog
       objectReference: {fileID: 0}
+    - target: {fileID: 4428320385053447241, guid: 79bb7d7aacc638b49a19851434337f4c, type: 3}
+      propertyPath: interactionEffectObject
+      value: 
+      objectReference: {fileID: 8837164979035294486}
     - target: {fileID: 4815725258099812390, guid: 79bb7d7aacc638b49a19851434337f4c, type: 3}
       propertyPath: m_text
       value: I'm Button's Trigger.
@@ -41693,6 +41823,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 79bb7d7aacc638b49a19851434337f4c, type: 3}
+--- !u!1 &8837164979035294486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1241945471383123609, guid: 79bb7d7aacc638b49a19851434337f4c, type: 3}
+  m_PrefabInstance: {fileID: 8837164979035294485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8838775048326907526
 GameObject:
   m_ObjectHideFlags: 0
@@ -43007,3 +43142,4 @@ SceneRoots:
   - {fileID: 672826800}
   - {fileID: 524519571}
   - {fileID: 1405132080}
+  - {fileID: 310182630}

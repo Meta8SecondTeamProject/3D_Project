@@ -15,6 +15,7 @@ public class LoadingController : MonoBehaviour
         StartCoroutine(LoadSceneProcess());
     }
 
+    //비동기로 씬을 전환
     private IEnumerator LoadSceneProcess()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(nextSceneName);
@@ -38,6 +39,7 @@ public class LoadingController : MonoBehaviour
                 {
                     DataManager.Instance.EnemyCountSet();
                     operation.allowSceneActivation = true;
+                    //씬 전환시 랜덤 값으로 잠시 대기
                     yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 2f));
                     yield return new WaitUntil(() => operation.isDone);
                     yield return null;

@@ -17,11 +17,6 @@ public class SettingButtons : MonoBehaviour
         bgmSlider.value = AudioManager.Instance.BGM.volume;
         sfxSlider.value = AudioManager.Instance.SFX.volume;
         ButtonInitialization();
-
-        #region 임시 수정
-        //bgmSlider.value = AudioManager.Instance.BGMVolume;
-        //sfxSlider.value = AudioManager.Instance.SFXVolume;
-        #endregion
     }
 
     private void ButtonInitialization()
@@ -41,14 +36,9 @@ public class SettingButtons : MonoBehaviour
 
     public void SetButtonClick()
     {
-        #region 임시 수정
         AudioManager.Instance.BGMVolume = bgmSlider.value;
         AudioManager.Instance.SFXVolume = sfxSlider.value;
         AudioManager.Instance.BGM.volume = AudioManager.Instance.BGMVolume;
         AudioManager.Instance.SFX.volume = AudioManager.Instance.SFXVolume;
-        #endregion
-
-        //AudioManager.Instance.BGM.volume = bgmSlider.value;
-        //AudioManager.Instance.SFX.volume = sfxSlider.value;
     }
 }

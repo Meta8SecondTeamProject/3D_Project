@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -41,7 +38,7 @@ public class StartMenuController : MonoBehaviour
                 settingMenu.SetActive(true);
                 break;
             default:
-                Debug.LogError("StartMenu / MenuChange / default");
+                Debug.LogError("StartMenuController / MenuChange / default");
                 break;
         }
     }

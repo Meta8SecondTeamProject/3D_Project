@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -19,6 +17,8 @@ public class MenuMoveControll : MonoBehaviour
     private float durationTime = 0f;
     private float moveSpeed = 0f;
 
+    private Coroutine moveCoroutine = null;
+
     private void Start()
     {
         backGroundBasePosition = backGround.anchoredPosition;
@@ -29,7 +29,11 @@ public class MenuMoveControll : MonoBehaviour
 
     public void MenuMovePosition()
     {
-        StartCoroutine(MenuMovePositionCoroutine());
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+        }
+        moveCoroutine = StartCoroutine(MenuMovePositionCoroutine());
     }
 
     private IEnumerator MenuMovePositionCoroutine()
@@ -49,7 +53,12 @@ public class MenuMoveControll : MonoBehaviour
 
     public void MenuResetPosition()
     {
-        StartCoroutine(MenuResetPositionCoroutine());
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+        }
+
+        moveCoroutine = StartCoroutine(MenuResetPositionCoroutine());
     }
 
     private IEnumerator MenuResetPositionCoroutine()
