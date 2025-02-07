@@ -17,6 +17,7 @@ public class Boss_Spawn : Interaction
     protected override void Start()
     {
         //상속받은 Start 아무동작안하도록 초기화.
+        isNonInteractive = false;
     }
 
     private void OnEnable()

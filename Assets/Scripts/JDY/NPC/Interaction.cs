@@ -4,9 +4,11 @@ public class Interaction : MonoBehaviour
 {
     [Tooltip("상인들은 대사창, 스포너면 프리팹")]
     public GameObject interactionEffectObject;
-
+    [HideInInspector]
     public bool isMessage = false;
+    [HideInInspector]
     public bool isInteraction = false;
+    [HideInInspector]
     public bool isNonInteractive = false;
 
     protected bool isStop = false;
@@ -17,6 +19,7 @@ public class Interaction : MonoBehaviour
 
     protected virtual void Start()
     {
+        isNonInteractive = false;
         interactionEffectObject.SetActive(false);
     }
 
