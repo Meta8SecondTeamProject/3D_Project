@@ -10,7 +10,7 @@ public class Fly_Enemy : Enemy
 	public GameObject SpookRenderer;
 	private CapsuleCollider capsuleCollider;
 	public bool isBomb;
-	//½ÇÁ¦ Äİ¶óÀÌ´õ ºÙ¾îÀÖ´Â °÷ÀÌ ¾Æ´Ñ ºÎ¸ğ ¿ÀºêÁ§Æ® °¡Á®¿À´Â ¿ëµµ
+	//ì‹¤ì œ ì½œë¼ì´ë” ë¶™ì–´ìˆëŠ” ê³³ì´ ì•„ë‹Œ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ê°€ì ¸ì˜¤ëŠ” ìš©ë„
 	protected override void Awake()
 	{
 		base.Awake();
@@ -63,7 +63,6 @@ public class Fly_Enemy : Enemy
 			Move(moveDir.normalized);
 		}
 	}
-
 
 	protected override void OnCollisionEnter(Collision collision)
 	{

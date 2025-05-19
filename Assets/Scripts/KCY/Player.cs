@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 			}
 			if (damageAble)
 			{
-				Debug.Log("¾Æ¾ß");
+				Debug.Log("ì•„ì•¼");
 				TakeDamage();
 			}
 		}
@@ -57,17 +57,17 @@ public class Player : MonoBehaviour
 		damageAble = false;
 		DataManager.Instance.data.HP--;
 
-		//NOTE : »ç¿îµå Ãß°¡µÊ
+		//NOTE : ì‚¬ìš´ë“œ ì¶”ê°€ë¨
 		if (DataManager.Instance.data.HP >= 1)
-		{ 
+		{
 			AudioManager.Instance.PlaySFX(frogHitClip);
 		}
 		//else
 		//{
-  //          AudioManager.Instance.PlaySFX(frogDeathClip);
-  //      }
+		//          AudioManager.Instance.PlaySFX(frogDeathClip);
+		//      }
 
-        bloodExplosion.SetActive(true);
+		bloodExplosion.SetActive(true);
 		rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
 		bodyChange.BodyChange();
 		if (DataManager.Instance.data.HP <= 0)

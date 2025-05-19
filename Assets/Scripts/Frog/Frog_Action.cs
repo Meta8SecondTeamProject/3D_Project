@@ -9,7 +9,7 @@ using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 public class Frog_Action : MonoBehaviour
 {
-	[Header("¸ÓÁñ(ÃÑ±¸)¿¡ ÀÓ½Ã·Î °³±¸¸® Æ÷Áö¼Ç ³Ö¾îÁÖ¼¼¿ä")]
+	[Header("ë¨¸ì¦(ì´êµ¬)ì— ìž„ì‹œë¡œ ê°œêµ¬ë¦¬ í¬ì§€ì…˜ ë„£ì–´ì£¼ì„¸ìš”")]
 	public Transform muzzlePos;
 	public Transform shotPoint;
 	public Transform shotDir;
@@ -19,7 +19,6 @@ public class Frog_Action : MonoBehaviour
 	public ParticleSystem fire_Particle;
 	public ParticleSystem smoke_Particle;
 
-
 	private Rigidbody rb;
 	private CinemachineVirtualCamera virtualCamera;
 	private CinemachineBasicMultiChannelPerlin noise;
@@ -27,7 +26,7 @@ public class Frog_Action : MonoBehaviour
 	private InputAction jumpAction;
 	private InputAction fireAction;
 
-	[Header("¹Ýµ¿À¸·Î ÀÎÇÑ ³Ë¹é, Á¡ÇÁ, Èçµé¸²")]
+	[Header("ë°˜ë™ìœ¼ë¡œ ì¸í•œ ë„‰ë°±, ì í”„, í”ë“¤ë¦¼")]
 	[Range(0, 100)]
 	public float knockbackForce;
 	public float jumpForce;
@@ -95,7 +94,6 @@ public class Frog_Action : MonoBehaviour
 
 	}
 
-
 	private void Update()
 	{
 		HandleShakeEffect();
@@ -105,10 +103,10 @@ public class Frog_Action : MonoBehaviour
 	{
 		if (shakeDuration > 0)
 		{
-			//Èçµé¸² Áö¼ÓÁö°£ ¸Å ÇÁ·¹ÀÓ °¨¼Ò
+			//í”ë“¤ë¦¼ ì§€ì†ì§€ê°„ ë§¤ í”„ë ˆìž„ ê°ì†Œ
 			shakeDuration -= Time.deltaTime;
 
-			//Áö¼Ó½Ã°£ÀÌ ³¡³ª¸é Èçµé¸² °­µµ¸¦ 0À¸·Î ÃÊ±âÈ­
+			//ì§€ì†ì‹œê°„ì´ ëë‚˜ë©´ í”ë“¤ë¦¼ ê°•ë„ë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 			if (shakeDuration <= 0f && noise != null)
 			{
 				noise.m_AmplitudeGain = 0f;
@@ -159,7 +157,6 @@ public class Frog_Action : MonoBehaviour
 			DataManager.Instance.data.ammo--;
 			UIManager.Instance.GameSceneTextUpdate();
 
-
 			fire_Particle.Play(true);
 			smoke_Particle.gameObject.SetActive(false);
 			smoke_Particle.gameObject.SetActive(true);
@@ -168,15 +165,15 @@ public class Frog_Action : MonoBehaviour
 			rb.velocity = Vector3.zero;
 			rb.AddForce(knockbackdir * knockbackForce, ForceMode.Impulse);
 
-			//Ä«¸Þ¶ó Èçµé¸² º¯¼ö ÃÊ±âÈ­
+			//ì¹´ë©”ë¼ í”ë“¤ë¦¼ ë³€ìˆ˜ ì´ˆê¸°í™”
 			shakeDuration = shakeTimer;
-			//Ä«¸Þ¶ó Èçµé¸² ¸Þ¼­µå ½ÇÇà
+			//ì¹´ë©”ë¼ í”ë“¤ë¦¼ ë©”ì„œë“œ ì‹¤í–‰
 			ShakeCamera(shakePower, shakeDuration);
 
 			fireCooldown = false;
 			InstantiateProj();
 
-			//NOTE : »ç¿îµå Ãß°¡
+			//NOTE : ì‚¬ìš´ë“œ ì¶”ê°€
 			AudioManager.Instance.PlaySFX(fireClip);
 		}
 	}
@@ -224,7 +221,7 @@ public class Frog_Action : MonoBehaviour
 
 		rb.AddForce(actualMoveDir * jumpForce, ForceMode.Impulse);
 
-		//NOTE : »ç¿îµå Ãß°¡
+		//NOTE : ì‚¬ìš´ë“œ ì¶”ê°€
 		AudioManager.Instance.PlaySFX(jumpClip);
 	}
 

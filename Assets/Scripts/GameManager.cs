@@ -9,7 +9,7 @@ public class GameManager : SingletonManager<GameManager>
     public GameObject playerObj;
     public List<GameObject>[] enemy = new List<GameObject>[5];
     public ObjectPool pool;
-    //TODO : Àû ¸®½ºÆ® Ãß°¡ ¿¹Á¤
+    //TODO : ì  ë¦¬ìŠ¤íŠ¸ ì¶”ê°€ ì˜ˆì •
     protected override void Awake()
     {
         base.Awake();
@@ -18,7 +18,7 @@ public class GameManager : SingletonManager<GameManager>
             enemy[i] = new List<GameObject>();
         }
 
-        //ÀÓ½ÃÀûÀ¸·Î ÁÖ¼®Ã³¸®
+        //ì„ì‹œì ìœ¼ë¡œ ì£¼ì„ì²˜ë¦¬
         //PlayerInstantiate();
     }
 
@@ -40,25 +40,23 @@ public class GameManager : SingletonManager<GameManager>
     private void Start()
     {
 
-
         SceneManager.sceneLoaded += (x, y) =>
         {
             UIManager.Instance.GameSceneTextUpdate();
             UIManager.Instance.ChangeScene();
             pool = FindAnyObjectByType<ObjectPool>();
         };
-        //ÇÁ·¹ÀÓ Á¦ÇÑ¿ë ÄÚµå
+        //í”„ë ˆì„ ì œí•œìš© ì½”ë“œ
         Application.targetFrameRate = 60;
 
-        //ÀÓ½Ã·Î ¿ÉÁ§ Ã£±â
+        //ì„ì‹œë¡œ ì˜µì  ì°¾ê¸°
         //pool = FindAnyObjectByType<ObjectPool>();
         //player = FindAnyObjectByType<Player>();
-
 
     }
 
     private Vector3 spawnPos;
-    [Header("»ı¼ºÇÒ °³±¸¸® ÇÁ¸®ÆÕ")]
+    [Header("ìƒì„±í•  ê°œêµ¬ë¦¬ í”„ë¦¬íŒ¹")]
     public GameObject playerPrefab;
     public void PlayerInstantiate()
     {
@@ -68,8 +66,8 @@ public class GameManager : SingletonManager<GameManager>
             Debug.Log(spawnPos);
             if (playerPrefab != null)
             {
-                Debug.Log("»ı¼º");
-                //TODO : ÃÖÁ¾ ºôµå ½Ã »èÁ¦¿ä¸Á
+                Debug.Log("ìƒì„±");
+                //TODO : ìµœì¢… ë¹Œë“œ ì‹œ ì‚­ì œìš”ë§
                 pool = FindAnyObjectByType<ObjectPool>();
                 playerObj = Instantiate(playerPrefab);
                 playerObj.transform.position = spawnPos;

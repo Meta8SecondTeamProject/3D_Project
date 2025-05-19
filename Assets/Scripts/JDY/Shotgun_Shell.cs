@@ -25,7 +25,7 @@ public class Shotgun_Shell : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			//NOTE : »ç¿îµå Ãß°¡µÊ
+			//NOTE : ì‚¬ìš´ë“œ ì¶”ê°€ë¨
 			AudioManager.Instance.PlaySFX(getAmmoClip);
 			DataManager.Instance.data.ammo += 4;
 			UIManager.Instance.GameSceneTextUpdate();

@@ -7,7 +7,7 @@ using UniRan = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í")]
+	[Tooltip("0 : íŒŒë¦¬\n1 : ë¬¼ê³ ê¸°\n2 : ìƒˆ\n3 : í­íƒ„ íŒŒë¦¬\n4 : ê¹Œë§ˆê·€")]
 	public int numberOfEnemy;
 	private BoxCollider rangeColl;
 	private ObjectPool enemyPool;
@@ -54,11 +54,11 @@ public class EnemySpawner : MonoBehaviour
 				break;
 			case 2:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdMaxSpawnCount));
-				Debug.Log(DataManager.Instance.birdMaxSpawnCount);
+				// Debug.Log(DataManager.Instance.birdMaxSpawnCount);
 				break;
 			case 4:
 				StartCoroutine(RandPosSpawn_Coroutine(DataManager.Instance.birdBlackMaxSpawnCount));
-				//Debug.LogWarning("±×·± ³ğ ¾ø´Ù.");
+				//Debug.LogWarning("ê·¸ëŸ° ë†ˆ ì—†ë‹¤.");
 				break;
 		}
 	}
@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
 				bomb = UniRan.Range(0f, 1f);
 				if (bomb > 0.9f) numberOfEnemy = 3;
 			}
-			// TODO : ÃßÈÄ ÁÖ¼® ÇØÁ¦ÇØ¼­ Æ®¸®°Å 3°³ ÀÌ»ó È°¼ºÈ­µÇ¸é Enemy ½ºÆùµÇ°Ô,
+			// TODO : ì¶”í›„ ì£¼ì„ í•´ì œí•´ì„œ íŠ¸ë¦¬ê±° 3ê°œ ì´ìƒ í™œì„±í™”ë˜ë©´ Enemy ìŠ¤í°ë˜ê²Œ,
 			//if (DataManager.Instance.triggerOn >= 3)
 			//{
 			enemyPool.Pop(enemyPool.obj[numberOfEnemy].name);
@@ -82,11 +82,11 @@ public class EnemySpawner : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 			//EditorApplication.isPaused = true;
 
-			Debug.Log($"ÀÌ¸§ : {enemyPool.obj[numberOfEnemy].name} ¼ö : {GameManager.Instance.enemy[numberOfEnemy].Count}");
+			Debug.Log($"ì´ë¦„ : {enemyPool.obj[numberOfEnemy].name} ìˆ˜ : {GameManager.Instance.enemy[numberOfEnemy].Count}");
 			yield return new WaitUntil(() => GameManager.Instance.enemy[numberOfEnemy].Count < enemyMaxSpawnCount);
-			//TODO : ¸ñÇ¥ Enemy·®À» Ã¤¿ì¸é º¸½º Enemy°¡ ½ºÆùµÇµµ·Ï ¼³Á¤,
-			//       Áö±İ ½ÔÇÏµåÄÚµùÀÎµ¥ ÀÌ°Å °íÄ¥¹æ¹ı ¾Æ´Â»ç¶÷ ¼Õ,
-			//       ÀÎµ¦½º¸¦ ¾²´ø ¹» ÇÏ´ø ÇÏ±ä ÇØ¾ßÇÏ´Âµ¥ À¸À¸À¹ÈæÈæ
+			//TODO : ëª©í‘œ EnemyëŸ‰ì„ ì±„ìš°ë©´ ë³´ìŠ¤ Enemyê°€ ìŠ¤í°ë˜ë„ë¡ ì„¤ì •,
+			//       ì§€ê¸ˆ ìŒ‰í•˜ë“œì½”ë”©ì¸ë° ì´ê±° ê³ ì¹ ë°©ë²• ì•„ëŠ”ì‚¬ëŒ ì†,
+			//       ì¸ë±ìŠ¤ë¥¼ ì“°ë˜ ë­˜ í•˜ë˜ í•˜ê¸´ í•´ì•¼í•˜ëŠ”ë° ìœ¼ìœ¼ìœ½í‘í‘
 
 			//if(DataManager.Instance.birdMaxCount > DataManager.Instance.birdKillCount)
 			//{
@@ -96,10 +96,9 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-
 	private void SpawnBoss()
 	{
-		//TODO : SapwnBoss·ÎÁ÷ ÇÏµåÄÚµù, »óÀÇÈÄ °áÁ¤
+		//TODO : SapwnBossë¡œì§ í•˜ë“œì½”ë”©, ìƒì˜í›„ ê²°ì •
 		int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		GameObject boss;
 
@@ -118,7 +117,7 @@ public class EnemySpawner : MonoBehaviour
 			default:
 				break;
 		}
-		//TODO : º¸½º ÀâÀ¸¸é Æ÷Å» È°¼ºÈ­µÇµµ·Ï boolº¯¼ö´ø ¹¹´ø Ãß°¡ÇÏ±â, ´ÙÀ½ ¾À¿¡µµ ¿¬µ¿µÇ¾ßÇÏ´Ï DataManager¿¡ Ãß°¡
+		//TODO : ë³´ìŠ¤ ì¡ìœ¼ë©´ í¬íƒˆ í™œì„±í™”ë˜ë„ë¡ boolë³€ìˆ˜ë˜ ë­ë˜ ì¶”ê°€í•˜ê¸°, ë‹¤ìŒ ì”¬ì—ë„ ì—°ë™ë˜ì•¼í•˜ë‹ˆ DataManagerì— ì¶”ê°€
 		// 
 
 	}
@@ -151,7 +150,5 @@ public class EnemySpawner : MonoBehaviour
 			playerTrigger = false;
 		}
 	}
-
-
 
 }

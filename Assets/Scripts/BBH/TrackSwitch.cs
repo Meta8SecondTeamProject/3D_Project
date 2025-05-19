@@ -14,7 +14,7 @@ public class TrackSwitch : MonoBehaviour
     public FadeController fadeController;
     public Image[] creditsImages;
 
-    public float[] cartSpeed; 
+    public float[] cartSpeed;
     public float waitTime = 2f;
 
     private bool isSwitching = false;
@@ -25,7 +25,7 @@ public class TrackSwitch : MonoBehaviour
         StartCoroutine(fadeController.FadeOut());
         cart.m_Speed = cartSpeed[0];
 
-        //ÀÌ»óÇÑ ½Ç¼ö ¹æÁö¿ëÀ¸·Î ÀÌ¹ÌÁö ¾ËÆÄ°ª Á¶ÀıÇØ¼­ ÀüºÎ Åõ¸íÇÏ°Ô ¹Ù²ãÁÜ
+        //ì´ìƒí•œ ì‹¤ìˆ˜ ë°©ì§€ìš©ìœ¼ë¡œ ì´ë¯¸ì§€ ì•ŒíŒŒê°’ ì¡°ì ˆí•´ì„œ ì „ë¶€ íˆ¬ëª…í•˜ê²Œ ë°”ê¿”ì¤Œ
         for (int i = 0; i < creditsImages.Length; i++)
         {
             creditsImages[i].color = new Color(creditsImages[i].color.r, creditsImages[i].color.g, creditsImages[i].color.b, 0);
@@ -34,65 +34,65 @@ public class TrackSwitch : MonoBehaviour
 
     private void Update()
     {
-        //Ä«Æ®°¡ Æ®·¢ÀÇ 80% ÀÌ»ó µµ´ŞÇÏ¸é ÄÚ·çÆ¾À» ½ÃÀÛÇÔ
-        if (cart.m_Position+(cart.m_Path.PathLength * 0.25f) >= cart.m_Path.PathLength && isSwitching == false)
+        //ì¹´íŠ¸ê°€ íŠ¸ë™ì˜ 80% ì´ìƒ ë„ë‹¬í•˜ë©´ ì½”ë£¨í‹´ì„ ì‹œì‘í•¨
+        if (cart.m_Position + (cart.m_Path.PathLength * 0.25f) >= cart.m_Path.PathLength && isSwitching == false)
         {
             StartCoroutine(SwitchToNextTrack());
         }
         //Debug.Log($"currentTrackIndex : {currentTrackIndex} , {creditsImages.Length - 2}");
     }
 
-    //0. Ä«Æ®°¡ Æ¯Á¤ ÁöÁ¡¿¡ µµ´ŞÇÏ¸é
-    //1. Äµ¹ö½º ÆäÀÌµå ÀÎÇØ¼­ ¾îµÓ°Ô ÇÏ±â, Ã³À½ºÎÅÍ ÀÌ¹ÌÁö ³ÖÀ» ÁÙ ¾Ë¾ÒÀ¸¸é ÄÚ·çÆ¾µµ µû·Î ¾È¸¸µå´Â°Çµ¥
-    //2. ¾îµÓ°Ô ÇÑ µ¿¾È ÀÌ¹ÌÁö Ãâ·ÂÇÏ±â
-    //3. ÀÌ¹ÌÁö¸¦ ÆäÀÌµå ¾Æ¿ôÀ¸·Î nÃÊµ¿¾È Ãâ·ÂÇÏ°í ÆäÀÌµå ÀÎÀ¸·Î ´Ù½Ã ¼û±è
-    //4. ÀÌ¹ÌÁöÀÇ ÆäÀÌµå ÀÎÀÌ ³¡³ª¸é Æ®·¢ ¿Å±â°í Äµ¹ö½ºµµ ÆäÀÌµå ¾Æ¿ô
-    //5. ¸¸¾à ¸¶Áö¸· ÀÌ¹ÌÁöÀÏ °æ¿ì ÆäÀÌµå¾Æ¿ô ¾øÀÌ StartSceneÀ¸·Î ÀÌµ¿ 
+    //0. ì¹´íŠ¸ê°€ íŠ¹ì • ì§€ì ì— ë„ë‹¬í•˜ë©´
+    //1. ìº”ë²„ìŠ¤ í˜ì´ë“œ ì¸í•´ì„œ ì–´ë‘¡ê²Œ í•˜ê¸°, ì²˜ìŒë¶€í„° ì´ë¯¸ì§€ ë„£ì„ ì¤„ ì•Œì•˜ìœ¼ë©´ ì½”ë£¨í‹´ë„ ë”°ë¡œ ì•ˆë§Œë“œëŠ”ê±´ë°
+    //2. ì–´ë‘¡ê²Œ í•œ ë™ì•ˆ ì´ë¯¸ì§€ ì¶œë ¥í•˜ê¸°
+    //3. ì´ë¯¸ì§€ë¥¼ í˜ì´ë“œ ì•„ì›ƒìœ¼ë¡œ nì´ˆë™ì•ˆ ì¶œë ¥í•˜ê³  í˜ì´ë“œ ì¸ìœ¼ë¡œ ë‹¤ì‹œ ìˆ¨ê¹€
+    //4. ì´ë¯¸ì§€ì˜ í˜ì´ë“œ ì¸ì´ ëë‚˜ë©´ íŠ¸ë™ ì˜®ê¸°ê³  ìº”ë²„ìŠ¤ë„ í˜ì´ë“œ ì•„ì›ƒ
+    //5. ë§Œì•½ ë§ˆì§€ë§‰ ì´ë¯¸ì§€ì¼ ê²½ìš° í˜ì´ë“œì•„ì›ƒ ì—†ì´ StartSceneìœ¼ë¡œ ì´ë™ 
 
     IEnumerator SwitchToNextTrack()
     {
-        //ÄÚ·çÆ¾ Áßº¹ ½ÇÇà ¹æÁö¿ë boolº¯¼ö 
+        //ì½”ë£¨í‹´ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€ìš© boolë³€ìˆ˜ 
         isSwitching = true;
-        
-        //È­¸éÀ» ¾îµÓ°Ô ÇÔ, ÀÌ·¸°Ô ½ÇÇàÇÏ¸é ÄÚ·çÆ¾ ³¡³¯¶§±îÁö ¾Æ·¡ if¹® ½ÇÇàÇÏÁö ¾ÊÀ½
+
+        //í™”ë©´ì„ ì–´ë‘¡ê²Œ í•¨, ì´ë ‡ê²Œ ì‹¤í–‰í•˜ë©´ ì½”ë£¨í‹´ ëë‚ ë•Œê¹Œì§€ ì•„ë˜ ifë¬¸ ì‹¤í–‰í•˜ì§€ ì•ŠìŒ
         yield return StartCoroutine(fadeController.FadeIn());
 
-        //ÇöÀç Æ®·¢ ÀÎµ¦½º°ªÀÌ ÀÌ¹ÌÁö ¹è¿­ÀÇ Å©±â - 1º¸´Ù ÀÛÀ¸¸é,
-        //ÀÌ¹ÌÁö ¹è¿­ÀÇ Å©±â°¡ 5´Ï±î, Index < (5-1)
-        //0,1,2,3 ÃÑ 4¹øÀÇ ÀÌ¹ÌÁö¸¦ º¸¿©ÁÜ
+        //í˜„ì¬ íŠ¸ë™ ì¸ë±ìŠ¤ê°’ì´ ì´ë¯¸ì§€ ë°°ì—´ì˜ í¬ê¸° - 1ë³´ë‹¤ ì‘ìœ¼ë©´,
+        //ì´ë¯¸ì§€ ë°°ì—´ì˜ í¬ê¸°ê°€ 5ë‹ˆê¹Œ, Index < (5-1)
+        //0,1,2,3 ì´ 4ë²ˆì˜ ì´ë¯¸ì§€ë¥¼ ë³´ì—¬ì¤Œ
         //if (currentTrackIndex < creditsImages.Length - 1)
         //{
-        //    //ShowImage¿¡¼­ ÀÌ¹ÌÁö º¸¿©ÁÖ°í, waitTime¸¸Å­ ±â´Ù¸²
+        //    //ShowImageì—ì„œ ì´ë¯¸ì§€ ë³´ì—¬ì£¼ê³ , waitTimeë§Œí¼ ê¸°ë‹¤ë¦¼
         //    yield return StartCoroutine(fadeController.ShowImage(creditsImages[currentTrackIndex], waitTime));
-        //    //ShowImage³¡³ª¸é HideImage ½ÇÇàÇØ¼­ ÀÌ¹ÌÁö ¼û°ÜÁÜ
+        //    //ShowImageëë‚˜ë©´ HideImage ì‹¤í–‰í•´ì„œ ì´ë¯¸ì§€ ìˆ¨ê²¨ì¤Œ
         //    yield return StartCoroutine(fadeController.HideImage(creditsImages[currentTrackIndex]));
         //}
-        
-        //¸¸¾à ÇöÀç ¾À ÀÎµ¦½º°¡ ÀÌ¹ÌÁö ¹è¿­ÀÇ Å©±â - 2¸é,
-        //Æ®·¢ÀÇ ÃÖ´ë ÀÎµ¦½º´Â 3, ÀÌ¹ÌÁö ¹è¿­ÀÇ Å©±â´Â 5´Ï±î 3 == (5 - 2) Áï, ¸¶Áö¸· Æ®·¢ÀÌ¸é
+
+        //ë§Œì•½ í˜„ì¬ ì”¬ ì¸ë±ìŠ¤ê°€ ì´ë¯¸ì§€ ë°°ì—´ì˜ í¬ê¸° - 2ë©´,
+        //íŠ¸ë™ì˜ ìµœëŒ€ ì¸ë±ìŠ¤ëŠ” 3, ì´ë¯¸ì§€ ë°°ì—´ì˜ í¬ê¸°ëŠ” 5ë‹ˆê¹Œ 3 == (5 - 2) ì¦‰, ë§ˆì§€ë§‰ íŠ¸ë™ì´ë©´
         if (currentTrackIndex == creditsImages.Length - 2)
         {
-            //Debug.Log("¸¶Áö¸· ÀÌ¹ÌÁö Ãâ·Â");
-            //¸¶Áö¸· ÀÌ¹ÌÁö Ãâ·Â ¹× ¼û±èÃ³¸®
+            //Debug.Log("ë§ˆì§€ë§‰ ì´ë¯¸ì§€ ì¶œë ¥");
+            //ë§ˆì§€ë§‰ ì´ë¯¸ì§€ ì¶œë ¥ ë° ìˆ¨ê¹€ì²˜ë¦¬
             yield return StartCoroutine(fadeController.ShowImage(creditsImages[creditsImages.Length - 1], waitTime));
             yield return StartCoroutine(fadeController.HideImage(creditsImages[creditsImages.Length - 1]));
 
-            //¸¶Áö¸· ¾ÀÀÌ´Ï±î ÀÌ¹ÌÁö¸¸ º¸¿©ÁÖ°í ´Ù½Ã StartSceneÀ¸·Î ³Ñ¾î°¨
-            //È¤¿©³ª StartSceneÀ¸·Î ³Ñ¾î°¡±âÀü¿¡ ÇØ¾ßÇÒ ÀÛ¾÷ ÀÖÀ¸¸é ¿©±â¼­ ½ÇÇàÇÏ¸é µÊ
+            //ë§ˆì§€ë§‰ ì”¬ì´ë‹ˆê¹Œ ì´ë¯¸ì§€ë§Œ ë³´ì—¬ì£¼ê³  ë‹¤ì‹œ StartSceneìœ¼ë¡œ ë„˜ì–´ê°
+            //í˜¹ì—¬ë‚˜ StartSceneìœ¼ë¡œ ë„˜ì–´ê°€ê¸°ì „ì— í•´ì•¼í•  ì‘ì—… ìˆìœ¼ë©´ ì—¬ê¸°ì„œ ì‹¤í–‰í•˜ë©´ ë¨
             UIManager.Instance.TransitionToLoadScene("GameStartScene");
             yield break;
         }
 
-        //(n + 1) < 4, ÃÑ 3¹ø TrackIndex++ ¹× Æ®·¢ ÀüÈ¯ 
+        //(n + 1) < 4, ì´ 3ë²ˆ TrackIndex++ ë° íŠ¸ë™ ì „í™˜ 
         if (currentTrackIndex + 1 < tracks.Length)
         {
-            //HideImage±îÁö ³¡³ª¸é Æ®·¢ ÀÎµ¦½º Áõ°¡ ¹× °¢Á¾ ¼³Á¤ ÃÊ±âÈ­ÇÔ
+            //HideImageê¹Œì§€ ëë‚˜ë©´ íŠ¸ë™ ì¸ë±ìŠ¤ ì¦ê°€ ë° ê°ì¢… ì„¤ì • ì´ˆê¸°í™”í•¨
             currentTrackIndex++;
             //Debug.Log(currentTrackIndex);
 
             //switch (currentTrackIndex)
             //{
-            //    //case 0 Àº Start¶§ ¼³Á¤
+            //    //case 0 ì€ Startë•Œ ì„¤ì •
             //    case 1:
             //        cart.m_Speed = cartSpeed[currentTrackIndex];
             //        break;
@@ -112,7 +112,7 @@ public class TrackSwitch : MonoBehaviour
             lookAtTarget.transform.position = lookAtPos[currentTrackIndex].position;
             cart.m_Position = 0f;
         }
-        //¼³Á¤ ³¡³»°í ÆäÀÌµå ¾Æ¿ô ½ÇÇàÇØ¼­ ´Ù½Ã È­¸é ¹à°Ô ¹Ù²Ş
+        //ì„¤ì • ëë‚´ê³  í˜ì´ë“œ ì•„ì›ƒ ì‹¤í–‰í•´ì„œ ë‹¤ì‹œ í™”ë©´ ë°ê²Œ ë°”ê¿ˆ
         yield return StartCoroutine(fadeController.FadeOut());
 
         isSwitching = false;

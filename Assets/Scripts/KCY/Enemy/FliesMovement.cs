@@ -29,13 +29,17 @@ public class FliesMovement : MonoBehaviour
 	private void Movement()
 	{
 		if (Time.timeScale == 0) return;
-		if (rand == 0)
+		switch (rand)
 		{
-			dir = Mathf.Sin(Time.time * upSpeed) * YAmplitude * 0.1f;
-		}
-		if (rand == 1)
-		{
-			dir = Mathf.Cos(Time.time * upSpeed) * YAmplitude * 0.1f;
+			case 0:
+				dir = Mathf.Sin(Time.time * upSpeed) * YAmplitude * 0.1f;
+				break;
+			case 1:
+				dir = Mathf.Cos(Time.time * upSpeed) * YAmplitude * 0.1f;
+				break;
+			default:
+				Debug.LogError("FliesMovement Error");
+				break;
 		}
 		transform.position = new Vector3(transform.position.x, transform.position.y + dir, transform.position.z);
 		transform.RotateAround(rotateTarget.position, Vector3.down, rotateSpeed);

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class DataManager : SingletonManager<DataManager>
 {
 	public Data data;
-	//½ºÅ×ÀÌÁö¸¶´Ù ½ºÆùµÉ ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡ Á¤º¸.
+	//ìŠ¤í…Œì´ì§€ë§ˆë‹¤ ìŠ¤í°ë  í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ ì •ë³´.
 	public Vector3[] playerStartPos;
 	public Vector3 currentStartPos;
 
@@ -15,17 +15,17 @@ public class DataManager : SingletonManager<DataManager>
 	public float fishSpeed;
 	public float birdSpeed;
 
-	//Áß°£ º¸½º ÀÌ¼Ó
+	//ì¤‘ê°„ ë³´ìŠ¤ ì´ì†
 	public float birdBossSpeed;
 	public float fishBossSpeed;
 
-	//ÃÖ´ë ½ºÆùµÉ ¼ö ÀÖ´Â ÀûÀÇ ¼ö
+	//ìµœëŒ€ ìŠ¤í°ë  ìˆ˜ ìˆëŠ” ì ì˜ ìˆ˜
 	public int fliesMaxSpawnCount;
 	public int fishMaxSpawnCount;
 	public int birdMaxSpawnCount;
 	public int birdBlackMaxSpawnCount;
 
-	//¸ñÇ¥ Å³ ¼ö
+	//ëª©í‘œ í‚¬ ìˆ˜
 	public int fishKillCount;
 	public int birdKillCount;
 
@@ -49,7 +49,7 @@ public class DataManager : SingletonManager<DataManager>
 		//NewGame();
 		//SaveManager.SaveGame(data);
 
-		//µ¥ÀÌÅÍ¸¦ Ã³À½ºÎÅÍ ·ÎµåÇÏ¿©¼­ °ü·Ã Á¤º¸¸¦ ¹ŞÀ» ¼ö ÀÖ°Ô
+		//ë°ì´í„°ë¥¼ ì²˜ìŒë¶€í„° ë¡œë“œí•˜ì—¬ì„œ ê´€ë ¨ ì •ë³´ë¥¼ ë°›ì„ ìˆ˜ ìˆê²Œ
 		if (data != null)
 		{
 			data = SaveManager.LoadGame();
@@ -57,7 +57,7 @@ public class DataManager : SingletonManager<DataManager>
 		}
 		else
 		{
-			//Debug.Log("µ¥ÀÌÅÍ ¾øÀ½!");
+			//Debug.Log("ë°ì´í„° ì—†ìŒ!");
 		}
 
 		//if (data == null)
@@ -97,10 +97,10 @@ public class DataManager : SingletonManager<DataManager>
 	public void Load()
 	{
 		data = SaveManager.LoadGame();
-		difficulty = data.difficulty;	
+		difficulty = data.difficulty;
 	}
 
-	#region ¼¼ÀÌºê ·Îµå Å×½ºÆ®¿ë 
+	#region ì„¸ì´ë¸Œ ë¡œë“œ í…ŒìŠ¤íŠ¸ìš© 
 	private void Update()
 	{
 
@@ -109,12 +109,12 @@ public class DataManager : SingletonManager<DataManager>
 			data.ammo = 16;
 			data.money++;
 			UIManager.Instance.GameSceneTextUpdate();
-			Debug.Log("Åº¾à, ÆÄ¸® Áõ°¡µÊ");
+			Debug.Log("íƒ„ì•½, íŒŒë¦¬ ì¦ê°€ë¨");
 
 		}
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad2))
 		{
-			Debug.Log("SaveGameÈ£Ãâ");
+			Debug.Log("SaveGameí˜¸ì¶œ");
 			//SaveManager.SaveGame(data);
 			Save();
 		}
@@ -122,23 +122,23 @@ public class DataManager : SingletonManager<DataManager>
 		{
 			//data = SaveManager.LoadGame();
 			Load();
-			Debug.Log("LoadGameÈ£Ãâ");
+			Debug.Log("LoadGameí˜¸ì¶œ");
 			UIManager.Instance.TransitionToLoadScene(data.currentSceneName);
 		}
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad4))
 		{
-			Debug.Log("BBH¾ÀÀ¸·Î ÀÌµ¿");
+			Debug.Log("BBHì”¬ìœ¼ë¡œ ì´ë™");
 			UIManager.Instance.TransitionToLoadScene("BBH_Scene");
 		}
 
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad5))
 		{
-			Debug.Log("JDY¾ÀÀ¸·Î ÀÌµ¿");
+			Debug.Log("JDYì”¬ìœ¼ë¡œ ì´ë™");
 			UIManager.Instance.TransitionToLoadScene("JDY_Scene");
 		}
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Keypad6))
 		{
-			Debug.Log("KCY¾ÀÀ¸·Î ÀÌµ¿");
+			Debug.Log("KCYì”¬ìœ¼ë¡œ ì´ë™");
 			UIManager.Instance.TransitionToLoadScene("KCY_Scene");
 		}
 	}
@@ -206,8 +206,7 @@ public class DataManager : SingletonManager<DataManager>
 	}
 }
 
-
-[Serializable] //ÀÌ Å¬·¡½º°¡ JSONÀ¸·Î º¯È°µÉ ¼ö ÀÖµµ·Ï ¼³Á¤ÇÏ´Âµ¥ ÇÊ¿äÇÔ
+[Serializable] //ì´ í´ë˜ìŠ¤ê°€ JSONìœ¼ë¡œ ë³€í™œë  ìˆ˜ ìˆë„ë¡ ì„¤ì •í•˜ëŠ”ë° í•„ìš”í•¨
 public class Data
 {
 
@@ -240,5 +239,4 @@ public enum Difficulty
 	HARD,
 	EXTREAM
 }
-
 

@@ -37,9 +37,9 @@ public class Projectile : MonoBehaviour
 		Vector3 audioPos = contactPoint.point;
 		AudioManager.Instance.PlaySFX(hitClip, audioPos, null, 0.5f);
 
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		if (other.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
-			Debug.Log("∆Æ∏Æ∞≈ ¿˚ ∞®¡ˆ");
+			Debug.Log("Ìä∏Î¶¨Í±∞ Ï†Å Í∞êÏßÄ");
 			rb.velocity = Vector3.zero;
 			m_particle.Stop(true);
 			explosion.SetActive(true);

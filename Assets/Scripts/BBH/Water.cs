@@ -11,7 +11,6 @@ public class Water : MonoBehaviour
 
 	public AudioClip contactWaterClip;
 
-
 	private void Start()
 	{
 		defaultBuoyancy = buoyancyForce;
@@ -19,7 +18,6 @@ public class Water : MonoBehaviour
 		//Start 됐을 때 게임매니저에 등록된 플레이어의 리지드바디와 Frog_Move 스크립트 가져옴
 
 	}
-
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -51,7 +49,6 @@ public class Water : MonoBehaviour
 		}
 
 	}
-
 
 	private void OnTriggerExit(Collider other)
 	{

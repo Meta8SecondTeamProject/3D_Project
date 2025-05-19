@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Frog_Body_Change : MonoBehaviour
 {
-	[Header("±³Ã¼ÇÒ ¹Ùµğµé ¹ÙµğÀÇ ¼ø¼­¿¡ ¸ÂÃç¼­"), Tooltip("±âº»¹Ùµğ, »óÃ³ ¹Ùµğ, ¾Æ¸Óº§Æ®Â÷°í »óÃ³, Á×À½, ¸ğÀÚ, º§Æ®, ÃÑ±â")]
+	[Header("êµì²´í•  ë°”ë””ë“¤ ë°”ë””ì˜ ìˆœì„œì— ë§ì¶°ì„œ"), Tooltip("ê¸°ë³¸ë°”ë””, ìƒì²˜ ë°”ë””, ì•„ë¨¸ë²¨íŠ¸ì°¨ê³  ìƒì²˜, ì£½ìŒ, ëª¨ì, ë²¨íŠ¸, ì´ê¸°")]
 	public GameObject[] bodys;
 
 	private void Start()
@@ -13,7 +13,7 @@ public class Frog_Body_Change : MonoBehaviour
 		BodyChange();
 	}
 
-	[ContextMenu("¹ÙµğÃ¼ÀÎÁö/ÀÌ°Ô¸Â³ª?")]
+	[ContextMenu("ë°”ë””ì²´ì¸ì§€/ì´ê²Œë§ë‚˜?")]
 	public void BodyChange()
 	{
 		for (int i = 0; i < bodys.Length - 1; i++)
@@ -27,12 +27,12 @@ public class Frog_Body_Change : MonoBehaviour
 			return;
 		}
 
-		//¸ğÀÚ...
+		//ëª¨ì...
 		if (DataManager.Instance.data.isHat)
 		{
 			bodys[4].SetActive(true);
 		}
-		//º§Æ®...
+		//ë²¨íŠ¸...
 		if (DataManager.Instance.data.isAmmoBelt)
 		{
 			bodys[5].SetActive(true);

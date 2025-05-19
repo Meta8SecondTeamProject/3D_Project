@@ -2,15 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    private FliesMovement batMoveMent;
-
     protected Rigidbody rb;
     protected Transform target;
     protected Vector3 moveDir;
     public float moveSpeed;
     protected bool isFly;
+    private FliesMovement batMoveMent;
 
     public Transform attackSpot;
     public GameObject fracture;
@@ -43,7 +42,7 @@ public abstract class Enemy : MonoBehaviour
 
         StartCoroutine(PlayIdleClipCoroutine());
     }
-    //NOTE : ±î¸¶±Í Á¦¿Ü ¸ğµç Àû »ç¿îµå Ãß°¡
+    //NOTE : ê¹Œë§ˆê·€ ì œì™¸ ëª¨ë“  ì  ì‚¬ìš´ë“œ ì¶”ê°€
     private IEnumerator PlayIdleClipCoroutine()
     {
         while (gameObject.activeSelf == true)
@@ -69,7 +68,6 @@ public abstract class Enemy : MonoBehaviour
         else { rb.useGravity = false; }
     }
 
-
     protected virtual void Update()
     {
         if (target == null)
@@ -90,7 +88,6 @@ public abstract class Enemy : MonoBehaviour
         if (Time.timeScale == 0) return;
         rb.AddForce(dir * moveSpeed);
     }
-
     protected virtual void Look(Vector3 dir, float rotVal)
     {
         //Debug.Log($"Look TimeScale : {Time.timeScale}");
@@ -99,7 +96,6 @@ public abstract class Enemy : MonoBehaviour
         rb.rotation = Quaternion.Slerp(rb.rotation, dirRot, rotVal * Time.deltaTime);
     }
 
-
     protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
@@ -107,7 +103,7 @@ public abstract class Enemy : MonoBehaviour
             if (isBoss == false)
             {
                 GameManager.Instance.enemy[enemyNumber].Remove(gameObject);
-                //NOTE : Àû Death »ç¿îµå Ãß°¡(±î¸¶±Í Á¦¿Ü)
+                //NOTE : ì  Death ì‚¬ìš´ë“œ ì¶”ê°€(ê¹Œë§ˆê·€ ì œì™¸)
                 AudioManager.Instance.PlaySFX(deathClip, transform.position, null, 0.3f);
                 KillCountUpdater();
                 FractureGen();
@@ -126,7 +122,7 @@ public abstract class Enemy : MonoBehaviour
             }
             else
             {
-                //NOTE : Áß°£º¸½º Death »ç¿îµå Ãß°¡
+                //NOTE : ì¤‘ê°„ë³´ìŠ¤ Death ì‚¬ìš´ë“œ ì¶”ê°€
                 Boss();
                 if (DataManager.Instance.data.isKilledBossBird || DataManager.Instance.data.isKilledBossFish)
                 {
@@ -148,7 +144,7 @@ public abstract class Enemy : MonoBehaviour
     {
         bossHp--;
         hpBar.fillAmount = hpAmount;
-        Debug.Log("¾Æ¾ß");
+        Debug.Log("ì•„ì•¼");
         if (bossHp <= 0)
         {
             if (isBossBird)
@@ -163,12 +159,11 @@ public abstract class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-
     }
 
     private void AmmoGen(Collision collision)
     {
-        Debug.Log($"ÃÑ¾Ë »ı¼ºµÊ {shotgunShell.name}");
+        Debug.Log($"ì´ì•Œ ìƒì„±ë¨ {shotgunShell.name}");
         GameObject shell = GameManager.Instance.pool.Pop(shotgunShell.name);
         shell.transform.position = collision.gameObject.transform.position;
     }
@@ -177,7 +172,7 @@ public abstract class Enemy : MonoBehaviour
     {
         switch (enemyNumber)
         {
-            //NOTE : »ç¿îµå Ãß°¡µÊ
+            //NOTE : ì‚¬ìš´ë“œ ì¶”ê°€ë¨
             case 0:
                 DataManager.Instance.data.money++;
                 DataManager.Instance.totalKillCount++;

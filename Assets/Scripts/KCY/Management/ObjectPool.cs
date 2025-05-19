@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-	[Tooltip("0 : ÆÄ¸®\n1 : ¹°°í±â\n2 : »õ\n3 : ÆøÅº ÆÄ¸®\n4 : ±î¸¶±Í\n5. ÃÑ¾Ë")]
+	[Tooltip("0 : íŒŒë¦¬\n1 : ë¬¼ê³ ê¸°\n2 : ìƒˆ\n3 : í­íƒ„ íŒŒë¦¬\n4 : ê¹Œë§ˆê·€\n5. ì´ì•Œ")]
 	public GameObject[] obj;
 	public Dictionary<string, GameObject> originalPool = new();
 	public Dictionary<string, List<GameObject>> poolDic = new();
-
 
 	public void Awake()
 	{
@@ -24,7 +23,7 @@ public class ObjectPool : MonoBehaviour
 	{
 		if (!poolDic.ContainsKey(key))
 		{
-			Debug.LogError("Key ¾ø´Âµ¥?");
+			Debug.LogError("Key ì—†ëŠ”ë°?");
 			return null;
 		}
 		List<GameObject> targetPool = poolDic[key];
@@ -46,7 +45,7 @@ public class ObjectPool : MonoBehaviour
 
 		obj.transform.SetParent(transform);
 		poolDic[obj.name].Add(obj);
-		Debug.Log($"Çª½¬µÈ ¿ÉÁ§ ÀÌ¸§ : {obj.name} È°¼ºÈ­ À¯¹« : {obj.activeSelf}");
+		Debug.Log($"í‘¸ì‰¬ëœ ì˜µì  ì´ë¦„ : {obj.name} í™œì„±í™” ìœ ë¬´ : {obj.activeSelf}");
 	}
 	public IEnumerator Push(GameObject obj, float t)
 	{
