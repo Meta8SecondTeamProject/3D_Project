@@ -24,3 +24,12 @@
 
 </div>
 </details>
+
+## 👥 팀원 소개
+
+### 개발 팀원
+| 팀장 | 팀원 | 팀원 |
+|-----------|-----------|-----------|
+| ![김찬영](https://avatars.githubusercontent.com/u/180273758?v=4) | ![백봉훈](https://avatars.githubusercontent.com/u/180765013?v=4) | ![정도윤](https://avatars.githubusercontent.com/u/182587175?v=4) |
+| **김찬영** | **백봉훈** | **정도윤** |
+| [GitHub](https://github.com/Victor20000130) | [GitHub](https://github.com/HundredBong) | [GitHub](https://github.com/7220RR)
